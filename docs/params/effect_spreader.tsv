@@ -1,0 +1,6 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Spread	0.5000	50.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+1	Stereo separation	0.5000	Original	100% merged	50% merged	Original	50% separated	100% separated
+2	Low-Frequency Bypass	-0.0010	0.00 Hz	0.00 Hz	250.00 Hz	500.00 Hz	5250.00 Hz	10000.00 Hz
+3	Mono	0.0000	Off	Off	Off [landed 0.000]	Off [landed 0.000]	On [landed 1.000]	On
+4	Enabled	1.0000	On	Off	Off [landed 0.000]	Off [landed 0.000]	On [landed 1.000]	On

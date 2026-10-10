@@ -1,0 +1,79 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Master level	0.3594	35.9%	0.0%	25.0%	50.0%	75.0%	100.0%
+1	Tune	0.5000	50.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+2	Amp attack	0.3633	36.3%	0.0%	25.0%	50.0%	75.0%	100.0%
+3	Amp decay	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+4	Amp sustain	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+5	Amp release	0.3711	37.1%	0.0%	25.0%	50.0%	75.0%	100.0%
+6	String 1 decay	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+7	String 1 decay inverted	0.0000	+	+	-	-	-	-
+8	String 1 damp offset	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+9	String 1 damp amount	0.0195	2.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+10	String 1 damp sharpness	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+11	String 2 decay	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+12	String 2 decay inverted	0.0000	+	+	-	-	-	-
+13	String 2 damp offset	0.1719	17.2%	0.0%	25.0%	50.0%	75.0%	100.0%
+14	String 2 damp amount	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+15	String 2 damp sharpness	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+16	String saturation	0.4531	45.3%	0.0%	25.0%	50.0%	75.0%	100.0%
+17	String mix	0.5703	57.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+18	String stereo separation	0.5000	50.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+19	Comp ratio	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+20	Comb feedback	0.3398	34.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+21	Comb feedback inverted	0.0000	+	+	-	-	-	-
+22	Comb level	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+23	Comb level Inverted	0.0039	-	+	-	-	-	-
+24	Lo-Cut cutoff	0.3750	37.5%	0.0%	25.0%	50.0%	75.0%	100.0%
+25	Lo-Cut resonance	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+26	Hi-Cut attack	0.1016	10.2%	0.0%	25.0%	50.0%	75.0%	100.0%
+27	Hi-Cut decay	0.1914	19.1%	0.0%	25.0%	50.0%	75.0%	100.0%
+28	Hi-Cut sustain	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+29	Hi-Cut cutoff	0.7031	70.3%	0.0%	25.0%	50.0%	75.0%	100.0%
+30	Hi-Cut resonance	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+31	Exciter noise level	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+32	Exciter noise rate	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+33	Hi-Cut drive	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+34	EG attack	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+35	EG decay	0.1680	16.8%	0.0%	25.0%	50.0%	75.0%	100.0%
+36	EG sustain	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+37	EG release	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+38	LFO rate	0.7969	79.7%	0.0%	25.0%	50.0%	75.0%	100.0%
+39	Resonator frequency 1	0.4727	47.3%	0.0%	25.0%	50.0%	75.0%	100.0%
+40	Resonator frequency 2	0.6406	64.1%	0.0%	25.0%	50.0%	75.0%	100.0%
+41	Resonator frequency 3	0.6875	68.8%	0.0%	25.0%	50.0%	75.0%	100.0%
+42	Resonator frequency 4	0.8281	82.8%	0.0%	25.0%	50.0%	75.0%	100.0%
+43	Resonator frequency 5	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+44	Resonator frequency 6	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+45	Resonator frequency 7	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+46	Resonator frequency 8	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+47	Resonator feedback 1	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+48	Resonator feedback 2	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+49	Resonator feedback 3	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+50	Resonator feedback 4	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+51	Resonator feedback 5	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+52	Resonator feedback 6	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+53	Resonator feedback 7	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+54	Resonator feedback 8	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+55	Resonator on 1	0.0039	On	Off	On	On	On	On
+56	Resonator on 2	0.0039	On	Off	On	On	On	On
+57	Resonator on 3	0.0039	On	Off	On	On	On	On
+58	Resonator on 4	0.0039	On	Off	On	On	On	On
+59	Resonator on 5	0.0000	Off	Off	On	On	On	On
+60	Resonator on 6	0.0000	Off	Off	On	On	On	On
+61	Resonator on 7	0.0000	Off	Off	On	On	On	On
+62	Resonator on 8	0.0000	Off	Off	On	On	On	On
+63	Delay	0.0000	Off	Off	On	On	On	On
+64	Delay time	0.5000	50.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+65	Delay feedback	0.5977	59.8%	0.0%	25.0%	50.0%	75.0%	100.0%
+66	Delay mod speed	0.2383	23.8%	0.0%	25.0%	50.0%	75.0%	100.0%
+67	Delay mod depth	0.1992	19.9%	0.0%	25.0%	50.0%	75.0%	100.0%
+68	Delay blur	0.5000	50.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+69	Delay wet	0.3477	34.8%	0.0%	25.0%	50.0%	75.0%	100.0%
+70	Chorus	0.0039	On	Off	On	On	On	On
+71	Chorus rate	0.1758	1Hz	0Hz	1Hz	3Hz	4Hz	5Hz
+72	Chorus depth	0.3477	34.8%	0.0%	25.0%	50.0%	75.0%	100.0%
+73	Chorus wet	0.2266	22.7%	0.0%	25.0%	50.0%	75.0%	100.0%
+74	Reverb	0.0039	On	Off	On	On	On	On
+75	Reverb mix	0.5938	59.4%	0.0%	25.0%	50.0%	75.0%	100.0%
+76	Reverb decay	0.5977	59.8%	0.0%	25.0%	50.0%	75.0%	100.0%
+77	Reverb color	0.8320	83.2%	0.0%	25.0%	50.0%	75.0%	100.0%

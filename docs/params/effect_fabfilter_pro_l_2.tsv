@@ -1,0 +1,17 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Gain	0.0000	0.00 dB	0.00 dB	+7.50 dB	+15.00 dB	+22.50 dB	+30.00 dB
+2	Lookahead	0.0360	0.180 ms	0.000 ms	1.250 ms	2.500 ms	3.750 ms	5.000 ms
+3	Attack	0.4072	275.0 ms	0.000 ms	39.06 ms	625.0 ms	3.164 sec	10.00 sec
+4	Release	0.3878	400.0 ms	0.000 ms	107.2 ms	857.3 ms	2.894 sec	10.00 sec
+5	Channel Link Transients	0.3750	75%	0%	50%	100%	100%	100%
+6	Channel Link Release	0.5000	100%	0%	50%	100%	100%	100%
+7	Channel Link Center	0.0000	Excluded	Excluded	Excluded	Included	Included	Included
+8	Channel Link LFE	0.0000	Excluded	Excluded	Excluded	Included	Included	Included
+11	Dithering	0.0000	Off	Off	16 Bits	20 Bits	22 Bits	24 Bits
+12	Noise Shaping	0.6667	Optimized	None	Basic	Optimized	Optimized	Weighted
+13	Filter DC Offset	0.0000	Off	Off	Off	On	On	On
+14	Side Chain Triggering	0.0000	Off	Off	Off	On	On	On
+17	Bypass	0.0000	Not Bypassed	Not Bypassed	Not Bypassed	Bypassed	Bypassed	Bypassed
+18	Output Level	1.0000	0.00 dBTP	-30.00 dBTP	-22.50 dBTP	-15.00 dBTP	-7.50 dBTP	0.00 dBTP
+20	Receive Midi	0.0000	Enabled	Enabled	Enabled	Disabled	Disabled	Disabled
+32	Host Bypass	0.0000	Not Bypassed	Not Bypassed	Not Bypassed	Bypassed	Bypassed	Bypassed

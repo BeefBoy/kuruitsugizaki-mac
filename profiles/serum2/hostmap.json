@@ -1,0 +1,5500 @@
+{
+ "project": "projects/init/init_serum_2_copies.flp",
+ "channel": 1,
+ "lo": 0.25,
+ "hi": 0.75,
+ "block": 541,
+ "repointers": [],
+ "mapping": {
+  "0": {
+   "name": "Main Vol",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamMasterVolume",
+     "lo": 0.06249999999999999,
+     "hi": 0.5625
+    }
+   ]
+  },
+  "1": {
+   "name": "Main Tuning",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamMasterTuning",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "2": {
+   "name": "Amp",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamVoiceAmp",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "3": {
+   "name": "Porta Time",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamPortamentoTime",
+     "lo": 0.007812499999999999,
+     "hi": 1.8984375
+    }
+   ]
+  },
+  "4": {
+   "name": "Porta Curve",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamPortamentoCurve",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "5": {
+   "name": "Bend Up",
+   "default_norm": 0.5416666865348816,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamBendRangeUp",
+     "lo": -12.0,
+     "hi": 12.0
+    }
+   ]
+  },
+  "6": {
+   "name": "Bend Down",
+   "default_norm": 0.4583333432674408,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamBendRangeDn",
+     "lo": -12.0,
+     "hi": 12.0
+    }
+   ]
+  },
+  "8": {
+   "name": "Mod Wheel",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamModWheel",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "9": {
+   "name": "Mono Toggle",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamMonoToggle",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "10": {
+   "name": "Legato",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamLegato",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "11": {
+   "name": "Porta Always",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamPortaAlways",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "12": {
+   "name": "Porta Scaled",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamPortaScaled",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "13": {
+   "name": "Swing",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamSwing",
+     "lo": 31.25,
+     "hi": 68.75
+    }
+   ]
+  },
+  "14": {
+   "name": "Swing Div",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamSwingDiv",
+     "lo": 1.0,
+     "hi": 5.0
+    }
+   ]
+  },
+  "15": {
+   "name": "Transpose",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamTranspose",
+     "lo": -12.0,
+     "hi": 12.0
+    }
+   ]
+  },
+  "16": {
+   "name": "Bypass",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamBypass",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "17": {
+   "name": "Direct Vol",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamDirectVol",
+     "lo": 0.12499999999999999,
+     "hi": 1.125
+    }
+   ]
+  },
+  "18": {
+   "name": "Bus 1 Vol",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamFXBus1Vol",
+     "lo": 0.12499999999999999,
+     "hi": 1.125
+    }
+   ]
+  },
+  "19": {
+   "name": "Bus 2 Vol",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Global0/plainParams/kParamFXBus2Vol",
+     "lo": 0.12499999999999999,
+     "hi": 1.125
+    }
+   ]
+  },
+  "20": {
+   "name": "A Enable",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamEnable",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "21": {
+   "name": "A Level",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamVolume",
+     "lo": 0.06249999999999999,
+     "hi": "<absent>"
+    }
+   ]
+  },
+  "22": {
+   "name": "A Pan",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamPan",
+     "lo": -25.0,
+     "hi": 25.0
+    }
+   ]
+  },
+  "23": {
+   "name": "A Octave",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamOctave",
+     "lo": -2.0,
+     "hi": 2.0
+    }
+   ]
+  },
+  "24": {
+   "name": "A Semi",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamPitch",
+     "lo": -6.0,
+     "hi": 6.0
+    }
+   ]
+  },
+  "25": {
+   "name": "A Fine",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamFine",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "26": {
+   "name": "A Ratio",
+   "default_norm": 0.03076923079788685,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamPitchRatio",
+     "lo": 15.25,
+     "hi": 47.75
+    }
+   ]
+  },
+  "27": {
+   "name": "A Hz Offset",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamHzOffset",
+     "lo": -500.0,
+     "hi": 500.0
+    }
+   ]
+  },
+  "28": {
+   "name": "A Coarse Pitch",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamCoarsePit",
+     "lo": -32.0,
+     "hi": 32.0
+    }
+   ]
+  },
+  "29": {
+   "name": "A Pitch Track",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamPitchTrack",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "30": {
+   "name": "A Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamStart",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "31": {
+   "name": "A End",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamEnd",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "32": {
+   "name": "A Reverse",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamReverse",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "33": {
+   "name": "A Scan Rate",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamScanRate",
+     "lo": -100.0,
+     "hi": "<absent>"
+    }
+   ]
+  },
+  "34": {
+   "name": "A Scan BPM Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamScanBPMRate",
+     "lo": 1.0,
+     "hi": 5.0
+    }
+   ]
+  },
+  "35": {
+   "name": "A Scan Key Track",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamScanKeyTrack",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "36": {
+   "name": "A Position",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamPosition",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "37": {
+   "name": "A Loop Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamLoopStart",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "38": {
+   "name": "A Loop End",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamLoopEnd",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "39": {
+   "name": "A Loop X-Fade",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamLoopCrossfade",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "40": {
+   "name": "A Loop Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamLoopMode",
+     "lo": "kForward",
+     "hi": "kPingPong"
+    }
+   ]
+  },
+  "41": {
+   "name": "A Relative Loop",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamLoopStartLink",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "42": {
+   "name": "A Single Slice",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamSlicingSingleSlice",
+     "lo": 26.0,
+     "hi": 76.0
+    }
+   ]
+  },
+  "43": {
+   "name": "A Slice Play Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamSlicingPlayToEnd",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "44": {
+   "name": "A Unison",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamUnison",
+     "lo": 5.0,
+     "hi": 13.0
+    }
+   ]
+  },
+  "45": {
+   "name": "A Uni Stack",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamUnisonStack",
+     "lo": "kOctave2",
+     "hi": "kOctaveFifth3"
+    }
+   ]
+  },
+  "46": {
+   "name": "A Uni Detune",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamDetune",
+     "lo": 0.06249999999999999,
+     "hi": 0.5625
+    }
+   ]
+  },
+  "47": {
+   "name": "A Uni Blend",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamDetuneWid",
+     "lo": 25.0,
+     "hi": "<absent>"
+    }
+   ]
+  },
+  "48": {
+   "name": "A Uni Width",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamUnisonStereo",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "49": {
+   "name": "A Uni Span",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamUnisonSpan",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "50": {
+   "name": "A Uni Rand Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamRandomStart",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "51": {
+   "name": "A Uni Warp",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamUnisonWarp",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "52": {
+   "name": "A Uni Warp 2",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/plainParams/kParamUnisonWarp2",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "53": {
+   "name": "A Warp",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamWarp",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "54": {
+   "name": "A Warp Var",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamWarpVar",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "55": {
+   "name": "A Warp Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamWarpMenu",
+     "lo": "kFilterLPF",
+     "hi": "kPD_OSC2"
+    }
+   ]
+  },
+  "56": {
+   "name": "A Warp 2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamWarp2",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "57": {
+   "name": "A Warp 2 Var",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamWarpVar2",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "58": {
+   "name": "A Warp 2 Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamWarpMenu2",
+     "lo": "kFilterLPF",
+     "hi": "kPD_OSC2"
+    }
+   ]
+  },
+  "59": {
+   "name": "A WT Pos",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamTablePos",
+     "lo": 64.75,
+     "hi": 192.25
+    }
+   ]
+  },
+  "60": {
+   "name": "A Uni WT Pos",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamUnisonWTPos",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "61": {
+   "name": "A Phase",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamInitialPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "62": {
+   "name": "A Rand Phase",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator0/WTOsc0/plainParams/kParamRandomPhase",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "75": {
+   "name": "B Enable",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamEnable",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "76": {
+   "name": "B Level",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamVolume",
+     "lo": 0.06249999999999999,
+     "hi": "<absent>"
+    }
+   ]
+  },
+  "77": {
+   "name": "B Pan",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamPan",
+     "lo": -25.0,
+     "hi": 25.0
+    }
+   ]
+  },
+  "78": {
+   "name": "B Octave",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamOctave",
+     "lo": -2.0,
+     "hi": 2.0
+    }
+   ]
+  },
+  "79": {
+   "name": "B Semi",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamPitch",
+     "lo": -6.0,
+     "hi": 6.0
+    }
+   ]
+  },
+  "80": {
+   "name": "B Fine",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamFine",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "81": {
+   "name": "B Ratio",
+   "default_norm": 0.03076923079788685,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamPitchRatio",
+     "lo": 15.25,
+     "hi": 47.75
+    }
+   ]
+  },
+  "82": {
+   "name": "B Hz Offset",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamHzOffset",
+     "lo": -500.0,
+     "hi": 500.0
+    }
+   ]
+  },
+  "83": {
+   "name": "B Coarse Pitch",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamCoarsePit",
+     "lo": -32.0,
+     "hi": 32.0
+    }
+   ]
+  },
+  "84": {
+   "name": "B Pitch Track",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamPitchTrack",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "85": {
+   "name": "B Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamStart",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "86": {
+   "name": "B End",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamEnd",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "87": {
+   "name": "B Reverse",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamReverse",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "88": {
+   "name": "B Scan Rate",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamScanRate",
+     "lo": -100.0,
+     "hi": "<absent>"
+    }
+   ]
+  },
+  "89": {
+   "name": "B Scan BPM Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamScanBPMRate",
+     "lo": 1.0,
+     "hi": 5.0
+    }
+   ]
+  },
+  "90": {
+   "name": "B Scan Key Track",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamScanKeyTrack",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "91": {
+   "name": "B Position",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamPosition",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "92": {
+   "name": "B Loop Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamLoopStart",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "93": {
+   "name": "B Loop End",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamLoopEnd",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "94": {
+   "name": "B Loop X-Fade",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamLoopCrossfade",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "95": {
+   "name": "B Loop Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamLoopMode",
+     "lo": "kForward",
+     "hi": "kPingPong"
+    }
+   ]
+  },
+  "96": {
+   "name": "B Relative Loop",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamLoopStartLink",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "97": {
+   "name": "B Single Slice",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamSlicingSingleSlice",
+     "lo": 26.0,
+     "hi": 76.0
+    }
+   ]
+  },
+  "98": {
+   "name": "B Slice Play Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamSlicingPlayToEnd",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "99": {
+   "name": "B Unison",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamUnison",
+     "lo": 5.0,
+     "hi": 13.0
+    }
+   ]
+  },
+  "100": {
+   "name": "B Uni Stack",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamUnisonStack",
+     "lo": "kOctave2",
+     "hi": "kOctaveFifth3"
+    }
+   ]
+  },
+  "101": {
+   "name": "B Uni Detune",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamDetune",
+     "lo": 0.06249999999999999,
+     "hi": 0.5625
+    }
+   ]
+  },
+  "102": {
+   "name": "B Uni Blend",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamDetuneWid",
+     "lo": 25.0,
+     "hi": "<absent>"
+    }
+   ]
+  },
+  "103": {
+   "name": "B Uni Width",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamUnisonStereo",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "104": {
+   "name": "B Uni Span",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamUnisonSpan",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "105": {
+   "name": "B Uni Rand Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamRandomStart",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "106": {
+   "name": "B Uni Warp",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamUnisonWarp",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "107": {
+   "name": "B Uni Warp 2",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/plainParams/kParamUnisonWarp2",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "108": {
+   "name": "B Warp",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamWarp",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "109": {
+   "name": "B Warp Var",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamWarpVar",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "110": {
+   "name": "B Warp Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamWarpMenu",
+     "lo": "kFilterLPF",
+     "hi": "kPD_OSC2"
+    }
+   ]
+  },
+  "111": {
+   "name": "B Warp 2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamWarp2",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "112": {
+   "name": "B Warp 2 Var",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamWarpVar2",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "113": {
+   "name": "B Warp 2 Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamWarpMenu2",
+     "lo": "kFilterLPF",
+     "hi": "kPD_OSC2"
+    }
+   ]
+  },
+  "114": {
+   "name": "B WT Pos",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamTablePos",
+     "lo": 64.75,
+     "hi": 192.25
+    }
+   ]
+  },
+  "115": {
+   "name": "B Uni WT Pos",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamUnisonWTPos",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "116": {
+   "name": "B Phase",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamInitialPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "117": {
+   "name": "B Rand Phase",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator1/WTOsc1/plainParams/kParamRandomPhase",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "130": {
+   "name": "C Enable",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamEnable",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "131": {
+   "name": "C Level",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamVolume",
+     "lo": 0.06249999999999999,
+     "hi": "<absent>"
+    }
+   ]
+  },
+  "132": {
+   "name": "C Pan",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamPan",
+     "lo": -25.0,
+     "hi": 25.0
+    }
+   ]
+  },
+  "133": {
+   "name": "C Octave",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamOctave",
+     "lo": -2.0,
+     "hi": 2.0
+    }
+   ]
+  },
+  "134": {
+   "name": "C Semi",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamPitch",
+     "lo": -6.0,
+     "hi": 6.0
+    }
+   ]
+  },
+  "135": {
+   "name": "C Fine",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamFine",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "136": {
+   "name": "C Ratio",
+   "default_norm": 0.03076923079788685,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamPitchRatio",
+     "lo": 15.25,
+     "hi": 47.75
+    }
+   ]
+  },
+  "137": {
+   "name": "C Hz Offset",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamHzOffset",
+     "lo": -500.0,
+     "hi": 500.0
+    }
+   ]
+  },
+  "138": {
+   "name": "C Coarse Pitch",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamCoarsePit",
+     "lo": -32.0,
+     "hi": 32.0
+    }
+   ]
+  },
+  "139": {
+   "name": "C Pitch Track",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamPitchTrack",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "140": {
+   "name": "C Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamStart",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "141": {
+   "name": "C End",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamEnd",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "142": {
+   "name": "C Reverse",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamReverse",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "143": {
+   "name": "C Scan Rate",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamScanRate",
+     "lo": -100.0,
+     "hi": "<absent>"
+    }
+   ]
+  },
+  "144": {
+   "name": "C Scan BPM Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamScanBPMRate",
+     "lo": 1.0,
+     "hi": 5.0
+    }
+   ]
+  },
+  "145": {
+   "name": "C Scan Key Track",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamScanKeyTrack",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "146": {
+   "name": "C Position",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamPosition",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "147": {
+   "name": "C Loop Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamLoopStart",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "148": {
+   "name": "C Loop End",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamLoopEnd",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "149": {
+   "name": "C Loop X-Fade",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamLoopCrossfade",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "150": {
+   "name": "C Loop Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamLoopMode",
+     "lo": "kForward",
+     "hi": "kPingPong"
+    }
+   ]
+  },
+  "151": {
+   "name": "C Relative Loop",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamLoopStartLink",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "152": {
+   "name": "C Single Slice",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamSlicingSingleSlice",
+     "lo": 26.0,
+     "hi": 76.0
+    }
+   ]
+  },
+  "153": {
+   "name": "C Slice Play Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamSlicingPlayToEnd",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "154": {
+   "name": "C Unison",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamUnison",
+     "lo": 5.0,
+     "hi": 13.0
+    }
+   ]
+  },
+  "155": {
+   "name": "C Uni Stack",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamUnisonStack",
+     "lo": "kOctave2",
+     "hi": "kOctaveFifth3"
+    }
+   ]
+  },
+  "156": {
+   "name": "C Uni Detune",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamDetune",
+     "lo": 0.06249999999999999,
+     "hi": 0.5625
+    }
+   ]
+  },
+  "157": {
+   "name": "C Uni Blend",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamDetuneWid",
+     "lo": 25.0,
+     "hi": "<absent>"
+    }
+   ]
+  },
+  "158": {
+   "name": "C Uni Width",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamUnisonStereo",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "159": {
+   "name": "C Uni Span",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamUnisonSpan",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "160": {
+   "name": "C Uni Rand Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamRandomStart",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "161": {
+   "name": "C Uni Warp",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamUnisonWarp",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "162": {
+   "name": "C Uni Warp 2",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/plainParams/kParamUnisonWarp2",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "163": {
+   "name": "C Warp",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamWarp",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "164": {
+   "name": "C Warp Var",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamWarpVar",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "165": {
+   "name": "C Warp Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamWarpMenu",
+     "lo": "kFilterLPF",
+     "hi": "kPD_OSC2"
+    }
+   ]
+  },
+  "166": {
+   "name": "C Warp 2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamWarp2",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "167": {
+   "name": "C Warp 2 Var",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamWarpVar2",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "168": {
+   "name": "C Warp 2 Mode",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamWarpMenu2",
+     "lo": "kFilterLPF",
+     "hi": "kPD_OSC2"
+    }
+   ]
+  },
+  "169": {
+   "name": "C WT Pos",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamTablePos",
+     "lo": 64.75,
+     "hi": 192.25
+    }
+   ]
+  },
+  "170": {
+   "name": "C Uni WT Pos",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamUnisonWTPos",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "171": {
+   "name": "C Phase",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamInitialPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "172": {
+   "name": "C Rand Phase",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator2/WTOsc2/plainParams/kParamRandomPhase",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "185": {
+   "name": "Noise Enable",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator3/plainParams/kParamEnable",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "186": {
+   "name": "Noise Level",
+   "default_norm": 0.25,
+   "keys": [
+    {
+     "key": "P/Oscillator3/plainParams/kParamVolume",
+     "lo": "<absent>",
+     "hi": 0.5625
+    }
+   ]
+  },
+  "187": {
+   "name": "Noise Pan",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator3/plainParams/kParamPan",
+     "lo": -25.0,
+     "hi": 25.0
+    }
+   ]
+  },
+  "188": {
+   "name": "Noise Pitch Track",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator3/plainParams/kParamPitchTrack",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "189": {
+   "name": "Noise Pitch",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator3/NoiseOsc3/plainParams/kParamColor",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "190": {
+   "name": "Noise Fine",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator3/NoiseOsc3/plainParams/kParamFine",
+     "lo": -0.5,
+     "hi": 0.5
+    }
+   ]
+  },
+  "191": {
+   "name": "Noise Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator3/NoiseOsc3/plainParams/kParamInitialPhase",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "192": {
+   "name": "Noise Rand Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator3/NoiseOsc3/plainParams/kParamRandomPhase",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "193": {
+   "name": "Sub Enable",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator4/plainParams/kParamEnable",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "194": {
+   "name": "Sub Level",
+   "default_norm": 0.75,
+   "keys": [
+    {
+     "key": "P/Oscillator4/plainParams/kParamVolume",
+     "lo": 0.06249999999999999,
+     "hi": 0.5625
+    }
+   ]
+  },
+  "195": {
+   "name": "Sub Pan",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator4/plainParams/kParamPan",
+     "lo": -25.0,
+     "hi": 25.0
+    }
+   ]
+  },
+  "196": {
+   "name": "Sub Octave",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator4/plainParams/kParamOctave",
+     "lo": -2.0,
+     "hi": 2.0
+    }
+   ]
+  },
+  "197": {
+   "name": "Sub Coarse Pitch",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Oscillator4/plainParams/kParamCoarsePit",
+     "lo": -32.0,
+     "hi": 32.0
+    }
+   ]
+  },
+  "198": {
+   "name": "Sub Pitch Track",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Oscillator4/plainParams/kParamPitchTrack",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "199": {
+   "name": "Sub Shape",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator4/SubOsc4/plainParams/kParamShape",
+     "lo": "kRoundRect",
+     "hi": "kSquare"
+    }
+   ]
+  },
+  "200": {
+   "name": "Sub Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator4/SubOsc4/plainParams/kParamInitialPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "201": {
+   "name": "Sub Cont. Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Oscillator4/SubOsc4/plainParams/kParamContiguousPhase",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "202": {
+   "name": "Filter 1 Level",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamLevelOut",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "203": {
+   "name": "Filter 1 On",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamEnable",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "204": {
+   "name": "Filter 1 Type",
+   "default_norm": 0.009433962404727936,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamType",
+     "lo": "BP12",
+     "hi": "Combs"
+    }
+   ]
+  },
+  "205": {
+   "name": "Filter 1 Freq",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamFreq",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "206": {
+   "name": "Filter 1 Res",
+   "default_norm": 0.10000000149011612,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamReso",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "207": {
+   "name": "Filter 1 Drive",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamDrive",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "208": {
+   "name": "Filter 1 Var",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamVar",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "209": {
+   "name": "Filter 1 Wet",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamWet",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "210": {
+   "name": "Filter 1 Stereo",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamStereo",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "211": {
+   "name": "Filter 1 X",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamX",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "212": {
+   "name": "Filter 1 Y",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter0/plainParams/kParamY",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "213": {
+   "name": "Filter 2 Level",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamLevelOut",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "214": {
+   "name": "Filter 2 On",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamEnable",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "215": {
+   "name": "Filter 2 Type",
+   "default_norm": 0.009433962404727936,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamType",
+     "lo": "BP12",
+     "hi": "Combs"
+    }
+   ]
+  },
+  "216": {
+   "name": "Filter 2 Freq",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamFreq",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "217": {
+   "name": "Filter 2 Res",
+   "default_norm": 0.10000000149011612,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamReso",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "218": {
+   "name": "Filter 2 Drive",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamDrive",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "219": {
+   "name": "Filter 2 Var",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamVar",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "220": {
+   "name": "Filter 2 Wet",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamWet",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "221": {
+   "name": "Filter 2 Stereo",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamStereo",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "222": {
+   "name": "Filter 2 X",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamX",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "223": {
+   "name": "Filter 2 Y",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoiceFilter1/plainParams/kParamY",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "224": {
+   "name": "Env 1 Attack",
+   "default_norm": 0.12559431791305542,
+   "keys": [
+    {
+     "key": "P/Env0/plainParams/kParamAttack",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "225": {
+   "name": "Env 1 Hold",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env0/plainParams/kParamHold",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "226": {
+   "name": "Env 1 Decay",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Env0/plainParams/kParamDecay",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "227": {
+   "name": "Env 1 Sustain",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Env0/plainParams/kParamSustain",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "228": {
+   "name": "Env 1 Release",
+   "default_norm": 0.2150000035762787,
+   "keys": [
+    {
+     "key": "P/Env0/plainParams/kParamRelease",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "229": {
+   "name": "Env 1 Atk Curve",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Env0/plainParams/kParamCurve1",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "230": {
+   "name": "Env 1 Dec Curve",
+   "default_norm": 0.6660000085830688,
+   "keys": [
+    {
+     "key": "P/Env0/plainParams/kParamCurve2",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "231": {
+   "name": "Env 1 Rel Curve",
+   "default_norm": 0.6660000085830688,
+   "keys": [
+    {
+     "key": "P/Env0/plainParams/kParamCurve3",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "232": {
+   "name": "Env 2 Attack",
+   "default_norm": 0.10999999940395355,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamAttack",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "233": {
+   "name": "Env 2 Hold",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamHold",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "234": {
+   "name": "Env 2 Decay",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamDecay",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "235": {
+   "name": "Env 2 Sustain",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamSustain",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "236": {
+   "name": "Env 2 Release",
+   "default_norm": 0.2150000035762787,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamRelease",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "237": {
+   "name": "Env 2 Atk Curve",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamCurve1",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "238": {
+   "name": "Env 2 Dec Curve",
+   "default_norm": 0.6660000085830688,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamCurve2",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "239": {
+   "name": "Env 2 Rel Curve",
+   "default_norm": 0.6660000085830688,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamCurve3",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "240": {
+   "name": "Env 2 Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamStart",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "241": {
+   "name": "Env 2 End",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env1/plainParams/kParamEnd",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "242": {
+   "name": "Env 3 Attack",
+   "default_norm": 0.10999999940395355,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamAttack",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "243": {
+   "name": "Env 3 Hold",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamHold",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "244": {
+   "name": "Env 3 Decay",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamDecay",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "245": {
+   "name": "Env 3 Sustain",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamSustain",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "246": {
+   "name": "Env 3 Release",
+   "default_norm": 0.2150000035762787,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamRelease",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "247": {
+   "name": "Env 3 Atk Curve",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamCurve1",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "248": {
+   "name": "Env 3 Dec Curve",
+   "default_norm": 0.6660000085830688,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamCurve2",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "249": {
+   "name": "Env 3 Rel Curve",
+   "default_norm": 0.6660000085830688,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamCurve3",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "250": {
+   "name": "Env 3 Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamStart",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "251": {
+   "name": "Env 3 End",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env2/plainParams/kParamEnd",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "252": {
+   "name": "Env 4 Attack",
+   "default_norm": 0.10999999940395355,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamAttack",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "253": {
+   "name": "Env 4 Hold",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamHold",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "254": {
+   "name": "Env 4 Decay",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamDecay",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "255": {
+   "name": "Env 4 Sustain",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamSustain",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "256": {
+   "name": "Env 4 Release",
+   "default_norm": 0.2150000035762787,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamRelease",
+     "lo": 0.031249999999999997,
+     "hi": 7.59375
+    }
+   ]
+  },
+  "257": {
+   "name": "Env 4 Atk Curve",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamCurve1",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "258": {
+   "name": "Env 4 Dec Curve",
+   "default_norm": 0.6660000085830688,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamCurve2",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "259": {
+   "name": "Env 4 Rel Curve",
+   "default_norm": 0.6660000085830688,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamCurve3",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "260": {
+   "name": "Env 4 Start",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamStart",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "261": {
+   "name": "Env 4 End",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Env3/plainParams/kParamEnd",
+     "lo": 0.25,
+     "hi": 0.75
+    }
+   ]
+  },
+  "262": {
+   "name": "LFO 1 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO0/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "263": {
+   "name": "LFO 1 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO0/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "264": {
+   "name": "LFO 1 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO0/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "265": {
+   "name": "LFO 1 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO0/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "266": {
+   "name": "LFO 1 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO0/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "267": {
+   "name": "LFO 2 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO1/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "268": {
+   "name": "LFO 2 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO1/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "269": {
+   "name": "LFO 2 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO1/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "270": {
+   "name": "LFO 2 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO1/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "271": {
+   "name": "LFO 2 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO1/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "272": {
+   "name": "LFO 3 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO2/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "273": {
+   "name": "LFO 3 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO2/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "274": {
+   "name": "LFO 3 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO2/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "275": {
+   "name": "LFO 3 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO2/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "276": {
+   "name": "LFO 3 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO2/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "277": {
+   "name": "LFO 4 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO3/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "278": {
+   "name": "LFO 4 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO3/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "279": {
+   "name": "LFO 4 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO3/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "280": {
+   "name": "LFO 4 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO3/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "281": {
+   "name": "LFO 4 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO3/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "282": {
+   "name": "LFO 5 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO4/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "283": {
+   "name": "LFO 5 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO4/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "284": {
+   "name": "LFO 5 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO4/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "285": {
+   "name": "LFO 5 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO4/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "286": {
+   "name": "LFO 5 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO4/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "287": {
+   "name": "LFO 6 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO5/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "288": {
+   "name": "LFO 6 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO5/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "289": {
+   "name": "LFO 6 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO5/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "290": {
+   "name": "LFO 6 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO5/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "291": {
+   "name": "LFO 6 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO5/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "292": {
+   "name": "LFO 7 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO6/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "293": {
+   "name": "LFO 7 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO6/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "294": {
+   "name": "LFO 7 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO6/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "295": {
+   "name": "LFO 7 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO6/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "296": {
+   "name": "LFO 7 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO6/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "297": {
+   "name": "LFO 8 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO7/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "298": {
+   "name": "LFO 8 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO7/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "299": {
+   "name": "LFO 8 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO7/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "300": {
+   "name": "LFO 8 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO7/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "301": {
+   "name": "LFO 8 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO7/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "302": {
+   "name": "LFO 9 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO8/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "303": {
+   "name": "LFO 9 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO8/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "304": {
+   "name": "LFO 9 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO8/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "305": {
+   "name": "LFO 9 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO8/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "306": {
+   "name": "LFO 9 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO8/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "307": {
+   "name": "LFO 10 Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/LFO9/plainParams/kParamRate",
+     "lo": 0.39062499999999994,
+     "hi": 31.640624999999993
+    }
+   ]
+  },
+  "308": {
+   "name": "LFO 10 Smooth",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO9/plainParams/kParamSmooth",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "309": {
+   "name": "LFO 10 Rise",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO9/plainParams/kParamRise",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "310": {
+   "name": "LFO 10 Delay",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO9/plainParams/kParamDelay",
+     "lo": 1.0,
+     "hi": 3.0
+    }
+   ]
+  },
+  "311": {
+   "name": "LFO 10 Phase",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/LFO9/plainParams/kParamPhase",
+     "lo": 90.0,
+     "hi": 270.0
+    }
+   ]
+  },
+  "312": {
+   "name": "Mod 1 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot0/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "313": {
+   "name": "Mod 1 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot0/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "314": {
+   "name": "Mod 2 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot1/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "315": {
+   "name": "Mod 2 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot1/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "316": {
+   "name": "Mod 3 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot2/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "317": {
+   "name": "Mod 3 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot2/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "318": {
+   "name": "Mod 4 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot3/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "319": {
+   "name": "Mod 4 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot3/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "320": {
+   "name": "Mod 5 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot4/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "321": {
+   "name": "Mod 5 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot4/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "322": {
+   "name": "Mod 6 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot5/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "323": {
+   "name": "Mod 6 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot5/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "324": {
+   "name": "Mod 7 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot6/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "325": {
+   "name": "Mod 7 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot6/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "326": {
+   "name": "Mod 8 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot7/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "327": {
+   "name": "Mod 8 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot7/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "328": {
+   "name": "Mod 9 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot8/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "329": {
+   "name": "Mod 9 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot8/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "330": {
+   "name": "Mod 10 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot9/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "331": {
+   "name": "Mod 10 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot9/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "332": {
+   "name": "Mod 11 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot10/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "333": {
+   "name": "Mod 11 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot10/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "334": {
+   "name": "Mod 12 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot11/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "335": {
+   "name": "Mod 12 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot11/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "336": {
+   "name": "Mod 13 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot12/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "337": {
+   "name": "Mod 13 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot12/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "338": {
+   "name": "Mod 14 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot13/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "339": {
+   "name": "Mod 14 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot13/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "340": {
+   "name": "Mod 15 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot14/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "341": {
+   "name": "Mod 15 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot14/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "342": {
+   "name": "Mod 16 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot15/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "343": {
+   "name": "Mod 16 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot15/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "344": {
+   "name": "Mod 17 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot16/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "345": {
+   "name": "Mod 17 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot16/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "346": {
+   "name": "Mod 18 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot17/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "347": {
+   "name": "Mod 18 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot17/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "348": {
+   "name": "Mod 19 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot18/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "349": {
+   "name": "Mod 19 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot18/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "350": {
+   "name": "Mod 20 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot19/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "351": {
+   "name": "Mod 20 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot19/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "352": {
+   "name": "Mod 21 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot20/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "353": {
+   "name": "Mod 21 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot20/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "354": {
+   "name": "Mod 22 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot21/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "355": {
+   "name": "Mod 22 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot21/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "356": {
+   "name": "Mod 23 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot22/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "357": {
+   "name": "Mod 23 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot22/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "358": {
+   "name": "Mod 24 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot23/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "359": {
+   "name": "Mod 24 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot23/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "360": {
+   "name": "Mod 25 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot24/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "361": {
+   "name": "Mod 25 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot24/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "362": {
+   "name": "Mod 26 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot25/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "363": {
+   "name": "Mod 26 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot25/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "364": {
+   "name": "Mod 27 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot26/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "365": {
+   "name": "Mod 27 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot26/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "366": {
+   "name": "Mod 28 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot27/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "367": {
+   "name": "Mod 28 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot27/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "368": {
+   "name": "Mod 29 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot28/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "369": {
+   "name": "Mod 29 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot28/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "370": {
+   "name": "Mod 30 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot29/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "371": {
+   "name": "Mod 30 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot29/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "372": {
+   "name": "Mod 31 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot30/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "373": {
+   "name": "Mod 31 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot30/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "374": {
+   "name": "Mod 32 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot31/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "375": {
+   "name": "Mod 32 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot31/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "376": {
+   "name": "Mod 33 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot32/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "377": {
+   "name": "Mod 33 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot32/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "378": {
+   "name": "Mod 34 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot33/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "379": {
+   "name": "Mod 34 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot33/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "380": {
+   "name": "Mod 35 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot34/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "381": {
+   "name": "Mod 35 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot34/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "382": {
+   "name": "Mod 36 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot35/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "383": {
+   "name": "Mod 36 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot35/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "384": {
+   "name": "Mod 37 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot36/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "385": {
+   "name": "Mod 37 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot36/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "386": {
+   "name": "Mod 38 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot37/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "387": {
+   "name": "Mod 38 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot37/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "388": {
+   "name": "Mod 39 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot38/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "389": {
+   "name": "Mod 39 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot38/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "390": {
+   "name": "Mod 40 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot39/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "391": {
+   "name": "Mod 40 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot39/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "392": {
+   "name": "Mod 41 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot40/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "393": {
+   "name": "Mod 41 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot40/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "394": {
+   "name": "Mod 42 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot41/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "395": {
+   "name": "Mod 42 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot41/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "396": {
+   "name": "Mod 43 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot42/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "397": {
+   "name": "Mod 43 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot42/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "398": {
+   "name": "Mod 44 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot43/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "399": {
+   "name": "Mod 44 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot43/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "400": {
+   "name": "Mod 45 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot44/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "401": {
+   "name": "Mod 45 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot44/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "402": {
+   "name": "Mod 46 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot45/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "403": {
+   "name": "Mod 46 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot45/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "404": {
+   "name": "Mod 47 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot46/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "405": {
+   "name": "Mod 47 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot46/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "406": {
+   "name": "Mod 48 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot47/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "407": {
+   "name": "Mod 48 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot47/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "408": {
+   "name": "Mod 49 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot48/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "409": {
+   "name": "Mod 49 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot48/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "410": {
+   "name": "Mod 50 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot49/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "411": {
+   "name": "Mod 50 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot49/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "412": {
+   "name": "Mod 51 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot50/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "413": {
+   "name": "Mod 51 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot50/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "414": {
+   "name": "Mod 52 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot51/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "415": {
+   "name": "Mod 52 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot51/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "416": {
+   "name": "Mod 53 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot52/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "417": {
+   "name": "Mod 53 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot52/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "418": {
+   "name": "Mod 54 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot53/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "419": {
+   "name": "Mod 54 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot53/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "420": {
+   "name": "Mod 55 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot54/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "421": {
+   "name": "Mod 55 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot54/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "422": {
+   "name": "Mod 56 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot55/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "423": {
+   "name": "Mod 56 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot55/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "424": {
+   "name": "Mod 57 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot56/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "425": {
+   "name": "Mod 57 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot56/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "426": {
+   "name": "Mod 58 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot57/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "427": {
+   "name": "Mod 58 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot57/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "428": {
+   "name": "Mod 59 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot58/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "429": {
+   "name": "Mod 59 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot58/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "430": {
+   "name": "Mod 60 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot59/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "431": {
+   "name": "Mod 60 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot59/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "432": {
+   "name": "Mod 61 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot60/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "433": {
+   "name": "Mod 61 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot60/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "434": {
+   "name": "Mod 62 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot61/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "435": {
+   "name": "Mod 62 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot61/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "436": {
+   "name": "Mod 63 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot62/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "437": {
+   "name": "Mod 63 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot62/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "438": {
+   "name": "Mod 64 Amount",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ModSlot63/plainParams/kParamAmount",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "439": {
+   "name": "Mod 64 Out",
+   "default_norm": 1.0,
+   "keys": [
+    {
+     "key": "P/ModSlot63/plainParams/kParamOut",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "440": {
+   "name": "Macro 1",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Macro0/plainParams/kParamValue",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "441": {
+   "name": "Macro 2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Macro1/plainParams/kParamValue",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "442": {
+   "name": "Macro 3",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Macro2/plainParams/kParamValue",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "443": {
+   "name": "Macro 4",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Macro3/plainParams/kParamValue",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "444": {
+   "name": "Macro 5",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Macro4/plainParams/kParamValue",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "445": {
+   "name": "Macro 6",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Macro5/plainParams/kParamValue",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "446": {
+   "name": "Macro 7",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Macro6/plainParams/kParamValue",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "447": {
+   "name": "Macro 8",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Macro7/plainParams/kParamValue",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "448": {
+   "name": "A>Filter Balance",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot0/plainParams/kParamFilterBalance",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "449": {
+   "name": "A>BUS1",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot0/plainParams/kParamFXBus1Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "450": {
+   "name": "A>BUS2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot0/plainParams/kParamFXBus2Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "451": {
+   "name": "B>Filter Balance",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot1/plainParams/kParamFilterBalance",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "452": {
+   "name": "B>BUS1",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot1/plainParams/kParamFXBus1Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "453": {
+   "name": "B>BUS2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot1/plainParams/kParamFXBus2Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "454": {
+   "name": "C>Filter Balance",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot2/plainParams/kParamFilterBalance",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "455": {
+   "name": "C>BUS1",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot2/plainParams/kParamFXBus1Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "456": {
+   "name": "C>BUS2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot2/plainParams/kParamFXBus2Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "457": {
+   "name": "Noise>Filter Balance",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot3/plainParams/kParamFilterBalance",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "458": {
+   "name": "Noise>BUS1",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot3/plainParams/kParamFXBus1Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "459": {
+   "name": "Noise>BUS2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot3/plainParams/kParamFXBus2Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "460": {
+   "name": "Sub Osc>Filter Balance",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot4/plainParams/kParamFilterBalance",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "461": {
+   "name": "Sub Osc>BUS1",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot4/plainParams/kParamFXBus1Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "462": {
+   "name": "Sub Osc>BUS2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot4/plainParams/kParamFXBus2Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "463": {
+   "name": "Filter 1>BUS1",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot5/plainParams/kParamFXBus1Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "464": {
+   "name": "Filter 1>BUS2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot5/plainParams/kParamFXBus2Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "465": {
+   "name": "Filter 2>BUS1",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot6/plainParams/kParamFXBus1Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "466": {
+   "name": "Filter 2>BUS2",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/RoutingSlot6/plainParams/kParamFXBus2Level",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "467": {
+   "name": "Osc Detune Rnd",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoicePanel0/plainParams/kParamGlobalRandomOscDetune",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "468": {
+   "name": "Osc Pan Rand",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoicePanel0/plainParams/kParamGlobalRandomOscPan",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "469": {
+   "name": "Env Rand",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoicePanel0/plainParams/kParamGlobalRandomEnvTime",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "470": {
+   "name": "Cutoff Rand",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/VoicePanel0/plainParams/kParamGlobalRandomFilterCutoff",
+     "lo": 25.0,
+     "hi": 75.0
+    }
+   ]
+  },
+  "519": {
+   "name": "Clip Player Enable",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/ClipPlayer0/plainParams/kParamEnabled",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "520": {
+   "name": "Clip Player Transpose",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ClipPlayer0/plainParams/kParamTranspose",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "521": {
+   "name": "Clip Player Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ClipPlayer0/plainParams/kParamRate",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "522": {
+   "name": "Clip Player Offset",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/ClipPlayer0/plainParams/kParamRegionOffset",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "523": {
+   "name": "Arp Enable",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamEnabled",
+     "lo": 0.0,
+     "hi": 1.0
+    }
+   ]
+  },
+  "524": {
+   "name": "Arp Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamRate",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "525": {
+   "name": "Arp Shift",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamTransposeShift",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "526": {
+   "name": "Arp Range",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamTransposeRange",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "527": {
+   "name": "Arp Offset",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamOffset",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "528": {
+   "name": "Arp Repeats",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamRepeats",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "529": {
+   "name": "Arp Gate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamGate",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "530": {
+   "name": "Arp Chance",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamChance",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "531": {
+   "name": "Arp Retrig Rate",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamRetrigRate",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "532": {
+   "name": "Arp Velo Decay",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamVeloDecay",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "533": {
+   "name": "Arp Velo Target",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamVeloTarget",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "534": {
+   "name": "Arp Transpose",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamTranspose",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "535": {
+   "name": "Arp Wrap Transpose",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamWrapTranspose",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "536": {
+   "name": "Arp Wrap Range",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamWrapRange",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "537": {
+   "name": "Arp Wrap Phantom Note",
+   "default_norm": 0.5,
+   "keys": [
+    {
+     "key": "P/Arp0/plainParams/kParamWrapPhantomNote",
+     "lo": -50.0,
+     "hi": 50.0
+    }
+   ]
+  },
+  "538": {
+   "name": "Key",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/PitchQuantizer0/plainParams/kParamKey",
+     "lo": 3.0,
+     "hi": 9.0
+    }
+   ]
+  },
+  "539": {
+   "name": "Scale",
+   "default_norm": 0.0,
+   "keys": [
+    {
+     "key": "P/PitchQuantizer0/plainParams/kParamScale",
+     "lo": 16.0,
+     "hi": 48.0
+    },
+    {
+     "key": "P/PitchQuantizer0/scaleName",
+     "lo": "Klezmer",
+     "hi": "Nine Tone"
+    },
+    {
+     "key": "P/PitchQuantizer0/scale[10]",
+     "lo": 0,
+     "hi": 2
+    },
+    {
+     "key": "P/PitchQuantizer0/scale[11]",
+     "lo": 2,
+     "hi": 0
+    },
+    {
+     "key": "P/PitchQuantizer0/scale[1]",
+     "lo": 0,
+     "hi": 2
+    },
+    {
+     "key": "P/PitchQuantizer0/scale[2]",
+     "lo": 2,
+     "hi": 0
+    },
+    {
+     "key": "P/PitchQuantizer0/scale[3]",
+     "lo": 2,
+     "hi": 0
+    },
+    {
+     "key": "P/PitchQuantizer0/scale[5]",
+     "lo": 0,
+     "hi": 2
+    },
+    {
+     "key": "P/PitchQuantizer0/scale[6]",
+     "lo": 2,
+     "hi": 0
+    },
+    {
+     "key": "P/PitchQuantizer0/scale[9]",
+     "lo": 2,
+     "hi": 0
+    }
+   ]
+  }
+ },
+ "unmapped": [
+  [
+   7,
+   "Pitch Bend"
+  ],
+  [
+   63,
+   "A Param44"
+  ],
+  [
+   64,
+   "A Param45"
+  ],
+  [
+   65,
+   "A Param46"
+  ],
+  [
+   66,
+   "A Param47"
+  ],
+  [
+   67,
+   "A Param48"
+  ],
+  [
+   68,
+   "A Param49"
+  ],
+  [
+   69,
+   "A Param50"
+  ],
+  [
+   70,
+   "A Param51"
+  ],
+  [
+   71,
+   "A Param52"
+  ],
+  [
+   72,
+   "A Param53"
+  ],
+  [
+   73,
+   "A Param54"
+  ],
+  [
+   74,
+   "A Param55"
+  ],
+  [
+   118,
+   "B Param44"
+  ],
+  [
+   119,
+   "B Param45"
+  ],
+  [
+   120,
+   "B Param46"
+  ],
+  [
+   121,
+   "B Param47"
+  ],
+  [
+   122,
+   "B Param48"
+  ],
+  [
+   123,
+   "B Param49"
+  ],
+  [
+   124,
+   "B Param50"
+  ],
+  [
+   125,
+   "B Param51"
+  ],
+  [
+   126,
+   "B Param52"
+  ],
+  [
+   127,
+   "B Param53"
+  ],
+  [
+   128,
+   "B Param54"
+  ],
+  [
+   129,
+   "B Param55"
+  ],
+  [
+   173,
+   "C Param44"
+  ],
+  [
+   174,
+   "C Param45"
+  ],
+  [
+   175,
+   "C Param46"
+  ],
+  [
+   176,
+   "C Param47"
+  ],
+  [
+   177,
+   "C Param48"
+  ],
+  [
+   178,
+   "C Param49"
+  ],
+  [
+   179,
+   "C Param50"
+  ],
+  [
+   180,
+   "C Param51"
+  ],
+  [
+   181,
+   "C Param52"
+  ],
+  [
+   182,
+   "C Param53"
+  ],
+  [
+   183,
+   "C Param54"
+  ],
+  [
+   184,
+   "C Param55"
+  ],
+  [
+   471,
+   "FX Main Param 1"
+  ],
+  [
+   472,
+   "FX Main Param 2"
+  ],
+  [
+   473,
+   "FX Main Param 3"
+  ],
+  [
+   474,
+   "FX Main Param 4"
+  ],
+  [
+   475,
+   "FX Main Param 5"
+  ],
+  [
+   476,
+   "FX Main Param 6"
+  ],
+  [
+   477,
+   "FX Main Param 7"
+  ],
+  [
+   478,
+   "FX Main Param 8"
+  ],
+  [
+   479,
+   "FX Main Param 9"
+  ],
+  [
+   480,
+   "FX Main Param 10"
+  ],
+  [
+   481,
+   "FX Main Param 11"
+  ],
+  [
+   482,
+   "FX Main Param 12"
+  ],
+  [
+   483,
+   "FX Main Param 13"
+  ],
+  [
+   484,
+   "FX Main Param 14"
+  ],
+  [
+   485,
+   "FX Main Param 15"
+  ],
+  [
+   486,
+   "FX Main Param 16"
+  ],
+  [
+   487,
+   "FX Bus 1 Param 1"
+  ],
+  [
+   488,
+   "FX Bus 1 Param 2"
+  ],
+  [
+   489,
+   "FX Bus 1 Param 3"
+  ],
+  [
+   490,
+   "FX Bus 1 Param 4"
+  ],
+  [
+   491,
+   "FX Bus 1 Param 5"
+  ],
+  [
+   492,
+   "FX Bus 1 Param 6"
+  ],
+  [
+   493,
+   "FX Bus 1 Param 7"
+  ],
+  [
+   494,
+   "FX Bus 1 Param 8"
+  ],
+  [
+   495,
+   "FX Bus 1 Param 9"
+  ],
+  [
+   496,
+   "FX Bus 1 Param 10"
+  ],
+  [
+   497,
+   "FX Bus 1 Param 11"
+  ],
+  [
+   498,
+   "FX Bus 1 Param 12"
+  ],
+  [
+   499,
+   "FX Bus 1 Param 13"
+  ],
+  [
+   500,
+   "FX Bus 1 Param 14"
+  ],
+  [
+   501,
+   "FX Bus 1 Param 15"
+  ],
+  [
+   502,
+   "FX Bus 1 Param 16"
+  ],
+  [
+   503,
+   "FX Bus 2 Param 1"
+  ],
+  [
+   504,
+   "FX Bus 2 Param 2"
+  ],
+  [
+   505,
+   "FX Bus 2 Param 3"
+  ],
+  [
+   506,
+   "FX Bus 2 Param 4"
+  ],
+  [
+   507,
+   "FX Bus 2 Param 5"
+  ],
+  [
+   508,
+   "FX Bus 2 Param 6"
+  ],
+  [
+   509,
+   "FX Bus 2 Param 7"
+  ],
+  [
+   510,
+   "FX Bus 2 Param 8"
+  ],
+  [
+   511,
+   "FX Bus 2 Param 9"
+  ],
+  [
+   512,
+   "FX Bus 2 Param 10"
+  ],
+  [
+   513,
+   "FX Bus 2 Param 11"
+  ],
+  [
+   514,
+   "FX Bus 2 Param 12"
+  ],
+  [
+   515,
+   "FX Bus 2 Param 13"
+  ],
+  [
+   516,
+   "FX Bus 2 Param 14"
+  ],
+  [
+   517,
+   "FX Bus 2 Param 15"
+  ],
+  [
+   518,
+   "FX Bus 2 Param 16"
+  ]
+ ],
+ "odd": [
+  [
+   "P/tags[0]",
+   "check failed k=223",
+   {
+    "L": 0,
+    "H": 1,
+    "b0": 1,
+    "b1": 1,
+    "b2": 1,
+    "b3": 1,
+    "b4": 1,
+    "b5": 0,
+    "b6": 1,
+    "b7": 1,
+    "b8": 0,
+    "b9": 0,
+    "c_par": 0,
+    "c_mod3": 1
+   }
+  ],
+  [
+   "P/tags[1]",
+   "third value",
+   {
+    "L": "<absent>",
+    "H": "Mono",
+    "b0": "Mono",
+    "b1": "Poly",
+    "b2": "Poly",
+    "b3": "Mono",
+    "b4": "Poly",
+    "b5": "<absent>",
+    "b6": "Poly",
+    "b7": "Poly",
+    "b8": "<absent>",
+    "b9": "Arp",
+    "c_par": "<absent>",
+    "c_mod3": "Mono"
+   }
+  ],
+  [
+   "P/tags[2]",
+   "check failed k=11",
+   {
+    "L": 0,
+    "H": 1,
+    "b0": 1,
+    "b1": 1,
+    "b2": 0,
+    "b3": 1,
+    "b4": 0,
+    "b5": 0,
+    "b6": 0,
+    "b7": 0,
+    "b8": 0,
+    "b9": 0,
+    "c_par": 0,
+    "c_mod3": 0
+   }
+  ]
+ ],
+ "restore_diff": [
+  "P/Arp0/activeClip",
+  "P/Env0/plainParams/kParamAttack",
+  "P/Env0/plainParams/kParamCurve2",
+  "P/Env0/plainParams/kParamCurve3",
+  "P/Env0/plainParams/kParamRelease",
+  "P/Env1/plainParams/kParamAttack",
+  "P/Env1/plainParams/kParamCurve2",
+  "P/Env1/plainParams/kParamCurve3",
+  "P/Env1/plainParams/kParamRelease",
+  "P/Env2/plainParams/kParamAttack",
+  "P/Env2/plainParams/kParamCurve2",
+  "P/Env2/plainParams/kParamCurve3",
+  "P/Env2/plainParams/kParamRelease",
+  "P/Env3/plainParams/kParamAttack",
+  "P/Env3/plainParams/kParamCurve2",
+  "P/Env3/plainParams/kParamCurve3",
+  "P/Env3/plainParams/kParamRelease",
+  "P/Global0/plainParams",
+  "P/Global0/plainParams/kParamBendRangeDn",
+  "P/Global0/plainParams/kParamBendRangeUp",
+  "P/Oscillator0/plainParams",
+  "P/Oscillator0/plainParams/kParamPitchRatio",
+  "P/Oscillator1/plainParams",
+  "P/Oscillator1/plainParams/kParamPitchRatio",
+  "P/Oscillator2/plainParams",
+  "P/Oscillator2/plainParams/kParamPitchRatio",
+  "P/Oscillator4/plainParams",
+  "P/Oscillator4/plainParams/kParamVolume",
+  "P/VoiceFilter0/plainParams",
+  "P/VoiceFilter0/plainParams/kParamReso",
+  "P/VoiceFilter0/plainParams/kParamType",
+  "P/VoiceFilter1/plainParams",
+  "P/VoiceFilter1/plainParams/kParamReso",
+  "P/VoiceFilter1/plainParams/kParamType"
+ ]
+}

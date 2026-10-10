@@ -1,0 +1,204 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Osc A shape	0.0000	SAW	SAW	PULSE	PULSE	PULSE	PULSE
+1	Osc A PW	1.0000	100%	0%	25%	50%	75%	100%
+2	Osc A sync	0.0039	On	Off	On	On	On	On
+3	Osc A ring	0.0000	Off	Off	On	On	On	On
+4	Osc B shape	0.0000	SAW	SAW	PULSE	PULSE	PULSE	PULSE
+5	Osc B PW	1.0000	100%	0%	25%	50%	75%	100%
+6	Osc B pitch	0.5000	0	-24	-12	0	12	24
+7	Osc B detune	0.0000	0	0	12	25	37	50
+8	Osc balance	0.5820	58%	0%	25%	50%	75%	100%
+9	Noise balance	0.0000	0%	0%	25%	50%	75%	100%
+10	EG amount	0.1133	-77%	-100%	-50%	0%	50%	100%
+11	EG attack	0.4727	2500ms	5ms	200ms	3130ms	15824ms	50000ms
+12	EG decay	0.7266	13937ms	5ms	200ms	3130ms	15824ms	50000ms
+13	EG sustain	0.0000	0%	0%	25%	50%	75%	100%
+14	EG release	1.0000	50000ms	5ms	200ms	3130ms	15824ms	50000ms
+15	Gain	0.7383	2.15dB	-20.00dB	-12.50dB	-5.00dB	2.50dB	10.00dB
+16	Fine tune	0.5000	0	-100	-50	0	50	100
+17	Transpose	0.0000	-24	-24	-12	0	12	24
+18	Filter cutoff	0.3398	34%	0%	25%	50%	75%	100%
+19	Filter resolution	0.5273	53%	0%	25%	50%	75%	100%
+20	Filter keytrack	0.0000	0%	0%	25%	50%	75%	100%
+21	Filter veltrk	0.0000	0%	0%	25%	50%	75%	100%
+22	Amplifier attack	0.0000	1ms	1ms	21ms	313ms	1583ms	5000ms
+23	Amplifier decay	1.0000	20000ms	1ms	79ms	1251ms	6329ms	20000ms
+24	Amplifier sustain	0.8672	87%	0%	25%	50%	75%	100%
+25	Amplifier release	0.1797	25ms	15ms	54ms	639ms	3174ms	10000ms
+26	LFO amount	0.7578	52%	-100%	-50%	0%	50%	100%
+27	LFO retrig	0.0000	Off	Off	On	On	On	On
+28	LFO rate	0.3750	0.22Hz	0.00Hz	0.03Hz	0.94Hz	7.12Hz	30.00Hz
+29	Unison detune	0.5742	57%	0%	25%	50%	75%	100%
+30	Unison pan	0.6328	63%	0%	25%	50%	75%	100%
+31	Delay on	0.0039	On	Off	On	On	On	On
+32	Delay time left	0.4609	4/4	1/4	2/4	4/4	6/4	8/4
+33	Delay time right	0.0000	1/4	1/4	2/4	4/4	6/4	8/4
+34	Delay feedback	0.5000	50%	0%	25%	50%	75%	100%
+35	Delay mod. depth	0.2969	30%	0%	25%	50%	75%	100%
+36	Delay lo-cut	0.0000	0%	0%	25%	50%	75%	100%
+37	Delay hi-cut	1.0000	100%	0%	25%	50%	75%	100%
+38	Delay wet	0.5625	56%	0%	25%	50%	75%	100%
+39	Chorus on	0.0039	On	Off	On	On	On	On
+40	Chorus rate	0.5000	2.60Hz	0.10Hz	1.35Hz	2.60Hz	3.85Hz	5.10Hz
+41	Chorus depth	0.5000	50%	0%	25%	50%	75%	100%
+42	Chorus wet	0.0781	8%	0%	25%	50%	75%	100%
+43	MW amount	0.1875	-62%	-100%	-50%	0%	50%	100%
+44	Monophonic	0.0000	Off	Off	On	On	On	On
+45	Octaver	0.0000	Off	Off	On	On	On	On
+46	Glide time	0.0000	0%	0%	25%	50%	75%	100%
+47	Gate mix	0.3516	35%	0%	25%	50%	75%	100%
+48	Gate smooth	0.3633	36%	0%	25%	50%	75%	100%
+49	Gate step 1	0.0000	Off	Off	On	On	On	On
+50	Gate step 2	0.0000	Off	Off	On	On	On	On
+51	Gate step 3	0.0039	On	Off	On	On	On	On
+52	Gate step 4	0.0039	On	Off	On	On	On	On
+53	Gate step 5	0.0000	Off	Off	On	On	On	On
+54	Gate step 6	0.0000	Off	Off	On	On	On	On
+55	Gate step 7	0.0000	Off	Off	On	On	On	On
+56	Gate step 8	0.0000	Off	Off	On	On	On	On
+57	Gate step 9	0.0000	Off	Off	On	On	On	On
+58	Gate step 10	0.0039	On	Off	On	On	On	On
+59	Gate step 11	0.0039	On	Off	On	On	On	On
+60	Gate step 12	0.0000	Off	Off	On	On	On	On
+61	Gate step 13	0.0000	Off	Off	On	On	On	On
+62	Gate step 14	0.0000	Off	Off	On	On	On	On
+63	Gate step 15	0.0000	Off	Off	On	On	On	On
+64	Gate step 16	0.0000	Off	Off	On	On	On	On
+65	Envelope destination	0.0000	CUTOFF	CUTOFF	FRQ A	FRQ AB	PW A	PW AB
+66	Filter mode	0.0000	LP	LP	LP	BP	BP	HP
+67	LFO destination	0.0000	CUTOFF	CUTOFF	FRQ A	FRQ AB	PW A	PAN
+68	LFO shape	0.5000	TRIANGLE	SAW	PULSE	TRIANGLE	SINE	RND
+69	Arpegiator mode	0.2500	UP	OFF	UP	DOWN	UP / DN	RND
+70	Arpegiator range	0.6641	2	1	1	2	3	4
+71	ModWheel destination	0.0000	CUTOFF	CUTOFF	LFO	FRQ A	PW A	PW AB
+72	Glide held	0.0039	On	Off	On	On	On	On
+73	Glide static	0.0000	Off	Off	On	On	On	On
+74	MIDI CC 0	0.0000						
+75	MIDI CC 1	0.0000						
+76	MIDI CC 2	0.0000						
+77	MIDI CC 3	0.0000						
+78	MIDI CC 4	0.0000						
+79	MIDI CC 5	0.0000						
+80	MIDI CC 6	0.0000						
+81	MIDI CC 7	0.0000						
+82	MIDI CC 8	0.0000						
+83	MIDI CC 9	0.0000						
+84	MIDI CC 10	0.0000						
+85	MIDI CC 11	0.0000						
+86	MIDI CC 12	0.0000						
+87	MIDI CC 13	0.0000						
+88	MIDI CC 14	0.0000						
+89	MIDI CC 15	0.0000						
+90	MIDI CC 16	0.0000						
+91	MIDI CC 17	0.0000						
+92	MIDI CC 18	0.0000						
+93	MIDI CC 19	0.0000						
+94	MIDI CC 20	0.0000						
+95	MIDI CC 21	0.0000						
+96	MIDI CC 22	0.0000						
+97	MIDI CC 23	0.0000						
+98	MIDI CC 24	0.0000						
+99	MIDI CC 25	0.0000						
+100	MIDI CC 26	0.0000						
+101	MIDI CC 27	0.0000						
+102	MIDI CC 28	0.0000						
+103	MIDI CC 29	0.0000						
+104	MIDI CC 30	0.0000						
+105	MIDI CC 31	0.0000						
+106	MIDI CC 32	0.0000						
+107	MIDI CC 33	0.0000						
+108	MIDI CC 34	0.0000						
+109	MIDI CC 35	0.0000						
+110	MIDI CC 36	0.0000						
+111	MIDI CC 37	0.0000						
+112	MIDI CC 38	0.0000						
+113	MIDI CC 39	0.0000						
+114	MIDI CC 40	0.0000						
+115	MIDI CC 41	0.0000						
+116	MIDI CC 42	0.0000						
+117	MIDI CC 43	0.0000						
+118	MIDI CC 44	0.0000						
+119	MIDI CC 45	0.0000						
+120	MIDI CC 46	0.0000						
+121	MIDI CC 47	0.0000						
+122	MIDI CC 48	0.0000						
+123	MIDI CC 49	0.0000						
+124	MIDI CC 50	0.0000						
+125	MIDI CC 51	0.0000						
+126	MIDI CC 52	0.0000						
+127	MIDI CC 53	0.0000						
+128	MIDI CC 54	0.0000						
+129	MIDI CC 55	0.0000						
+130	MIDI CC 56	0.0000						
+131	MIDI CC 57	0.0000						
+132	MIDI CC 58	0.0000						
+133	MIDI CC 59	0.0000						
+134	MIDI CC 60	0.0000						
+135	MIDI CC 61	0.0000						
+136	MIDI CC 62	0.0000						
+137	MIDI CC 63	0.0000						
+138	MIDI CC 64	0.0000						
+139	MIDI CC 65	0.0000						
+140	MIDI CC 66	0.0000						
+141	MIDI CC 67	0.0000						
+142	MIDI CC 68	0.0000						
+143	MIDI CC 69	0.0000						
+144	MIDI CC 70	0.0000						
+145	MIDI CC 71	0.0000						
+146	MIDI CC 72	0.0000						
+147	MIDI CC 73	0.0000						
+148	MIDI CC 74	0.0000						
+149	MIDI CC 75	0.0000						
+150	MIDI CC 76	0.0000						
+151	MIDI CC 77	0.0000						
+152	MIDI CC 78	0.0000						
+153	MIDI CC 79	0.0000						
+154	MIDI CC 80	0.0000						
+155	MIDI CC 81	0.0000						
+156	MIDI CC 82	0.0000						
+157	MIDI CC 83	0.0000						
+158	MIDI CC 84	0.0000						
+159	MIDI CC 85	0.0000						
+160	MIDI CC 86	0.0000						
+161	MIDI CC 87	0.0000						
+162	MIDI CC 88	0.0000						
+163	MIDI CC 89	0.0000						
+164	MIDI CC 90	0.0000						
+165	MIDI CC 91	0.0000						
+166	MIDI CC 92	0.0000						
+167	MIDI CC 93	0.0000						
+168	MIDI CC 94	0.0000						
+169	MIDI CC 95	0.0000						
+170	MIDI CC 96	0.0000						
+171	MIDI CC 97	0.0000						
+172	MIDI CC 98	0.0000						
+173	MIDI CC 99	0.0000						
+174	MIDI CC 100	0.0000						
+175	MIDI CC 101	0.0000						
+176	MIDI CC 102	0.0000						
+177	MIDI CC 103	0.0000						
+178	MIDI CC 104	0.0000						
+179	MIDI CC 105	0.0000						
+180	MIDI CC 106	0.0000						
+181	MIDI CC 107	0.0000						
+182	MIDI CC 108	0.0000						
+183	MIDI CC 109	0.0000						
+184	MIDI CC 110	0.0000						
+185	MIDI CC 111	0.0000						
+186	MIDI CC 112	0.0000						
+187	MIDI CC 113	0.0000						
+188	MIDI CC 114	0.0000						
+189	MIDI CC 115	0.0000						
+190	MIDI CC 116	0.0000						
+191	MIDI CC 117	0.0000						
+192	MIDI CC 118	0.0000						
+193	MIDI CC 119	0.0000						
+194	MIDI CC 120	0.0000						
+195	MIDI CC 121	0.0000						
+196	MIDI CC 122	0.0000						
+197	MIDI CC 123	0.0000						
+198	MIDI CC 124	0.0000						
+199	MIDI CC 125	0.0000						
+200	MIDI CC 126	0.0000						
+201	MIDI CC 127	0.0000						
+202	Channel Aftertouch	0.0000			 [landed 64.000]	 [landed 128.000]	 [landed 192.000]	 [landed 256.000]

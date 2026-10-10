@@ -1,0 +1,7 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Panning	0.5000	Centered	100% left	50% left	Centered	50% right	100% right
+1	Volume	0.8000	0.0dB	-INFdB	-19.0dB	-9.2dB	-1.4dB	5.6dB
+2	LFO shape	0.0000	Sine	Sine	Sine [landed 0.000]	Triangle	Square [landed 1.000]	Square
+3	LFO target	0.0000	OFF	OFF	OFF [landed 0.000]	PAN	VOL [landed 1.000]	VOL
+4	LFO amount	0.5000	50%	0%	25%	50%	75%	100%
+5	LFO speed	0.5000	50%	0%	25%	50%	75%	100%

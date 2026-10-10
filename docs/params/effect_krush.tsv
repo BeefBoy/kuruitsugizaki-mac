@@ -1,0 +1,26 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Dry	0.6818	-3.00 dB	-inf dB	-31.50 dB	-15.00 dB	1.50 dB	18.00 dB
+1	Wet	0.6818	-3.00 dB	-inf dB	-31.50 dB	-15.00 dB	1.50 dB	18.00 dB
+2	Bypass Dry Signal	0.0000	0	0	0	0	1	1
+3	Bypass Wet Signal	0.0000	0	0	0	0	1	1
+4	Dry Wet Link	0.0000	unlinked	unlinked	unlinked	unlinked	linked	linked
+5	Drive	0.0000	0.00 %	0.00 %	25.00 %	50.00 %	75.00 %	100.00 %
+6	Drive Mod Depth	0.0000	0.00 %	0.00 %	25.00 %	50.00 %	75.00 %	100.00 %
+7	Crush	0.0000	0.00 %	0.00 %	25.00 %	50.00 %	75.00 %	100.00 %
+8	Crush Mod Depth	0.0000	0.00 %	0.00 %	25.00 %	50.00 %	75.00 %	100.00 %
+9	Downsamp	0.0000	0.00 %	0.00 %	25.00 %	50.00 %	75.00 %	100.00 %
+10	Downsamp Mod Depth	0.0000	0.00 %	0.00 %	25.00 %	50.00 %	75.00 %	100.00 %
+11	Bypass Filter	0.0000	active	active	active	active	bypassed	bypassed
+12	Filter Type	0.0000	lowpass	lowpass	lowpass	lowpass	hipass	hipass
+13	Lowpass Freq	0.8098	8000.00 Hz	20.00 Hz	68.07 Hz	1000.00 Hz	5736.87 Hz	20000.00 Hz
+14	Lowpass Res	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+15	Hipass Freq	0.0000	20.00 Hz	20.00 Hz	68.07 Hz	1000.00 Hz	5736.87 Hz	20000.00 Hz
+16	Hipass Res	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+17	Filter Freq Mod Depth	0.0000	0.00 %	0.00 %	25.00 %	50.00 %	75.00 %	100.00 %
+18	Filter Res Mod Depth	0.0000	0.00 %	0.00 %	25.00 %	50.00 %	75.00 %	100.00 %
+19	LFO Sync Or Free	0.0000	free	free	free	free	sync	sync
+20	LFO Free Rate	0.0000	0.00 Hz	0.00 Hz	0.40 Hz	2.00 Hz	5.13 Hz	10.00 Hz
+21	LFO Synced Period	0.5938	1/4	16/1d	4/1T	1/2	1/16d	1/64T
+22	LFO Waveform	0.0000	sine	sine	square	tri	tri	rand
+23	Bypass	0.0000	Off	Off	Off	On	On	On
+24	Program	0.0000	Bit Crush					

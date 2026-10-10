@@ -1,0 +1,29 @@
+[project]
+name = "kuruitsugizaki"
+version = "0.1.0"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+    "cbor2>=6.1.4",
+    "librosa>=1.0.0",
+    "matplotlib>=3.11.2",
+    "mcp>=2",
+    "mosqito>=1.2.1",
+    "numpy>=2.5.3",
+    "scipy>=1.18.1",
+    "zstandard>=0.25.0",
+]
+
+[project.scripts]
+kuruitsugizaki = "server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+dev-mode-dirs = ["scripts"]
+
+[tool.hatch.build.targets.wheel]
+only-include = ["scripts/server.py"]
+sources = ["scripts"]

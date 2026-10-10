@@ -1,0 +1,37 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Band 1 level	0.5000	0.0dB	-18.0dB	-9.0dB	0.0dB	9.0dB	18.0dB
+1	Band 2 level	0.5000	0.0dB	-18.0dB	-9.0dB	0.0dB	9.0dB	18.0dB
+2	Band 3 level	0.5000	0.0dB	-18.0dB	-9.0dB	0.0dB	9.0dB	18.0dB
+3	Band 4 level	0.5000	0.0dB	-18.0dB	-9.0dB	0.0dB	9.0dB	18.0dB
+4	Band 5 level	0.5000	0.0dB	-18.0dB	-9.0dB	0.0dB	9.0dB	18.0dB
+5	Band 6 level	0.5000	0.0dB	-18.0dB	-9.0dB	0.0dB	9.0dB	18.0dB
+6	Band 7 level	0.5000	0.0dB	-18.0dB	-9.0dB	0.0dB	9.0dB	18.0dB
+7	Band 1 freq	0.1667	63Hz	20Hz	112Hz	632Hz	3557Hz	20000Hz
+8	Band 2 freq	0.2778	136Hz	20Hz	112Hz	632Hz	3557Hz	20000Hz
+9	Band 3 freq	0.3889	294Hz	20Hz	112Hz	632Hz	3557Hz	20000Hz
+10	Band 4 freq	0.5000	632Hz	20Hz	112Hz	632Hz	3557Hz	20000Hz
+11	Band 5 freq	0.6111	1363Hz	20Hz	112Hz	632Hz	3557Hz	20000Hz
+12	Band 6 freq	0.7222	2936Hz	20Hz	112Hz	632Hz	3557Hz	20000Hz
+13	Band 7 freq	0.8333	6324Hz	20Hz	112Hz	632Hz	3557Hz	20000Hz
+14	Band 1 width	0.6122	61%	0%	25%	50%	75%	100%
+15	Band 2 width	0.3878	39%	0%	25%	50%	75%	100%
+16	Band 3 width	0.3878	39%	0%	25%	50%	75%	100%
+17	Band 4 width	0.3878	39%	0%	25%	50%	75%	100%
+18	Band 5 width	0.3878	39%	0%	25%	50%	75%	100%
+19	Band 6 width	0.3878	39%	0%	25%	50%	75%	100%
+20	Band 7 width	0.6122	61%	0%	25%	50%	75%	100%
+21	Band 1 type	0.7143	Low shelf	Disabled	Band pass [landed 0.286]	Notch [landed 0.571]	Low shelf [landed 0.714]	High shelf
+22	Band 2 type	0.8571	Peaking	Disabled	Band pass [landed 0.286]	Notch [landed 0.571]	Low shelf [landed 0.714]	High shelf
+23	Band 3 type	0.8571	Peaking	Disabled	Band pass [landed 0.286]	Notch [landed 0.571]	Low shelf [landed 0.714]	High shelf
+24	Band 4 type	0.8571	Peaking	Disabled	Band pass [landed 0.286]	Notch [landed 0.571]	Low shelf [landed 0.714]	High shelf
+25	Band 5 type	0.8571	Peaking	Disabled	Band pass [landed 0.286]	Notch [landed 0.571]	Low shelf [landed 0.714]	High shelf
+26	Band 6 type	0.8571	Peaking	Disabled	Band pass [landed 0.286]	Notch [landed 0.571]	Low shelf [landed 0.714]	High shelf
+27	Band 7 type	1.0000	High shelf	Disabled	Band pass [landed 0.286]	Notch [landed 0.571]	Low shelf [landed 0.714]	High shelf
+28	Band 1 order	0.5000	2	Steep 8	Steep 4 [landed 0.333]	2	Gentle 4 [landed 0.667]	Gentle 8
+29	Band 2 order	0.5000	2	Steep 8	Steep 4 [landed 0.333]	2	Gentle 4 [landed 0.667]	Gentle 8
+30	Band 3 order	0.5000	2	Steep 8	Steep 4 [landed 0.333]	2	Gentle 4 [landed 0.667]	Gentle 8
+31	Band 4 order	0.5000	2	Steep 8	Steep 4 [landed 0.333]	2	Gentle 4 [landed 0.667]	Gentle 8
+32	Band 5 order	0.5000	2	Steep 8	Steep 4 [landed 0.333]	2	Gentle 4 [landed 0.667]	Gentle 8
+33	Band 6 order	0.5000	2	Steep 8	Steep 4 [landed 0.333]	2	Gentle 4 [landed 0.667]	Gentle 8
+34	Band 7 order	0.5000	2	Steep 8	Steep 4 [landed 0.333]	2	Gentle 4 [landed 0.667]	Gentle 8
+35	Main level	0.5000	0.0dB	-18.0dB	-9.0dB	0.0dB	9.0dB	18.0dB

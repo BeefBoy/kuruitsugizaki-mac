@@ -1,0 +1,38 @@
+{
+ "about": "Bus routing and sidechain. Kick (1), snare (2) and hats (3) are routed to a drum bus on insert 10 and taken off the master ('on': false), so the distortion on the bus hits all three together. The kick also feeds the pad's insert 5 at level 0: a sidechain-only send, which the Fruity Limiter in compressor mode copied from fx.flp (track 3, slot 0) listens to, so the held pad ducks on every kick.",
+ "format": "compact",
+ "project": {"bpm": 140, "ppq": 96, "title": "04 routing", "author": "Claude Opus 5.5 (Anthropic), kuruitsugizaki examples"},
+ "instruments": [
+  {"id": "kick", "name": "kick", "kind": "sampler", "path": "%FLStudioFactoryData%/Data/Patches/Packs/Drums/Kicks/Jung Kick.wav", "mixer": 1},
+  {"id": "snare", "name": "snare", "kind": "sampler", "path": "%FLStudioFactoryData%/Data/Patches/Packs/Drums/Snares/Jung Snare.wav", "mixer": 2},
+  {"id": "hat", "name": "hat", "kind": "sampler", "path": "%FLStudioFactoryData%/Data/Patches/Packs/Drums/Hats/909 CH 1.wav", "mixer": 3},
+  {"id": "pad", "name": "pad", "kind": "plugin", "plugin": "Sytrus", "preset": "Pad/Haunted house", "mixer": 5}
+ ],
+ "mixer": {
+  "volume": {"1": 0.8, "2": 0.85, "3": 0.6, "5": 0.6, "10": 0.8},
+  "routes": [
+   {"from": 1, "to": 10}, {"from": 1, "to": 0, "on": false},
+   {"from": 2, "to": 10}, {"from": 2, "to": 0, "on": false},
+   {"from": 3, "to": 10}, {"from": 3, "to": 0, "on": false},
+   {"from": 1, "to": 5, "level": 0.0}
+  ],
+  "effects": [
+   {"track": 10, "slot": 0, "plugin": "Fruity Fast Dist", "preset": "fuzz"},
+   {"track": 5, "slot": 0, "from": {"file": "projects/init/fx.flp", "track": 3, "slot": 0}}
+  ]
+ },
+ "note_cols": ["bar", "beat", "tick", "len", "key", "vel", "inst"],
+ "patterns": [{"id": "beat", "notes": [
+  [1, 1, 0, 24, "C4", 100, "kick"], [1, 1, 48, 24, "C4", 90, "kick"], [1, 3, 48, 24, "C4", 96, "kick"], [1, 3, 72, 24, "C4", 84, "kick"],
+  [1, 2, 0, 24, "C4", 100, "snare"], [1, 4, 0, 24, "C4", 100, "snare"],
+  [1, 1, 0, 12, "C4", 90, "hat"], [1, 1, 48, 12, "C4", 64, "hat"], [1, 2, 0, 12, "C4", 84, "hat"], [1, 2, 48, 12, "C4", 64, "hat"],
+  [1, 3, 0, 12, "C4", 88, "hat"], [1, 3, 48, 12, "C4", 64, "hat"], [1, 4, 0, 12, "C4", 84, "hat"], [1, 4, 48, 12, "C4", 64, "hat"]
+ ]}, {"id": "pad", "notes": [
+  [1, 1, 0, 1536, "A#4", 84, "pad"], [1, 1, 0, 1536, "D#5", 84, "pad"], [1, 1, 0, 1536, "F#5", 84, "pad"]
+ ]}],
+ "clip_cols": ["track", "bar", "beat", "tick", "len", "src", "trim?"],
+ "arrangements": [{"name": "Arrangement", "clips": [
+  [1, 1, 1, 0, 384, "beat"], [1, 2, 1, 0, 384, "beat"], [1, 3, 1, 0, 384, "beat"], [1, 4, 1, 0, 384, "beat"],
+  [2, 1, 1, 0, 1536, "pad"]
+ ]}]
+}

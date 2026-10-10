@@ -1,0 +1,10 @@
+{
+ "fl_exe": "C:\\Program Files\\Image-Line\\FL Studio 2025\\FL64.exe",
+ "loopmidi_exe": "C:\\Program Files (x86)\\Tobias Erichsen\\loopMIDI\\loopMIDI.exe",
+ "fl_hardware": "C:\\Users\\<you>\\Documents\\Image-Line\\FL Studio\\Settings\\Hardware",
+ "flex_packs": "C:\\Users\\<you>\\Documents\\Image-Line\\FLEX\\Packs",
+ "serum2_presets": "C:\\Users\\<you>\\Documents\\Xfer\\Serum 2 Presets",
+ "diva_presets": "C:\\Users\\<you>\\Documents\\u-he\\Diva.data\\Presets\\Diva",
+ "sylenth1_presets": "C:\\Users\\<you>\\Documents\\LennarDigital\\Sylenth1\\Presets",
+ "template": "projects/init/init.flp"
+}

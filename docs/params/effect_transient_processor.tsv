@@ -1,0 +1,10 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Attack	0.5000	0%	-100%	-50%	0%	50%	100%
+1	Drive	0.0000	0%	0%	25%	50%	75%	100%
+2	Release	0.5000	0%	-100%	-50%	0%	50%	100%
+3	Gain	0.5000	0.0 dB	-9.0 dB	-4.5 dB	0.0 dB	4.5 dB	9.0 dB
+4	Attack Shape	0.5000	Mid	Sharp	Sharp [landed 0.000]	Mid	Slow [landed 1.000]	Slow
+5	Release Shape	0.5000	Mid	Sharp	Sharp [landed 0.000]	Mid	Slow [landed 1.000]	Slow
+6	Split Frequency	0.5000	253.8 Hz	5.0 Hz	67.2 Hz	253.8 Hz	564.7 Hz	1000.0 Hz
+7	Split Balance	0.5000	100% Wet	0% Wet	50% Wet	100% Wet	50% Dry	0% Dry
+8	Effect	1.0000	On	Off	Off [landed 0.000]	Off [landed 0.000]	On [landed 1.000]	On

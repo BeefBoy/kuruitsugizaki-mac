@@ -1,0 +1,34 @@
+{
+ "about": "Automation of instruments. {channel: id, param: n} is the plugin's own knob n (3x Osc's are listed in docs/params/instrument_3x_osc.tsv: 1 is osc 1 shape, 9 osc 2 coarse pitch, 10 osc 2 fine pitch). A clip held at one value sets a knob, which is how the saw patch here is built from a fresh 3x Osc; a moving clip plays it. Shape steps: 0 sine, 0.17 triangle, 0.33 square, 0.5 saw. Coarse: 0.5 is in tune, 0.25 an octave down. Fine: 0.5 in tune, +-100 cents at the ends. {channel: id, param: pitch | vol | pan} are the channel's own controls: pitch 0.5 is in tune and the knob spans four octaves each way (0.375 is an octave down), vol 0.78 is FL's default, pan 0.5 centre. The vocal sampler is dragged down an octave, then swept across the stereo field.",
+ "format": "compact",
+ "project": {"bpm": 140, "ppq": 96, "title": "07 instrument automation", "author": "Claude Opus 5.5 (Anthropic), kuruitsugizaki examples"},
+ "instruments": [
+  {"id": "osc", "name": "osc", "kind": "plugin", "plugin": "3x Osc", "mixer": 1},
+  {"id": "voice", "name": "voice", "kind": "sampler", "path": "%FLStudioFactoryData%/Data/Patches/Packs/Vocals/Laurie Webb Ooh C.wav", "mixer": 2}
+ ],
+ "automation": [
+  {"id": "osc1 shape", "name": "osc1 shape", "kind": "automation", "target": {"channel": "osc", "param": 1}, "points": [[0, 0.0], [3.99, 0.0], [4, 0.17], [7.99, 0.17], [8, 0.33], [11.99, 0.33], [12, 0.5], [32, 0.5]]},
+  {"id": "osc2 shape", "name": "osc2 shape", "kind": "automation", "target": {"channel": "osc", "param": 8}, "points": [[0, 0.5], [32, 0.5]]},
+  {"id": "osc2 level", "name": "osc2 level", "kind": "automation", "target": {"channel": "osc", "param": 6}, "points": [[0, 0.0], [12, 0.0], [16, 0.8]]},
+  {"id": "osc2 coarse", "name": "osc2 coarse", "kind": "automation", "target": {"channel": "osc", "param": 9}, "points": [[0, 0.5], [19.99, 0.5], [20, 0.25], [21.99, 0.25], [22, 0.5], [23.99, 0.5], [24, 0.75], [24.49, 0.75], [24.5, 0.5], [32, 0.5]]},
+  {"id": "osc2 fine", "name": "osc2 fine", "kind": "automation", "target": {"channel": "osc", "param": 10}, "points": [[0, 0.5], [16, 0.5], [32, 0.62]]},
+  {"id": "voice pitch", "name": "voice pitch", "kind": "automation", "target": {"channel": "voice", "param": "pitch"}, "points": [[0, 0.5], [17, 0.5], [20, 0.375, 0.4], [24, 0.375], [24.01, 0.5], [32, 0.5]]},
+  {"id": "voice pan", "name": "voice pan", "kind": "automation", "target": {"channel": "voice", "param": "pan"}, "points": [[0, 0.5], [24, 0.5], [26, 0.0], [28, 1.0], [30, 0.0], [32, 0.5]]},
+  {"id": "osc volume", "name": "osc volume", "kind": "automation", "target": {"channel": "osc", "param": "vol"}, "points": [[0, 0.4], [16, 0.78], [32, 0.78]]}
+ ],
+ "note_cols": ["bar", "beat", "tick", "len", "key", "vel", "inst"],
+ "patterns": [{"id": "line", "notes": [
+  [1, 1, 0, 336, "D#3", 100, "osc"], [2, 1, 0, 336, "D#3", 100, "osc"], [3, 1, 0, 336, "D#3", 100, "osc"], [4, 1, 0, 336, "D#3", 100, "osc"],
+  [5, 1, 0, 168, "D#3", 100, "osc"], [5, 2, 48, 168, "A#3", 100, "osc"], [5, 4, 0, 96, "E3", 100, "osc"],
+  [6, 1, 0, 168, "D#3", 100, "osc"], [6, 2, 48, 168, "F#3", 100, "osc"], [6, 4, 0, 96, "E3", 100, "osc"],
+  [7, 1, 0, 168, "B2", 100, "osc"], [7, 2, 48, 168, "F#3", 100, "osc"], [7, 4, 0, 96, "D#3", 100, "osc"],
+  [8, 1, 0, 168, "C#3", 100, "osc"], [8, 2, 48, 168, "G#3", 100, "osc"], [8, 4, 0, 96, "E3", 100, "osc"],
+  [5, 1, 0, 96, "C4", 96, "voice"], [7, 1, 0, 96, "C4", 96, "voice"]
+ ]}],
+ "clip_cols": ["track", "bar", "beat", "tick", "len", "src", "trim?"],
+ "arrangements": [{"name": "Arrangement", "clips": [
+  [1, 1, 1, 0, 3072, "line"],
+  [3, 1, 1, 0, 3072, "a0"], [4, 1, 1, 0, 3072, "a1"], [5, 1, 1, 0, 3072, "a2"], [6, 1, 1, 0, 3072, "a3"],
+  [7, 1, 1, 0, 3072, "a4"], [8, 1, 1, 0, 3072, "a5"], [9, 1, 1, 0, 3072, "a6"], [10, 1, 1, 0, 3072, "a7"]
+ ]}]
+}

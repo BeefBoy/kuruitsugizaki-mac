@@ -1,0 +1,13 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Starting freq	0.0000	10Hz	10Hz	357Hz	1457Hz	4944Hz	16000Hz
+1	Ending freq	1.0000	16000Hz	10Hz	357Hz	1457Hz	4944Hz	16000Hz
+2	Freq scale	0.5000	50%	0%	25%	50%	75%	100%
+3	Invert modulator freqs	0.0000	OFF	OFF	OFF [landed 0.000]	OFF [landed 0.000]	ON [landed 1.000]	ON
+4	Formant	0.5000	+0.00 cent	-1200.00 cents	-600.00 cents	+0.00 cent	+600.00 cents	+1200.00 cents
+5	Bandwidth	0.2308	25%	3%	27%	52%	76%	100%
+6	Attack	0.0101	20ms	10ms	258ms	505ms	752ms	1000ms
+7	Release	0.0909	100ms	10ms	258ms	505ms	752ms	1000ms
+8	Hold modulator	0.0000	OFF	OFF	OFF [landed 0.000]	OFF [landed 0.000]	ON [landed 1.000]	ON
+9	Modulator level	0.0000	0%	0%	31%	63%	94%	125%
+10	Carrier level	0.0000	0%	0%	31%	63%	94%	125%
+11	Wet level	0.8000	100%	0%	31%	63%	94%	125%

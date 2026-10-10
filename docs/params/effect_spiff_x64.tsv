@@ -1,0 +1,41 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	gain mode	1.0000	boost	cut	cut	boost	boost	boost
+1	cut depth	0.5000	5.0	0.0	2.5	5.0	7.5	10.0
+2	boost depth	0.3600	3.6	0.0	2.5	5.0	7.5	10.0
+3	sensitivity	0.7500	7.5	0.0	2.5	5.0	7.5	10.0
+4	sharpness	0.5000	5.0	0.0	2.5	5.0	7.5	10.0
+5	decay	0.3300	3.3	0.0	2.5	5.0	7.5	10.0
+6	decay lf/hf	0.3300	3.3	0.0	2.5	5.0	7.5	10.0
+7	lo cut on	1.0000	on	off	off	on	on	on
+8	lo cut freq	0.1326	50 Hz	20 Hz	112 Hz	632 Hz	3k5 Hz	20k Hz
+9	lo cut slope	0.3333	high pass 12	high pass 6	high pass 12	high pass 24	high pass 24	high pass 48
+10	band1 on	1.0000	on	off	off	on	on	on
+11	band1 freq	0.2330	100 Hz	20 Hz	112 Hz	632 Hz	3k5 Hz	20k Hz
+12	band1 sens	0.5000	0.0 dB dB	-18.0 dB dB	-9.0 dB dB	0.0 dB dB	9.0 dB dB	18.0 dB dB
+13	band1 q	0.3495	0.5 dB	0.1 dB	0.3 dB	1.0 dB	3.2 dB	10.0 dB
+14	band1 mode	0.3333	peaking	lo shelf	peaking	hi shelf	hi shelf	tilt
+15	band2 on	1.0000	on	off	off	on	on	on
+16	band2 freq	0.4441	430 Hz	20 Hz	112 Hz	632 Hz	3k5 Hz	20k Hz
+17	band2 sens	0.5000	0.0 dB dB	-18.0 dB dB	-9.0 dB dB	0.0 dB dB	9.0 dB dB	18.0 dB dB
+18	band2 q	0.3495	0.5 dB	0.1 dB	0.3 dB	1.0 dB	3.2 dB	10.0 dB
+19	band2 mode	0.3333	peaking	lo shelf	peaking	hi shelf	hi shelf	tilt
+20	band3 on	1.0000	on	off	off	on	on	on
+21	band3 freq	0.6667	2k Hz	20 Hz	112 Hz	632 Hz	3k5 Hz	20k Hz
+22	band3 sens	0.5833	3.0 dB dB	-18.0 dB dB	-9.0 dB dB	0.0 dB dB	9.0 dB dB	18.0 dB dB
+23	band3 q	0.3495	0.5 dB	0.1 dB	0.3 dB	1.0 dB	3.2 dB	10.0 dB
+24	band3 mode	0.3333	peaking	lo shelf	peaking	hi shelf	hi shelf	tilt
+25	hi cut on	1.0000	on	off	off	on	on	on
+26	hi cut freq	0.9677	16k Hz	20 Hz	112 Hz	632 Hz	3k5 Hz	20k Hz
+27	hi cut slope	0.3333	low pass 12	low pass 6	low pass 12	low pass 24	low pass 24	low pass 48
+28	stereo mode	0.0000	left / right	left / right	left / right	mid / side	mid / side	mid / side
+29	stereo link	1.0000	100 % %	0 % %	25 % %	50 % %	75 % %	100 % %
+30	stereo balance	0.5000	100 / 100	mid only	100 / 50	100 / 100	50 / 100	side only
+31	resolution	0.0000	normal	normal	high	high	ultra	ultra
+32	oversample	0.0000	off	off	2x	2x	4x	4x
+33	window length	0.5000	medium	short	medium	medium	long	long
+34	phase mode	1.0000	minimum	linear	linear	minimum	minimum	minimum
+35	mix	1.0000	100 % %	0 % %	25 % %	50 % %	75 % %	100 % %
+36	trim	0.6667	0.0 dB dB	-24.0 dB dB	-15.0 dB dB	-6.0 dB dB	3.0 dB dB	12.0 dB dB
+37	delta	0.0000	off	off	off	on	on	on
+38	bypass	0.0000	off	off	off	on	on	on
+41	Bypass	0.0000	Off	Off	Off	On	On	On

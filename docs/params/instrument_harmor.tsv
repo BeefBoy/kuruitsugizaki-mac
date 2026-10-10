@@ -1,0 +1,826 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	A - Starting phase	0.5005	180	0	90	180	269	359
+1	A - Phase randomness	1.0000	100%	-100%	-50%	0%	50%	100%
+2	A - Predelay	0.5000	0:00	1000ms	59ms	0:00	4:00	8:00
+3	A - Envelope release polyphonic scale	1.0000	100%	0%	25%	50%	75%	100%
+4	A - Timbre 1 & 2 mix	0.0000	0%	0%	25%	50%	75%	100%
+5	A - Sub-harmonic 1	0.1616	-9.8dB  0.32	-INFdB  0.00	-6.0dB  0.50	0.0dB  1.00	3.5dB  1.50	6.0dB  2.00
+6	A - Sub-harmonic 3	0.0000	-INFdB  0.00	-INFdB  0.00	-6.0dB  0.50	0.0dB  1.00	3.5dB  1.50	6.0dB  2.00
+7	A - Sub-harmonic 4	0.0000	-INFdB  0.00	-INFdB  0.00	-6.0dB  0.50	0.0dB  1.00	3.5dB  1.50	6.0dB  2.00
+8	A - Harmonic protection	0.0000	-INFdB  0.00	-INFdB  0.00	-21.7dB  0.08	-12.7dB  0.23	-6.0dB  0.50	0.0dB  1.00
+9	A - Clipping threshold	1.0000	Off	-INFdB  0.00	-36.1dB  0.02	-12.0dB  0.25	2.0dB  1.27	Off
+10	A - FX / dry mix	0.5000	0%	-100%	-50%	0%	50%	100%
+11	A - Time domain volume	0.7500	0.0dB  1.00	12.0dB  -4.00	0.0dB  -1.00	-INFdB  0.00	0.0dB  1.00	12.0dB  4.00
+12	A - Frequency domain envelope volume	0.5000	0.0dB  1.00	-INFdB  0.00	-8.7dB  0.37	0.0dB  1.00	6.4dB  2.10	12.0dB  4.00
+13	A - Auto-gain	0.0000	0%	0%	25%	50%	75%	100%
+14	A - Velocity to volume envelope attack time	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+15	A - Velocity to volume envelope attack scale	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+16	A - Release velocity to envelope release scale	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+17	A - Tremolo depth	0.0000	0%	0%	25%	50%	75%	100%
+18	A - Tremolo speed	0.4000	250ms	16ms	88ms	500ms	2828ms	16000ms
+19	A - Tremolo stereo gap	0.5005	180	0	90	180	269	359
+20	A - Blur mix	1.0000	100%	0%	25%	50%	75%	100%
+21	A - Time blur attack	0.0000	0%	0%	25%	50%	75%	100%
+22	A - Time blur decay	0.0000	0%	0%	25%	50%	75%	100%
+23	A - Harmonic blur amount	0.2315	15.77	1	17.42	50.77	118.49	256
+24	A - Harmonic blur bottom tension	0.5000	50%	0%	25%	50%	75%	100%
+25	A - Harmonic blur top tension	0.5000	50%	0%	25%	50%	75%	100%
+26	A - Prism amount	0.5000	0%	-100%	-50%	0%	50%	100%
+27	A - Harmonizer mix	0.0000	0%	0%	25%	50%	75%	100%
+28	A - Harmonizer width	0.5000	50%	0%	25%	50%	75%	100%
+29	A - Harmonizer strength	0.2500	25%	0%	25%	50%	75%	100%
+30	A - Harmonizer pattern - shift - offset	0.1111	1	0	2 [landed 0.222]	4 [landed 0.444]	7 [landed 0.778]	9
+31	A - Harmonizer pattern - shift - step	0.4000	x2	x8	x4 [landed 0.267]	+1 [landed 0.533]	+4 [landed 0.733]	+8
+32	A - Harmonizer pattern - gap - offset	0.1111	1	0	2 [landed 0.222]	4 [landed 0.444]	7 [landed 0.778]	9
+33	A - Harmonizer pattern - gap - step	0.4000	x2	x8	x4 [landed 0.267]	+1 [landed 0.533]	+4 [landed 0.733]	+8
+34	A - Unison order	0.2500	3	1	3	5	7	9
+35	A - Unison distribution	1.0000	-Special	Classic	Blurred	Uniform	Random	-Special
+36	A - Unison alternate distribution	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+37	A - Unison panning	0.7500	75%	0%	25%	50%	75%	100%
+38	A - Unison pitch thickness	0.2383	24%	0%	25%	50%	75%	100%
+39	A - Unison phase	0.7500	50% jump ahead	100% equal spread	50% equal spread	All aligned	50% jump ahead	Full blur
+40	A - Freq multiplicator	0.0000	1.0000	1.0000	4.7500	8.5000	12.2500	16.0000
+41	A - Freq divider	0.1250	2	1	3	5	7	9
+42	A - Harmonic detuning multiplicator	0.0000	1.0000	1.0000	4.7500	8.5000	12.2500	16.0000
+43	A - Harmonic detuning divider	0.0000	1	1	3	5	7	9
+44	A - Pitch articulator amount	1.0000	+6000 cents	-6000 cents	-3000 cents	+0 cent	+3000 cents	+6000 cents
+45	A - Pitch vibrato depth	0.0000	Off	Off	25 cent	50 cent	75 cent	100 cent
+46	A - Pitch vibrato speed	0.5000	177ms	125ms	149ms	177ms	210ms	250ms
+47	A - Linear / logarithmic portamento curve	1.0000			 [landed 0.000]	 [landed 0.000]	 [landed 1.000]	
+48	A - Fixed / variable portamento / legato time	0.0000			 [landed 0.000]	 [landed 0.000]	 [landed 1.000]	
+49	A - Portamento / legato time	0.3177	85ms	1500ms	167ms	0:00	4:00	8:00
+50	A - Portamento pitch limit	1.0000	Portamento octave wrap	Off	300 cents	600 cents	900 cents	Portamento octave wrap
+51	A - Adaptive filter 1 envelope mode	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+52	A - Filter 1 frequency	0.5000	50%	0%	25%	50%	75%	100%
+53	A - Filter 1 scale	0.0000	oct	oct	oct [landed 0.000]	oct [landed 0.000]	Hz [landed 1.000]	Hz
+54	A - Filter 1 width	0.3840	38%	0%	25%	50%	75%	100%
+55	A - Key to filter 1 frequency	0.5000	0%	-200%	-100%	0%	100%	200%
+56	A - Filter 1 envelope amount	1.0000	100%	-100%	-50%	0%	50%	100%
+57	A - Filter 1 resonance / noise amount	0.0000	0%	0%	25%	50%	75%	100%
+58	A - Filter 1 resonance / noise scale	0.0000	oct	oct	oct [landed 0.000]	oct [landed 0.000]	Hz [landed 1.000]	Hz
+59	A - Filter 1 resonance width / noise length	0.0000	0%	0%	25%	50%	75%	100%
+60	A - Filter 1 resonance offset	0.6250	+600.00 cents	-2400.00 cents	-1200.00 cents	+0.00 cent	+1200.00 cents	+2400.00 cents
+61	A - Filter 1 resonance adaptive width / free noise	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+62	A - Filter 1 resonance self-oscillation	0.0000	0%	0%	25%	50%	75%	100%
+63	A - Adaptive filter 2 envelope mode	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+64	A - Filter 2 frequency	1.0000	100%	0%	25%	50%	75%	100%
+65	A - Filter 2 scale	0.0000	oct	oct	oct [landed 0.000]	oct [landed 0.000]	Hz [landed 1.000]	Hz
+66	A - Filter 2 width	0.5000	50%	0%	25%	50%	75%	100%
+67	A - Key to filter 2 frequency	0.5000	0%	-200%	-100%	0%	100%	200%
+68	A - Filter 2 envelope amount	1.0000	100%	-100%	-50%	0%	50%	100%
+69	A - Filter 2 resonance / noise amount	0.0000	0%	0%	25%	50%	75%	100%
+70	A - Filter 2 resonance / noise scale	0.0000	oct	oct	oct [landed 0.000]	oct [landed 0.000]	Hz [landed 1.000]	Hz
+71	A - Filter 2 resonance width / noise length	0.5000	50%	0%	25%	50%	75%	100%
+72	A - Filter 2 resonance offset	0.6250	+600.00 cents	-2400.00 cents	-1200.00 cents	+0.00 cent	+1200.00 cents	+2400.00 cents
+73	A - Filter 2 resonance adaptive width / free noise	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+74	A - Filter 1 & 2 mix (parallel - serial)	1.0000	100%	-100%	-50%	0%	50%	100%
+75	A - Pluck decay length	0.5000	50%	0%	25%	50%	75%	100%
+76	A - Phaser mix	0.0000	0%	0%	25%	50%	75%	100%
+77	A - Phaser scale	0.0000	octave	octave	octave [landed 0.000]	Hz	harmonic [landed 1.000]	harmonic
+78	A - Phaser width	0.5000	50%	0%	25%	50%	75%	100%
+79	A - Phaser offset	0.5005	180	0	90	180	269	359
+80	A - Phaser offset motion speed	0.6875	32:00	-1:00	-16:00	Still	16:00	1:00
+81	A - Key to phaser offset	0.5000	0%	-200%	-100%	0%	100%	200%
+82	A - Image time offset smoothing	0.7500	500ms	-2000ms	-500ms	0ms	500ms	2000ms
+83	A - Image time offset	0.0000	0.00%	0.00%	25.00%	50.00%	75.00%	100.00%
+84	A - Image fine speed	0.7500	100.00%	-200.00%	-100.00%	0.00%	100.00%	200.00%
+85	A - Image coarse speed	0.5000	x1.000	x0.016	x0.125	x1.000	x8.000	x64.000
+86	A - Image sharpening	0.8750		-100%	-50%			
+87	A - Image gain interpolation curve	0.6667	Cubic	Block	Bell [landed 0.333]	Linear	Cubic [landed 0.667]	Fall
+88	A - Image gain pixel scale	0.5000	50%	0%	25%	50%	75%	100%
+89	A - Image gain mix	1.0000	100%	0%	25%	50%	75%	100%
+90	A - Image freq mode	0.0000	Oct	Oct	Hz [landed 0.333]	Wide Hz [landed 0.667]	Wide Hz [landed 0.667]	Unison
+91	A - Image freq interpolation curve	0.6667	Cubic	Block	Bell [landed 0.333]	Linear	Cubic [landed 0.667]	Fall
+92	A - Image freq pixel scale	0.7500	100%	-200%	-100%	200%	100200%	200100%
+93	A - Formant shift	0.5000	+0.00 cent	-600.00 cents	-300.00 cents	+0.00 cent	+300.00 cents	+600.00 cents
+94	A - Image formant shift mix	0.0000	0%	0%	25%	50%	75%	100%
+95	A - Panning - Attack time scale	0.5000	46	0	23	46	69	92
+96	A - Panning - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+97	A - Panning - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+98	A - Panning - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+99	A - Panning - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+100	A - Panning - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+101	A - Panning - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+102	A - Panning - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+103	A - Volume - Attack time scale	0.5000	46	0	23	46	69	92
+104	A - Volume - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+105	A - Volume - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+106	A - Volume - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+107	A - Volume - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+108	A - Volume - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+109	A - Volume - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+110	A - Volume - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+111	A - FX / dry mix - Attack time scale	0.5000	46	0	23	46	69	92
+112	A - FX / dry mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+113	A - FX / dry mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+114	A - FX / dry mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+115	A - FX / dry mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+116	A - FX / dry mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+117	A - FX / dry mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+118	A - FX / dry mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+119	A - Timbre 1 & 2 mix - Attack time scale	0.5000	46	0	23	46	69	92
+120	A - Timbre 1 & 2 mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+121	A - Timbre 1 & 2 mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+122	A - Timbre 1 & 2 mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+123	A - Timbre 1 & 2 mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+124	A - Timbre 1 & 2 mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+125	A - Timbre 1 & 2 mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+126	A - Timbre 1 & 2 mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+127	A - Filter 1 frequency - Attack time scale	0.5000	46	0	23	46	69	92
+128	A - Filter 1 frequency - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+129	A - Filter 1 frequency - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+130	A - Filter 1 frequency - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+131	A - Filter 1 frequency - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+132	A - Filter 1 frequency - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+133	A - Filter 1 frequency - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+134	A - Filter 1 frequency - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+135	A - Filter 2 frequency - Attack time scale	0.5000	46	0	23	46	69	92
+136	A - Filter 2 frequency - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+137	A - Filter 2 frequency - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+138	A - Filter 2 frequency - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+139	A - Filter 2 frequency - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+140	A - Filter 2 frequency - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+141	A - Filter 2 frequency - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+142	A - Filter 2 frequency - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+143	A - Filter 1 width - Attack time scale	0.5000	46	0	23	46	69	92
+144	A - Filter 1 width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+145	A - Filter 1 width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+146	A - Filter 1 width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+147	A - Filter 1 width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+148	A - Filter 1 width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+149	A - Filter 1 width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+150	A - Filter 1 width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+151	A - Filter 2 width - Attack time scale	0.5000	46	0	23	46	69	92
+152	A - Filter 2 width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+153	A - Filter 2 width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+154	A - Filter 2 width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+155	A - Filter 2 width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+156	A - Filter 2 width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+157	A - Filter 2 width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+158	A - Filter 2 width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+159	A - Filter 1 resonance amount - Attack time scale	0.5000	46	0	23	46	69	92
+160	A - Filter 1 resonance amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+161	A - Filter 1 resonance amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+162	A - Filter 1 resonance amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+163	A - Filter 1 resonance amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+164	A - Filter 1 resonance amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+165	A - Filter 1 resonance amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+166	A - Filter 1 resonance amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+167	A - Filter 2 resonance amount - Attack time scale	0.5000	46	0	23	46	69	92
+168	A - Filter 2 resonance amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+169	A - Filter 2 resonance amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+170	A - Filter 2 resonance amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+171	A - Filter 2 resonance amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+172	A - Filter 2 resonance amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+173	A - Filter 2 resonance amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+174	A - Filter 2 resonance amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+175	A - Filter 1 resonance width - Attack time scale	0.5000	46	0	23	46	69	92
+176	A - Filter 1 resonance width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+177	A - Filter 1 resonance width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+178	A - Filter 1 resonance width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+179	A - Filter 1 resonance width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+180	A - Filter 1 resonance width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+181	A - Filter 1 resonance width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+182	A - Filter 1 resonance width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+183	A - Filter 2 resonance width - Attack time scale	0.5000	46	0	23	46	69	92
+184	A - Filter 2 resonance width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+185	A - Filter 2 resonance width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+186	A - Filter 2 resonance width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+187	A - Filter 2 resonance width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+188	A - Filter 2 resonance width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+189	A - Filter 2 resonance width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+190	A - Filter 2 resonance width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+191	A - Filter 1 resonance offset - Attack time scale	0.5000	46	0	23	46	69	92
+192	A - Filter 1 resonance offset - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+193	A - Filter 1 resonance offset - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+194	A - Filter 1 resonance offset - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+195	A - Filter 1 resonance offset - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+196	A - Filter 1 resonance offset - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+197	A - Filter 1 resonance offset - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+198	A - Filter 1 resonance offset - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+199	A - Filter 2 resonance offset - Attack time scale	0.5000	46	0	23	46	69	92
+200	A - Filter 2 resonance offset - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+201	A - Filter 2 resonance offset - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+202	A - Filter 2 resonance offset - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+203	A - Filter 2 resonance offset - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+204	A - Filter 2 resonance offset - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+205	A - Filter 2 resonance offset - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+206	A - Filter 2 resonance offset - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+207	A - Filter 1 & 2 mix - Attack time scale	0.5000	46	0	23	46	69	92
+208	A - Filter 1 & 2 mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+209	A - Filter 1 & 2 mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+210	A - Filter 1 & 2 mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+211	A - Filter 1 & 2 mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+212	A - Filter 1 & 2 mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+213	A - Filter 1 & 2 mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+214	A - Filter 1 & 2 mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+215	A - Pluck amount - Attack time scale	0.5000	46	0	23	46	69	92
+216	A - Pluck amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+217	A - Pluck amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+218	A - Pluck amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+219	A - Pluck amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+220	A - Pluck amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+221	A - Pluck amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+222	A - Pluck amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+223	A - Phaser mix - Attack time scale	0.5000	46	0	23	46	69	92
+224	A - Phaser mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+225	A - Phaser mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+226	A - Phaser mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+227	A - Phaser mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+228	A - Phaser mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+229	A - Phaser mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+230	A - Phaser mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+231	A - Phaser width - Attack time scale	0.5000	46	0	23	46	69	92
+232	A - Phaser width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+233	A - Phaser width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+234	A - Phaser width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+235	A - Phaser width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+236	A - Phaser width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+237	A - Phaser width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+238	A - Phaser width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+239	A - Phaser offset - Attack time scale	0.5000	46	0	23	46	69	92
+240	A - Phaser offset - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+241	A - Phaser offset - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+242	A - Phaser offset - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+243	A - Phaser offset - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+244	A - Phaser offset - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+245	A - Phaser offset - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+246	A - Phaser offset - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+247	A - Harmonizer mix - Attack time scale	0.5000	46	0	23	46	69	92
+248	A - Harmonizer mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+249	A - Harmonizer mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+250	A - Harmonizer mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+251	A - Harmonizer mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+252	A - Harmonizer mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+253	A - Harmonizer mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+254	A - Harmonizer mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+255	A - Harmonizer width - Attack time scale	0.5000	46	0	23	46	69	92
+256	A - Harmonizer width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+257	A - Harmonizer width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+258	A - Harmonizer width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+259	A - Harmonizer width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+260	A - Harmonizer width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+261	A - Harmonizer width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+262	A - Harmonizer width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+263	A - Harmonic clipping threshold - Attack time scale	0.5000	46	0	23	46	69	92
+264	A - Harmonic clipping threshold - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+265	A - Harmonic clipping threshold - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+266	A - Harmonic clipping threshold - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+267	A - Harmonic clipping threshold - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+268	A - Harmonic clipping threshold - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+269	A - Harmonic clipping threshold - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+270	A - Harmonic clipping threshold - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+271	A - Harmonic blur amount - Attack time scale	0.5000	46	0	23	46	69	92
+272	A - Harmonic blur amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+273	A - Harmonic blur amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+274	A - Harmonic blur amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+275	A - Harmonic blur amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+276	A - Harmonic blur amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+277	A - Harmonic blur amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+278	A - Harmonic blur amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+279	A - Prism amount - Attack time scale	0.5000	46	0	23	46	69	92
+280	A - Prism amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+281	A - Prism amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+282	A - Prism amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+283	A - Prism amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+284	A - Prism amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+285	A - Prism amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+286	A - Prism amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+287	A - Pitch - Attack time scale	0.5000	46	0	23	46	69	92
+288	A - Pitch - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+289	A - Pitch - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+290	A - Pitch - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+291	A - Pitch - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+292	A - Pitch - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+293	A - Pitch - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+294	A - Pitch - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+295	A - Pitch vibrato depth - Attack time scale	0.5000	46	0	23	46	69	92
+296	A - Pitch vibrato depth - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+297	A - Pitch vibrato depth - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+298	A - Pitch vibrato depth - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+299	A - Pitch vibrato depth - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+300	A - Pitch vibrato depth - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+301	A - Pitch vibrato depth - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+302	A - Pitch vibrato depth - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+303	A - Unison pitch thickness - Attack time scale	0.5000	46	0	23	46	69	92
+304	A - Unison pitch thickness - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+305	A - Unison pitch thickness - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+306	A - Unison pitch thickness - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+307	A - Unison pitch thickness - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+308	A - Unison pitch thickness - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+309	A - Unison pitch thickness - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+310	A - Unison pitch thickness - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+311	A - Image time offset - Attack time scale	0.5000	46	0	23	46	69	92
+312	A - Image time offset - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+313	A - Image time offset - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+314	A - Image time offset - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+315	A - Image time offset - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+316	A - Image time offset - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+317	A - Image time offset - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+318	A - Image time offset - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+319	A - Image fine speed - Attack time scale	0.5000	46	0	23	46	69	92
+320	A - Image fine speed - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+321	A - Image fine speed - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+322	A - Image fine speed - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+323	A - Image fine speed - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+324	A - Image fine speed - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+325	A - Image fine speed - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+326	A - Image fine speed - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+327	A - Image formant shift - Attack time scale	0.5000	46	0	23	46	69	92
+328	A - Image formant shift - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+329	A - Image formant shift - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+330	A - Image formant shift - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+331	A - Image formant shift - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+332	A - Image formant shift - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+333	A - Image formant shift - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+334	A - Image formant shift - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+335	A - Image freq pixel scale - Attack time scale	0.5000	46	0	23	46	69	92
+336	A - Image freq pixel scale - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+337	A - Image freq pixel scale - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+338	A - Image freq pixel scale - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+339	A - Image freq pixel scale - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+340	A - Image freq pixel scale - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+341	A - Image freq pixel scale - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+342	A - Image freq pixel scale - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+343	A - Panning - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+344	A - Volume - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+345	A - FX / dry mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+346	A - Timbre 1 & 2 mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+347	A - Filter 1 frequency - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+348	A - Filter 2 frequency - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+349	A - Filter 1 width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+350	A - Filter 2 width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+351	A - Filter 1 resonance amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+352	A - Filter 2 resonance amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+353	A - Filter 1 resonance width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+354	A - Filter 2 resonance width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+355	A - Filter 1 resonance offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+356	A - Filter 2 resonance offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+357	A - Filter 1 & 2 mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+358	A - Pluck amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+359	A - Phaser mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+360	A - Phaser width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+361	A - Phaser offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+362	A - Harmonizer mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+363	A - Harmonizer width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+364	A - Harmonic clipping threshold - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+365	A - Harmonic blur amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+366	A - Prism amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+367	A - Pitch - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+368	A - Pitch vibrato depth - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+369	A - Unison pitch thickness - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+370	A - Image time offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+371	A - Image fine speed - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+372	A - Image formant shift - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+373	A - Image freq pixel scale - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+374	A - Filter 1 envelope amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+375	A - Filter 2 envelope amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+376	A - Global envelope attack time - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+377	A - Global envelope attack scale - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+378	A - Global envelope decay scale - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+379	A - Global envelope sustain offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+380	A - Global envelope release scale - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+381	A - Global LFO amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+382	A - Global LFO speed - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+383	A - Global LFO phase - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+384	A - Unison phase - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+385	A - Predelay - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+386	B - Starting phase	0.5005	180	0	90	180	269	359
+387	B - Phase randomness	0.5000	0%	-100%	-50%	0%	50%	100%
+388	B - Predelay	0.5000	0:00	1000ms	59ms	0:00	4:00	8:00
+389	B - Envelope release polyphonic scale	1.0000	100%	0%	25%	50%	75%	100%
+390	B - Timbre 1 & 2 mix	0.0000	0%	0%	25%	50%	75%	100%
+391	B - Sub-harmonic 1	0.0000	-INFdB  0.00	-INFdB  0.00	-6.0dB  0.50	0.0dB  1.00	3.5dB  1.50	6.0dB  2.00
+392	B - Sub-harmonic 3	0.0000	-INFdB  0.00	-INFdB  0.00	-6.0dB  0.50	0.0dB  1.00	3.5dB  1.50	6.0dB  2.00
+393	B - Sub-harmonic 4	0.0000	-INFdB  0.00	-INFdB  0.00	-6.0dB  0.50	0.0dB  1.00	3.5dB  1.50	6.0dB  2.00
+394	B - Harmonic protection	0.0000	-INFdB  0.00	-INFdB  0.00	-21.7dB  0.08	-12.7dB  0.23	-6.0dB  0.50	0.0dB  1.00
+395	B - Clipping threshold	1.0000	Off	-INFdB  0.00	-36.1dB  0.02	-12.0dB  0.25	2.0dB  1.27	Off
+396	B - FX / dry mix	0.5000	0%	-100%	-50%	0%	50%	100%
+397	B - Time domain volume	0.7500	0.0dB  1.00	12.0dB  -4.00	0.0dB  -1.00	-INFdB  0.00	0.0dB  1.00	12.0dB  4.00
+398	B - Frequency domain envelope volume	0.5000	0.0dB  1.00	-INFdB  0.00	-8.7dB  0.37	0.0dB  1.00	6.4dB  2.10	12.0dB  4.00
+399	B - Auto-gain	0.0000	0%	0%	25%	50%	75%	100%
+400	B - Velocity to volume envelope attack time	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+401	B - Velocity to volume envelope attack scale	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+402	B - Release velocity to envelope release scale	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+403	B - Tremolo depth	0.0000	0%	0%	25%	50%	75%	100%
+404	B - Tremolo speed	0.4000	250ms	16ms	88ms	500ms	2828ms	16000ms
+405	B - Tremolo stereo gap	0.5005	180	0	90	180	269	359
+406	B - Blur mix	1.0000	100%	0%	25%	50%	75%	100%
+407	B - Time blur attack	0.0000	0%	0%	25%	50%	75%	100%
+408	B - Time blur decay	0.0000	0%	0%	25%	50%	75%	100%
+409	B - Harmonic blur amount	0.0000	1	1	17.42	50.77	118.49	256
+410	B - Harmonic blur bottom tension	0.5000	50%	0%	25%	50%	75%	100%
+411	B - Harmonic blur top tension	0.5000	50%	0%	25%	50%	75%	100%
+412	B - Prism amount	0.5000	0%	-100%	-50%	0%	50%	100%
+413	B - Harmonizer mix	0.0000	0%	0%	25%	50%	75%	100%
+414	B - Harmonizer width	0.5000	50%	0%	25%	50%	75%	100%
+415	B - Harmonizer strength	0.2500	25%	0%	25%	50%	75%	100%
+416	B - Harmonizer pattern - shift - offset	0.1111	1	0	2 [landed 0.222]	4 [landed 0.444]	7 [landed 0.778]	9
+417	B - Harmonizer pattern - shift - step	0.4000	x2	x8	x4 [landed 0.267]	+1 [landed 0.533]	+4 [landed 0.733]	+8
+418	B - Harmonizer pattern - gap - offset	0.1111	1	0	2 [landed 0.222]	4 [landed 0.444]	7 [landed 0.778]	9
+419	B - Harmonizer pattern - gap - step	0.4000	x2	x8	x4 [landed 0.267]	+1 [landed 0.533]	+4 [landed 0.733]	+8
+420	B - Unison order	0.0000	1	1	3	5	7	9
+421	B - Unison distribution	0.2500	-Special	Classic	Blurred	Uniform	Random	-Special
+422	B - Unison alternate distribution	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+423	B - Unison panning	0.7500	75%	0%	25%	50%	75%	100%
+424	B - Unison pitch thickness	0.5000	50%	0%	25%	50%	75%	100%
+425	B - Unison phase	0.7500	50% jump ahead	100% equal spread	50% equal spread	All aligned	50% jump ahead	Full blur
+426	B - Freq multiplicator	0.0000	1.0000	1.0000	4.7500	8.5000	12.2500	16.0000
+427	B - Freq divider	0.0000	1	1	3	5	7	9
+428	B - Harmonic detuning multiplicator	0.0000	1.0000	1.0000	4.7500	8.5000	12.2500	16.0000
+429	B - Harmonic detuning divider	0.0000	1	1	3	5	7	9
+430	B - Pitch articulator amount	1.0000	+6000 cents	-6000 cents	-3000 cents	+0 cent	+3000 cents	+6000 cents
+431	B - Pitch vibrato depth	0.0000	Off	Off	25 cent	50 cent	75 cent	100 cent
+432	B - Pitch vibrato speed	0.5000	177ms	125ms	149ms	177ms	210ms	250ms
+433	B - Linear / logarithmic portamento curve	1.0000			 [landed 0.000]	 [landed 0.000]	 [landed 1.000]	
+434	B - Fixed / variable portamento / legato time	0.0000			 [landed 0.000]	 [landed 0.000]	 [landed 1.000]	
+435	B - Portamento / legato time	0.3177	85ms	1500ms	167ms	0:00	4:00	8:00
+436	B - Portamento pitch limit	1.0000	Portamento octave wrap	Off	300 cents	600 cents	900 cents	Portamento octave wrap
+437	B - Adaptive filter 1 envelope mode	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+438	B - Filter 1 frequency	1.0000	100%	0%	25%	50%	75%	100%
+439	B - Filter 1 scale	0.0000	oct	oct	oct [landed 0.000]	oct [landed 0.000]	Hz [landed 1.000]	Hz
+440	B - Filter 1 width	0.5000	50%	0%	25%	50%	75%	100%
+441	B - Key to filter 1 frequency	0.5000	0%	-200%	-100%	0%	100%	200%
+442	B - Filter 1 envelope amount	1.0000	100%	-100%	-50%	0%	50%	100%
+443	B - Filter 1 resonance / noise amount	0.0000	0%	0%	25%	50%	75%	100%
+444	B - Filter 1 resonance / noise scale	0.0000	oct	oct	oct [landed 0.000]	oct [landed 0.000]	Hz [landed 1.000]	Hz
+445	B - Filter 1 resonance width / noise length	0.5000	50%	0%	25%	50%	75%	100%
+446	B - Filter 1 resonance offset	0.6250	+600.00 cents	-2400.00 cents	-1200.00 cents	+0.00 cent	+1200.00 cents	+2400.00 cents
+447	B - Filter 1 resonance adaptive width / free noise	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+448	B - Filter 1 resonance self-oscillation	0.0000	0%	0%	25%	50%	75%	100%
+449	B - Adaptive filter 2 envelope mode	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+450	B - Filter 2 frequency	1.0000	100%	0%	25%	50%	75%	100%
+451	B - Filter 2 scale	0.0000	oct	oct	oct [landed 0.000]	oct [landed 0.000]	Hz [landed 1.000]	Hz
+452	B - Filter 2 width	0.5000	50%	0%	25%	50%	75%	100%
+453	B - Key to filter 2 frequency	0.5000	0%	-200%	-100%	0%	100%	200%
+454	B - Filter 2 envelope amount	1.0000	100%	-100%	-50%	0%	50%	100%
+455	B - Filter 2 resonance / noise amount	0.0000	0%	0%	25%	50%	75%	100%
+456	B - Filter 2 resonance / noise scale	0.0000	oct	oct	oct [landed 0.000]	oct [landed 0.000]	Hz [landed 1.000]	Hz
+457	B - Filter 2 resonance width / noise length	0.5000	50%	0%	25%	50%	75%	100%
+458	B - Filter 2 resonance offset	0.6250	+600.00 cents	-2400.00 cents	-1200.00 cents	+0.00 cent	+1200.00 cents	+2400.00 cents
+459	B - Filter 2 resonance adaptive width / free noise	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+460	B - Filter 1 & 2 mix (parallel - serial)	1.0000	100%	-100%	-50%	0%	50%	100%
+461	B - Pluck decay length	1.0000	100%	0%	25%	50%	75%	100%
+462	B - Phaser mix	0.0000	0%	0%	25%	50%	75%	100%
+463	B - Phaser scale	0.0000	octave	octave	octave [landed 0.000]	Hz	harmonic [landed 1.000]	harmonic
+464	B - Phaser width	0.5000	50%	0%	25%	50%	75%	100%
+465	B - Phaser offset	0.5005	180	0	90	180	269	359
+466	B - Phaser offset motion speed	0.6875	32:00	-1:00	-16:00	Still	16:00	1:00
+467	B - Key to phaser offset	0.5000	0%	-200%	-100%	0%	100%	200%
+468	B - Image time offset smoothing	0.7500	500ms	-2000ms	-500ms	0ms	500ms	2000ms
+469	B - Image time offset	0.0000	0.00%	0.00%	25.00%	50.00%	75.00%	100.00%
+470	B - Image fine speed	0.7500	100.00%	-200.00%	-100.00%	0.00%	100.00%	200.00%
+471	B - Image coarse speed	0.5000	x1.000	x0.016	x0.125	x1.000	x8.000	x64.000
+472	B - Image sharpening	0.8750		-100%	-50%			
+473	B - Image gain interpolation curve	0.6667	Cubic	Block	Bell [landed 0.333]	Linear	Cubic [landed 0.667]	Fall
+474	B - Image gain pixel scale	0.5000	50%	0%	25%	50%	75%	100%
+475	B - Image gain mix	1.0000	100%	0%	25%	50%	75%	100%
+476	B - Image freq mode	0.0000	Oct	Oct	Hz [landed 0.333]	Wide Hz [landed 0.667]	Wide Hz [landed 0.667]	Unison
+477	B - Image freq interpolation curve	0.6667	Cubic	Block	Bell [landed 0.333]	Linear	Cubic [landed 0.667]	Fall
+478	B - Image freq pixel scale	0.7500	100%	-200%	-100%	200%	100200%	200100%
+479	B - Formant shift	0.5000	+0.00 cent	-600.00 cents	-300.00 cents	+0.00 cent	+300.00 cents	+600.00 cents
+480	B - Image formant shift mix	0.0000	0%	0%	25%	50%	75%	100%
+481	B - Panning - Attack time scale	0.5000	46	0	23	46	69	92
+482	B - Panning - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+483	B - Panning - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+484	B - Panning - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+485	B - Panning - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+486	B - Panning - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+487	B - Panning - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+488	B - Panning - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+489	B - Volume - Attack time scale	0.5000	46	0	23	46	69	92
+490	B - Volume - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+491	B - Volume - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+492	B - Volume - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+493	B - Volume - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+494	B - Volume - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+495	B - Volume - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+496	B - Volume - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+497	B - FX / dry mix - Attack time scale	0.5000	46	0	23	46	69	92
+498	B - FX / dry mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+499	B - FX / dry mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+500	B - FX / dry mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+501	B - FX / dry mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+502	B - FX / dry mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+503	B - FX / dry mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+504	B - FX / dry mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+505	B - Timbre 1 & 2 mix - Attack time scale	0.5000	46	0	23	46	69	92
+506	B - Timbre 1 & 2 mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+507	B - Timbre 1 & 2 mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+508	B - Timbre 1 & 2 mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+509	B - Timbre 1 & 2 mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+510	B - Timbre 1 & 2 mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+511	B - Timbre 1 & 2 mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+512	B - Timbre 1 & 2 mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+513	B - Filter 1 frequency - Attack time scale	0.5000	46	0	23	46	69	92
+514	B - Filter 1 frequency - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+515	B - Filter 1 frequency - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+516	B - Filter 1 frequency - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+517	B - Filter 1 frequency - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+518	B - Filter 1 frequency - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+519	B - Filter 1 frequency - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+520	B - Filter 1 frequency - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+521	B - Filter 2 frequency - Attack time scale	0.5000	46	0	23	46	69	92
+522	B - Filter 2 frequency - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+523	B - Filter 2 frequency - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+524	B - Filter 2 frequency - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+525	B - Filter 2 frequency - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+526	B - Filter 2 frequency - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+527	B - Filter 2 frequency - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+528	B - Filter 2 frequency - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+529	B - Filter 1 width - Attack time scale	0.5000	46	0	23	46	69	92
+530	B - Filter 1 width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+531	B - Filter 1 width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+532	B - Filter 1 width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+533	B - Filter 1 width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+534	B - Filter 1 width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+535	B - Filter 1 width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+536	B - Filter 1 width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+537	B - Filter 2 width - Attack time scale	0.5000	46	0	23	46	69	92
+538	B - Filter 2 width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+539	B - Filter 2 width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+540	B - Filter 2 width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+541	B - Filter 2 width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+542	B - Filter 2 width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+543	B - Filter 2 width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+544	B - Filter 2 width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+545	B - Filter 1 resonance amount - Attack time scale	0.5000	46	0	23	46	69	92
+546	B - Filter 1 resonance amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+547	B - Filter 1 resonance amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+548	B - Filter 1 resonance amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+549	B - Filter 1 resonance amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+550	B - Filter 1 resonance amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+551	B - Filter 1 resonance amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+552	B - Filter 1 resonance amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+553	B - Filter 2 resonance amount - Attack time scale	0.5000	46	0	23	46	69	92
+554	B - Filter 2 resonance amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+555	B - Filter 2 resonance amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+556	B - Filter 2 resonance amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+557	B - Filter 2 resonance amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+558	B - Filter 2 resonance amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+559	B - Filter 2 resonance amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+560	B - Filter 2 resonance amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+561	B - Filter 1 resonance width - Attack time scale	0.5000	46	0	23	46	69	92
+562	B - Filter 1 resonance width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+563	B - Filter 1 resonance width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+564	B - Filter 1 resonance width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+565	B - Filter 1 resonance width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+566	B - Filter 1 resonance width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+567	B - Filter 1 resonance width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+568	B - Filter 1 resonance width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+569	B - Filter 2 resonance width - Attack time scale	0.5000	46	0	23	46	69	92
+570	B - Filter 2 resonance width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+571	B - Filter 2 resonance width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+572	B - Filter 2 resonance width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+573	B - Filter 2 resonance width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+574	B - Filter 2 resonance width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+575	B - Filter 2 resonance width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+576	B - Filter 2 resonance width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+577	B - Filter 1 resonance offset - Attack time scale	0.5000	46	0	23	46	69	92
+578	B - Filter 1 resonance offset - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+579	B - Filter 1 resonance offset - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+580	B - Filter 1 resonance offset - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+581	B - Filter 1 resonance offset - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+582	B - Filter 1 resonance offset - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+583	B - Filter 1 resonance offset - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+584	B - Filter 1 resonance offset - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+585	B - Filter 2 resonance offset - Attack time scale	0.5000	46	0	23	46	69	92
+586	B - Filter 2 resonance offset - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+587	B - Filter 2 resonance offset - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+588	B - Filter 2 resonance offset - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+589	B - Filter 2 resonance offset - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+590	B - Filter 2 resonance offset - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+591	B - Filter 2 resonance offset - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+592	B - Filter 2 resonance offset - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+593	B - Filter 1 & 2 mix - Attack time scale	0.5000	46	0	23	46	69	92
+594	B - Filter 1 & 2 mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+595	B - Filter 1 & 2 mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+596	B - Filter 1 & 2 mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+597	B - Filter 1 & 2 mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+598	B - Filter 1 & 2 mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+599	B - Filter 1 & 2 mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+600	B - Filter 1 & 2 mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+601	B - Pluck amount - Attack time scale	0.5000	46	0	23	46	69	92
+602	B - Pluck amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+603	B - Pluck amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+604	B - Pluck amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+605	B - Pluck amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+606	B - Pluck amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+607	B - Pluck amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+608	B - Pluck amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+609	B - Phaser mix - Attack time scale	0.5000	46	0	23	46	69	92
+610	B - Phaser mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+611	B - Phaser mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+612	B - Phaser mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+613	B - Phaser mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+614	B - Phaser mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+615	B - Phaser mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+616	B - Phaser mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+617	B - Phaser width - Attack time scale	0.5000	46	0	23	46	69	92
+618	B - Phaser width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+619	B - Phaser width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+620	B - Phaser width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+621	B - Phaser width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+622	B - Phaser width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+623	B - Phaser width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+624	B - Phaser width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+625	B - Phaser offset - Attack time scale	0.5000	46	0	23	46	69	92
+626	B - Phaser offset - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+627	B - Phaser offset - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+628	B - Phaser offset - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+629	B - Phaser offset - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+630	B - Phaser offset - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+631	B - Phaser offset - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+632	B - Phaser offset - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+633	B - Harmonizer mix - Attack time scale	0.5000	46	0	23	46	69	92
+634	B - Harmonizer mix - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+635	B - Harmonizer mix - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+636	B - Harmonizer mix - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+637	B - Harmonizer mix - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+638	B - Harmonizer mix - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+639	B - Harmonizer mix - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+640	B - Harmonizer mix - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+641	B - Harmonizer width - Attack time scale	0.5000	46	0	23	46	69	92
+642	B - Harmonizer width - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+643	B - Harmonizer width - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+644	B - Harmonizer width - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+645	B - Harmonizer width - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+646	B - Harmonizer width - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+647	B - Harmonizer width - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+648	B - Harmonizer width - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+649	B - Harmonic clipping threshold - Attack time scale	0.5000	46	0	23	46	69	92
+650	B - Harmonic clipping threshold - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+651	B - Harmonic clipping threshold - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+652	B - Harmonic clipping threshold - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+653	B - Harmonic clipping threshold - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+654	B - Harmonic clipping threshold - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+655	B - Harmonic clipping threshold - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+656	B - Harmonic clipping threshold - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+657	B - Harmonic blur amount - Attack time scale	0.5000	46	0	23	46	69	92
+658	B - Harmonic blur amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+659	B - Harmonic blur amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+660	B - Harmonic blur amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+661	B - Harmonic blur amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+662	B - Harmonic blur amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+663	B - Harmonic blur amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+664	B - Harmonic blur amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+665	B - Prism amount - Attack time scale	0.5000	46	0	23	46	69	92
+666	B - Prism amount - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+667	B - Prism amount - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+668	B - Prism amount - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+669	B - Prism amount - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+670	B - Prism amount - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+671	B - Prism amount - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+672	B - Prism amount - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+673	B - Pitch - Attack time scale	0.5000	46	0	23	46	69	92
+674	B - Pitch - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+675	B - Pitch - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+676	B - Pitch - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+677	B - Pitch - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+678	B - Pitch - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+679	B - Pitch - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+680	B - Pitch - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+681	B - Pitch vibrato depth - Attack time scale	0.5000	46	0	23	46	69	92
+682	B - Pitch vibrato depth - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+683	B - Pitch vibrato depth - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+684	B - Pitch vibrato depth - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+685	B - Pitch vibrato depth - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+686	B - Pitch vibrato depth - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+687	B - Pitch vibrato depth - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+688	B - Pitch vibrato depth - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+689	B - Unison pitch thickness - Attack time scale	0.5000	46	0	23	46	69	92
+690	B - Unison pitch thickness - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+691	B - Unison pitch thickness - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+692	B - Unison pitch thickness - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+693	B - Unison pitch thickness - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+694	B - Unison pitch thickness - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+695	B - Unison pitch thickness - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+696	B - Unison pitch thickness - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+697	B - Image time offset - Attack time scale	0.5000	46	0	23	46	69	92
+698	B - Image time offset - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+699	B - Image time offset - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+700	B - Image time offset - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+701	B - Image time offset - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+702	B - Image time offset - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+703	B - Image time offset - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+704	B - Image time offset - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+705	B - Image fine speed - Attack time scale	0.5000	46	0	23	46	69	92
+706	B - Image fine speed - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+707	B - Image fine speed - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+708	B - Image fine speed - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+709	B - Image fine speed - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+710	B - Image fine speed - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+711	B - Image fine speed - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+712	B - Image fine speed - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+713	B - Image formant shift - Attack time scale	0.5000	46	0	23	46	69	92
+714	B - Image formant shift - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+715	B - Image formant shift - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+716	B - Image formant shift - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+717	B - Image formant shift - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+718	B - Image formant shift - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+719	B - Image formant shift - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+720	B - Image formant shift - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+721	B - Image freq pixel scale - Attack time scale	0.5000	46	0	23	46	69	92
+722	B - Image freq pixel scale - Decay time scale	0.5000	12%	0%	6%	12%	19%	25%
+723	B - Image freq pixel scale - Sustain level offset	0.5000	0:00	21ms	6ms	0:00	1:16	2:32
+724	B - Image freq pixel scale - Release time scale	0.5000	50%	0%	25%	50%	75%	100%
+725	B - Image freq pixel scale - LFO speed (phase)	0.6211	62%	1%	26%	50%	75%	100%
+726	B - Image freq pixel scale - LFO tension	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+727	B - Image freq pixel scale - LFO skew	0.5000	-INFdB  0.00	-18.1dB  -0.13	-24.1dB  -0.06	-INFdB  0.00	-24.1dB  0.06	-18.1dB  0.13
+728	B - Image freq pixel scale - LFO pulse width	0.5000	-INFdB  0.00	-19.2dB  -0.11	-25.2dB  -0.05	-INFdB  0.00	-25.2dB  0.05	-19.2dB  0.11
+729	B - Panning - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+730	B - Volume - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+731	B - FX / dry mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+732	B - Timbre 1 & 2 mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+733	B - Filter 1 frequency - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+734	B - Filter 2 frequency - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+735	B - Filter 1 width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+736	B - Filter 2 width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+737	B - Filter 1 resonance amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+738	B - Filter 2 resonance amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+739	B - Filter 1 resonance width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+740	B - Filter 2 resonance width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+741	B - Filter 1 resonance offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+742	B - Filter 2 resonance offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+743	B - Filter 1 & 2 mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+744	B - Pluck amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+745	B - Phaser mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+746	B - Phaser width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+747	B - Phaser offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+748	B - Harmonizer mix - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+749	B - Harmonizer width - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+750	B - Harmonic clipping threshold - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+751	B - Harmonic blur amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+752	B - Prism amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+753	B - Pitch - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+754	B - Pitch vibrato depth - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+755	B - Unison pitch thickness - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+756	B - Image time offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+757	B - Image fine speed - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+758	B - Image formant shift - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+759	B - Image freq pixel scale - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+760	B - Filter 1 envelope amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+761	B - Filter 2 envelope amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+762	B - Global envelope attack time - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+763	B - Global envelope attack scale - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+764	B - Global envelope decay scale - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+765	B - Global envelope sustain offset - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+766	B - Global envelope release scale - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+767	B - Global LFO amount - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+768	B - Global LFO speed - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+769	B - Global LFO phase - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+770	B - Unison phase - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+771	B - Predelay - Articulator output smoothing	0.0000	0%	0%	25%	50%	75%	100%
+772	Modulation X	0.5000	50%	0%	25%	50%	75%	100%
+773	Modulation Y	0.5000	50%	0%	25%	50%	75%	100%
+774	Modulation Z	0.5000	50%	0%	25%	50%	75%	100%
+775	Legato pitch limit	0.0000	Off	Off	600 cents	1200 cents	1800 cents	2400 cents
+776	Legato mode	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+777	Portamento mode	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+778	Velocity / release to portamento / legato time	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+779	Strum mode	0.0000	Up	Up	Down [landed 0.333]	Alt [landed 0.667]	Alt [landed 0.667]	Random
+780	Strum time	0.0000	0%	0%	25%	50%	75%	100%
+781	Strum tension	0.5000	0%	-100%	-50%	0%	50%	100%
+782	Part A & B mix	0.5000	50%	0%	25%	50%	75%	100%
+783	Pre-FX main volume	0.5000	0.0dB  1.00	-INFdB  0.00	-8.7dB  0.37	0.0dB  1.00	6.4dB  2.10	12.0dB  4.00
+784	Post-FX main volume	0.5000	50%	0%	25%	50%	75%	100%
+785	Velocity to volume	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+786	Main pitch	0.5000	+0 cent	-2400 cents	-1200 cents	+0 cent	+1200 cents	+2400 cents
+787	Main LFO amount	1.0000	100%	-100%	-50%	0%	50%	100%
+788	Invert arpeggiator (if any)	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+789	Distortion amount	0.5790	58%	0%	25%	50%	75%	100%
+790	Distortion asymmetry / extra	0.5000	0%	100% stereo	50% stereo	0%	50% mono	100% mono
+791	Distortion wet volume	0.5000	50%	0%	25%	50%	75%	100%
+792	Distortion mix	0.5000	0%	-100%	-50%	0%	50%	100%
+793	Distortion highcut	1.0000	33488.07Hz C11	523.25Hz C5	1479.98Hz F#6	4186.01Hz C8	11839.82Hz F#9	33488.07Hz C11
+794	Enable reverb	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+795	Reverb lowcut	0.3920	247.51Hz B3	Off	92.50Hz F#2	523.25Hz C5	2959.96Hz F#7	16744.04Hz C10
+796	Reverb highcut	0.9246	16860.50Hz C10	261.63Hz C4	804.17Hz G5	2489.02Hz D#7	7703.83Hz B8	Off
+797	Reverb predelay	0.5000	0:00	1000ms	111ms	0:00	4:00	8:00
+798	Reverb room size	0.6667	67%	1%	26%	51%	75%	100%
+799	Reverb diffusion	1.0000	100%	0%	25%	50%	75%	100%
+800	Reverb decay	0.4989	2247ms	100ms	476ms	2263ms	10763ms	51200ms
+801	Reverb high damping	0.7200	6706.57Hz G#8	261.63Hz C4	804.17Hz G5	2489.02Hz D#7	7703.83Hz B8	Off
+802	Reverb color	0.7500	W	B+	B	F	W	W+
+803	Reverb wet volume	0.7500	50%	-100%	-50%	0%	50%	100%
+804	Chorus order	0.3333	33%	0%	22% [landed 0.222]	44% [landed 0.444]	78% [landed 0.778]	100%
+805	Chorus depth	0.5000	50%	0%	25%	50%	75%	100%
+806	Chorus speed	0.7500	75%	0%	25%	50%	75%	100%
+807	Chorus delay	0.0625	6%	0%	25%	50%	75%	100%
+808	Chorus spread	1.0000	100%	0%	25%	50%	75%	100%
+809	Chorus cross	0.3750	-25%	-100%	-50%	0%	50%	100%
+810	Chorus mix	0.7500	50%	-100%	-50%	0%	50%	100%
+811	Enable delay	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+812	Delay feedback mode	1.0000	100%	0%	0% [landed 0.000]	50%	100% [landed 1.000]	100%
+813	Delay feedback level	0.3000	30%	0%	25%	50%	75%	100%
+814	Delay time	0.6875	3:00	1000ms	200ms	0:00	4:00	8:00
+815	Delay time stereo offset	0.6250	25%	-100%	-50%	0%	50%	100%
+816	Delay input volume	0.7500	50%	-100%	-50%	0%	50%	100%
+817	Delay input panning	0.5000	0%	-100%	-50%	0%	50%	100%
+818	Delay lowcut	0.0000	Off	Off	92.50Hz F#2	523.25Hz C5	2959.96Hz F#7	16744.04Hz C10
+819	Delay highcut	1.0000	Off	261.63Hz C4	804.17Hz G5	2489.02Hz D#7	7703.83Hz B8	Off
+820	Delay feedback damping	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+821	Compression amount	0.5000	50%	0%	25%	50%	75%	100%
+822	Compression low band	0.4320	43%	0%	25%	50%	75%	100%
+823	Compression mid band	0.5480	55%	0%	25%	50%	75%	100%
+824	Compression high band	0.3590	36%	0%	25%	50%	75%	100%

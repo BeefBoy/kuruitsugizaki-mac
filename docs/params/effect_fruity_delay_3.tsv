@@ -1,0 +1,27 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Input wet	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+1	Delay type	0.3333	True Stereo	Fake Stereo	True Stereo [landed 0.333]	Ping Pong [landed 0.667]	Ping Pong [landed 0.667]	OFF
+2	Tempo sync	1.0000	On	Off	Off [landed 0.000]	Off [landed 0.000]	On [landed 1.000]	On
+3	Keep pitch	0.0000	Off	Off	Off [landed 0.000]	Off [landed 0.000]	On [landed 1.000]	On
+4	Time	0.2490	4:0	1.0ms	26.5ms	150.1ms	12:0	16:0
+5	Delay time R/L offset	0.5000	0.0%	-100.0%	-50.0%	0.0% [renamed Delay time R/L pan]	50.0% [renamed Delay time R/L pan]	100.0%
+6	Time smooth	0.5000	50.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+7	Stereo spread	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+8	Modulation rate	0.5000	1.1Hz	0.1Hz	0.4Hz	1.1Hz	3.6Hz	20.0Hz
+9	Modulation time	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+10	Modulation cutoff	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+11	Diffusion level	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+12	Diffusion spread	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+13	Distortion type	1.0000	Saturate	Limit	Limit [landed 0.000]	Limit [landed 0.000]	Saturate [landed 1.000]	Saturate
+14	Feedback level	0.5000	62.5%	0.0%	31.2%	62.5%	93.8%	125.0%
+15	Filter mode	0.0000	LP	LP	HP [landed 0.333]	BP [landed 0.667]	BP [landed 0.667]	OFF
+16	Feedback cutoff	1.0000	21985.0Hz	270.0Hz	90.0Hz	1136.0Hz	5290.0Hz	21985.0Hz
+17	Feedback resonance	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+18	Distortion	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+19	Distortion	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+20	Distortion	0.0000	0.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+21	Rate reduction	1.0000	Max Hz	192.3 Hz	492.7 Hz	1447.3 Hz	3202.7 Hz	Max Hz
+22	Bits reduction	1.0000	Max bits	2.0 bits	3.9 bits	6.1 bits	9.0 bits	Max bits
+23	Output wet	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%
+24	Output tone	0.5000	0.0%	-100.0%	-50.0%	0.0%	50.0%	100.0%
+25	Output dry	1.0000	100.0%	0.0%	25.0%	50.0%	75.0%	100.0%

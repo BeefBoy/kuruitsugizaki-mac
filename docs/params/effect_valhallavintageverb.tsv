@@ -1,0 +1,19 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Mix	1.0000	100.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+1	PreDelay	0.2500	20.00 ms	0.00 ms	20.00 ms	100.00 ms	256.37 ms	500.00 ms
+2	Decay	0.4205	4.00 s	0.20 s	0.86 s	7.00 s	26.75 s	70.00 s
+3	Size	1.0000	100.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+4	Attack	0.5000	50.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+5	BassMult	0.6230	1.50 X	0.25 X	0.40 X	1.00 X	2.17 X	4.00 X
+6	BassXover	0.4447	700 Hz	100 Hz	180 Hz	1000 Hz	3760 Hz	10000 Hz
+7	HighShelf	0.0000	-24.00 dB	-24.00 dB	-18.00 dB	-12.00 dB	-6.00 dB	0.00 dB
+8	HighFreq	0.5000	6000 Hz	100 Hz	1850 Hz	6000 Hz	12110 Hz	20000 Hz
+9	EarlyDiffusion	1.0000	100.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+10	LateDiffusion	1.0000	100.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+11	ModRate	0.2455	2.53 Hz	0.10 Hz	2.57 Hz	5.05 Hz	7.52 Hz	10.00 Hz
+12	ModDepth	0.3800	38.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+13	HighCut	0.5905	8000 Hz	100 Hz	1850 Hz	6000 Hz	12110 Hz	20000 Hz
+14	LowCut	0.0000	10 Hz	10 Hz	380 Hz	760 Hz	1130 Hz	1500 Hz
+15	ColorMode	0.3333	seventies	seventies	seventies	seventies	eighties	now
+16	ReverbMode	0.0417	Concert Hall	Concert Hall	Chorus Space	Smooth Plate	Chaotic Neutral	Concert Hall
+17	Bypass	0.0000	Off	Off	Off	On	On	On

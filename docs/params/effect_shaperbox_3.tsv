@@ -1,0 +1,75 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+2	Bypass	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+3	Master Mix	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+16	TimeShaper On	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+17	Time Low Mix	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+18	Time Mid Mix	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+19	Time High Mix	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+20	Time Low Split	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+21	Time High Split	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+24	Time Low Length	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+25	Time Low Speed	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+26	Time Low Wave	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+27	Time Low Smooth	0.4000	0.40	0.00	0.25	0.50	0.75	1.00
+28	Time Low Timing Mode	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+32	Time Mid Length	0.6818	0.68	0.00	0.25	0.50	0.75	1.00
+33	Time Mid Speed	0.5000	0.50	0.00	0.25	0.50	0.75	1.00
+34	Time Mid Wave	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+35	Time Mid Smooth	0.4000	0.40	0.00	0.25	0.50	0.75	1.00
+36	Time Mid Timing Mode	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+40	Time High Length	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+41	Time High Speed	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+42	Time High Wave	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+43	Time High Smooth	0.4000	0.40	0.00	0.25	0.50	0.75	1.00
+44	Time High Timing Mode	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+104	DriveShaper On	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+105	Drive Low Mix	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+106	Drive Mid Mix	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+107	Drive High Mix	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+108	Drive Low Split	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+109	Drive High Split	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+112	Drive Low Length	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+113	Drive Low Speed	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+114	Drive Low Wave	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+115	Drive Low Smooth	0.4000	0.40	0.00	0.25	0.50	0.75	1.00
+116	Drive Low Timing Mode	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+120	Drive Low Env Active	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+122	Drive Low Env HP	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+123	Drive Low Env LP	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+124	Drive Low Env Threshold	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+125	Drive Low Env Amount	0.5000	0.50	0.00	0.25	0.50	0.75	1.00
+126	Drive Low Env Depth	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+127	Drive Low Env Attack	0.1000	0.10	0.00	0.25	0.50	0.75	1.00
+128	Drive Low Env Hold	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+129	Drive Low Env Release	0.2000	0.20	0.00	0.25	0.50	0.75	1.00
+130	Drive Low Env Shift	0.5000	0.50	0.00	0.25	0.50	0.75	1.00
+134	Drive Mid Length	0.6818	0.68	0.00	0.25	0.50	0.75	1.00
+135	Drive Mid Speed	0.5000	0.50	0.00	0.25	0.50	0.75	1.00
+136	Drive Mid Wave	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+137	Drive Mid Smooth	0.4000	0.40	0.00	0.25	0.50	0.75	1.00
+138	Drive Mid Timing Mode	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+142	Drive Mid Env Active	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+144	Drive Mid Env HP	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+145	Drive Mid Env LP	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+146	Drive Mid Env Threshold	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+147	Drive Mid Env Amount	0.5000	0.50	0.00	0.25	0.50	0.75	1.00
+148	Drive Mid Env Depth	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+149	Drive Mid Env Attack	0.1000	0.10	0.00	0.25	0.50	0.75	1.00
+150	Drive Mid Env Hold	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+151	Drive Mid Env Release	0.2000	0.20	0.00	0.25	0.50	0.75	1.00
+152	Drive Mid Env Shift	0.5000	0.50	0.00	0.25	0.50	0.75	1.00
+156	Drive High Length	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+157	Drive High Speed	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+158	Drive High Wave	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+159	Drive High Smooth	0.4000	0.40	0.00	0.25	0.50	0.75	1.00
+160	Drive High Timing Mode	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+164	Drive High Env Active	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+166	Drive High Env HP	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+167	Drive High Env LP	1.0000	1.00	0.00	0.25	0.50	0.75	1.00
+168	Drive High Env Threshold	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+169	Drive High Env Amount	0.5000	0.50	0.00	0.25	0.50	0.75	1.00
+170	Drive High Env Depth	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+171	Drive High Env Attack	0.1000	0.10	0.00	0.25	0.50	0.75	1.00
+172	Drive High Env Hold	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+173	Drive High Env Release	0.2000	0.20	0.00	0.25	0.50	0.75	1.00
+174	Drive High Env Shift	0.5000	0.50	0.00	0.25	0.50	0.75	1.00

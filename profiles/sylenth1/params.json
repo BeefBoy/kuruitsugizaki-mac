@@ -1,0 +1,1222 @@
+{
+ "0": {
+  "name": "AmpEnv A Attack",
+  "members": null,
+  "kind": "continuous"
+ },
+ "1": {
+  "name": "AmpEnv A Decay",
+  "members": null,
+  "kind": "continuous"
+ },
+ "2": {
+  "name": "AmpEnv A Release",
+  "members": null,
+  "kind": "continuous"
+ },
+ "3": {
+  "name": "AmpEnv A Sustain",
+  "members": null,
+  "kind": "continuous"
+ },
+ "4": {
+  "name": "AmpEnv B Attack",
+  "members": null,
+  "kind": "continuous"
+ },
+ "5": {
+  "name": "AmpEnv B Decay",
+  "members": null,
+  "kind": "continuous"
+ },
+ "6": {
+  "name": "AmpEnv B Release",
+  "members": null,
+  "kind": "continuous"
+ },
+ "7": {
+  "name": "AmpEnv B Sustain",
+  "members": null,
+  "kind": "continuous"
+ },
+ "8": {
+  "name": "Arp Gate",
+  "members": null,
+  "kind": "continuous"
+ },
+ "9": {
+  "name": "Arp Mode",
+  "members": 10,
+  "kind": "enum"
+ },
+ "10": {
+  "name": "Arp Octave",
+  "members": 4,
+  "kind": "enum"
+ },
+ "11": {
+  "name": "Arp Time",
+  "members": 19,
+  "kind": "enum"
+ },
+ "12": {
+  "name": "Arp Velo",
+  "members": 5,
+  "kind": "enum"
+ },
+ "13": {
+  "name": "Arp Wrap",
+  "members": 17,
+  "kind": "enum"
+ },
+ "14": {
+  "name": "Chorus Delay",
+  "members": null,
+  "kind": "continuous"
+ },
+ "15": {
+  "name": "Chorus Depth",
+  "members": null,
+  "kind": "continuous"
+ },
+ "16": {
+  "name": "Chorus Dry/Wet",
+  "members": null,
+  "kind": "continuous"
+ },
+ "17": {
+  "name": "Chorus Feedback",
+  "members": null,
+  "kind": "continuous"
+ },
+ "18": {
+  "name": "Chorus Mode",
+  "members": 2,
+  "kind": "enum"
+ },
+ "19": {
+  "name": "Chorus Rate",
+  "members": null,
+  "kind": "continuous"
+ },
+ "20": {
+  "name": "Chorus Width",
+  "members": null,
+  "kind": "continuous"
+ },
+ "21": {
+  "name": "Comp Attack",
+  "members": null,
+  "kind": "continuous"
+ },
+ "22": {
+  "name": "Comp Ratio",
+  "members": null,
+  "kind": "continuous"
+ },
+ "23": {
+  "name": "Comp Release",
+  "members": null,
+  "kind": "continuous"
+ },
+ "24": {
+  "name": "Comp Threshold",
+  "members": null,
+  "kind": "continuous"
+ },
+ "25": {
+  "name": "Delay Dry/Wet",
+  "members": null,
+  "kind": "continuous"
+ },
+ "26": {
+  "name": "Delay Feedback",
+  "members": null,
+  "kind": "continuous"
+ },
+ "27": {
+  "name": "Delay HighCut",
+  "members": null,
+  "kind": "continuous"
+ },
+ "28": {
+  "name": "Delay LowCut",
+  "members": null,
+  "kind": "continuous"
+ },
+ "29": {
+  "name": "Delay PingPong",
+  "members": 2,
+  "kind": "switch"
+ },
+ "30": {
+  "name": "Delay Smear",
+  "members": null,
+  "kind": "continuous"
+ },
+ "31": {
+  "name": "Delay Spread",
+  "members": null,
+  "kind": "continuous"
+ },
+ "32": {
+  "name": "Delay Time Left",
+  "members": 16,
+  "kind": "enum"
+ },
+ "33": {
+  "name": "Delay Time Right",
+  "members": 25,
+  "kind": "enum"
+ },
+ "34": {
+  "name": "Delay Width",
+  "members": null,
+  "kind": "continuous"
+ },
+ "35": {
+  "name": "Distort Amount",
+  "members": null,
+  "kind": "continuous"
+ },
+ "36": {
+  "name": "Distort DryWet",
+  "members": null,
+  "kind": "continuous"
+ },
+ "37": {
+  "name": "Distort Type",
+  "members": 5,
+  "kind": "enum"
+ },
+ "38": {
+  "name": "EQ Bass",
+  "members": null,
+  "kind": "continuous"
+ },
+ "39": {
+  "name": "EQ Bass Freq",
+  "members": null,
+  "kind": "continuous"
+ },
+ "40": {
+  "name": "EQ Treble",
+  "members": null,
+  "kind": "continuous"
+ },
+ "41": {
+  "name": "EQ Treble Freq",
+  "members": null,
+  "kind": "continuous"
+ },
+ "42": {
+  "name": "Filter A Cutoff",
+  "members": null,
+  "kind": "continuous"
+ },
+ "43": {
+  "name": "Filter A Drive",
+  "members": null,
+  "kind": "continuous"
+ },
+ "44": {
+  "name": "Filter A Input",
+  "members": 3,
+  "kind": "enum"
+ },
+ "45": {
+  "name": "Filter A Reso",
+  "members": null,
+  "kind": "continuous"
+ },
+ "46": {
+  "name": "Filter A Type",
+  "members": 4,
+  "kind": "enum"
+ },
+ "47": {
+  "name": "Filter A dB",
+  "members": 2,
+  "kind": "switch"
+ },
+ "48": {
+  "name": "Filter B Cutoff",
+  "members": null,
+  "kind": "continuous"
+ },
+ "49": {
+  "name": "Filter B Drive",
+  "members": null,
+  "kind": "continuous"
+ },
+ "50": {
+  "name": "Filter B Input",
+  "members": 3,
+  "kind": "enum"
+ },
+ "51": {
+  "name": "Filter B Reso",
+  "members": null,
+  "kind": "continuous"
+ },
+ "52": {
+  "name": "Filter B Type",
+  "members": 4,
+  "kind": "enum"
+ },
+ "53": {
+  "name": "Filter B dB",
+  "members": 2,
+  "kind": "switch"
+ },
+ "54": {
+  "name": "FilterCtl Cutoff",
+  "members": null,
+  "kind": "continuous"
+ },
+ "55": {
+  "name": "FilterCtl KeyTrk",
+  "members": null,
+  "kind": "continuous"
+ },
+ "56": {
+  "name": "FilterCtl Reso",
+  "members": null,
+  "kind": "continuous"
+ },
+ "57": {
+  "name": "FilterCtl WarmDrive",
+  "members": 2,
+  "kind": "switch"
+ },
+ "58": {
+  "name": "LFO 1 Free",
+  "members": 2,
+  "kind": "switch"
+ },
+ "59": {
+  "name": "LFO 1 Gain",
+  "members": null,
+  "kind": "continuous"
+ },
+ "60": {
+  "name": "LFO 1 Offset",
+  "members": null,
+  "kind": "continuous"
+ },
+ "61": {
+  "name": "LFO 1 Rate",
+  "members": null,
+  "kind": "continuous"
+ },
+ "62": {
+  "name": "LFO 1 Wave",
+  "members": 11,
+  "kind": "enum"
+ },
+ "63": {
+  "name": "LFO 2 Free",
+  "members": 2,
+  "kind": "switch"
+ },
+ "64": {
+  "name": "LFO 2 Gain",
+  "members": null,
+  "kind": "continuous"
+ },
+ "65": {
+  "name": "LFO 2 Offset",
+  "members": null,
+  "kind": "continuous"
+ },
+ "66": {
+  "name": "LFO 2 Rate",
+  "members": 36,
+  "kind": "enum"
+ },
+ "67": {
+  "name": "LFO 2 Wave",
+  "members": 11,
+  "kind": "enum"
+ },
+ "68": {
+  "name": "Main Volume",
+  "members": null,
+  "kind": "continuous"
+ },
+ "69": {
+  "name": "Mix A",
+  "members": null,
+  "kind": "continuous"
+ },
+ "70": {
+  "name": "Mix B",
+  "members": null,
+  "kind": "continuous"
+ },
+ "71": {
+  "name": "ModEnv 1 Attack",
+  "members": null,
+  "kind": "continuous"
+ },
+ "72": {
+  "name": "ModEnv 1 Decay",
+  "members": null,
+  "kind": "continuous"
+ },
+ "73": {
+  "name": "ModEnv 1 Release",
+  "members": null,
+  "kind": "continuous"
+ },
+ "74": {
+  "name": "ModEnv 1 Sustain",
+  "members": null,
+  "kind": "continuous"
+ },
+ "75": {
+  "name": "ModEnv 2 Attack",
+  "members": null,
+  "kind": "continuous"
+ },
+ "76": {
+  "name": "ModEnv 2 Decay",
+  "members": null,
+  "kind": "continuous"
+ },
+ "77": {
+  "name": "ModEnv 2 Release",
+  "members": null,
+  "kind": "continuous"
+ },
+ "78": {
+  "name": "ModEnv 2 Sustain",
+  "members": null,
+  "kind": "continuous"
+ },
+ "79": {
+  "name": "ModWheel",
+  "members": null,
+  "kind": "continuous"
+ },
+ "80": {
+  "name": "Mono Legato",
+  "members": 2,
+  "kind": "switch"
+ },
+ "81": {
+  "name": "Osc A1 Detune",
+  "members": null,
+  "kind": "continuous"
+ },
+ "82": {
+  "name": "Osc A1 Fine",
+  "members": null,
+  "kind": "continuous"
+ },
+ "83": {
+  "name": "Osc A1 Invert",
+  "members": 2,
+  "kind": "switch"
+ },
+ "84": {
+  "name": "Osc A1 Note",
+  "members": 15,
+  "kind": "enum"
+ },
+ "85": {
+  "name": "Osc A1 Octave",
+  "members": 7,
+  "kind": "enum"
+ },
+ "86": {
+  "name": "Osc A1 Pan",
+  "members": null,
+  "kind": "continuous"
+ },
+ "87": {
+  "name": "Osc A1 Phase",
+  "members": null,
+  "kind": "continuous"
+ },
+ "88": {
+  "name": "Osc A1 Retrigger",
+  "members": 2,
+  "kind": "switch"
+ },
+ "89": {
+  "name": "Osc A1 Stereo",
+  "members": null,
+  "kind": "continuous"
+ },
+ "90": {
+  "name": "Osc A1 Voices",
+  "members": 9,
+  "kind": "enum"
+ },
+ "91": {
+  "name": "Osc A1 Volume",
+  "members": null,
+  "kind": "continuous"
+ },
+ "92": {
+  "name": "Osc A1 Waveform",
+  "members": 8,
+  "kind": "enum"
+ },
+ "93": {
+  "name": "Osc A2 Detune",
+  "members": null,
+  "kind": "continuous"
+ },
+ "94": {
+  "name": "Osc A2 Fine",
+  "members": null,
+  "kind": "continuous"
+ },
+ "95": {
+  "name": "Osc A2 Invert",
+  "members": 2,
+  "kind": "switch"
+ },
+ "96": {
+  "name": "Osc A2 Note",
+  "members": 15,
+  "kind": "enum"
+ },
+ "97": {
+  "name": "Osc A2 Octave",
+  "members": 7,
+  "kind": "enum"
+ },
+ "98": {
+  "name": "Osc A2 Pan",
+  "members": null,
+  "kind": "continuous"
+ },
+ "99": {
+  "name": "Osc A2 Phase",
+  "members": null,
+  "kind": "continuous"
+ },
+ "100": {
+  "name": "Osc A2 Retrigger",
+  "members": 2,
+  "kind": "switch"
+ },
+ "101": {
+  "name": "Osc A2 Stereo",
+  "members": null,
+  "kind": "continuous"
+ },
+ "102": {
+  "name": "Osc A2 Voices",
+  "members": 9,
+  "kind": "enum"
+ },
+ "103": {
+  "name": "Osc A2 Volume",
+  "members": null,
+  "kind": "continuous"
+ },
+ "104": {
+  "name": "Osc A2 Waveform",
+  "members": 8,
+  "kind": "enum"
+ },
+ "105": {
+  "name": "Osc B1 Detune",
+  "members": null,
+  "kind": "continuous"
+ },
+ "106": {
+  "name": "Osc B1 Fine",
+  "members": null,
+  "kind": "continuous"
+ },
+ "107": {
+  "name": "Osc B1 Invert",
+  "members": 2,
+  "kind": "switch"
+ },
+ "108": {
+  "name": "Osc B1 Note",
+  "members": 15,
+  "kind": "enum"
+ },
+ "109": {
+  "name": "Osc B1 Octave",
+  "members": 7,
+  "kind": "enum"
+ },
+ "110": {
+  "name": "Osc B1 Pan",
+  "members": null,
+  "kind": "continuous"
+ },
+ "111": {
+  "name": "Osc B1 Phase",
+  "members": null,
+  "kind": "continuous"
+ },
+ "112": {
+  "name": "Osc B1 Retrigger",
+  "members": 2,
+  "kind": "switch"
+ },
+ "113": {
+  "name": "Osc B1 Stereo",
+  "members": null,
+  "kind": "continuous"
+ },
+ "114": {
+  "name": "Osc B1 Voices",
+  "members": 9,
+  "kind": "enum"
+ },
+ "115": {
+  "name": "Osc B1 Volume",
+  "members": null,
+  "kind": "continuous"
+ },
+ "116": {
+  "name": "Osc B1 Waveform",
+  "members": 8,
+  "kind": "enum"
+ },
+ "117": {
+  "name": "Osc B2 Detune",
+  "members": null,
+  "kind": "continuous"
+ },
+ "118": {
+  "name": "Osc B2 Fine",
+  "members": null,
+  "kind": "continuous"
+ },
+ "119": {
+  "name": "Osc B2 Invert",
+  "members": 2,
+  "kind": "switch"
+ },
+ "120": {
+  "name": "Osc B2 Note",
+  "members": 15,
+  "kind": "enum"
+ },
+ "121": {
+  "name": "Osc B2 Octave",
+  "members": 7,
+  "kind": "enum"
+ },
+ "122": {
+  "name": "Osc B2 Pan",
+  "members": null,
+  "kind": "continuous"
+ },
+ "123": {
+  "name": "Osc B2 Phase",
+  "members": null,
+  "kind": "continuous"
+ },
+ "124": {
+  "name": "Osc B2 Retrigger",
+  "members": 2,
+  "kind": "switch"
+ },
+ "125": {
+  "name": "Osc B2 Stereo",
+  "members": null,
+  "kind": "continuous"
+ },
+ "126": {
+  "name": "Osc B2 Voices",
+  "members": 9,
+  "kind": "enum"
+ },
+ "127": {
+  "name": "Osc B2 Volume",
+  "members": null,
+  "kind": "continuous"
+ },
+ "128": {
+  "name": "Osc B2 Waveform",
+  "members": 8,
+  "kind": "enum"
+ },
+ "129": {
+  "name": "Phaser CenterFreq",
+  "members": null,
+  "kind": "continuous"
+ },
+ "130": {
+  "name": "Phaser Dry/Wet",
+  "members": null,
+  "kind": "continuous"
+ },
+ "131": {
+  "name": "Phaser Feedback",
+  "members": null,
+  "kind": "continuous"
+ },
+ "132": {
+  "name": "Phaser LFO Gain",
+  "members": null,
+  "kind": "continuous"
+ },
+ "133": {
+  "name": "Phaser LFO Rate",
+  "members": 36,
+  "kind": "enum"
+ },
+ "134": {
+  "name": "Phaser LR-Offset",
+  "members": null,
+  "kind": "continuous"
+ },
+ "135": {
+  "name": "Phaser Spread",
+  "members": null,
+  "kind": "continuous"
+ },
+ "136": {
+  "name": "Phaser Width",
+  "members": null,
+  "kind": "continuous"
+ },
+ "137": {
+  "name": "PitchBend",
+  "members": null,
+  "kind": "const"
+ },
+ "138": {
+  "name": "PitchBend Range",
+  "members": 24,
+  "kind": "enum"
+ },
+ "139": {
+  "name": "Polyphony",
+  "members": 17,
+  "kind": "enum"
+ },
+ "140": {
+  "name": "Porta Mode",
+  "members": 2,
+  "kind": "switch"
+ },
+ "141": {
+  "name": "Porta Time",
+  "members": 32,
+  "kind": "enum"
+ },
+ "142": {
+  "name": "Reverb Damp",
+  "members": null,
+  "kind": "continuous"
+ },
+ "143": {
+  "name": "Reverb Dry/Wet",
+  "members": null,
+  "kind": "continuous"
+ },
+ "144": {
+  "name": "Reverb Predelay",
+  "members": null,
+  "kind": "continuous"
+ },
+ "145": {
+  "name": "Reverb Size",
+  "members": null,
+  "kind": "continuous"
+ },
+ "146": {
+  "name": "Reverb Width",
+  "members": null,
+  "kind": "continuous"
+ },
+ "147": {
+  "name": "Solo",
+  "members": 2,
+  "kind": "switch"
+ },
+ "148": {
+  "name": "Sync",
+  "members": 2,
+  "kind": "switch"
+ },
+ "149": {
+  "name": "xArp Hold 1",
+  "members": 2,
+  "kind": "switch"
+ },
+ "150": {
+  "name": "xArp Hold 2",
+  "members": 2,
+  "kind": "switch"
+ },
+ "151": {
+  "name": "xArp Hold 3",
+  "members": 2,
+  "kind": "switch"
+ },
+ "152": {
+  "name": "xArp Hold 4",
+  "members": 2,
+  "kind": "switch"
+ },
+ "153": {
+  "name": "xArp Hold 5",
+  "members": 2,
+  "kind": "switch"
+ },
+ "154": {
+  "name": "xArp Hold 6",
+  "members": 2,
+  "kind": "switch"
+ },
+ "155": {
+  "name": "xArp Hold 7",
+  "members": 2,
+  "kind": "switch"
+ },
+ "156": {
+  "name": "xArp Hold 8",
+  "members": 2,
+  "kind": "switch"
+ },
+ "157": {
+  "name": "xArp Hold 9",
+  "members": 2,
+  "kind": "switch"
+ },
+ "158": {
+  "name": "xArp Hold 10",
+  "members": 2,
+  "kind": "switch"
+ },
+ "159": {
+  "name": "xArp Hold 11",
+  "members": 2,
+  "kind": "switch"
+ },
+ "160": {
+  "name": "xArp Hold 12",
+  "members": 2,
+  "kind": "switch"
+ },
+ "161": {
+  "name": "xArp Hold 13",
+  "members": 2,
+  "kind": "switch"
+ },
+ "162": {
+  "name": "xArp Hold 14",
+  "members": 2,
+  "kind": "switch"
+ },
+ "163": {
+  "name": "xArp Hold 15",
+  "members": 2,
+  "kind": "switch"
+ },
+ "164": {
+  "name": "xArp Hold 16",
+  "members": 2,
+  "kind": "switch"
+ },
+ "165": {
+  "name": "xArp Transp 1",
+  "members": null,
+  "kind": "continuous"
+ },
+ "166": {
+  "name": "xArp Transp 2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "167": {
+  "name": "xArp Transp 3",
+  "members": null,
+  "kind": "continuous"
+ },
+ "168": {
+  "name": "xArp Transp 4",
+  "members": null,
+  "kind": "continuous"
+ },
+ "169": {
+  "name": "xArp Transp 5",
+  "members": null,
+  "kind": "continuous"
+ },
+ "170": {
+  "name": "xArp Transp 6",
+  "members": null,
+  "kind": "continuous"
+ },
+ "171": {
+  "name": "xArp Transp 7",
+  "members": null,
+  "kind": "continuous"
+ },
+ "172": {
+  "name": "xArp Transp 8",
+  "members": null,
+  "kind": "continuous"
+ },
+ "173": {
+  "name": "xArp Transp 9",
+  "members": null,
+  "kind": "continuous"
+ },
+ "174": {
+  "name": "xArp Transp 10",
+  "members": null,
+  "kind": "continuous"
+ },
+ "175": {
+  "name": "xArp Transp 11",
+  "members": null,
+  "kind": "continuous"
+ },
+ "176": {
+  "name": "xArp Transp 12",
+  "members": null,
+  "kind": "continuous"
+ },
+ "177": {
+  "name": "xArp Transp 13",
+  "members": null,
+  "kind": "continuous"
+ },
+ "178": {
+  "name": "xArp Transp 14",
+  "members": null,
+  "kind": "continuous"
+ },
+ "179": {
+  "name": "xArp Transp 15",
+  "members": null,
+  "kind": "continuous"
+ },
+ "180": {
+  "name": "xArp Transp 16",
+  "members": null,
+  "kind": "continuous"
+ },
+ "181": {
+  "name": "xArp Velo 1",
+  "members": 128,
+  "kind": "enum"
+ },
+ "182": {
+  "name": "xArp Velo 2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "183": {
+  "name": "xArp Velo 3",
+  "members": null,
+  "kind": "continuous"
+ },
+ "184": {
+  "name": "xArp Velo 4",
+  "members": null,
+  "kind": "continuous"
+ },
+ "185": {
+  "name": "xArp Velo 5",
+  "members": null,
+  "kind": "continuous"
+ },
+ "186": {
+  "name": "xArp Velo 6",
+  "members": null,
+  "kind": "continuous"
+ },
+ "187": {
+  "name": "xArp Velo 7",
+  "members": null,
+  "kind": "continuous"
+ },
+ "188": {
+  "name": "xArp Velo 8",
+  "members": null,
+  "kind": "continuous"
+ },
+ "189": {
+  "name": "xArp Velo 9",
+  "members": null,
+  "kind": "continuous"
+ },
+ "190": {
+  "name": "xArp Velo 10",
+  "members": null,
+  "kind": "continuous"
+ },
+ "191": {
+  "name": "xArp Velo 11",
+  "members": null,
+  "kind": "continuous"
+ },
+ "192": {
+  "name": "xArp Velo 12",
+  "members": null,
+  "kind": "continuous"
+ },
+ "193": {
+  "name": "xArp Velo 13",
+  "members": null,
+  "kind": "continuous"
+ },
+ "194": {
+  "name": "xArp Velo 14",
+  "members": null,
+  "kind": "continuous"
+ },
+ "195": {
+  "name": "xArp Velo 15",
+  "members": null,
+  "kind": "continuous"
+ },
+ "196": {
+  "name": "xArp Velo 16",
+  "members": null,
+  "kind": "continuous"
+ },
+ "197": {
+  "name": "xModEnv1 Dest1Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "198": {
+  "name": "xModEnv1 Dest2Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "199": {
+  "name": "xModEnv2 Dest1Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "200": {
+  "name": "xModEnv2 Dest2Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "201": {
+  "name": "xModLFO1 Dest1Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "202": {
+  "name": "xModLFO1 Dest2Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "203": {
+  "name": "xModLFO2 Dest1Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "204": {
+  "name": "xModLFO2 Dest2Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "205": {
+  "name": "xModMisc1A Dest1Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "206": {
+  "name": "xModMisc1A Dest2Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "207": {
+  "name": "xModMisc1A Source",
+  "members": 12,
+  "kind": "enum"
+ },
+ "208": {
+  "name": "xModMisc1B Dest1Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "209": {
+  "name": "xModMisc1B Dest2Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "210": {
+  "name": "xModMisc1B Source",
+  "members": 12,
+  "kind": "enum"
+ },
+ "211": {
+  "name": "xModMisc2A Dest1Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "212": {
+  "name": "xModMisc2A Dest2Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "213": {
+  "name": "xModMisc2A Source",
+  "members": 12,
+  "kind": "enum"
+ },
+ "214": {
+  "name": "xModMisc2B Dest1Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "215": {
+  "name": "xModMisc2B Dest2Am",
+  "members": null,
+  "kind": "continuous"
+ },
+ "216": {
+  "name": "xModMisc2B Source",
+  "members": 12,
+  "kind": "enum"
+ },
+ "217": {
+  "name": "Sw ArpOnOff",
+  "members": 2,
+  "kind": "switch"
+ },
+ "218": {
+  "name": "Sw ChorusOnOff",
+  "members": 2,
+  "kind": "switch"
+ },
+ "219": {
+  "name": "Sw CompOnOff",
+  "members": 2,
+  "kind": "switch"
+ },
+ "220": {
+  "name": "Sw DelayOnOff",
+  "members": 2,
+  "kind": "switch"
+ },
+ "221": {
+  "name": "Sw DistOnOff",
+  "members": 2,
+  "kind": "switch"
+ },
+ "222": {
+  "name": "Sw EQOnOff",
+  "members": 2,
+  "kind": "switch"
+ },
+ "223": {
+  "name": "Sw PhaserOnOff",
+  "members": 2,
+  "kind": "switch"
+ },
+ "224": {
+  "name": "Sw ReverbOnOff",
+  "members": 2,
+  "kind": "switch"
+ },
+ "225": {
+  "name": "yModEnv1 Dest1",
+  "members": 41,
+  "kind": "enum"
+ },
+ "226": {
+  "name": "yModEnv1 Dest2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "227": {
+  "name": "yModEnv2 Dest1",
+  "members": null,
+  "kind": "continuous"
+ },
+ "228": {
+  "name": "yModEnv2 Dest2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "229": {
+  "name": "yModLFO1 Dest1",
+  "members": null,
+  "kind": "continuous"
+ },
+ "230": {
+  "name": "yModLFO1 Dest2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "231": {
+  "name": "yModLFO2 Dest1",
+  "members": null,
+  "kind": "continuous"
+ },
+ "232": {
+  "name": "yModLFO2 Dest2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "233": {
+  "name": "yModMisc1A Dest1",
+  "members": null,
+  "kind": "continuous"
+ },
+ "234": {
+  "name": "yModMisc1A Dest2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "235": {
+  "name": "yModMisc1B Dest1",
+  "members": null,
+  "kind": "continuous"
+ },
+ "236": {
+  "name": "yModMisc1B Dest2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "237": {
+  "name": "yModMisc2A Dest1",
+  "members": null,
+  "kind": "continuous"
+ },
+ "238": {
+  "name": "yModMisc2A Dest2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "239": {
+  "name": "yModMisc2B Dest1",
+  "members": null,
+  "kind": "continuous"
+ },
+ "240": {
+  "name": "yModMisc2B Dest2",
+  "members": null,
+  "kind": "continuous"
+ },
+ "241": {
+  "name": "Part Select",
+  "members": 2,
+  "kind": "switch"
+ },
+ "242": {
+  "name": "EQ Mode",
+  "members": 2,
+  "kind": "switch"
+ },
+ "243": {
+  "name": "Arp Swing",
+  "members": null,
+  "kind": "const"
+ }
+}

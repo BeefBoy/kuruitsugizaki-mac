@@ -1,0 +1,20 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Mix	0.5000	50.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+1	DelaySync	0.2500	Msec	Msec	Msec	Note	Dotted	Triplet
+2	DelayNote	0.2857	1/16	1/64	1/32	1/8	2/4.	4/4T
+3	Delay_Ms	0.5000	300.0 ms	300.0 ms [landed 0.500]	300.0 ms [landed 0.500]	214.3 ms [landed 0.357]	1285.7 ms [landed 0.897]	1142.9 ms [landed 0.869]
+4	DelayWarp	0.0000	0.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+5	Clear	1.0000	Cleared	ClearedAgain	ClearedAgain	Cleared	Cleared	Cleared
+6	Feedback	0.5000	50.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+7	Density	0.0000	0.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+8	Width	1.0000	100.0 %	-100.0 %	-50.0 %	0.0 %	50.0 %	100.0 %
+9	LowCut	0.0000	10 Hz	10 Hz	510 Hz	1000 Hz	1500 Hz	2000 Hz
+10	HighCut	1.0000	20000 Hz	200 Hz	5150 Hz	10100 Hz	15050 Hz	20000 Hz
+11	ModRate	0.2738	0.50 Hz	0.01 Hz	0.41 Hz	2.00 Hz	5.12 Hz	10.00 Hz
+12	ModDepth	0.5000	50.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+13	Mode	0.0417	Gemini	Gemini	Andromeda	Cirrus Minor	Gemini [landed 0.000]	Gemini [landed 0.000]
+14	Reserved1	0.0000	0.0					
+15	Reserved2	0.0000	0.0 %					
+16	Reserved3	0.0000	0.0					
+17	Reserved4	0.0000	0.0					
+18	Bypass	0.0000	Off	Off	Off	On	On	On

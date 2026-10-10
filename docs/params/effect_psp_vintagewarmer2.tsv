@@ -1,0 +1,33 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	 Process 	1.0000	On	Off	Off	On	On	On
+1	 Mode	0.0000	SingleBnd	SingleBnd	SingleBnd	MultiBand	MultiBand	MultiBand
+2	 Mono Stereo	1.0000	Stereo	Mono	Mono	Stereo	Stereo	Stereo
+3	 Link	1.0000	Linked	Unlinked	Unlinked	Linked	Linked	Linked
+4	 Drive 	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	12.00 dB	24.00 dB
+5	 Knee 	0.0000	0.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+6	 Speed 	1.0000	100.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+7	 Release 	0.5000	1.00 *	0.25 *	0.50 *	1.00 *	2.00 *	4.00 *
+8	 HighAdjust 	0.5000	0.00 dB	-12.00 dB	-6.00 dB	0.00 dB	6.00 dB	12.00 dB
+9	 LowAdjust 	0.5000	0.00 dB	-12.00 dB	-6.00 dB	0.00 dB	6.00 dB	12.00 dB
+10	 HighFreq 	1.0000	16000 Hz	1000 Hz	2000 Hz	4000 Hz	8000 Hz	16000 Hz
+11	 LowFreq 	0.5000	100.0 Hz	25.0 Hz	50.0 Hz	100.0 Hz	200.0 Hz	400.0 Hz
+12	 Mix 	1.0000	100.0 %	0.0 %	25.0 %	50.0 %	75.0 %	100.0 %
+13	 Ceiling 	0.5000	0.00 dB	-12.00 dB	-6.00 dB	0.00 dB	6.00 dB	12.00 dB
+14	 Output 	0.5000	0.00 dB	-12.00 dB	-6.00 dB	0.00 dB	6.00 dB	12.00 dB
+15	 LowSat	0.5000	0.00 dB	-12.00 dB	-6.00 dB	0.00 dB	6.00 dB	12.00 dB
+16	 MidSat 	0.5000	0.00 dB	-12.00 dB	-6.00 dB	0.00 dB	6.00 dB	12.00 dB
+17	 HighSat 	0.5000	0.00 dB	-12.00 dB	-6.00 dB	0.00 dB	6.00 dB	12.00 dB
+18	 LowRel 	0.5000	x1.00 *	x0.06 *	x0.25 *	x1.00 *	x4.00 *	x16.00 *
+19	 MidRel 	0.5000	x1.00 *	x0.06 *	x0.25 *	x1.00 *	x4.00 *	x16.00 *
+20	 HighRel 	0.5000	x1.00 *	x0.06 *	x0.25 *	x1.00 *	x4.00 *	x16.00 *
+21	 Meters 	0.5000	GainRed	Pre	Pre	GainRed	Post	Post
+22	 MeterType 	0.0000	VU	VU	VU	PPM	PPM	PPM
+23	-	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+24	 FineTune 	1.0000	100 %	13 %	25 %	50 %	50 %	100 %
+25	 MeterScale 	0.0000	-20..+3 dB	-20..+3 dB	-20..+3 dB	-20..+3 dB	-40..+6 dB	-40..+6 dB
+26	 FAT 	0.0000	Off	Off	Off	FAT	FAT	FAT
+27	 Long 	0.0000	Off	Off	Off	Long	Long	Long
+28	 Auto 	0.0000	Off	Off	Off	Auto	Auto	Auto
+29	 Brickwall 	1.0000	BrickWall	Off	Off	BrickWall	BrickWall	BrickWall
+30	 L R 	0.0000	OO-O	OO-O	OO-O	L	R	R
+45	Bypass	0.0000	Off	Off	Off	Off	On	On

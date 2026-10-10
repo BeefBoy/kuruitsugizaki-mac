@@ -1,0 +1,16 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Low cut	0.0188	75Hz	Off	764Hz	1509Hz	2255Hz	3000Hz
+1	High cut	0.1620	4.0kHz	0.5kHz	5.9kHz	11.3kHz	16.7kHz	Off
+2	Predelay	0.0000	0ms	0ms	250ms	500ms	750ms	1000ms
+3	Room size	0.4949	50	1	26	51	75	100
+4	Diffusion	1.0000	100	0	25	50	75	100
+5	Decay time	0.0704	1.5sec	0.1sec	5.1sec	10.1sec	15.0sec	20.0sec
+6	High damping	0.1620	4.0kHz	0.5kHz	5.9kHz	11.3kHz	16.7kHz	Off
+7	Bass multiplier	0.2857	100%	20%	90%	160%	230%	300%
+8	Crossover	0.2405	500Hz	25Hz	519Hz	1013Hz	1506Hz	2000Hz
+9	Stereo separation	0.5000	Original	100% separated	50% separated	Original	50% merged	100% merged
+10	Dry level	0.8000	100%	0%	31%	63%	94%	125%
+11	Early reflection level	0.4000	50%	0%	31%	63%	94%	125%
+12	Wet level	0.4000	50%	0%	31%	63%	94%	125%
+13	Mod Speed	0.3340	33%	0%	25%	50%	75%	100%
+14	Mod Depth	0.0000	0%	0%	25%	50%	75%	100%

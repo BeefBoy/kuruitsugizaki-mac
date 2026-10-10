@@ -1,0 +1,950 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Input Gain	0.5000	0.00 dB	-36.00 dB	-18.00 dB	0.00 dB	+18.00 dB	+36.00 dB
+1	Input Pan	0.5000	Left: 0 dB / Right: 0 dB	Left: 0 dB / Right: -INF dB	Left: 0 dB / Right: -6.02 dB	Mid: 0 dB / Side: 0 dB	Mid: -6.02 dB / Side: 0 dB	Mid: -INF dB / Side: 0 dB
+2	Output Gain	0.4861	-1.00 dB	-36.00 dB	-18.00 dB	0.00 dB	+18.00 dB	+36.00 dB
+3	Output Pan	0.5000	Left: 0 dB / Right: 0 dB	Left: 0 dB / Right: -INF dB	Left: 0 dB / Right: -6.02 dB	Mid: 0 dB / Side: 0 dB	Mid: -6.02 dB / Side: 0 dB	Mid: -INF dB / Side: 0 dB
+4	Bypass	0.0000	Not Bypassed	Not Bypassed	Not Bypassed	Bypassed	Bypassed	Bypassed
+5	Mix	1.0000	100%	0.00%	25.0%	50.0%	75.0%	100%
+6	Num Active Bands	0.0000	1	1	2	4	5	6
+7	Band 1 Feedback Amount	0.0000	0.000 %	0.000 %	5.000 %	16.000 %	49.750 %	100.000 %
+8	Band 1 Feedback Frequency	0.6990	250.00 Hz	10.000 Hz	31.623 Hz	100.00 Hz	316.23 Hz	1000.0 Hz
+9	Band 1 Dynamics	0.5100	0.020	-1.000	-0.500	0.000	0.500	1.000
+10	Band 1 Style	0.2222	Warm Tape	Subtle Tube	Old Tape	Lead Amp	Subtle Transformer	Destroy
+11	Band 1 Drive	0.2000	20.0%	0.00%	25.0%	50.0%	75.0%	100%
+12	Band 1 Drive Pan	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+13	Band 1 Bass	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+14	Band 1 Mid	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+15	Band 1 Treble	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+16	Band 1 Presence	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+17	Band 1 Mix	1.0000	100%	0.00%	25.0%	50.0%	75.0%	100%
+18	Band 1 Level	0.5000	0.00 dB	-INF dB	-18.00 dB	0.00 dB	+18.00 dB	+36.00 dB
+19	Band 1 Pan	0.5000	Left: 0 dB / Right: 0 dB	Left: 0 dB / Right: -INF dB	Left: 0 dB / Right: -6.02 dB	Mid: 0 dB / Side: 0 dB	Mid: -6.02 dB / Side: 0 dB	Mid: -INF dB / Side: 0 dB
+20	Band 1 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+21	Band 1 State	0.0000	Normal	Normal	Solo	Mute	Mute	Solo (Mute)
+22	Band 1 Crossover Frequency	0.0000	40.000 Hz	40.000 Hz	184.23 Hz	848.53 Hz	3908.1 Hz	18000 Hz
+23	Band 1 Crossover Slope	0.5000	24 dB/oct	6 dB/oct	12 dB/oct	24 dB/oct	36 dB/oct	48 dB/oct
+24	Band 2 Feedback Amount	0.0000	0.000 %	0.000 %	5.000 %	16.000 %	49.750 %	100.000 %
+25	Band 2 Feedback Frequency	0.6990	250.00 Hz	10.000 Hz	31.623 Hz	100.00 Hz	316.23 Hz	1000.0 Hz
+26	Band 2 Dynamics	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+27	Band 2 Style	0.0370	Clean Tube	Subtle Tube	Old Tape	Lead Amp	Subtle Transformer	Destroy
+28	Band 2 Drive	0.0000	0.00%	0.00%	25.0%	50.0%	75.0%	100%
+29	Band 2 Drive Pan	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+30	Band 2 Bass	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+31	Band 2 Mid	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+32	Band 2 Treble	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+33	Band 2 Presence	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+34	Band 2 Mix	1.0000	100%	0.00%	25.0%	50.0%	75.0%	100%
+35	Band 2 Level	0.5000	0.00 dB	-INF dB	-18.00 dB	0.00 dB	+18.00 dB	+36.00 dB
+36	Band 2 Pan	0.5000	Left: 0 dB / Right: 0 dB	Left: 0 dB / Right: -INF dB	Left: 0 dB / Right: -6.02 dB	Mid: 0 dB / Side: 0 dB	Mid: -6.02 dB / Side: 0 dB	Mid: -INF dB / Side: 0 dB
+37	Band 2 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+38	Band 2 State	0.0000	Normal	Normal	Solo	Mute	Mute	Solo (Mute)
+39	Band 2 Crossover Frequency	0.0000	40.000 Hz	40.000 Hz	184.23 Hz	848.53 Hz	3908.1 Hz	18000 Hz
+40	Band 2 Crossover Slope	0.5000	24 dB/oct	6 dB/oct	12 dB/oct	24 dB/oct	36 dB/oct	48 dB/oct
+41	Band 3 Feedback Amount	0.0000	0.000 %	0.000 %	5.000 %	16.000 %	49.750 %	100.000 %
+42	Band 3 Feedback Frequency	0.6990	250.00 Hz	10.000 Hz	31.623 Hz	100.00 Hz	316.23 Hz	1000.0 Hz
+43	Band 3 Dynamics	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+44	Band 3 Style	0.0370	Clean Tube	Subtle Tube	Old Tape	Lead Amp	Subtle Transformer	Destroy
+45	Band 3 Drive	0.0000	0.00%	0.00%	25.0%	50.0%	75.0%	100%
+46	Band 3 Drive Pan	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+47	Band 3 Bass	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+48	Band 3 Mid	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+49	Band 3 Treble	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+50	Band 3 Presence	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+51	Band 3 Mix	1.0000	100%	0.00%	25.0%	50.0%	75.0%	100%
+52	Band 3 Level	0.5000	0.00 dB	-INF dB	-18.00 dB	0.00 dB	+18.00 dB	+36.00 dB
+53	Band 3 Pan	0.5000	Left: 0 dB / Right: 0 dB	Left: 0 dB / Right: -INF dB	Left: 0 dB / Right: -6.02 dB	Mid: 0 dB / Side: 0 dB	Mid: -6.02 dB / Side: 0 dB	Mid: -INF dB / Side: 0 dB
+54	Band 3 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+55	Band 3 State	0.0000	Normal	Normal	Solo	Mute	Mute	Solo (Mute)
+56	Band 3 Crossover Frequency	0.0000	40.000 Hz	40.000 Hz	184.23 Hz	848.53 Hz	3908.1 Hz	18000 Hz
+57	Band 3 Crossover Slope	0.5000	24 dB/oct	6 dB/oct	12 dB/oct	24 dB/oct	36 dB/oct	48 dB/oct
+58	Band 4 Feedback Amount	0.0000	0.000 %	0.000 %	5.000 %	16.000 %	49.750 %	100.000 %
+59	Band 4 Feedback Frequency	0.6990	250.00 Hz	10.000 Hz	31.623 Hz	100.00 Hz	316.23 Hz	1000.0 Hz
+60	Band 4 Dynamics	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+61	Band 4 Style	0.0370	Clean Tube	Subtle Tube	Old Tape	Lead Amp	Subtle Transformer	Destroy
+62	Band 4 Drive	0.0000	0.00%	0.00%	25.0%	50.0%	75.0%	100%
+63	Band 4 Drive Pan	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+64	Band 4 Bass	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+65	Band 4 Mid	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+66	Band 4 Treble	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+67	Band 4 Presence	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+68	Band 4 Mix	1.0000	100%	0.00%	25.0%	50.0%	75.0%	100%
+69	Band 4 Level	0.5000	0.00 dB	-INF dB	-18.00 dB	0.00 dB	+18.00 dB	+36.00 dB
+70	Band 4 Pan	0.5000	Left: 0 dB / Right: 0 dB	Left: 0 dB / Right: -INF dB	Left: 0 dB / Right: -6.02 dB	Mid: 0 dB / Side: 0 dB	Mid: -6.02 dB / Side: 0 dB	Mid: -INF dB / Side: 0 dB
+71	Band 4 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+72	Band 4 State	0.0000	Normal	Normal	Solo	Mute	Mute	Solo (Mute)
+73	Band 4 Crossover Frequency	0.0000	40.000 Hz	40.000 Hz	184.23 Hz	848.53 Hz	3908.1 Hz	18000 Hz
+74	Band 4 Crossover Slope	0.5000	24 dB/oct	6 dB/oct	12 dB/oct	24 dB/oct	36 dB/oct	48 dB/oct
+75	Band 5 Feedback Amount	0.0000	0.000 %	0.000 %	5.000 %	16.000 %	49.750 %	100.000 %
+76	Band 5 Feedback Frequency	0.6990	250.00 Hz	10.000 Hz	31.623 Hz	100.00 Hz	316.23 Hz	1000.0 Hz
+77	Band 5 Dynamics	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+78	Band 5 Style	0.0370	Clean Tube	Subtle Tube	Old Tape	Lead Amp	Subtle Transformer	Destroy
+79	Band 5 Drive	0.0000	0.00%	0.00%	25.0%	50.0%	75.0%	100%
+80	Band 5 Drive Pan	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+81	Band 5 Bass	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+82	Band 5 Mid	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+83	Band 5 Treble	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+84	Band 5 Presence	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+85	Band 5 Mix	1.0000	100%	0.00%	25.0%	50.0%	75.0%	100%
+86	Band 5 Level	0.5000	0.00 dB	-INF dB	-18.00 dB	0.00 dB	+18.00 dB	+36.00 dB
+87	Band 5 Pan	0.5000	Left: 0 dB / Right: 0 dB	Left: 0 dB / Right: -INF dB	Left: 0 dB / Right: -6.02 dB	Mid: 0 dB / Side: 0 dB	Mid: -6.02 dB / Side: 0 dB	Mid: -INF dB / Side: 0 dB
+88	Band 5 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+89	Band 5 State	0.0000	Normal	Normal	Solo	Mute	Mute	Solo (Mute)
+90	Band 5 Crossover Frequency	0.0000	40.000 Hz	40.000 Hz	184.23 Hz	848.53 Hz	3908.1 Hz	18000 Hz
+91	Band 5 Crossover Slope	0.5000	24 dB/oct	6 dB/oct	12 dB/oct	24 dB/oct	36 dB/oct	48 dB/oct
+92	Band 6 Feedback Amount	0.0000	0.000 %	0.000 %	5.000 %	16.000 %	49.750 %	100.000 %
+93	Band 6 Feedback Frequency	0.6990	250.00 Hz	10.000 Hz	31.623 Hz	100.00 Hz	316.23 Hz	1000.0 Hz
+94	Band 6 Dynamics	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+95	Band 6 Style	0.0370	Clean Tube	Subtle Tube	Old Tape	Lead Amp	Subtle Transformer	Destroy
+96	Band 6 Drive	0.0000	0.00%	0.00%	25.0%	50.0%	75.0%	100%
+97	Band 6 Drive Pan	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+98	Band 6 Bass	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+99	Band 6 Mid	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+100	Band 6 Treble	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+101	Band 6 Presence	0.5000	0.00 dB	-24.00 dB	-12.00 dB	0.00 dB	+12.00 dB	+24.00 dB
+102	Band 6 Mix	1.0000	100%	0.00%	25.0%	50.0%	75.0%	100%
+103	Band 6 Level	0.5000	0.00 dB	-INF dB	-18.00 dB	0.00 dB	+18.00 dB	+36.00 dB
+104	Band 6 Pan	0.5000	Left: 0 dB / Right: 0 dB	Left: 0 dB / Right: -INF dB	Left: 0 dB / Right: -6.02 dB	Mid: 0 dB / Side: 0 dB	Mid: -6.02 dB / Side: 0 dB	Mid: -INF dB / Side: 0 dB
+105	Band 6 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+106	Band 6 State	0.0000	Normal	Normal	Solo	Mute	Mute	Solo (Mute)
+108	Band 6 Crossover Slope	0.5000	24 dB/oct	6 dB/oct	12 dB/oct	24 dB/oct	36 dB/oct	48 dB/oct
+109	Num Active XY Controllers	0.0000	0	0	2	3	5	6
+110	XY Controller 1 Hor	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+111	XY Controller 1 Ver	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+112	XY Controller 1 Mode	1.0000	XY	Slider	Slider	XY	XY	XY
+113	XY Controller 1 Range	1.0000	Centered (-1 ... 1)	Positive (0 ... 1)	Positive (0 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)
+114	XY Controller 2 Hor	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+115	XY Controller 2 Ver	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+116	XY Controller 2 Mode	1.0000	XY	Slider	Slider	XY	XY	XY
+117	XY Controller 2 Range	1.0000	Centered (-1 ... 1)	Positive (0 ... 1)	Positive (0 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)
+118	XY Controller 3 Hor	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+119	XY Controller 3 Ver	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+120	XY Controller 3 Mode	1.0000	XY	Slider	Slider	XY	XY	XY
+121	XY Controller 3 Range	1.0000	Centered (-1 ... 1)	Positive (0 ... 1)	Positive (0 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)
+122	XY Controller 4 Hor	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+123	XY Controller 4 Ver	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+124	XY Controller 4 Mode	1.0000	XY	Slider	Slider	XY	XY	XY
+125	XY Controller 4 Range	1.0000	Centered (-1 ... 1)	Positive (0 ... 1)	Positive (0 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)
+126	XY Controller 5 Hor	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+127	XY Controller 5 Ver	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+128	XY Controller 5 Mode	1.0000	XY	Slider	Slider	XY	XY	XY
+129	XY Controller 5 Range	1.0000	Centered (-1 ... 1)	Positive (0 ... 1)	Positive (0 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)
+130	XY Controller 6 Hor	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+131	XY Controller 6 Ver	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+132	XY Controller 6 Mode	1.0000	XY	Slider	Slider	XY	XY	XY
+133	XY Controller 6 Range	1.0000	Centered (-1 ... 1)	Positive (0 ... 1)	Positive (0 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)	Centered (-1 ... 1)
+134	Num Active XLFOs	0.0000	0	0	2	3	5	6
+135	XLFO 1 Frequency	0.2480	1.000 Hz	0.020 Hz	1.020 Hz	3.520 Hz	32.519 Hz	500.00 Hz
+136	XLFO 1 Frequency Offset	0.5000	1.000	0.500	0.707	1.000	1.414	2.000
+137	XLFO 1 Balance	0.5000	0.500	0.000	0.250	0.500	0.750	1.000
+138	XLFO 1 Phase Offset	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+139	XLFO 1 Glide	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+140	XLFO 1 Sync Mode	0.0000	Free	Free	4	1/2	1/8	1/64
+141	XLFO 1 MIDI Trigger	0.0000	Off	Off	Retrigger	Retrigger	Legato	Legato
+142	XLFO 1 Snap	0.0000	No Snap	No Snap	No Snap	Snap	Snap	Snap
+143	Num Active XLFO 1 Steps	0.0667	2	1	5	9	12	16
+144	XLFO 1 Step 1 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+145	XLFO 1 Step 1 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+146	XLFO 1 Step 1 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+147	XLFO 1 Step 1 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+148	XLFO 1 Step 2 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+149	XLFO 1 Step 2 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+150	XLFO 1 Step 2 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+151	XLFO 1 Step 2 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+152	XLFO 1 Step 3 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+153	XLFO 1 Step 3 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+154	XLFO 1 Step 3 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+155	XLFO 1 Step 3 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+156	XLFO 1 Step 4 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+157	XLFO 1 Step 4 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+158	XLFO 1 Step 4 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+159	XLFO 1 Step 4 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+160	XLFO 1 Step 5 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+161	XLFO 1 Step 5 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+162	XLFO 1 Step 5 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+163	XLFO 1 Step 5 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+164	XLFO 1 Step 6 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+165	XLFO 1 Step 6 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+166	XLFO 1 Step 6 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+167	XLFO 1 Step 6 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+168	XLFO 1 Step 7 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+169	XLFO 1 Step 7 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+170	XLFO 1 Step 7 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+171	XLFO 1 Step 7 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+172	XLFO 1 Step 8 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+173	XLFO 1 Step 8 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+174	XLFO 1 Step 8 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+175	XLFO 1 Step 8 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+176	XLFO 1 Step 9 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+177	XLFO 1 Step 9 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+178	XLFO 1 Step 9 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+179	XLFO 1 Step 9 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+180	XLFO 1 Step 10 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+181	XLFO 1 Step 10 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+182	XLFO 1 Step 10 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+183	XLFO 1 Step 10 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+184	XLFO 1 Step 11 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+185	XLFO 1 Step 11 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+186	XLFO 1 Step 11 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+187	XLFO 1 Step 11 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+188	XLFO 1 Step 12 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+189	XLFO 1 Step 12 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+190	XLFO 1 Step 12 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+191	XLFO 1 Step 12 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+192	XLFO 1 Step 13 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+193	XLFO 1 Step 13 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+194	XLFO 1 Step 13 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+195	XLFO 1 Step 13 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+196	XLFO 1 Step 14 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+197	XLFO 1 Step 14 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+198	XLFO 1 Step 14 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+199	XLFO 1 Step 14 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+200	XLFO 1 Step 15 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+201	XLFO 1 Step 15 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+202	XLFO 1 Step 15 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+203	XLFO 1 Step 15 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+204	XLFO 1 Step 16 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+205	XLFO 1 Step 16 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+206	XLFO 1 Step 16 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+207	XLFO 1 Step 16 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+208	XLFO 2 Frequency	0.2480	1.000 Hz	0.020 Hz	1.020 Hz	3.520 Hz	32.519 Hz	500.00 Hz
+209	XLFO 2 Frequency Offset	0.5000	1.000	0.500	0.707	1.000	1.414	2.000
+210	XLFO 2 Balance	0.5000	0.500	0.000	0.250	0.500	0.750	1.000
+211	XLFO 2 Phase Offset	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+212	XLFO 2 Glide	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+213	XLFO 2 Sync Mode	0.0000	Free	Free	4	1/2	1/8	1/64
+214	XLFO 2 MIDI Trigger	0.0000	Off	Off	Retrigger	Retrigger	Legato	Legato
+215	XLFO 2 Snap	0.0000	No Snap	No Snap	No Snap	Snap	Snap	Snap
+216	Num Active XLFO 2 Steps	0.0667	2	1	5	9	12	16
+217	XLFO 2 Step 1 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+218	XLFO 2 Step 1 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+219	XLFO 2 Step 1 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+220	XLFO 2 Step 1 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+221	XLFO 2 Step 2 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+222	XLFO 2 Step 2 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+223	XLFO 2 Step 2 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+224	XLFO 2 Step 2 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+225	XLFO 2 Step 3 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+226	XLFO 2 Step 3 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+227	XLFO 2 Step 3 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+228	XLFO 2 Step 3 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+229	XLFO 2 Step 4 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+230	XLFO 2 Step 4 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+231	XLFO 2 Step 4 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+232	XLFO 2 Step 4 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+233	XLFO 2 Step 5 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+234	XLFO 2 Step 5 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+235	XLFO 2 Step 5 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+236	XLFO 2 Step 5 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+237	XLFO 2 Step 6 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+238	XLFO 2 Step 6 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+239	XLFO 2 Step 6 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+240	XLFO 2 Step 6 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+241	XLFO 2 Step 7 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+242	XLFO 2 Step 7 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+243	XLFO 2 Step 7 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+244	XLFO 2 Step 7 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+245	XLFO 2 Step 8 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+246	XLFO 2 Step 8 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+247	XLFO 2 Step 8 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+248	XLFO 2 Step 8 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+249	XLFO 2 Step 9 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+250	XLFO 2 Step 9 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+251	XLFO 2 Step 9 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+252	XLFO 2 Step 9 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+253	XLFO 2 Step 10 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+254	XLFO 2 Step 10 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+255	XLFO 2 Step 10 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+256	XLFO 2 Step 10 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+257	XLFO 2 Step 11 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+258	XLFO 2 Step 11 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+259	XLFO 2 Step 11 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+260	XLFO 2 Step 11 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+261	XLFO 2 Step 12 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+262	XLFO 2 Step 12 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+263	XLFO 2 Step 12 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+264	XLFO 2 Step 12 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+265	XLFO 2 Step 13 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+266	XLFO 2 Step 13 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+267	XLFO 2 Step 13 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+268	XLFO 2 Step 13 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+269	XLFO 2 Step 14 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+270	XLFO 2 Step 14 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+271	XLFO 2 Step 14 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+272	XLFO 2 Step 14 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+273	XLFO 2 Step 15 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+274	XLFO 2 Step 15 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+275	XLFO 2 Step 15 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+276	XLFO 2 Step 15 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+277	XLFO 2 Step 16 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+278	XLFO 2 Step 16 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+279	XLFO 2 Step 16 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+280	XLFO 2 Step 16 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+281	XLFO 3 Frequency	0.2480	1.000 Hz	0.020 Hz	1.020 Hz	3.520 Hz	32.519 Hz	500.00 Hz
+282	XLFO 3 Frequency Offset	0.5000	1.000	0.500	0.707	1.000	1.414	2.000
+283	XLFO 3 Balance	0.5000	0.500	0.000	0.250	0.500	0.750	1.000
+284	XLFO 3 Phase Offset	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+285	XLFO 3 Glide	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+286	XLFO 3 Sync Mode	0.0000	Free	Free	4	1/2	1/8	1/64
+287	XLFO 3 MIDI Trigger	0.0000	Off	Off	Retrigger	Retrigger	Legato	Legato
+288	XLFO 3 Snap	0.0000	No Snap	No Snap	No Snap	Snap	Snap	Snap
+289	Num Active XLFO 3 Steps	0.0667	2	1	5	9	12	16
+290	XLFO 3 Step 1 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+291	XLFO 3 Step 1 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+292	XLFO 3 Step 1 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+293	XLFO 3 Step 1 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+294	XLFO 3 Step 2 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+295	XLFO 3 Step 2 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+296	XLFO 3 Step 2 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+297	XLFO 3 Step 2 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+298	XLFO 3 Step 3 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+299	XLFO 3 Step 3 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+300	XLFO 3 Step 3 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+301	XLFO 3 Step 3 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+302	XLFO 3 Step 4 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+303	XLFO 3 Step 4 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+304	XLFO 3 Step 4 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+305	XLFO 3 Step 4 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+306	XLFO 3 Step 5 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+307	XLFO 3 Step 5 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+308	XLFO 3 Step 5 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+309	XLFO 3 Step 5 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+310	XLFO 3 Step 6 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+311	XLFO 3 Step 6 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+312	XLFO 3 Step 6 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+313	XLFO 3 Step 6 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+314	XLFO 3 Step 7 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+315	XLFO 3 Step 7 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+316	XLFO 3 Step 7 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+317	XLFO 3 Step 7 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+318	XLFO 3 Step 8 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+319	XLFO 3 Step 8 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+320	XLFO 3 Step 8 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+321	XLFO 3 Step 8 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+322	XLFO 3 Step 9 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+323	XLFO 3 Step 9 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+324	XLFO 3 Step 9 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+325	XLFO 3 Step 9 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+326	XLFO 3 Step 10 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+327	XLFO 3 Step 10 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+328	XLFO 3 Step 10 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+329	XLFO 3 Step 10 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+330	XLFO 3 Step 11 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+331	XLFO 3 Step 11 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+332	XLFO 3 Step 11 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+333	XLFO 3 Step 11 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+334	XLFO 3 Step 12 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+335	XLFO 3 Step 12 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+336	XLFO 3 Step 12 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+337	XLFO 3 Step 12 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+338	XLFO 3 Step 13 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+339	XLFO 3 Step 13 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+340	XLFO 3 Step 13 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+341	XLFO 3 Step 13 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+342	XLFO 3 Step 14 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+343	XLFO 3 Step 14 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+344	XLFO 3 Step 14 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+345	XLFO 3 Step 14 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+346	XLFO 3 Step 15 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+347	XLFO 3 Step 15 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+348	XLFO 3 Step 15 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+349	XLFO 3 Step 15 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+350	XLFO 3 Step 16 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+351	XLFO 3 Step 16 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+352	XLFO 3 Step 16 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+353	XLFO 3 Step 16 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+354	XLFO 4 Frequency	0.2480	1.000 Hz	0.020 Hz	1.020 Hz	3.520 Hz	32.519 Hz	500.00 Hz
+355	XLFO 4 Frequency Offset	0.5000	1.000	0.500	0.707	1.000	1.414	2.000
+356	XLFO 4 Balance	0.5000	0.500	0.000	0.250	0.500	0.750	1.000
+357	XLFO 4 Phase Offset	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+358	XLFO 4 Glide	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+359	XLFO 4 Sync Mode	0.0000	Free	Free	4	1/2	1/8	1/64
+360	XLFO 4 MIDI Trigger	0.0000	Off	Off	Retrigger	Retrigger	Legato	Legato
+361	XLFO 4 Snap	0.0000	No Snap	No Snap	No Snap	Snap	Snap	Snap
+362	Num Active XLFO 4 Steps	0.0667	2	1	5	9	12	16
+363	XLFO 4 Step 1 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+364	XLFO 4 Step 1 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+365	XLFO 4 Step 1 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+366	XLFO 4 Step 1 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+367	XLFO 4 Step 2 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+368	XLFO 4 Step 2 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+369	XLFO 4 Step 2 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+370	XLFO 4 Step 2 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+371	XLFO 4 Step 3 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+372	XLFO 4 Step 3 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+373	XLFO 4 Step 3 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+374	XLFO 4 Step 3 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+375	XLFO 4 Step 4 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+376	XLFO 4 Step 4 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+377	XLFO 4 Step 4 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+378	XLFO 4 Step 4 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+379	XLFO 4 Step 5 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+380	XLFO 4 Step 5 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+381	XLFO 4 Step 5 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+382	XLFO 4 Step 5 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+383	XLFO 4 Step 6 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+384	XLFO 4 Step 6 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+385	XLFO 4 Step 6 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+386	XLFO 4 Step 6 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+387	XLFO 4 Step 7 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+388	XLFO 4 Step 7 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+389	XLFO 4 Step 7 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+390	XLFO 4 Step 7 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+391	XLFO 4 Step 8 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+392	XLFO 4 Step 8 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+393	XLFO 4 Step 8 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+394	XLFO 4 Step 8 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+395	XLFO 4 Step 9 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+396	XLFO 4 Step 9 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+397	XLFO 4 Step 9 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+398	XLFO 4 Step 9 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+399	XLFO 4 Step 10 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+400	XLFO 4 Step 10 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+401	XLFO 4 Step 10 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+402	XLFO 4 Step 10 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+403	XLFO 4 Step 11 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+404	XLFO 4 Step 11 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+405	XLFO 4 Step 11 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+406	XLFO 4 Step 11 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+407	XLFO 4 Step 12 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+408	XLFO 4 Step 12 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+409	XLFO 4 Step 12 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+410	XLFO 4 Step 12 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+411	XLFO 4 Step 13 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+412	XLFO 4 Step 13 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+413	XLFO 4 Step 13 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+414	XLFO 4 Step 13 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+415	XLFO 4 Step 14 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+416	XLFO 4 Step 14 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+417	XLFO 4 Step 14 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+418	XLFO 4 Step 14 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+419	XLFO 4 Step 15 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+420	XLFO 4 Step 15 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+421	XLFO 4 Step 15 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+422	XLFO 4 Step 15 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+423	XLFO 4 Step 16 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+424	XLFO 4 Step 16 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+425	XLFO 4 Step 16 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+426	XLFO 4 Step 16 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+427	XLFO 5 Frequency	0.2480	1.000 Hz	0.020 Hz	1.020 Hz	3.520 Hz	32.519 Hz	500.00 Hz
+428	XLFO 5 Frequency Offset	0.5000	1.000	0.500	0.707	1.000	1.414	2.000
+429	XLFO 5 Balance	0.5000	0.500	0.000	0.250	0.500	0.750	1.000
+430	XLFO 5 Phase Offset	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+431	XLFO 5 Glide	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+432	XLFO 5 Sync Mode	0.0000	Free	Free	4	1/2	1/8	1/64
+433	XLFO 5 MIDI Trigger	0.0000	Off	Off	Retrigger	Retrigger	Legato	Legato
+434	XLFO 5 Snap	0.0000	No Snap	No Snap	No Snap	Snap	Snap	Snap
+435	Num Active XLFO 5 Steps	0.0667	2	1	5	9	12	16
+436	XLFO 5 Step 1 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+437	XLFO 5 Step 1 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+438	XLFO 5 Step 1 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+439	XLFO 5 Step 1 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+440	XLFO 5 Step 2 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+441	XLFO 5 Step 2 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+442	XLFO 5 Step 2 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+443	XLFO 5 Step 2 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+444	XLFO 5 Step 3 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+445	XLFO 5 Step 3 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+446	XLFO 5 Step 3 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+447	XLFO 5 Step 3 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+448	XLFO 5 Step 4 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+449	XLFO 5 Step 4 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+450	XLFO 5 Step 4 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+451	XLFO 5 Step 4 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+452	XLFO 5 Step 5 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+453	XLFO 5 Step 5 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+454	XLFO 5 Step 5 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+455	XLFO 5 Step 5 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+456	XLFO 5 Step 6 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+457	XLFO 5 Step 6 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+458	XLFO 5 Step 6 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+459	XLFO 5 Step 6 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+460	XLFO 5 Step 7 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+461	XLFO 5 Step 7 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+462	XLFO 5 Step 7 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+463	XLFO 5 Step 7 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+464	XLFO 5 Step 8 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+465	XLFO 5 Step 8 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+466	XLFO 5 Step 8 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+467	XLFO 5 Step 8 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+468	XLFO 5 Step 9 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+469	XLFO 5 Step 9 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+470	XLFO 5 Step 9 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+471	XLFO 5 Step 9 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+472	XLFO 5 Step 10 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+473	XLFO 5 Step 10 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+474	XLFO 5 Step 10 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+475	XLFO 5 Step 10 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+476	XLFO 5 Step 11 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+477	XLFO 5 Step 11 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+478	XLFO 5 Step 11 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+479	XLFO 5 Step 11 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+480	XLFO 5 Step 12 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+481	XLFO 5 Step 12 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+482	XLFO 5 Step 12 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+483	XLFO 5 Step 12 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+484	XLFO 5 Step 13 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+485	XLFO 5 Step 13 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+486	XLFO 5 Step 13 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+487	XLFO 5 Step 13 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+488	XLFO 5 Step 14 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+489	XLFO 5 Step 14 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+490	XLFO 5 Step 14 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+491	XLFO 5 Step 14 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+492	XLFO 5 Step 15 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+493	XLFO 5 Step 15 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+494	XLFO 5 Step 15 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+495	XLFO 5 Step 15 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+496	XLFO 5 Step 16 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+497	XLFO 5 Step 16 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+498	XLFO 5 Step 16 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+499	XLFO 5 Step 16 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+500	XLFO 6 Frequency	0.2480	1.000 Hz	0.020 Hz	1.020 Hz	3.520 Hz	32.519 Hz	500.00 Hz
+501	XLFO 6 Frequency Offset	0.5000	1.000	0.500	0.707	1.000	1.414	2.000
+502	XLFO 6 Balance	0.5000	0.500	0.000	0.250	0.500	0.750	1.000
+503	XLFO 6 Phase Offset	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+504	XLFO 6 Glide	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+505	XLFO 6 Sync Mode	0.0000	Free	Free	4	1/2	1/8	1/64
+506	XLFO 6 MIDI Trigger	0.0000	Off	Off	Retrigger	Retrigger	Legato	Legato
+507	XLFO 6 Snap	0.0000	No Snap	No Snap	No Snap	Snap	Snap	Snap
+508	Num Active XLFO 6 Steps	0.0667	2	1	5	9	12	16
+509	XLFO 6 Step 1 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+510	XLFO 6 Step 1 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+511	XLFO 6 Step 1 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+512	XLFO 6 Step 1 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+513	XLFO 6 Step 2 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+514	XLFO 6 Step 2 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+515	XLFO 6 Step 2 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+516	XLFO 6 Step 2 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+517	XLFO 6 Step 3 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+518	XLFO 6 Step 3 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+519	XLFO 6 Step 3 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+520	XLFO 6 Step 3 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+521	XLFO 6 Step 4 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+522	XLFO 6 Step 4 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+523	XLFO 6 Step 4 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+524	XLFO 6 Step 4 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+525	XLFO 6 Step 5 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+526	XLFO 6 Step 5 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+527	XLFO 6 Step 5 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+528	XLFO 6 Step 5 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+529	XLFO 6 Step 6 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+530	XLFO 6 Step 6 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+531	XLFO 6 Step 6 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+532	XLFO 6 Step 6 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+533	XLFO 6 Step 7 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+534	XLFO 6 Step 7 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+535	XLFO 6 Step 7 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+536	XLFO 6 Step 7 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+537	XLFO 6 Step 8 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+538	XLFO 6 Step 8 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+539	XLFO 6 Step 8 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+540	XLFO 6 Step 8 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+541	XLFO 6 Step 9 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+542	XLFO 6 Step 9 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+543	XLFO 6 Step 9 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+544	XLFO 6 Step 9 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+545	XLFO 6 Step 10 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+546	XLFO 6 Step 10 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+547	XLFO 6 Step 10 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+548	XLFO 6 Step 10 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+549	XLFO 6 Step 11 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+550	XLFO 6 Step 11 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+551	XLFO 6 Step 11 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+552	XLFO 6 Step 11 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+553	XLFO 6 Step 12 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+554	XLFO 6 Step 12 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+555	XLFO 6 Step 12 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+556	XLFO 6 Step 12 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+557	XLFO 6 Step 13 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+558	XLFO 6 Step 13 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+559	XLFO 6 Step 13 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+560	XLFO 6 Step 13 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+561	XLFO 6 Step 14 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+562	XLFO 6 Step 14 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+563	XLFO 6 Step 14 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+564	XLFO 6 Step 14 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+565	XLFO 6 Step 15 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+566	XLFO 6 Step 15 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+567	XLFO 6 Step 15 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+568	XLFO 6 Step 15 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+569	XLFO 6 Step 16 Value	0.5000	0.000	-1.000	-0.500	0.000	0.500	1.000
+570	XLFO 6 Step 16 Glide	0.0000	0.000	0.000	0.250	0.500	0.750	1.000
+571	XLFO 6 Step 16 Glide function	0.0000	Linear	Linear	Sqr	Sqrt	Sqrt	Sine
+572	XLFO 6 Step 16 Random	0.0000	Fixed	Fixed	Fixed	Random	Random	Random
+573	Num Active EGs	0.0000	0	0	2	3	5	6
+574	EG 1 Delay	0.0000	0.000 ms	0.000 ms	125.0 ms	500.0 ms	1.393 sec	5.000 sec
+575	EG 1 Range	0.0000	Normal	Normal	Normal	Neutral Sustain	Neutral Sustain	Neutral Sustain
+576	EG 1 Threshold	0.2798	-24.00 dB	-90.00 dB	-26.02 dB	-15.92 dB	-6.06 dB	0.00 dB
+577	EG 1 Triggering	0.0000	Normal Input	Normal Input	MIDI	Band 2	Band 4	Band 6
+578	EG 1 Attack	0.0000	1.451 ms	1.451 ms	76.41 ms	301.3 ms	836.8 ms	3.000 sec
+579	EG 1 Attack Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+580	EG 1 Decay	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+581	EG 1 Decay Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+582	EG 1 Sustain	1.0000	0.00 dB	-INF dB	-12.04 dB	-6.02 dB	-2.50 dB	0.00 dB
+583	EG 1 Hold	0.0000	0.000 ms	0.000 ms	475.0 ms	1.900 sec	5.293 sec	19.00 sec
+584	EG 1 Release	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+585	EG 1 Release Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+586	EG 2 Delay	0.0000	0.000 ms	0.000 ms	125.0 ms	500.0 ms	1.393 sec	5.000 sec
+587	EG 2 Range	0.0000	Normal	Normal	Normal	Neutral Sustain	Neutral Sustain	Neutral Sustain
+588	EG 2 Threshold	0.2798	-24.00 dB	-90.00 dB	-26.02 dB	-15.92 dB	-6.06 dB	0.00 dB
+589	EG 2 Triggering	0.0000	Normal Input	Normal Input	MIDI	Band 2	Band 4	Band 6
+590	EG 2 Attack	0.0000	1.451 ms	1.451 ms	76.41 ms	301.3 ms	836.8 ms	3.000 sec
+591	EG 2 Attack Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+592	EG 2 Decay	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+593	EG 2 Decay Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+594	EG 2 Sustain	1.0000	0.00 dB	-INF dB	-12.04 dB	-6.02 dB	-2.50 dB	0.00 dB
+595	EG 2 Hold	0.0000	0.000 ms	0.000 ms	475.0 ms	1.900 sec	5.293 sec	19.00 sec
+596	EG 2 Release	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+597	EG 2 Release Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+598	EG 3 Delay	0.0000	0.000 ms	0.000 ms	125.0 ms	500.0 ms	1.393 sec	5.000 sec
+599	EG 3 Range	0.0000	Normal	Normal	Normal	Neutral Sustain	Neutral Sustain	Neutral Sustain
+600	EG 3 Threshold	0.2798	-24.00 dB	-90.00 dB	-26.02 dB	-15.92 dB	-6.06 dB	0.00 dB
+601	EG 3 Triggering	0.0000	Normal Input	Normal Input	MIDI	Band 2	Band 4	Band 6
+602	EG 3 Attack	0.0000	1.451 ms	1.451 ms	76.41 ms	301.3 ms	836.8 ms	3.000 sec
+603	EG 3 Attack Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+604	EG 3 Decay	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+605	EG 3 Decay Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+606	EG 3 Sustain	1.0000	0.00 dB	-INF dB	-12.04 dB	-6.02 dB	-2.50 dB	0.00 dB
+607	EG 3 Hold	0.0000	0.000 ms	0.000 ms	475.0 ms	1.900 sec	5.293 sec	19.00 sec
+608	EG 3 Release	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+609	EG 3 Release Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+610	EG 4 Delay	0.0000	0.000 ms	0.000 ms	125.0 ms	500.0 ms	1.393 sec	5.000 sec
+611	EG 4 Range	0.0000	Normal	Normal	Normal	Neutral Sustain	Neutral Sustain	Neutral Sustain
+612	EG 4 Threshold	0.2798	-24.00 dB	-90.00 dB	-26.02 dB	-15.92 dB	-6.06 dB	0.00 dB
+613	EG 4 Triggering	0.0000	Normal Input	Normal Input	MIDI	Band 2	Band 4	Band 6
+614	EG 4 Attack	0.0000	1.451 ms	1.451 ms	76.41 ms	301.3 ms	836.8 ms	3.000 sec
+615	EG 4 Attack Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+616	EG 4 Decay	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+617	EG 4 Decay Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+618	EG 4 Sustain	1.0000	0.00 dB	-INF dB	-12.04 dB	-6.02 dB	-2.50 dB	0.00 dB
+619	EG 4 Hold	0.0000	0.000 ms	0.000 ms	475.0 ms	1.900 sec	5.293 sec	19.00 sec
+620	EG 4 Release	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+621	EG 4 Release Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+622	EG 5 Delay	0.0000	0.000 ms	0.000 ms	125.0 ms	500.0 ms	1.393 sec	5.000 sec
+623	EG 5 Range	0.0000	Normal	Normal	Normal	Neutral Sustain	Neutral Sustain	Neutral Sustain
+624	EG 5 Threshold	0.2798	-24.00 dB	-90.00 dB	-26.02 dB	-15.92 dB	-6.06 dB	0.00 dB
+625	EG 5 Triggering	0.0000	Normal Input	Normal Input	MIDI	Band 2	Band 4	Band 6
+626	EG 5 Attack	0.0000	1.451 ms	1.451 ms	76.41 ms	301.3 ms	836.8 ms	3.000 sec
+627	EG 5 Attack Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+628	EG 5 Decay	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+629	EG 5 Decay Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+630	EG 5 Sustain	1.0000	0.00 dB	-INF dB	-12.04 dB	-6.02 dB	-2.50 dB	0.00 dB
+631	EG 5 Hold	0.0000	0.000 ms	0.000 ms	475.0 ms	1.900 sec	5.293 sec	19.00 sec
+632	EG 5 Release	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+633	EG 5 Release Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+634	EG 6 Delay	0.0000	0.000 ms	0.000 ms	125.0 ms	500.0 ms	1.393 sec	5.000 sec
+635	EG 6 Range	0.0000	Normal	Normal	Normal	Neutral Sustain	Neutral Sustain	Neutral Sustain
+636	EG 6 Threshold	0.2798	-24.00 dB	-90.00 dB	-26.02 dB	-15.92 dB	-6.06 dB	0.00 dB
+637	EG 6 Triggering	0.0000	Normal Input	Normal Input	MIDI	Band 2	Band 4	Band 6
+638	EG 6 Attack	0.0000	1.451 ms	1.451 ms	76.41 ms	301.3 ms	836.8 ms	3.000 sec
+639	EG 6 Attack Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+640	EG 6 Decay	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+641	EG 6 Decay Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+642	EG 6 Sustain	1.0000	0.00 dB	-INF dB	-12.04 dB	-6.02 dB	-2.50 dB	0.00 dB
+643	EG 6 Hold	0.0000	0.000 ms	0.000 ms	475.0 ms	1.900 sec	5.293 sec	19.00 sec
+644	EG 6 Release	0.0000	1.451 ms	1.451 ms	126.4 ms	501.3 ms	1.394 sec	5.000 sec
+645	EG 6 Release Slope	0.7500	0.500	-1.000	-0.500	0.000	0.500	1.000
+646	Num Active EFs	0.0000	0	0	1	2	3	4
+647	EF 1 Input	0.0000	Normal Input	Normal Input	Band 1	Band 3	Band 4	Band 6
+648	EF 1 Mode	0.0000	Envelope	Envelope	Envelope	Transient	Transient	Transient
+649	EF 1 Attack	0.0000	1.000 ms	1.000 ms	38.65 ms	100.9 ms	220.8 ms	1.000 sec
+650	EF 1 Release	0.0000	50.00 ms	50.00 ms	236.6 ms	545.0 ms	1.139 sec	5.000 sec
+651	EF 2 Input	0.0000	Normal Input	Normal Input	Band 1	Band 3	Band 4	Band 6
+652	EF 2 Mode	0.0000	Envelope	Envelope	Envelope	Transient	Transient	Transient
+653	EF 2 Attack	0.0000	1.000 ms	1.000 ms	38.65 ms	100.9 ms	220.8 ms	1.000 sec
+654	EF 2 Release	0.0000	50.00 ms	50.00 ms	236.6 ms	545.0 ms	1.139 sec	5.000 sec
+655	EF 3 Input	0.0000	Normal Input	Normal Input	Band 1	Band 3	Band 4	Band 6
+656	EF 3 Mode	0.0000	Envelope	Envelope	Envelope	Transient	Transient	Transient
+657	EF 3 Attack	0.0000	1.000 ms	1.000 ms	38.65 ms	100.9 ms	220.8 ms	1.000 sec
+658	EF 3 Release	0.0000	50.00 ms	50.00 ms	236.6 ms	545.0 ms	1.139 sec	5.000 sec
+659	EF 4 Input	0.0000	Normal Input	Normal Input	Band 1	Band 3	Band 4	Band 6
+660	EF 4 Mode	0.0000	Envelope	Envelope	Envelope	Transient	Transient	Transient
+661	EF 4 Attack	0.0000	1.000 ms	1.000 ms	38.65 ms	100.9 ms	220.8 ms	1.000 sec
+662	EF 4 Release	0.0000	50.00 ms	50.00 ms	236.6 ms	545.0 ms	1.139 sec	5.000 sec
+663	Num Active MIDI Sources	0.0000	0	0	3	5	8	10
+664	MIDI Source 1 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+665	MIDI Source 1 Controller Number	0.0000	0	0	32	64	95	127
+666	MIDI Source 1 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+667	MIDI Source 2 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+668	MIDI Source 2 Controller Number	0.0000	0	0	32	64	95	127
+669	MIDI Source 2 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+670	MIDI Source 3 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+671	MIDI Source 3 Controller Number	0.0000	0	0	32	64	95	127
+672	MIDI Source 3 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+673	MIDI Source 4 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+674	MIDI Source 4 Controller Number	0.0000	0	0	32	64	95	127
+675	MIDI Source 4 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+676	MIDI Source 5 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+677	MIDI Source 5 Controller Number	0.0000	0	0	32	64	95	127
+678	MIDI Source 5 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+679	MIDI Source 6 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+680	MIDI Source 6 Controller Number	0.0000	0	0	32	64	95	127
+681	MIDI Source 6 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+682	MIDI Source 7 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+683	MIDI Source 7 Controller Number	0.0000	0	0	32	64	95	127
+684	MIDI Source 7 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+685	MIDI Source 8 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+686	MIDI Source 8 Controller Number	0.0000	0	0	32	64	95	127
+687	MIDI Source 8 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+688	MIDI Source 9 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+689	MIDI Source 9 Controller Number	0.0000	0	0	32	64	95	127
+690	MIDI Source 9 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+691	MIDI Source 10 Input	0.0000	Mod Wheel	Mod Wheel	Pitch Bend	Aftertouch	KB Track	Controller
+692	MIDI Source 10 Controller Number	0.0000	0	0	32	64	95	127
+693	MIDI Source 10 Response Curve	0.0000	Linear	Linear	Exp	Sqr	Sqrt	Sine
+694	Audition Signal	0.0000	Output	Output	Band 1	Band 3	Band 4	Band 6
+695	Channel Mode	0.0000	Left/Right	Left/Right	Left/Right	Mid/Side	Mid/Side	Mid/Side
+697	Unrestricted Feedback	0.0000	Off	Off	Off	On	On	On
+699	Receive Midi	0.0000	Disabled	Disabled	Disabled	Enabled	Enabled	Enabled
+700	Num Active Slots	0.0000	0	0	13	25	38	50
+701	Slot 1 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+702	Slot 1 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+703	Slot 1 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+704	Slot 1 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+705	Slot 1 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+706	Slot 2 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+707	Slot 2 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+708	Slot 2 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+709	Slot 2 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+710	Slot 2 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+711	Slot 3 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+712	Slot 3 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+713	Slot 3 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+714	Slot 3 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+715	Slot 3 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+716	Slot 4 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+717	Slot 4 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+718	Slot 4 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+719	Slot 4 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+720	Slot 4 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+721	Slot 5 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+722	Slot 5 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+723	Slot 5 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+724	Slot 5 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+725	Slot 5 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+726	Slot 6 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+727	Slot 6 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+728	Slot 6 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+729	Slot 6 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+730	Slot 6 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+731	Slot 7 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+732	Slot 7 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+733	Slot 7 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+734	Slot 7 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+735	Slot 7 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+736	Slot 8 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+737	Slot 8 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+738	Slot 8 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+739	Slot 8 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+740	Slot 8 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+741	Slot 9 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+742	Slot 9 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+743	Slot 9 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+744	Slot 9 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+745	Slot 9 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+746	Slot 10 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+747	Slot 10 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+748	Slot 10 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+749	Slot 10 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+750	Slot 10 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+751	Slot 11 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+752	Slot 11 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+753	Slot 11 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+754	Slot 11 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+755	Slot 11 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+756	Slot 12 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+757	Slot 12 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+758	Slot 12 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+759	Slot 12 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+760	Slot 12 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+761	Slot 13 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+762	Slot 13 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+763	Slot 13 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+764	Slot 13 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+765	Slot 13 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+766	Slot 14 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+767	Slot 14 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+768	Slot 14 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+769	Slot 14 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+770	Slot 14 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+771	Slot 15 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+772	Slot 15 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+773	Slot 15 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+774	Slot 15 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+775	Slot 15 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+776	Slot 16 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+777	Slot 16 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+778	Slot 16 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+779	Slot 16 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+780	Slot 16 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+781	Slot 17 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+782	Slot 17 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+783	Slot 17 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+784	Slot 17 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+785	Slot 17 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+786	Slot 18 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+787	Slot 18 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+788	Slot 18 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+789	Slot 18 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+790	Slot 18 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+791	Slot 19 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+792	Slot 19 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+793	Slot 19 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+794	Slot 19 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+795	Slot 19 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+796	Slot 20 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+797	Slot 20 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+798	Slot 20 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+799	Slot 20 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+800	Slot 20 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+801	Slot 21 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+802	Slot 21 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+803	Slot 21 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+804	Slot 21 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+805	Slot 21 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+806	Slot 22 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+807	Slot 22 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+808	Slot 22 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+809	Slot 22 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+810	Slot 22 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+811	Slot 23 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+812	Slot 23 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+813	Slot 23 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+814	Slot 23 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+815	Slot 23 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+816	Slot 24 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+817	Slot 24 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+818	Slot 24 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+819	Slot 24 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+820	Slot 24 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+821	Slot 25 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+822	Slot 25 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+823	Slot 25 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+824	Slot 25 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+825	Slot 25 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+826	Slot 26 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+827	Slot 26 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+828	Slot 26 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+829	Slot 26 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+830	Slot 26 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+831	Slot 27 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+832	Slot 27 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+833	Slot 27 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+834	Slot 27 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+835	Slot 27 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+836	Slot 28 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+837	Slot 28 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+838	Slot 28 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+839	Slot 28 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+840	Slot 28 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+841	Slot 29 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+842	Slot 29 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+843	Slot 29 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+844	Slot 29 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+845	Slot 29 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+846	Slot 30 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+847	Slot 30 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+848	Slot 30 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+849	Slot 30 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+850	Slot 30 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+851	Slot 31 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+852	Slot 31 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+853	Slot 31 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+854	Slot 31 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+855	Slot 31 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+856	Slot 32 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+857	Slot 32 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+858	Slot 32 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+859	Slot 32 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+860	Slot 32 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+861	Slot 33 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+862	Slot 33 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+863	Slot 33 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+864	Slot 33 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+865	Slot 33 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+866	Slot 34 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+867	Slot 34 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+868	Slot 34 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+869	Slot 34 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+870	Slot 34 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+871	Slot 35 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+872	Slot 35 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+873	Slot 35 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+874	Slot 35 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+875	Slot 35 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+876	Slot 36 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+877	Slot 36 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+878	Slot 36 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+879	Slot 36 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+880	Slot 36 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+881	Slot 37 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+882	Slot 37 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+883	Slot 37 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+884	Slot 37 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+885	Slot 37 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+886	Slot 38 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+887	Slot 38 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+888	Slot 38 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+889	Slot 38 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+890	Slot 38 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+891	Slot 39 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+892	Slot 39 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+893	Slot 39 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+894	Slot 39 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+895	Slot 39 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+896	Slot 40 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+897	Slot 40 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+898	Slot 40 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+899	Slot 40 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+900	Slot 40 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+901	Slot 41 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+902	Slot 41 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+903	Slot 41 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+904	Slot 41 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+905	Slot 41 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+906	Slot 42 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+907	Slot 42 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+908	Slot 42 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+909	Slot 42 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+910	Slot 42 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+911	Slot 43 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+912	Slot 43 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+913	Slot 43 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+914	Slot 43 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+915	Slot 43 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+916	Slot 44 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+917	Slot 44 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+918	Slot 44 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+919	Slot 44 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+920	Slot 44 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+921	Slot 45 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+922	Slot 45 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+923	Slot 45 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+924	Slot 45 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+925	Slot 45 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+926	Slot 46 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+927	Slot 46 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+928	Slot 46 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+929	Slot 46 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+930	Slot 46 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+931	Slot 47 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+932	Slot 47 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+933	Slot 47 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+934	Slot 47 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+935	Slot 47 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+936	Slot 48 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+937	Slot 48 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+938	Slot 48 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+939	Slot 48 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+940	Slot 48 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+941	Slot 49 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+942	Slot 49 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+943	Slot 49 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+944	Slot 49 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+945	Slot 49 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+946	Slot 50 Source	0.0000	< Source >	< Source >	XY 5 Ver	EG 1	MIDI 1	MIDI 10
+947	Slot 50 Level	0.5000	0.160	0.000	0.050	0.160	0.498	1.000
+948	Slot 50 Bypassed	0.0000	Normal	Normal	Normal	Bypassed	Bypassed	Bypassed
+949	Slot 50 Inverted	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+950	Slot 50 Target	0.0000	< Target >	< Target >	B5 Crossover Frequency	EG 1 Attack	EG 6 Release Slope	Slot 50 Level
+951	Host Bypass	0.0000	Not Bypassed	Not Bypassed	Not Bypassed	Bypassed	Bypassed	Bypassed

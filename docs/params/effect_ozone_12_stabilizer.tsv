@@ -1,0 +1,28 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	GAIN: Input L (Locked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+1	GAIN: Input L (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+2	GAIN: Input R (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+3	GAIN: Output L (Locked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+4	GAIN: Output L (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+5	GAIN: Output R (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+6	Global Bypass	0.0000	Off	Off	Off	Off	Off	Off
+7	STBL: Bypass	0.0000	Off	Off	Off	Off	Off	Off
+8	STBL: Tame Transients On/Off	0.0000	Off	Off	Off	Off	Off	Off
+9	STBL: Stereo/Main Amount	0.0000	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %
+10	STBL: Stereo/Main Speed (Shape Mode)	0.5000	50,00	50,00	50,00	50,00	50,00	50,00
+11	STBL: Stereo/Main Smoothing	0.5000	50,00	50,00	50,00	50,00	50,00	50,00
+12	STBL: Stereo/Main Sensitivity	0.3000	30,00	30,00	30,00	30,00	30,00	30,00
+13	STBL: Stereo/Main Speed (Cut Mode)	1.0000	100,00	100,00	100,00	100,00	100,00	100,00
+14	STBL: Stereo/Main Low Amount	1.0000	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %
+15	STBL: Stereo/Main Mid Amount	1.0000	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %
+16	STBL: Stereo/Main High Amount	1.0000	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %
+17	STBL: Stereo/Main Bypass	0.0000	Off	Off	Off	Off	Off	Off
+18	STBL: Aux Amount	0.0000	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %
+19	STBL: Aux Speed (Shape Mode)	0.5000	50,00	50,00	50,00	50,00	50,00	50,00
+20	STBL: Aux Smoothing	0.5000	50,00	50,00	50,00	50,00	50,00	50,00
+21	STBL: Aux Sensitivity	0.3000	30,00	30,00	30,00	30,00	30,00	30,00
+22	STBL: Aux Speed (Cut Mode)	1.0000	100,00	100,00	100,00	100,00	100,00	100,00
+23	STBL: Aux Low Amount	1.0000	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %
+24	STBL: Aux Mid Amount	1.0000	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %
+25	STBL: Aux High Amount	1.0000	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %	100,00 %
+26	STBL: Aux Bypass	0.0000	Off	Off	Off	Off	Off	Off

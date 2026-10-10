@@ -1,0 +1,514 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Band 1 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+1	Band 1 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+2	Band 1 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+3	Band 1 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+4	Band 1 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+5	Band 1 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+6	Band 1 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+7	Band 1 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+8	Band 1 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+9	Band 1 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+10	Band 1 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+11	Band 1 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+12	Band 1 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+13	Band 1 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+14	Band 1 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+15	Band 1 External Side Chain	0.0000	Off	Off	Off	On	On	On
+16	Band 1 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+17	Band 1 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+18	Band 1 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+21	Band 1 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+23	Band 2 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+24	Band 2 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+25	Band 2 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+26	Band 2 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+27	Band 2 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+28	Band 2 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+29	Band 2 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+30	Band 2 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+31	Band 2 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+32	Band 2 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+33	Band 2 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+34	Band 2 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+35	Band 2 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+36	Band 2 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+37	Band 2 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+38	Band 2 External Side Chain	0.0000	Off	Off	Off	On	On	On
+39	Band 2 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+40	Band 2 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+41	Band 2 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+44	Band 2 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+46	Band 3 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+47	Band 3 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+48	Band 3 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+49	Band 3 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+50	Band 3 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+51	Band 3 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+52	Band 3 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+53	Band 3 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+54	Band 3 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+55	Band 3 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+56	Band 3 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+57	Band 3 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+58	Band 3 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+59	Band 3 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+60	Band 3 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+61	Band 3 External Side Chain	0.0000	Off	Off	Off	On	On	On
+62	Band 3 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+63	Band 3 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+64	Band 3 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+67	Band 3 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+69	Band 4 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+70	Band 4 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+71	Band 4 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+72	Band 4 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+73	Band 4 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+74	Band 4 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+75	Band 4 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+76	Band 4 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+77	Band 4 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+78	Band 4 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+79	Band 4 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+80	Band 4 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+81	Band 4 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+82	Band 4 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+83	Band 4 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+84	Band 4 External Side Chain	0.0000	Off	Off	Off	On	On	On
+85	Band 4 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+86	Band 4 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+87	Band 4 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+90	Band 4 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+92	Band 5 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+93	Band 5 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+94	Band 5 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+95	Band 5 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+96	Band 5 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+97	Band 5 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+98	Band 5 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+99	Band 5 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+100	Band 5 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+101	Band 5 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+102	Band 5 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+103	Band 5 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+104	Band 5 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+105	Band 5 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+106	Band 5 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+107	Band 5 External Side Chain	0.0000	Off	Off	Off	On	On	On
+108	Band 5 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+109	Band 5 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+110	Band 5 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+113	Band 5 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+115	Band 6 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+116	Band 6 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+117	Band 6 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+118	Band 6 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+119	Band 6 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+120	Band 6 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+121	Band 6 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+122	Band 6 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+123	Band 6 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+124	Band 6 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+125	Band 6 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+126	Band 6 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+127	Band 6 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+128	Band 6 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+129	Band 6 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+130	Band 6 External Side Chain	0.0000	Off	Off	Off	On	On	On
+131	Band 6 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+132	Band 6 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+133	Band 6 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+136	Band 6 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+138	Band 7 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+139	Band 7 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+140	Band 7 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+141	Band 7 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+142	Band 7 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+143	Band 7 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+144	Band 7 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+145	Band 7 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+146	Band 7 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+147	Band 7 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+148	Band 7 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+149	Band 7 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+150	Band 7 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+151	Band 7 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+152	Band 7 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+153	Band 7 External Side Chain	0.0000	Off	Off	Off	On	On	On
+154	Band 7 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+155	Band 7 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+156	Band 7 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+159	Band 7 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+161	Band 8 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+162	Band 8 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+163	Band 8 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+164	Band 8 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+165	Band 8 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+166	Band 8 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+167	Band 8 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+168	Band 8 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+169	Band 8 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+170	Band 8 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+171	Band 8 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+172	Band 8 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+173	Band 8 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+174	Band 8 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+175	Band 8 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+176	Band 8 External Side Chain	0.0000	Off	Off	Off	On	On	On
+177	Band 8 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+178	Band 8 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+179	Band 8 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+182	Band 8 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+184	Band 9 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+185	Band 9 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+186	Band 9 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+187	Band 9 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+188	Band 9 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+189	Band 9 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+190	Band 9 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+191	Band 9 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+192	Band 9 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+193	Band 9 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+194	Band 9 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+195	Band 9 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+196	Band 9 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+197	Band 9 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+198	Band 9 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+199	Band 9 External Side Chain	0.0000	Off	Off	Off	On	On	On
+200	Band 9 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+201	Band 9 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+202	Band 9 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+205	Band 9 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+207	Band 10 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+208	Band 10 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+209	Band 10 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+210	Band 10 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+211	Band 10 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+212	Band 10 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+213	Band 10 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+214	Band 10 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+215	Band 10 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+216	Band 10 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+217	Band 10 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+218	Band 10 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+219	Band 10 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+220	Band 10 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+221	Band 10 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+222	Band 10 External Side Chain	0.0000	Off	Off	Off	On	On	On
+223	Band 10 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+224	Band 10 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+225	Band 10 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+228	Band 10 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+230	Band 11 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+231	Band 11 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+232	Band 11 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+233	Band 11 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+234	Band 11 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+235	Band 11 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+236	Band 11 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+237	Band 11 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+238	Band 11 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+239	Band 11 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+240	Band 11 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+241	Band 11 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+242	Band 11 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+243	Band 11 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+244	Band 11 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+245	Band 11 External Side Chain	0.0000	Off	Off	Off	On	On	On
+246	Band 11 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+247	Band 11 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+248	Band 11 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+251	Band 11 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+253	Band 12 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+254	Band 12 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+255	Band 12 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+256	Band 12 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+257	Band 12 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+258	Band 12 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+259	Band 12 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+260	Band 12 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+261	Band 12 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+262	Band 12 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+263	Band 12 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+264	Band 12 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+265	Band 12 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+266	Band 12 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+267	Band 12 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+268	Band 12 External Side Chain	0.0000	Off	Off	Off	On	On	On
+269	Band 12 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+270	Band 12 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+271	Band 12 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+274	Band 12 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+276	Band 13 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+277	Band 13 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+278	Band 13 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+279	Band 13 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+280	Band 13 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+281	Band 13 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+282	Band 13 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+283	Band 13 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+284	Band 13 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+285	Band 13 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+286	Band 13 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+287	Band 13 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+288	Band 13 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+289	Band 13 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+290	Band 13 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+291	Band 13 External Side Chain	0.0000	Off	Off	Off	On	On	On
+292	Band 13 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+293	Band 13 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+294	Band 13 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+297	Band 13 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+299	Band 14 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+300	Band 14 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+301	Band 14 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+302	Band 14 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+303	Band 14 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+304	Band 14 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+305	Band 14 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+306	Band 14 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+307	Band 14 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+308	Band 14 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+309	Band 14 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+310	Band 14 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+311	Band 14 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+312	Band 14 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+313	Band 14 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+314	Band 14 External Side Chain	0.0000	Off	Off	Off	On	On	On
+315	Band 14 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+316	Band 14 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+317	Band 14 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+320	Band 14 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+322	Band 15 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+323	Band 15 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+324	Band 15 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+325	Band 15 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+326	Band 15 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+327	Band 15 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+328	Band 15 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+329	Band 15 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+330	Band 15 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+331	Band 15 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+332	Band 15 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+333	Band 15 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+334	Band 15 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+335	Band 15 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+336	Band 15 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+337	Band 15 External Side Chain	0.0000	Off	Off	Off	On	On	On
+338	Band 15 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+339	Band 15 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+340	Band 15 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+343	Band 15 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+345	Band 16 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+346	Band 16 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+347	Band 16 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+348	Band 16 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+349	Band 16 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+350	Band 16 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+351	Band 16 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+352	Band 16 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+353	Band 16 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+354	Band 16 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+355	Band 16 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+356	Band 16 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+357	Band 16 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+358	Band 16 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+359	Band 16 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+360	Band 16 External Side Chain	0.0000	Off	Off	Off	On	On	On
+361	Band 16 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+362	Band 16 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+363	Band 16 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+366	Band 16 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+368	Band 17 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+369	Band 17 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+370	Band 17 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+371	Band 17 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+372	Band 17 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+373	Band 17 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+374	Band 17 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+375	Band 17 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+376	Band 17 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+377	Band 17 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+378	Band 17 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+379	Band 17 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+380	Band 17 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+381	Band 17 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+382	Band 17 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+383	Band 17 External Side Chain	0.0000	Off	Off	Off	On	On	On
+384	Band 17 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+385	Band 17 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+386	Band 17 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+389	Band 17 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+391	Band 18 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+392	Band 18 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+393	Band 18 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+394	Band 18 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+395	Band 18 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+396	Band 18 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+397	Band 18 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+398	Band 18 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+399	Band 18 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+400	Band 18 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+401	Band 18 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+402	Band 18 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+403	Band 18 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+404	Band 18 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+405	Band 18 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+406	Band 18 External Side Chain	0.0000	Off	Off	Off	On	On	On
+407	Band 18 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+408	Band 18 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+409	Band 18 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+412	Band 18 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+414	Band 19 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+415	Band 19 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+416	Band 19 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+417	Band 19 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+418	Band 19 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+419	Band 19 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+420	Band 19 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+421	Band 19 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+422	Band 19 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+423	Band 19 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+424	Band 19 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+425	Band 19 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+426	Band 19 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+427	Band 19 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+428	Band 19 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+429	Band 19 External Side Chain	0.0000	Off	Off	Off	On	On	On
+430	Band 19 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+431	Band 19 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+432	Band 19 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+435	Band 19 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+437	Band 20 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+438	Band 20 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+439	Band 20 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+440	Band 20 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+441	Band 20 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+442	Band 20 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+443	Band 20 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+444	Band 20 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+445	Band 20 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+446	Band 20 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+447	Band 20 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+448	Band 20 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+449	Band 20 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+450	Band 20 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+451	Band 20 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+452	Band 20 External Side Chain	0.0000	Off	Off	Off	On	On	On
+453	Band 20 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+454	Band 20 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+455	Band 20 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+458	Band 20 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+460	Band 21 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+461	Band 21 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+462	Band 21 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+463	Band 21 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+464	Band 21 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+465	Band 21 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+466	Band 21 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+467	Band 21 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+468	Band 21 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+469	Band 21 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+470	Band 21 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+471	Band 21 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+472	Band 21 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+473	Band 21 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+474	Band 21 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+475	Band 21 External Side Chain	0.0000	Off	Off	Off	On	On	On
+476	Band 21 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+477	Band 21 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+478	Band 21 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+481	Band 21 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+483	Band 22 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+484	Band 22 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+485	Band 22 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+486	Band 22 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+487	Band 22 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+488	Band 22 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+489	Band 22 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+490	Band 22 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+491	Band 22 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+492	Band 22 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+493	Band 22 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+494	Band 22 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+495	Band 22 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+496	Band 22 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+497	Band 22 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+498	Band 22 External Side Chain	0.0000	Off	Off	Off	On	On	On
+499	Band 22 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+500	Band 22 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+501	Band 22 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+504	Band 22 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+506	Band 23 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+507	Band 23 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+508	Band 23 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+509	Band 23 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+510	Band 23 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+511	Band 23 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+512	Band 23 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+513	Band 23 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+514	Band 23 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+515	Band 23 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+516	Band 23 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+517	Band 23 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+518	Band 23 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+519	Band 23 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+520	Band 23 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+521	Band 23 External Side Chain	0.0000	Off	Off	Off	On	On	On
+522	Band 23 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+523	Band 23 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+524	Band 23 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+527	Band 23 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+529	Band 24 Used	0.0000	Unused	Unused	Unused	Used	Used	Used
+530	Band 24 Enabled	1.0000	Enabled	Disabled	Disabled	Enabled	Enabled	Enabled
+531	Band 24 Frequency	0.5752	1000.0 Hz	10.000 Hz	74.008 Hz	547.72 Hz	4053.6 Hz	30000 Hz
+532	Band 24 Gain	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+533	Band 24 Q	0.5000	1.000	0.025	0.158	1.000	6.325	40.00
+534	Band 24 Shape	0.0000	Bell	Bell	Low Cut	Notch	Tilt Shelf	All Pass
+535	Band 24 Slope	0.2000	12 dB/oct	0 dB/oct	15.0 dB/oct	30 dB/oct	60 dB/oct	Brickwall
+536	Band 24 Stereo Placement	0.5000	Stereo	Left	Right	Stereo	Mid	Side
+537	Band 24 Speakers	0.0714	All (excl. LFE)	All Speakers	L/R (Front)	Ls/Rs (Surround)	L/C/R (Front + Center)	Ltr/Rtr (Top Surround Rear)
+538	Band 24 Dynamic Range	0.5000	0.00 dB	-30.00 dB	-15.00 dB	0.00 dB	+15.00 dB	+30.00 dB
+539	Band 24 Dynamics Enabled	1.0000	Dynamics Enabled	Dynamics Disabled	Dynamics Disabled	Dynamics Enabled	Dynamics Enabled	Dynamics Enabled
+540	Band 24 Dynamics Auto	1.0000	Dynamics Manual	Dynamics Auto	Dynamics Auto	Dynamics Manual	Dynamics Manual	Dynamics Manual
+541	Band 24 Threshold	0.6667	-20.0 dB	-90.0 dB	-45.0 dB	-30.0 dB	-15.0 dB	Auto
+542	Band 24 Attack	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+543	Band 24 Release	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+544	Band 24 External Side Chain	0.0000	Off	Off	Off	On	On	On
+545	Band 24 Side Chain Filtering	0.0000	Band	Band	Band	Free	Free	Free
+546	Band 24 Side Chain Low Frequency	0.0000	10.000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+547	Band 24 Side Chain High Frequency	1.0000	20000 Hz	10.000 Hz	66.874 Hz	447.21 Hz	2990.7 Hz	20000 Hz
+550	Band 24 Spectral Density	0.5000	50.0%	0.00%	25.0%	50.0%	75.0%	100%
+555	Gain Scale	0.5000	100.0%	0.000%	50.00%	100.0%	150.0%	200.0%
+556	Output Level	0.5000	0.00 dB	-INF dB	-18.00 dB	0.00 dB	+18.00 dB	+36.00 dB
+557	Output Pan	0.5000	Left: 0 dB / Right: 0 dB	Left: 0 dB / Right: -INF dB	Left: 0 dB / Right: -6.02 dB	Left: 0 dB / Right: 0 dB	Left: -6.02 dB / Right: 0 dB	Left: -INF dB / Right: 0 dB
+558	Output Pan Mode	0.0000	Left/Right	Left/Right	Left/Right	Mid/Side	Mid/Side	Mid/Side
+559	Bypass	0.0000	Not Bypassed	Not Bypassed	Not Bypassed	Bypassed	Bypassed	Bypassed
+560	Output Invert Phase	0.0000	Normal	Normal	Normal	Inverted	Inverted	Inverted
+561	Auto Gain	0.0000	Off	Off	Off	On	On	On
+574	Receive Midi	0.0000	Enabled	Enabled	Enabled	Disabled	Disabled	Disabled
+576	Band 1 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+577	Band 2 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+578	Band 3 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+579	Band 4 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+580	Band 5 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+581	Band 6 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+582	Band 7 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+583	Band 8 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+584	Band 9 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+585	Band 10 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+586	Band 11 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+587	Band 12 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+588	Band 13 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+589	Band 14 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+590	Band 15 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+591	Band 16 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+592	Band 17 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+593	Band 18 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+594	Band 19 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+595	Band 20 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+596	Band 21 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+597	Band 22 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+598	Band 23 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+599	Band 24 Spectral Tilt	0.0000	Off	Off	Off	On	On	On
+600	Host Bypass	0.0000	Not Bypassed	Not Bypassed	Not Bypassed	Bypassed	Bypassed	Bypassed

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+tmp/
+kuruitsugizaki.json
+projects/*
+!projects/init/
+projects/init/*
+!projects/init/init.flp
+!projects/init/fx.flp
+compositions/

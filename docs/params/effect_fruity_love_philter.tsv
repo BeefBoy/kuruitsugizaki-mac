@@ -1,0 +1,360 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Master level	0.8000	100%	0%	31%	63%	94%	125%
+1	Master LFO level	1.0000	100%	-100%	-50%	0%	50%	100%
+2	Envelope follower level	0.8000	100%	0%	31%	63%	94%	125%
+3	Envelope follower attack	0.2500	25ms	0ms	25ms	100ms	325ms	1000ms
+4	Envelope follower release	0.5000	100ms	0ms	25ms	100ms	325ms	1000ms
+5	Pattern number	0.0000	1	1	3 [landed 0.222]	5 [landed 0.444]	8 [landed 0.778]	10
+6	Modulation X	0.5000	50%	0%	25%	50%	75%	100%
+7	Modulation Y	0.5000	50%	0%	25%	50%	75%	100%
+8	Filter 1 - Cutoff envelope / LFO / IEF amount	0.5000	50%	0%	25%	50%	75%	100%
+9	Filter 1 - Cutoff frequency	0.5000	50%	0%	25%	50%	75%	100%
+10	Filter 1 - Resonance / bandwidth	0.5000	50%	0%	25%	50%	75%	100%
+11	Filter 1 - Low / gain / drive	1.0000	100%	0%	25%	50%	75%	100%
+12	Filter 1 - Band	0.0000	0%	0%	25%	50%	75%	100%
+13	Filter 1 - High	0.0000	0%	0%	25%	50%	75%	100%
+14	Filter 1 - Waveshaper pre amp	0.5000	100%	50%	75%	100%	125%	150%
+15	Filter 1 - Waveshaper mix	1.0000	100%	0%	25%	50%	75%	100%
+16	Filter 1 - Output panning	0.5000	Centered	100% left	50% left	Centered	50% right	100% right
+17	Filter 1 - Output volume	0.8000	100%	0%	31%	63%	94%	125%
+18	Filter 1 - Input volume	0.9000	100%	-125%	-63%	0%	63%	125%
+19	Filter 1 - To next filter	0.5000	0%	-125%	-63%	0%	63%	125%
+20	Filter 1 - Panning - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+21	Filter 1 - Panning - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+22	Filter 1 - Panning - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+23	Filter 1 - Panning - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+24	Filter 1 - Volume - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+25	Filter 1 - Volume - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+26	Filter 1 - Volume - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+27	Filter 1 - Volume - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+28	Filter 1 - Filter cutoff - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+29	Filter 1 - Filter cutoff - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+30	Filter 1 - Filter cutoff - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+31	Filter 1 - Filter cutoff - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+32	Filter 1 - Filter resonance - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+33	Filter 1 - Filter resonance - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+34	Filter 1 - Filter resonance - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+35	Filter 1 - Filter resonance - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+36	Filter 1 - Filter low / gain / drive - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+37	Filter 1 - Filter low / gain / drive - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+38	Filter 1 - Filter low / gain / drive - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+39	Filter 1 - Filter low / gain / drive - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+40	Filter 1 - Filter band - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+41	Filter 1 - Filter band - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+42	Filter 1 - Filter band - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+43	Filter 1 - Filter band - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+44	Filter 1 - Filter high - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+45	Filter 1 - Filter high - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+46	Filter 1 - Filter high - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+47	Filter 1 - Filter high - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+48	Filter 1 - Waveshaper - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+49	Filter 1 - Waveshaper - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+50	Filter 1 - Waveshaper - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+51	Filter 1 - Waveshaper - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+52	Filter 2 - Cutoff envelope / LFO / IEF amount	0.5000	50%	0%	25%	50%	75%	100%
+53	Filter 2 - Cutoff frequency	0.5000	50%	0%	25%	50%	75%	100%
+54	Filter 2 - Resonance / bandwidth	0.5000	50%	0%	25%	50%	75%	100%
+55	Filter 2 - Low / gain / drive	1.0000	100%	0%	25%	50%	75%	100%
+56	Filter 2 - Band	0.0000	0%	0%	25%	50%	75%	100%
+57	Filter 2 - High	0.0000	0%	0%	25%	50%	75%	100%
+58	Filter 2 - Waveshaper pre amp	0.5000	100%	50%	75%	100%	125%	150%
+59	Filter 2 - Waveshaper mix	1.0000	100%	0%	25%	50%	75%	100%
+60	Filter 2 - Output panning	0.5000	Centered	100% left	50% left	Centered	50% right	100% right
+61	Filter 2 - Output volume	0.8000	100%	0%	31%	63%	94%	125%
+62	Filter 2 - Input volume	0.9000	100%	-125%	-63%	0%	63%	125%
+63	Filter 2 - To next filter	0.5000	0%	-125%	-63%	0%	63%	125%
+64	Filter 2 - Panning - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+65	Filter 2 - Panning - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+66	Filter 2 - Panning - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+67	Filter 2 - Panning - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+68	Filter 2 - Volume - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+69	Filter 2 - Volume - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+70	Filter 2 - Volume - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+71	Filter 2 - Volume - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+72	Filter 2 - Filter cutoff - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+73	Filter 2 - Filter cutoff - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+74	Filter 2 - Filter cutoff - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+75	Filter 2 - Filter cutoff - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+76	Filter 2 - Filter resonance - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+77	Filter 2 - Filter resonance - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+78	Filter 2 - Filter resonance - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+79	Filter 2 - Filter resonance - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+80	Filter 2 - Filter low / gain / drive - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+81	Filter 2 - Filter low / gain / drive - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+82	Filter 2 - Filter low / gain / drive - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+83	Filter 2 - Filter low / gain / drive - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+84	Filter 2 - Filter band - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+85	Filter 2 - Filter band - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+86	Filter 2 - Filter band - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+87	Filter 2 - Filter band - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+88	Filter 2 - Filter high - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+89	Filter 2 - Filter high - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+90	Filter 2 - Filter high - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+91	Filter 2 - Filter high - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+92	Filter 2 - Waveshaper - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+93	Filter 2 - Waveshaper - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+94	Filter 2 - Waveshaper - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+95	Filter 2 - Waveshaper - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+96	Filter 3 - Cutoff envelope / LFO / IEF amount	0.5000	50%	0%	25%	50%	75%	100%
+97	Filter 3 - Cutoff frequency	0.5000	50%	0%	25%	50%	75%	100%
+98	Filter 3 - Resonance / bandwidth	0.5000	50%	0%	25%	50%	75%	100%
+99	Filter 3 - Low / gain / drive	1.0000	100%	0%	25%	50%	75%	100%
+100	Filter 3 - Band	0.0000	0%	0%	25%	50%	75%	100%
+101	Filter 3 - High	0.0000	0%	0%	25%	50%	75%	100%
+102	Filter 3 - Waveshaper pre amp	0.5000	100%	50%	75%	100%	125%	150%
+103	Filter 3 - Waveshaper mix	1.0000	100%	0%	25%	50%	75%	100%
+104	Filter 3 - Output panning	0.5000	Centered	100% left	50% left	Centered	50% right	100% right
+105	Filter 3 - Output volume	0.8000	100%	0%	31%	63%	94%	125%
+106	Filter 3 - Input volume	0.9000	100%	-125%	-63%	0%	63%	125%
+107	Filter 3 - To next filter	0.5000	0%	-125%	-63%	0%	63%	125%
+108	Filter 3 - Panning - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+109	Filter 3 - Panning - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+110	Filter 3 - Panning - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+111	Filter 3 - Panning - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+112	Filter 3 - Volume - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+113	Filter 3 - Volume - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+114	Filter 3 - Volume - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+115	Filter 3 - Volume - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+116	Filter 3 - Filter cutoff - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+117	Filter 3 - Filter cutoff - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+118	Filter 3 - Filter cutoff - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+119	Filter 3 - Filter cutoff - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+120	Filter 3 - Filter resonance - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+121	Filter 3 - Filter resonance - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+122	Filter 3 - Filter resonance - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+123	Filter 3 - Filter resonance - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+124	Filter 3 - Filter low / gain / drive - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+125	Filter 3 - Filter low / gain / drive - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+126	Filter 3 - Filter low / gain / drive - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+127	Filter 3 - Filter low / gain / drive - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+128	Filter 3 - Filter band - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+129	Filter 3 - Filter band - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+130	Filter 3 - Filter band - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+131	Filter 3 - Filter band - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+132	Filter 3 - Filter high - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+133	Filter 3 - Filter high - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+134	Filter 3 - Filter high - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+135	Filter 3 - Filter high - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+136	Filter 3 - Waveshaper - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+137	Filter 3 - Waveshaper - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+138	Filter 3 - Waveshaper - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+139	Filter 3 - Waveshaper - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+140	Filter 4 - Cutoff envelope / LFO / IEF amount	0.5000	50%	0%	25%	50%	75%	100%
+141	Filter 4 - Cutoff frequency	0.5000	50%	0%	25%	50%	75%	100%
+142	Filter 4 - Resonance / bandwidth	0.5000	50%	0%	25%	50%	75%	100%
+143	Filter 4 - Low / gain / drive	1.0000	100%	0%	25%	50%	75%	100%
+144	Filter 4 - Band	0.0000	0%	0%	25%	50%	75%	100%
+145	Filter 4 - High	0.0000	0%	0%	25%	50%	75%	100%
+146	Filter 4 - Waveshaper pre amp	0.5000	100%	50%	75%	100%	125%	150%
+147	Filter 4 - Waveshaper mix	1.0000	100%	0%	25%	50%	75%	100%
+148	Filter 4 - Output panning	0.5000	Centered	100% left	50% left	Centered	50% right	100% right
+149	Filter 4 - Output volume	0.8000	100%	0%	31%	63%	94%	125%
+150	Filter 4 - Input volume	0.9000	100%	-125%	-63%	0%	63%	125%
+151	Filter 4 - To next filter	0.5000	0%	-125%	-63%	0%	63%	125%
+152	Filter 4 - Panning - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+153	Filter 4 - Panning - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+154	Filter 4 - Panning - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+155	Filter 4 - Panning - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+156	Filter 4 - Volume - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+157	Filter 4 - Volume - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+158	Filter 4 - Volume - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+159	Filter 4 - Volume - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+160	Filter 4 - Filter cutoff - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+161	Filter 4 - Filter cutoff - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+162	Filter 4 - Filter cutoff - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+163	Filter 4 - Filter cutoff - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+164	Filter 4 - Filter resonance - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+165	Filter 4 - Filter resonance - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+166	Filter 4 - Filter resonance - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+167	Filter 4 - Filter resonance - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+168	Filter 4 - Filter low / gain / drive - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+169	Filter 4 - Filter low / gain / drive - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+170	Filter 4 - Filter low / gain / drive - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+171	Filter 4 - Filter low / gain / drive - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+172	Filter 4 - Filter band - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+173	Filter 4 - Filter band - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+174	Filter 4 - Filter band - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+175	Filter 4 - Filter band - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+176	Filter 4 - Filter high - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+177	Filter 4 - Filter high - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+178	Filter 4 - Filter high - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+179	Filter 4 - Filter high - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+180	Filter 4 - Waveshaper - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+181	Filter 4 - Waveshaper - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+182	Filter 4 - Waveshaper - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+183	Filter 4 - Waveshaper - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+184	Filter 5 - Cutoff envelope / LFO / IEF amount	0.5000	50%	0%	25%	50%	75%	100%
+185	Filter 5 - Cutoff frequency	0.5000	50%	0%	25%	50%	75%	100%
+186	Filter 5 - Resonance / bandwidth	0.5000	50%	0%	25%	50%	75%	100%
+187	Filter 5 - Low / gain / drive	1.0000	100%	0%	25%	50%	75%	100%
+188	Filter 5 - Band	0.0000	0%	0%	25%	50%	75%	100%
+189	Filter 5 - High	0.0000	0%	0%	25%	50%	75%	100%
+190	Filter 5 - Waveshaper pre amp	0.5000	100%	50%	75%	100%	125%	150%
+191	Filter 5 - Waveshaper mix	1.0000	100%	0%	25%	50%	75%	100%
+192	Filter 5 - Output panning	0.5000	Centered	100% left	50% left	Centered	50% right	100% right
+193	Filter 5 - Output volume	0.8000	100%	0%	31%	63%	94%	125%
+194	Filter 5 - Input volume	0.9000	100%	-125%	-63%	0%	63%	125%
+195	Filter 5 - To next filter	0.5000	0%	-125%	-63%	0%	63%	125%
+196	Filter 5 - Panning - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+197	Filter 5 - Panning - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+198	Filter 5 - Panning - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+199	Filter 5 - Panning - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+200	Filter 5 - Volume - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+201	Filter 5 - Volume - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+202	Filter 5 - Volume - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+203	Filter 5 - Volume - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+204	Filter 5 - Filter cutoff - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+205	Filter 5 - Filter cutoff - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+206	Filter 5 - Filter cutoff - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+207	Filter 5 - Filter cutoff - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+208	Filter 5 - Filter resonance - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+209	Filter 5 - Filter resonance - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+210	Filter 5 - Filter resonance - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+211	Filter 5 - Filter resonance - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+212	Filter 5 - Filter low / gain / drive - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+213	Filter 5 - Filter low / gain / drive - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+214	Filter 5 - Filter low / gain / drive - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+215	Filter 5 - Filter low / gain / drive - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+216	Filter 5 - Filter band - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+217	Filter 5 - Filter band - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+218	Filter 5 - Filter band - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+219	Filter 5 - Filter band - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+220	Filter 5 - Filter high - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+221	Filter 5 - Filter high - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+222	Filter 5 - Filter high - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+223	Filter 5 - Filter high - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+224	Filter 5 - Waveshaper - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+225	Filter 5 - Waveshaper - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+226	Filter 5 - Waveshaper - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+227	Filter 5 - Waveshaper - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+228	Filter 6 - Cutoff envelope / LFO / IEF amount	0.5000	50%	0%	25%	50%	75%	100%
+229	Filter 6 - Cutoff frequency	0.5000	50%	0%	25%	50%	75%	100%
+230	Filter 6 - Resonance / bandwidth	0.5000	50%	0%	25%	50%	75%	100%
+231	Filter 6 - Low / gain / drive	1.0000	100%	0%	25%	50%	75%	100%
+232	Filter 6 - Band	0.0000	0%	0%	25%	50%	75%	100%
+233	Filter 6 - High	0.0000	0%	0%	25%	50%	75%	100%
+234	Filter 6 - Waveshaper pre amp	0.5000	100%	50%	75%	100%	125%	150%
+235	Filter 6 - Waveshaper mix	1.0000	100%	0%	25%	50%	75%	100%
+236	Filter 6 - Output panning	0.5000	Centered	100% left	50% left	Centered	50% right	100% right
+237	Filter 6 - Output volume	0.8000	100%	0%	31%	63%	94%	125%
+238	Filter 6 - Input volume	0.9000	100%	-125%	-63%	0%	63%	125%
+239	Filter 6 - To next filter	0.5000	0%	-125%	-63%	0%	63%	125%
+240	Filter 6 - Panning - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+241	Filter 6 - Panning - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+242	Filter 6 - Panning - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+243	Filter 6 - Panning - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+244	Filter 6 - Volume - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+245	Filter 6 - Volume - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+246	Filter 6 - Volume - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+247	Filter 6 - Volume - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+248	Filter 6 - Filter cutoff - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+249	Filter 6 - Filter cutoff - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+250	Filter 6 - Filter cutoff - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+251	Filter 6 - Filter cutoff - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+252	Filter 6 - Filter resonance - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+253	Filter 6 - Filter resonance - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+254	Filter 6 - Filter resonance - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+255	Filter 6 - Filter resonance - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+256	Filter 6 - Filter low / gain / drive - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+257	Filter 6 - Filter low / gain / drive - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+258	Filter 6 - Filter low / gain / drive - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+259	Filter 6 - Filter low / gain / drive - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+260	Filter 6 - Filter band - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+261	Filter 6 - Filter band - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+262	Filter 6 - Filter band - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+263	Filter 6 - Filter band - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+264	Filter 6 - Filter high - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+265	Filter 6 - Filter high - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+266	Filter 6 - Filter high - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+267	Filter 6 - Filter high - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+268	Filter 6 - Waveshaper - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+269	Filter 6 - Waveshaper - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+270	Filter 6 - Waveshaper - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+271	Filter 6 - Waveshaper - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+272	Filter 7 - Cutoff envelope / LFO / IEF amount	0.5000	50%	0%	25%	50%	75%	100%
+273	Filter 7 - Cutoff frequency	0.5000	50%	0%	25%	50%	75%	100%
+274	Filter 7 - Resonance / bandwidth	0.5000	50%	0%	25%	50%	75%	100%
+275	Filter 7 - Low / gain / drive	1.0000	100%	0%	25%	50%	75%	100%
+276	Filter 7 - Band	0.0000	0%	0%	25%	50%	75%	100%
+277	Filter 7 - High	0.0000	0%	0%	25%	50%	75%	100%
+278	Filter 7 - Waveshaper pre amp	0.5000	100%	50%	75%	100%	125%	150%
+279	Filter 7 - Waveshaper mix	1.0000	100%	0%	25%	50%	75%	100%
+280	Filter 7 - Output panning	0.5000	Centered	100% left	50% left	Centered	50% right	100% right
+281	Filter 7 - Output volume	0.8000	100%	0%	31%	63%	94%	125%
+282	Filter 7 - Input volume	0.9000	100%	-125%	-63%	0%	63%	125%
+283	Filter 7 - To next filter	0.5000	0%	-125%	-63%	0%	63%	125%
+284	Filter 7 - Panning - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+285	Filter 7 - Panning - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+286	Filter 7 - Panning - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+287	Filter 7 - Panning - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+288	Filter 7 - Volume - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+289	Filter 7 - Volume - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+290	Filter 7 - Volume - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+291	Filter 7 - Volume - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+292	Filter 7 - Filter cutoff - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+293	Filter 7 - Filter cutoff - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+294	Filter 7 - Filter cutoff - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+295	Filter 7 - Filter cutoff - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+296	Filter 7 - Filter resonance - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+297	Filter 7 - Filter resonance - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+298	Filter 7 - Filter resonance - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+299	Filter 7 - Filter resonance - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+300	Filter 7 - Filter low / gain / drive - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+301	Filter 7 - Filter low / gain / drive - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+302	Filter 7 - Filter low / gain / drive - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+303	Filter 7 - Filter low / gain / drive - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+304	Filter 7 - Filter band - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+305	Filter 7 - Filter band - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+306	Filter 7 - Filter band - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+307	Filter 7 - Filter band - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+308	Filter 7 - Filter high - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+309	Filter 7 - Filter high - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+310	Filter 7 - Filter high - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+311	Filter 7 - Filter high - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+312	Filter 7 - Waveshaper - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+313	Filter 7 - Waveshaper - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+314	Filter 7 - Waveshaper - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+315	Filter 7 - Waveshaper - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+316	Filter 8 - Cutoff envelope / LFO / IEF amount	0.5000	50%	0%	25%	50%	75%	100%
+317	Filter 8 - Cutoff frequency	0.5000	50%	0%	25%	50%	75%	100%
+318	Filter 8 - Resonance / bandwidth	0.5000	50%	0%	25%	50%	75%	100%
+319	Filter 8 - Low / gain / drive	1.0000	100%	0%	25%	50%	75%	100%
+320	Filter 8 - Band	0.0000	0%	0%	25%	50%	75%	100%
+321	Filter 8 - High	0.0000	0%	0%	25%	50%	75%	100%
+322	Filter 8 - Waveshaper pre amp	0.5000	100%	50%	75%	100%	125%	150%
+323	Filter 8 - Waveshaper mix	1.0000	100%	0%	25%	50%	75%	100%
+324	Filter 8 - Output panning	0.5000	Centered	100% left	50% left	Centered	50% right	100% right
+325	Filter 8 - Output volume	0.8000	100%	0%	31%	63%	94%	125%
+326	Filter 8 - Input volume	0.9000	100%	-125%	-63%	0%	63%	125%
+327	Filter 8 - Panning - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+328	Filter 8 - Panning - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+329	Filter 8 - Panning - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+330	Filter 8 - Panning - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+331	Filter 8 - Volume - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+332	Filter 8 - Volume - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+333	Filter 8 - Volume - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+334	Filter 8 - Volume - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+335	Filter 8 - Filter cutoff - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+336	Filter 8 - Filter cutoff - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+337	Filter 8 - Filter cutoff - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+338	Filter 8 - Filter cutoff - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+339	Filter 8 - Filter resonance - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+340	Filter 8 - Filter resonance - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+341	Filter 8 - Filter resonance - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+342	Filter 8 - Filter resonance - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+343	Filter 8 - Filter low / gain / drive - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+344	Filter 8 - Filter low / gain / drive - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+345	Filter 8 - Filter low / gain / drive - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+346	Filter 8 - Filter low / gain / drive - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+347	Filter 8 - Filter band - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+348	Filter 8 - Filter band - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+349	Filter 8 - Filter band - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+350	Filter 8 - Filter band - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+351	Filter 8 - Filter high - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+352	Filter 8 - Filter high - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+353	Filter 8 - Filter high - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+354	Filter 8 - Filter high - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%
+355	Filter 8 - Waveshaper - LFO speed (phase)	0.6073	1.00	1.00	1.00	1.00	0.61	0.06
+356	Filter 8 - Waveshaper - LFO tension	0.5000	0%	-100%	-50%	0%	50%	100%
+357	Filter 8 - Waveshaper - LFO skew	0.5000	0%	-100%	-50%	0%	50%	100%
+358	Filter 8 - Waveshaper - LFO pulse width	0.5000	0%	-100%	-50%	0%	50%	100%

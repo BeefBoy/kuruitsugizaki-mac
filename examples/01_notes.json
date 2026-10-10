@@ -1,0 +1,17 @@
+{
+ "about": "The smallest project: one instrument, one pattern, one clip on the playlist. Note rows are [bar, beat, tick, length in ticks, key, velocity, instrument]; 96 ticks per beat, MIDI 60 = C4. The instrument is named by its id here; an index into instruments works too. Bar 2 shows positions off the 16th grid: an 8th-triplet (tick 32, 64) and a note 6 ticks late.",
+ "format": "compact",
+ "project": {"bpm": 120, "ppq": 96, "title": "01 notes", "author": "Claude Opus 5.5 (Anthropic), kuruitsugizaki examples"},
+ "instruments": [{"id": "keys", "name": "keys", "kind": "plugin", "plugin": "Sytrus", "preset": "Organ/Deep", "mixer": 1}],
+ "note_cols": ["bar", "beat", "tick", "len", "key", "vel", "inst"],
+ "patterns": [{"id": "phrase", "notes": [
+  [1, 1, 0, 336, "D#4", 96, "keys"], [1, 1, 0, 336, "F#4", 80, "keys"], [1, 1, 0, 336, "A#4", 80, "keys"],
+  [1, 4, 48, 48, "C#5", 70, "keys"],
+  [2, 1, 0, 32, "A#4", 90, "keys"], [2, 1, 32, 32, "C#5", 74, "keys"], [2, 1, 64, 32, "D#5", 82, "keys"],
+  [2, 2, 6, 90, "F#5", 88, "keys"], [2, 3, 0, 192, "E5", 84, "keys"],
+  [3, 1, 0, 384, "B3", 90, "keys"], [3, 1, 0, 384, "D#4", 78, "keys"], [3, 1, 0, 384, "F#4", 78, "keys"],
+  [4, 1, 0, 384, "C#4", 90, "keys"], [4, 1, 0, 384, "F4", 78, "keys"], [4, 1, 0, 384, "G#4", 78, "keys"]
+ ]}],
+ "clip_cols": ["track", "bar", "beat", "tick", "len", "src", "trim?"],
+ "arrangements": [{"name": "Arrangement", "clips": [[1, 1, 1, 0, 1536, "phrase"]]}]
+}

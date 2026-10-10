@@ -1,0 +1,21 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	GAIN: Input L (Locked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+1	GAIN: Input L (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+2	GAIN: Input R (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+3	GAIN: Output L (Locked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+4	GAIN: Output L (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+5	GAIN: Output R (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+6	Global Bypass	0.0000	Off	Off	Off	Off	Off	Off
+7	MAX: Bypass	0.0000	Off	Off	Off	Off	Off	Off
+8	MAX: Input Gain	0.0000	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+9	MAX: Output Level	1.0000	0,00	0,00	0,00	0,00	0,00	0,00
+10	MAX: Link Input Gain and Output Level	0.0000	Off	Off	Off	Off	Off	Off
+11	MAX: Character	0.2000	2,00	2,00	2,00	2,00	2,00	2,00
+12	MAX: Upward Compression Amt	0.0000	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+13	MAX: Soft Clip On/Off	0.0000	Off	Off	Off	Off	Off	Off
+14	MAX: Soft Clip Mix	0.0000	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %
+15	MAX: Soft Clip Mode	0.5000	M	M	M	M	M	M
+16	MAX: Transient Shaping Amt	0.0000	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %
+17	MAX: Stereo Ind. Sustain Amt	0.0000	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %
+18	MAX: Stereo Ind. Transient Amt	0.0000	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %
+19	MAX: Link Stereo Amounts	1.0000	On	On	On	On	On	On

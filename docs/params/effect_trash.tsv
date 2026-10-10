@@ -1,0 +1,126 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Auto Gain Enabled	0.0000	Off	Off	Off	On	On	On
+1	Global Bypass	0.0000	Off	Off	Off	On	On	On
+2	Global Mix	1.0000	100,00	0,00	25,00	50,00	75,00	100,00
+3	Global Input Gain	0.6667	0,00	-20,00	-12,50	-5,00	2,50	10,00
+4	Global Output Gain	0.6667	0,00	-20,00	-12,50	-5,00	2,50	10,00
+5	Limiter Enabled	1.0000	On	Off	Off	On	On	On
+6	Filter Cutoff	1.0000	20000,00	20,00	5015,00	10010,00	15005,00	20000,00
+7	Filter Heat	0.0000	0,00	0,00	6,00	12,00	18,00	24,00
+8	Filter Enabled	1.0000	On	Off	Off	On	On	On
+9	Filter Scream	0.0000	0,00	0,00	1,00	2,00	3,00	4,00
+10	Filter Cutoff Modulation Amount	0.5000	0,00	-100,00	-50,00	0,00	50,00	100,00
+11	Modulation Envelope Amount	0.5000	50,00	0,00	25,00	50,00	75,00	100,00
+12	Modulation Envelope Attack	0.0300	3,00	0,00	25,00	50,00	75,00	100,00
+13	Modulation Envelope Release	0.1000	30,00	0,00	75,00	150,00	225,00	300,00
+14	B1 Convolution Blend X	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+15	B1 Convolution Blend Y	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+16	B1 Convolution Bottom Left Microphone	0.0000	Condenser	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+17	B1 Convolution Bottom Left Mode	0.4315	Flam	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+18	B1 Convolution Bottom Right Microphone	0.0000	Condenser	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+19	B1 Convolution Bottom Right Mode	0.5411	KickAndBell	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+20	B1 Convolution Enabled	1.0000	On	Off	Off	On	On	On
+21	B1 Convolution Mix	0.0000	0,00	0,00	0,25	0,50	0,75	1,00
+22	B1 Convolution Stereoize	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+23	B1 Convolution Top Left Microphone	0.0000	Condenser	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+24	B1 Convolution Top Left Mode	0.0068	Sharp	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+25	B1 Convolution Top Right Microphone	0.5000	Dynamic	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+26	B1 Convolution Top Right Mode	0.2979	TVScoop	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+27	B1 Convolution Width	0.5000	1,00	0,00	0,50	1,00	1,50	2,00
+28	B1 Trash Blend Modulation Enabled	0.0000	Off	Off	Off	On	On	On
+29	B1 Trash Blend X	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+30	B1 Trash Blend X Mod Target	0.0000	0,00	0,00	0,25	0,50	0,75	1,00
+31	B1 Trash Blend Y	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+32	B1 Trash Blend Y Mod Target	0.0000	0,00	0,00	0,25	0,50	0,75	1,00
+33	B1 Trash Bottom Left Mode	0.1176	TubeDrainer	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+34	B1 Trash Bottom Left Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+35	B1 Trash Bottom Right Mode	0.0000	AmpDrainer	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+36	B1 Trash Bottom Right Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+37	B1 Trash Enabled	1.0000	On	Off	Off	On	On	On
+38	B1 Trash Mix	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+39	B1 Trash Output Gain	0.8000	0,00	-40,00	-27,50	-15,00	-2,50	10,00
+40	B1 Trash Tilt Frequency	0.0490	1000,00	20,00	5015,00	10010,00	15005,00	20000,00
+41	B1 Trash Tilt Gain	0.5000	0,00	-10,00	-5,00	0,00	5,00	10,00
+42	B1 Trash Top Left Mode	0.8824	Grainy	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+43	B1 Trash Top Left Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+44	B1 Trash Top Right Mode	0.7206	HardChip	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+45	B1 Trash Top Right Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+46	B1 Trash Drive	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+47	B1 Trash Drive Modulation Amount	0.5000	0,00	-100,00	-50,00	0,00	50,00	100,00
+48	B1 Module Order	0.0000	DistortConvolve	DistortConvolve	DistortConvolve	ConvolveDistort	ConvolveDistort	ConvolveDistort
+49	B1 Solo	0.0000	Off	Off	Off	On	On	On
+50	Low Mid Cutoff	0.0000	20,00	20,00	5015,00	10010,00	15005,00	20000,00
+51	B2 Convolution Blend X	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+52	B2 Convolution Blend Y	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+53	B2 Convolution Bottom Left Microphone	0.0000	Condenser	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+54	B2 Convolution Bottom Left Mode	0.4315	Flam	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+55	B2 Convolution Bottom Right Microphone	0.0000	Condenser	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+56	B2 Convolution Bottom Right Mode	0.5411	KickAndBell	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+57	B2 Convolution Enabled	1.0000	On	Off	Off	On	On	On
+58	B2 Convolution Mix	0.0000	0,00	0,00	0,25	0,50	0,75	1,00
+59	B2 Convolution Stereoize	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+60	B2 Convolution Top Left Microphone	0.0000	Condenser	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+61	B2 Convolution Top Left Mode	0.0068	Sharp	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+62	B2 Convolution Top Right Microphone	0.5000	Dynamic	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+63	B2 Convolution Top Right Mode	0.2979	TVScoop	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+64	B2 Convolution Width	0.5000	1,00	0,00	0,50	1,00	1,50	2,00
+65	B2 Trash Blend Modulation Enabled	0.0000	Off	Off	Off	On	On	On
+66	B2 Trash Blend X	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+67	B2 Trash Blend X Mod Target	0.0000	0,00	0,00	0,25	0,50	0,75	1,00
+68	B2 Trash Blend Y	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+69	B2 Trash Blend Y Mod Target	0.0000	0,00	0,00	0,25	0,50	0,75	1,00
+70	B2 Trash Bottom Left Mode	0.1176	TubeDrainer	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+71	B2 Trash Bottom Left Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+72	B2 Trash Bottom Right Mode	0.0000	AmpDrainer	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+73	B2 Trash Bottom Right Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+74	B2 Trash Enabled	1.0000	On	Off	Off	On	On	On
+75	B2 Trash Mix	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+76	B2 Trash Output Gain	0.8000	0,00	-40,00	-27,50	-15,00	-2,50	10,00
+77	B2 Trash Tilt Frequency	0.0490	1000,00	20,00	5015,00	10010,00	15005,00	20000,00
+78	B2 Trash Tilt Gain	0.5000	0,00	-10,00	-5,00	0,00	5,00	10,00
+79	B2 Trash Top Left Mode	0.8824	Grainy	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+80	B2 Trash Top Left Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+81	B2 Trash Top Right Mode	0.7206	HardChip	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+82	B2 Trash Top Right Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+83	B2 Trash Drive	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+84	B2 Trash Drive Modulation Amount	0.5000	0,00	-100,00	-50,00	0,00	50,00	100,00
+85	B2 Module Order	0.0000	DistortConvolve	DistortConvolve	DistortConvolve	ConvolveDistort	ConvolveDistort	ConvolveDistort
+86	B2 Solo	0.0000	Off	Off	Off	On	On	On
+87	Mid High Cutoff	1.0000	20000,00	20,00	5015,00	10010,00	15005,00	20000,00
+88	B3 Convolution Blend X	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+89	B3 Convolution Blend Y	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+90	B3 Convolution Bottom Left Microphone	0.0000	Condenser	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+91	B3 Convolution Bottom Left Mode	0.4315	Flam	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+92	B3 Convolution Bottom Right Microphone	0.0000	Condenser	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+93	B3 Convolution Bottom Right Mode	0.5411	KickAndBell	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+94	B3 Convolution Enabled	1.0000	On	Off	Off	On	On	On
+95	B3 Convolution Mix	0.0000	0,00	0,00	0,25	0,50	0,75	1,00
+96	B3 Convolution Stereoize	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+97	B3 Convolution Top Left Microphone	0.0000	Condenser	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+98	B3 Convolution Top Left Mode	0.0068	Sharp	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+99	B3 Convolution Top Right Microphone	0.5000	Dynamic	Condenser	Dynamic	Dynamic	Ribbon	Ribbon
+100	B3 Convolution Top Right Mode	0.2979	TVScoop	UpperRust	Kicker	PianoCab	MediumRoom	Custom
+101	B3 Convolution Width	0.5000	1,00	0,00	0,50	1,00	1,50	2,00
+102	B3 Trash Blend Modulation Enabled	0.0000	Off	Off	Off	On	On	On
+103	B3 Trash Blend X	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+104	B3 Trash Blend X Mod Target	0.0000	0,00	0,00	0,25	0,50	0,75	1,00
+105	B3 Trash Blend Y	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+106	B3 Trash Blend Y Mod Target	0.0000	0,00	0,00	0,25	0,50	0,75	1,00
+107	B3 Trash Bottom Left Mode	0.1176	TubeDrainer	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+108	B3 Trash Bottom Left Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+109	B3 Trash Bottom Right Mode	0.0000	AmpDrainer	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+110	B3 Trash Bottom Right Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+111	B3 Trash Enabled	1.0000	On	Off	Off	On	On	On
+112	B3 Trash Mix	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+113	B3 Trash Output Gain	0.8000	0,00	-40,00	-27,50	-15,00	-2,50	10,00
+114	B3 Trash Tilt Frequency	0.0490	1000,00	20,00	5015,00	10010,00	15005,00	20000,00
+115	B3 Trash Tilt Gain	0.5000	0,00	-10,00	-5,00	0,00	5,00	10,00
+116	B3 Trash Top Left Mode	0.8824	Grainy	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+117	B3 Trash Top Left Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+118	B3 Trash Top Right Mode	0.7206	HardChip	AmpDrainer	ClipControl	CheapDigital	Blitz	Weathered
+119	B3 Trash Top Right Style	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+120	B3 Trash Drive	0.5000	0,50	0,00	0,25	0,50	0,75	1,00
+121	B3 Trash Drive Modulation Amount	0.5000	0,00	-100,00	-50,00	0,00	50,00	100,00
+122	B3 Module Order	0.0000	DistortConvolve	DistortConvolve	DistortConvolve	ConvolveDistort	ConvolveDistort	ConvolveDistort
+123	B3 Solo	0.0000	Off	Off	Off	On	On	Off [landed 0.000]
+124	Oversample	0.0000	Off	Off	Off	On	On	On

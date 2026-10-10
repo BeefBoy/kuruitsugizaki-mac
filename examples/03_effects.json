@@ -1,0 +1,26 @@
+{
+ "about": "Mixer effects and faders. An effect goes into a track's slot by plugin name, with a preset if wanted, or is copied with its settings from any project FL saved ('from': file, track, slot). projects/init/fx.flp holds seven of FL's own effects to copy from (README, Effects). mixer.volume maps an insert to its fader, 0.8 = 0 dB; insert 0 is the master, the overall level.",
+ "format": "compact",
+ "project": {"bpm": 140, "ppq": 96, "title": "03 effects", "author": "Claude Opus 5.5 (Anthropic), kuruitsugizaki examples"},
+ "instruments": [
+  {"id": "lead", "name": "lead", "kind": "plugin", "plugin": "Sytrus", "preset": "X Olbaid/Lead/Lead Supersaw 1", "mixer": 1},
+  {"id": "snare", "name": "snare", "kind": "sampler", "path": "%FLStudioFactoryData%/Data/Patches/Packs/Drums/Snares/Jung Snare.wav", "mixer": 2}
+ ],
+ "mixer": {
+  "volume": {"0": 0.75, "1": 0.7, "2": 0.9},
+  "effects": [
+   {"track": 1, "slot": 0, "plugin": "Fruity Delay 3", "preset": "Ping pong"},
+   {"track": 1, "slot": 1, "plugin": "Fruity Reeverb 2", "preset": "Large Hall"},
+   {"track": 2, "slot": 0, "plugin": "Fruity Fast Dist", "preset": "fuzz"},
+   {"track": 0, "slot": 9, "from": {"file": "projects/init/fx.flp", "track": 2, "slot": 0}}
+  ]
+ },
+ "note_cols": ["bar", "beat", "tick", "len", "key", "vel", "inst"],
+ "patterns": [{"id": "p", "notes": [
+  [1, 1, 0, 132, "A#4", 96, "lead"], [1, 2, 48, 132, "D#5", 96, "lead"], [1, 4, 0, 150, "C#5", 96, "lead"],
+  [2, 1, 0, 132, "A#4", 96, "lead"], [2, 2, 48, 132, "F#4", 96, "lead"], [2, 4, 0, 150, "E4", 96, "lead"],
+  [1, 2, 0, 24, "C4", 100, "snare"], [1, 4, 0, 24, "C4", 100, "snare"], [2, 2, 0, 24, "C4", 100, "snare"], [2, 4, 0, 24, "C4", 100, "snare"]
+ ]}],
+ "clip_cols": ["track", "bar", "beat", "tick", "len", "src", "trim?"],
+ "arrangements": [{"name": "Arrangement", "clips": [[1, 1, 1, 0, 768, "p"], [1, 3, 1, 0, 768, "p"]]}]
+}

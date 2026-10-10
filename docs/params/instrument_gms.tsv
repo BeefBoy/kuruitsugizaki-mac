@@ -1,0 +1,206 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	FX 1	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+1	FX 2	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+2	FX 3	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+3	FX 4	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+4	FX 5	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+5	FX 6	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+6	FX 7	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+7	FX 8	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+8	FX 9	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+9	FX 10	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+10	FX Activate	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+11	FX Glue	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+12	FX LFO Rate	0.5547	1/1	1/8	3/8	3/4	2/1	8/1
+13	FX LFO Amount	0.5000	0.50 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+14	FX LFO Shape Switch	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+15	FX LFO Shape	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+16	FX LFO Sync Switch	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+17	FX LFO Sync	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+18	FX Param X	0.5000	0.50 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+19	FX Param Y	0.5000	0.50 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+20	CHN: Mix Level	0.7500	0.0 dB	-60.0 dB	-40.0 dB	-20.0 dB	0.0 dB	20.0 dB
+21	CHN: Panning	0.5000	0.0 %	-100.0 %	-50.0 %	0.0 %	50.0 %	100.0 %
+22	CHN: Pitch	0.5000	0	-24	-12	0	12	24
+23	CHN: Note Length	0.4414	0.44 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+24	CHN: Amp Attack	0.0586	0.06 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+25	CHN: Amp Decay	1.0000	1.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+26	CHN: Amp Sustain	1.0000	1.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+27	CHN: Amp Release	0.1484	0.15 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+28	CHN: Amp Level	0.4023	-4.9 dB	-25.0 dB	-12.5 dB	0.0 dB	12.5 dB	25.0 dB
+29	CHN: Shuffle Enable	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+30	CHN: Slide Time	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+31	CHN: Slide Enable	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+32	Filter Cutoff	1.0000	1.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+33	Filter Resonance	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+34	Filter KBD Tracking	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+35	Filter Type Switch	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+36	Filter Type	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+37	Envelope Number	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+38	Envelope Destination Switch	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+39	Envelope Destination	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+40	Envelope Attack	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+41	Envelope Decay	1.0000	1.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+42	Envelope Amount	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+43	Envelope Invert	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+44	LFO Number	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+45	LFO Rate	0.0000	1/8	1/8	3/8	3/4	2/1	8/1
+46	LFO Amount	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+47	LFO Retrig	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+48	LFO Invert	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+49	LFO Sync Switch	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+50	LFO Sync	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+51	LFO Destination Switch	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+52	LFO Destination	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+53	LFO Shape Switch	0.0000	0.00 %	0.00 %	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]	0.00 % [landed 0.000]
+54	LFO Shape	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+55	SYNTH: Mono Voice	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+56	SYNTH: Unison Voices	0.0977	2	1	4	8	12	16
+57	SYNTH: Unison Detune	0.1016	0.11 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+58	SYNTH: Unison Stereo	0.7148	0.71 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+59	SYNTH: Octave	0.5000	0.50 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+60	SYNTH: Noise Mix	0.1562	0.16 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+61	SYNTH: Unison Phase	0.5117	0.51 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+62	SYNTH: Unison Phase Retrig	1.0000	1.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+63	SYNTH: Mix Oscllator 2	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+64	SYNTH: Mix Oscillator 3	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+65	SYNTH: Modulation	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+66	SYNTH: Mod Kind	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+67	SYNTH: Phase Offset Osc 2	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+68	SYNTH: Phase Retrig Osc 2	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+69	SYNTH: Osc 2 Invert	0.0000	0.00 %	0.00 %	0.25 %	0.50 %	0.75 %	1.00 %
+70	SYNTH: Osc 1 Pitch	0.1602	-24	-36	-18	0	18	36
+71	SYNTH: Osc 1 Detune	0.5000	0	-50	-25	0	25	50
+72	SYNTH: Osc 2 Pitch	0.3281	-12	-36	-18	0	18	36
+73	SYNTH: Osc 2 Detune	0.5000	0	-50	-25	0	25	50
+74	SYNTH: Osc 3 Pitch	0.5000	0	-36	-18	0	18	36
+75	SYNTH: Osc 3 Detune	0.5000	0	-50	-25	0	25	50
+76	MIDI CC 0	0.0000	0					
+77	MIDI CC 1	0.0000	0					
+78	MIDI CC 2	0.0000	0					
+79	MIDI CC 3	0.0000	0					
+80	MIDI CC 4	0.0000	0					
+81	MIDI CC 5	0.0000	0					
+82	MIDI CC 6	0.0000	0					
+83	MIDI CC 7	0.0000	0					
+84	MIDI CC 8	0.0000	0					
+85	MIDI CC 9	0.0000	0					
+86	MIDI CC 10	0.0000	0					
+87	MIDI CC 11	0.0000	0					
+88	MIDI CC 12	0.0000	0					
+89	MIDI CC 13	0.0000	0					
+90	MIDI CC 14	0.0000	0					
+91	MIDI CC 15	0.0000	0					
+92	MIDI CC 16	0.0000	0					
+93	MIDI CC 17	0.0000	0					
+94	MIDI CC 18	0.0000	0					
+95	MIDI CC 19	0.0000	0					
+96	MIDI CC 20	0.0000	0					
+97	MIDI CC 21	0.0000	0					
+98	MIDI CC 22	0.0000	0					
+99	MIDI CC 23	0.0000	0					
+100	MIDI CC 24	0.0000	0					
+101	MIDI CC 25	0.0000	0					
+102	MIDI CC 26	0.0000	0					
+103	MIDI CC 27	0.0000	0					
+104	MIDI CC 28	0.0000	0					
+105	MIDI CC 29	0.0000	0					
+106	MIDI CC 30	0.0000	0					
+107	MIDI CC 31	0.0000	0					
+108	MIDI CC 32	0.0000	0					
+109	MIDI CC 33	0.0000	0					
+110	MIDI CC 34	0.0000	0					
+111	MIDI CC 35	0.0000	0					
+112	MIDI CC 36	0.0000	0					
+113	MIDI CC 37	0.0000	0					
+114	MIDI CC 38	0.0000	0					
+115	MIDI CC 39	0.0000	0					
+116	MIDI CC 40	0.0000	0					
+117	MIDI CC 41	0.0000	0					
+118	MIDI CC 42	0.0000	0					
+119	MIDI CC 43	0.0000	0					
+120	MIDI CC 44	0.0000	0					
+121	MIDI CC 45	0.0000	0					
+122	MIDI CC 46	0.0000	0					
+123	MIDI CC 47	0.0000	0					
+124	MIDI CC 48	0.0000	0					
+125	MIDI CC 49	0.0000	0					
+126	MIDI CC 50	0.0000	0					
+127	MIDI CC 51	0.0000	0					
+128	MIDI CC 52	0.0000	0					
+129	MIDI CC 53	0.0000	0					
+130	MIDI CC 54	0.0000	0					
+131	MIDI CC 55	0.0000	0					
+132	MIDI CC 56	0.0000	0					
+133	MIDI CC 57	0.0000	0					
+134	MIDI CC 58	0.0000	0					
+135	MIDI CC 59	0.0000	0					
+136	MIDI CC 60	0.0000	0					
+137	MIDI CC 61	0.0000	0					
+138	MIDI CC 62	0.0000	0					
+139	MIDI CC 63	0.0000	0					
+140	MIDI CC 64	0.0000	0					
+141	MIDI CC 65	0.0000	0					
+142	MIDI CC 66	0.0000	0					
+143	MIDI CC 67	0.0000	0					
+144	MIDI CC 68	0.0000	0					
+145	MIDI CC 69	0.0000	0					
+146	MIDI CC 70	0.0000	0					
+147	MIDI CC 71	0.0000	0					
+148	MIDI CC 72	0.0000	0					
+149	MIDI CC 73	0.0000	0					
+150	MIDI CC 74	0.0000	0					
+151	MIDI CC 75	0.0000	0					
+152	MIDI CC 76	0.0000	0					
+153	MIDI CC 77	0.0000	0					
+154	MIDI CC 78	0.0000	0					
+155	MIDI CC 79	0.0000	0					
+156	MIDI CC 80	0.0000	0					
+157	MIDI CC 81	0.0000	0					
+158	MIDI CC 82	0.0000	0					
+159	MIDI CC 83	0.0000	0					
+160	MIDI CC 84	0.0000	0					
+161	MIDI CC 85	0.0000	0					
+162	MIDI CC 86	0.0000	0					
+163	MIDI CC 87	0.0000	0					
+164	MIDI CC 88	0.0000	0					
+165	MIDI CC 89	0.0000	0					
+166	MIDI CC 90	0.0000	0					
+167	MIDI CC 91	0.0000	0					
+168	MIDI CC 92	0.0000	0					
+169	MIDI CC 93	0.0000	0					
+170	MIDI CC 94	0.0000	0					
+171	MIDI CC 95	0.0000	0					
+172	MIDI CC 96	0.0000	0					
+173	MIDI CC 97	0.0000	0					
+174	MIDI CC 98	0.0000	0					
+175	MIDI CC 99	0.0000	0					
+176	MIDI CC 100	0.0000	0					
+177	MIDI CC 101	0.0000	0					
+178	MIDI CC 102	0.0000	0					
+179	MIDI CC 103	0.0000	0					
+180	MIDI CC 104	0.0000	0					
+181	MIDI CC 105	0.0000	0					
+182	MIDI CC 106	0.0000	0					
+183	MIDI CC 107	0.0000	0					
+184	MIDI CC 108	0.0000	0					
+185	MIDI CC 109	0.0000	0					
+186	MIDI CC 110	0.0000	0					
+187	MIDI CC 111	0.0000	0					
+188	MIDI CC 112	0.0000	0					
+189	MIDI CC 113	0.0000	0					
+190	MIDI CC 114	0.0000	0					
+191	MIDI CC 115	0.0000	0					
+192	MIDI CC 116	0.0000	0					
+193	MIDI CC 117	0.0000	0					
+194	MIDI CC 118	0.0000	0					
+195	MIDI CC 119	0.0000	0					
+196	MIDI CC 120	0.0000	0					
+197	MIDI CC 121	0.0000	0					
+198	MIDI CC 122	0.0000	0					
+199	MIDI CC 123	0.0000	0					
+200	MIDI CC 124	0.0000	0					
+201	MIDI CC 125	0.0000	0					
+202	MIDI CC 126	0.0000	0					
+203	MIDI CC 127	0.0000	0					
+204	Chn. Aftertouch	0.0000	0	0	31	63	95	127

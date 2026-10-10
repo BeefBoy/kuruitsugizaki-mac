@@ -1,0 +1,13 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Gain	0.7937	100%	0%	31%	63%	94%	126%
+1	Mix	0.5000	50.0% dry / 50.0% wet	100.0% dry / 0.0% wet	75.0% dry / 25.0% wet	50.0% dry / 50.0% wet	25.0% dry / 75.0% wet	0.0% dry / 100.0% wet
+2	Steps	0.0000	32757.6 steps	32757.6 steps	2434.7 steps	181.0 steps	13.5 steps	1.0 steps
+3	Filter	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+4	Filter type	0.0000	low pass	low pass	high pass	band pass	notch	peak
+5	Filter Resonance	0.5000	50%	0%	25%	50%	75%	100%
+6	Filter Cutoff	0.5000	50%	0%	25%	50%	75%	100%
+7	Filter Position	0.0000	pre	pre	pre [landed 0.000]	pre [landed 0.000]	pos [landed 1.000]	pos
+8	Relation	0.0000	none	none	impact = preserve [landed 0.333]	impact = preserve x 2 [landed 0.667]	impact = preserve x 2 [landed 0.667]	impact = preserve / 2
+9	Impact	0.0000	0 samples	0 samples	13 samples	44100 samples [landed 1.000]	9261314 samples [landed 1.500]	209 samples [landed 0.500]
+10	Preserve	0.1701	5 samples	0 samples	13 samples	209 samples	3042 samples	44100 samples
+11	Amount	0.0000	0%	0%	25%	50%	75%	100%

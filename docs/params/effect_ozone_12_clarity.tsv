@@ -1,0 +1,19 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	GAIN: Input L (Locked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+1	GAIN: Input L (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+2	GAIN: Input R (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+3	GAIN: Output L (Locked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+4	GAIN: Output L (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+5	GAIN: Output R (Unlocked)	0.9351	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB	0,00 dB
+6	Global Bypass	0.0000	Off	Off	Off	Off	Off	Off
+7	CLA: Bypass	0.0000	Off	Off	Off	Off	Off	Off
+8	CLA: Stereo/Main Amount	0.0000	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %
+9	CLA: Stereo/Main Tilt	0.5000	0,00 dB/oct	0,00 dB/oct	0,00 dB/oct	0,00 dB/oct	0,00 dB/oct	0,00 dB/oct
+10	CLA: Stereo/Main Attack	0.1000	100,00 ms	100,00 ms	100,00 ms	100,00 ms	100,00 ms	100,00 ms
+11	CLA: Stereo/Main Release	0.1000	100,00 ms	100,00 ms	100,00 ms	100,00 ms	100,00 ms	100,00 ms
+12	CLA: Stereo/Main Bypass	0.0000	Off	Off	Off	Off	Off	Off
+13	CLA: Aux Amount	0.0000	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %	0,00 %
+14	CLA: Aux Tilt	0.5000	0,00 dB/oct	0,00 dB/oct	0,00 dB/oct	0,00 dB/oct	0,00 dB/oct	0,00 dB/oct
+15	CLA: Aux Attack	0.1000	100,00 ms	100,00 ms	100,00 ms	100,00 ms	100,00 ms	100,00 ms
+16	CLA: Aux Release	0.1000	100,00 ms	100,00 ms	100,00 ms	100,00 ms	100,00 ms	100,00 ms
+17	CLA: Aux Bypass	0.0000	Off	Off	Off	Off	Off	Off

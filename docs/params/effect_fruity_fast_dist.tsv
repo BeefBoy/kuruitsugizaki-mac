@@ -1,0 +1,6 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Pre amp	0.5000	67%	33%	50%	67%	83%	100%
+1	Threshold	1.0000	100%	10%	30% [landed 0.222]	50% [landed 0.444]	80% [landed 0.778]	100%
+2	Distortion type	0.0000	A	A	A [landed 0.000]	A [landed 0.000]	B [landed 1.000]	B
+3	Mix level	1.0000	100%	0%	25%	50%	75%	100%
+4	Post gain	1.0000	100%	0%	25%	50%	75%	100%

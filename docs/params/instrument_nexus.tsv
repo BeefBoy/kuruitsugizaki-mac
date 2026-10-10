@@ -1,0 +1,47 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	main filter	0.0000	bypass	bypass	bypass	bypass	bypass	enabled
+1	main cutoff	1.0000	127	0	31	63	95	127
+2	main resonance	0.0000	0	0	31	63	95	127
+3	delay mix	0.1890	24	0	31	63	95	127
+4	delay modulation	0.0394	5	0	31	63	95	127
+5	delay feedback	0.5354	68	0	31	63	95	127
+6	delay low-cut	0.3858	49	0	31	63	95	127
+7	delay high-cut	0.8583	109	0	31	63	95	127
+8	reverb mix	0.1339	17	0	31	63	95	127
+9	reverb modulation	0.3228	41	0	31	63	95	127
+10	reverb decay	0.6142	78	0	31	63	95	127
+11	reverb low-cut	0.1024	13	0	31	63	95	127
+12	reverb high-cut	0.8661	110	0	31	63	95	127
+13	output	0.5039	64	0	31	63	95	127
+14	flt-mod envelope	0.5000	0	-127	-64	0	63	127
+15	flt-mod cutoff	0.5000	0	-127	-64	0	63	127
+16	flt-mod resonance	0.5000	0	-127	-64	0	63	127
+17	flt-mod attack	0.5000	0	-127	-64	0	63	127
+18	flt-mod decay	0.5000	0	-127	-64	0	63	127
+19	flt-mod sustain	0.5000	0	-127	-64	0	63	127
+20	flt-mod release	0.5000	0	-127	-64	0	63	127
+21	amp-mod pan	0.5000	0	-127	-64	0	63	127
+22	amp-mod spike	0.5000	0	-127	-64	0	63	127
+23	amp-mod spread	0.5000	0	-127	-64	0	63	127
+24	amp-mod attack	0.5000	0	-127	-64	0	63	127
+25	amp-mod decay	0.5000	0	-127	-64	0	63	127
+26	amp-mod sustain	0.5000	0	-127	-64	0	63	127
+27	amp-mod release	0.5000	0	-127	-64	0	63	127
+28	automation source 1	0.0000	0	0	31	63	95	127
+29	automation source 2	0.0000	0	0	31	63	95	127
+30	automation source 3	0.0000	0	0	31	63	95	127
+31	automation source 4	0.0000	0	0	31	63	95	127
+32	automation source 5	0.0000	0	0	31	63	95	127
+33	automation source 6	0.0000	0	0	31	63	95	127
+34	automation source 7	0.0000	0	0	31	63	95	127
+35	automation source 8	0.0000	0	0	31	63	95	127
+36	macro 1	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+37	macro 2	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+38	macro 3	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+39	macro 4	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+40	flt-mod velocity	0.5000	0	-127	-64	0	63	127
+41	amp-mod drive	0.5000	0	-127	-64	0	63	127
+42	pitchbend wheel	0.5000	0.50	0.00	0.25	0.50	0.75	1.00
+43	mod wheel	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+44	aftertouch	0.0000	0.00	0.00	0.25	0.50	0.75	1.00
+45	Bypass	0.0000	Off	Off	Off	On	On	On

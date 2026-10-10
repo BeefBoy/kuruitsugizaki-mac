@@ -1,0 +1,93 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+1	Scale	0.0714	Chromatic	Major	Greek En	Barnes	24 Tone	Harmonic
+2	Key	0.0000	C	C	Eb	F#	G#	B
+3	Detune	0.5000	440.0	415.3	427.5	440.0	452.9	466.2
+4	Retune Speed	0.6856	20 ms	400 ms	146 ms	50 ms	14 ms	0 ms
+5	Vibrato Shape	0.0000	(No Vibrato)	(No Vibrato)	Sine Wave	Square	Square	Sawtooth
+6	Vibrato Pitch	0.1800	18	0	25	50	75	100
+7	Vibrato Rate	0.5455	5.5	0.1	2.6	5.0	7.5	10.0
+10	Input Type	0.2500	Alto-Tenor	Soprano	Alto-Tenor	Low Male	Instrument	Bass Inst.
+36	Learn Scale from MIDI	0.0000	Off	Off	Off	Off [landed 0.000]	Off [landed 0.000]	Off [landed 0.000]
+37	Target Notes via MIDI	0.0000	Off	Off	Off	Off [landed 0.000]	Off [landed 0.000]	Off [landed 0.000]
+44	Ignore Vibrato	0.0000	Off	Off	Off	On	On	On
+46	V.Onset Delay	0.3333	500 ms	0 ms	375 ms	750 ms	1125 ms	1500 ms
+47	Vibrato Amplitude	0.3333	10	0	8	15	23	30
+48	Vibrato Formant	0.7000	70	0	25	50	75	100
+49	Vibrato Variation	0.2000	20	0	25	50	75	100
+50	V.Onset Rate	0.3333	500 ms	0 ms	375 ms	750 ms	1125 ms	1500 ms
+58	MIDI Octaves	0.0000	As Played	As Played	As Played	All	All	All
+61	Humanize	0.0000	0	0	25	50	75	100
+62	Natural Vibrato	0.5000	0.0	-12.0	-6.0	0.0	6.0	12.0
+70	Formant Correction	1.0000	On	Off	Off	On	On	On
+71	Throat Length	0.5000	100 %	50 %	72 %	100 %	135 %	180 %
+74	Transpose	0.5000	0	-12	-6	0	6	12
+89	Master Bypass	0.0000	Off	Off	Off	On	On	On
+90	Flex-Tune	0.0000	0	0	25	50	75	100
+92	Wet-Dry Mix	1.0000	100% %	0% %	25% %	50% %	75% %	100% %
+115	HP Voice 1 Fixed Interval	0.5000	U	24	12	U	-12	-24
+116	HP Voice 2 Fixed Interval	0.5000	U	24	12	U	-12	-24
+117	HP Voice 3 Fixed Interval	0.5000	U	24	12	U	-12	-24
+118	HP Voice 4 Fixed Interval	0.5000	U	24	12	U	-12	-24
+119	HP Voice 1 Scale Interval	0.2500	8va	16va	8va	U	8vb	16vb
+120	HP Voice 2 Scale Interval	0.3571	+5th	16va	8va	U	8vb	16vb
+121	HP Voice 3 Scale Interval	0.4286	+3rd	16va	8va	U	8vb	16vb
+122	HP Voice 4 Scale Interval	0.7500	8vb	16va	8va	U	8vb	16vb
+123	HP Voice 1 Latch	0.0000	Momentary	Momentary	Momentary	Latched	Latched	Latched
+124	HP Voice 2 Latch	0.0000	Momentary	Momentary	Momentary	Latched	Latched	Latched
+125	HP Voice 3 Latch	0.0000	Momentary	Momentary	Momentary	Latched	Latched	Latched
+126	HP Voice 4 Latch	0.0000	Momentary	Momentary	Momentary	Latched	Latched	Latched
+127	HP All Voices Latch	0.0000	Momentary	Momentary	Momentary	Latched	Latched	Latched
+128	HP Voice 1 Level	0.6250	-6	-Inf	-24	-12	0	12
+129	HP Voice 2 Level	0.6250	-6	-Inf	-24	-12	0	12
+130	HP Voice 3 Level	0.6250	-6	-Inf	-24	-12	0	12
+131	HP Voice 4 Level	0.6250	-6	-Inf	-24	-12	0	12
+132	HP Voice 1 Pan	0.5000	0	-100	-50	0	50	100
+133	HP Voice 2 Pan	0.5000	0	-100	-50	0	50	100
+134	HP Voice 3 Pan	0.5000	0	-100	-50	0	50	100
+135	HP Voice 4 Pan	0.5000	0	-100	-50	0	50	100
+136	HP Voice 1 Width	0.0000	0	0	25	50	75	100
+137	HP Voice 2 Width	0.0000	0	0	25	50	75	100
+138	HP Voice 3 Width	0.0000	0	0	25	50	75	100
+139	HP Voice 4 Width	0.0000	0	0	25	50	75	100
+140	HP Voice 1 Formant	0.5000	100 %	75 %	85 %	100 %	121 %	150 %
+141	HP Voice 2 Formant	0.5000	100 %	75 %	85 %	100 %	121 %	150 %
+142	HP Voice 3 Formant	0.5000	100 %	75 %	85 %	100 %	121 %	150 %
+143	HP Voice 4 Formant	0.5000	100 %	75 %	85 %	100 %	121 %	150 %
+144	HP Voice 1 Solo	0.0000	Off	Off	Off	On	On	On
+145	HP Voice 2 Solo	0.0000	Off	Off	Off	On	On	On
+146	HP Voice 3 Solo	0.0000	Off	Off	Off	On	On	On
+147	HP Voice 4 Solo	0.0000	Off	Off	Off	On	On	On
+148	HP Voice 1 Trigger	0.0000	Off	Off	Off	On	On	On
+149	HP Voice 2 Trigger	0.0000	Off	Off	Off	On	On	On
+150	HP Voice 3 Trigger	0.0000	Off	Off	Off	On	On	On
+151	HP Voice 4 Trigger	0.0000	Off	Off	Off	On	On	On
+152	HP All Voices Trigger	0.0000	Off	Off	Off	On	On	On
+153	HP Interval Type	1.0000	Fixed	Scale	Scale	Fixed [landed 1.000]	Fixed [landed 1.000]	Fixed
+154	HP Pan / Width	0.0000	Pan	Pan	Pan	Width	Width	Width
+155	HP Bypass Harmony Player	1.0000	On	Off	On [landed 1.000]	On	On	On
+156	HP Mute Input	0.0000	Off	Off	Off	On	On	On
+157	HP Solo Input	0.0000	Off	Off	Off	On	On	On
+158	HP Naturalize	0.0000	0	0	25	50	75	100
+159	HP Pitch Variation	0.3000	30	0	25	50	75	100
+160	HP Timing Variation	0.5000	50	0	25	50	75	100
+161	HP Transition Time	0.5457	125	0	25	100	325	1000
+162	Modern Scale	0.0000	Chromatic	Chromatic	Jazz Melodic Minor	Chromatic [landed 0.000]	Chromatic [landed 0.000]	Chromatic [landed 0.000]
+163	HP Attack	0.0000	0.5	0.5	750.5	1500.5	2250.0	3000.0
+164	HP Release	0.0000	5	5	754	1503	2251	3000
+165	HP Equalizer Type	0.0000	High Pass	High Pass	Band Pass	Band Pass	Low Pass	Low Pass
+166	HP LPF Frequency	0.9858	20000	18	224	2097	8051	20974.7
+167	HP LPF dB / Octave	0.3333	12	6	12	18	18	24
+168	HP BPF Frequency	0.3992	1000	18	224	2097	8051	20974.7
+169	HP BPF Q	0.0152	1.0	0.4	10.3	20.2	30.1	40.0
+170	HP BPF Level	0.5000	0.0	-18.0	-9.0	0.0	9.0	18.0
+171	HP HPF Frequency	0.0000	18	18	224	2097	8051	20974.7
+172	HP HPF dB / Octave	0.3333	12	6	12	18	18	24
+173	HP Gate Side Chain Source	0.0000	Internal	Internal	Internal	External	External	External
+174	HP Gate Threshold	0.2407	-70	-96	-69	-42	-15	12
+175	HP Stereo Width	0.5000	100	50	81	100	116	130
+176	HP Bypass Gate	1.0000	On	Off	Off	On	On	On
+177	HP Bypass Envelope	1.0000	On	Off	Off	On	On	On
+178	HP Bypass Equalizer	1.0000	On	Off	Off	On	On	On
+179	Transpose In Scale	0.0000	Ignoring Scale	Ignoring Scale	Ignoring Scale	Ignoring Scale [landed 0.000]	Ignoring Scale [landed 0.000]	Ignoring Scale [landed 0.000]
+180	HP Mixer Show / Hide	1.0000	1	0	0	1	1	1
+181	Scale Transpose	0.5000	0	-7	-3	0	4	7

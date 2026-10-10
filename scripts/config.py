@@ -1,0 +1,123 @@
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+FILE = ROOT / "kuruitsugizaki.json"
+KEYS = {
+    "fl_exe": ("FL Studio's FL64.exe", r"C:\Program Files\Image-Line\FL Studio 2025\FL64.exe"),
+    "loopmidi_exe": ("loopMIDI.exe, the virtual MIDI port FL needs before it loads the controller script", r"C:\Program Files (x86)\Tobias Erichsen\loopMIDI\loopMIDI.exe"),
+    "fl_hardware": ("FL's Settings\\Hardware folder, where controller scripts are installed", r"Documents\Image-Line\FL Studio\Settings\Hardware"),
+    "template": ("the .flp new projects are built from, relative to this folder or absolute", "projects/init/init.flp"),
+    "library": ("optional: an .flp FL saved holding tuned plugin instances to reuse by name, each instrument on its own channel and each effect in a mixer slot", "projects/library.flp"),
+    "plugin_db": ("FL's Plugin database folder, holding Installed\\Generators and Installed\\Effects; found by itself under Documents when not set", r"Documents\Image-Line\FL Studio\Presets\Plugin database"),
+    "effect_template": ("an .flp FL saved with at least one mixer effect; its first effect is the block new effects are built on", "projects/init/fx.flp"),
+    "fl_presets": ("FL's factory Plugin presets folder, holding Generators and Effects of .fst files", r"C:\Program Files\Image-Line\FL Studio 2025\Data\Patches\Plugin presets"),
+    "fl_user_presets": ("FL's user Plugin presets folder", r"Documents\Image-Line\FL Studio\Presets\Plugin presets"),
+    "vst_presets": ("per VST plugin, its vendor preset folders: {plugin: {ext: '.vpreset', dirs: {'': factory folder, 'user': user folder}}}", "{}"),
+    "flex_packs": ("FLEX's pack folder, holding the .flexpack files", r"Documents\Image-Line\FLEX\Packs"),
+    "diva_presets": ("Diva's preset folder, holding .h2p files", r"Documents\u-he\Diva.data\Presets\Diva"),
+    "sylenth1_presets": ("Sylenth1's preset folder, holding .fxp files", r"Documents\LennarDigital\Sylenth1\Presets"),
+    "serum2_presets": ("a folder of .SerumPreset files to catalog", r"Documents\Xfer\Serum 2 Presets"),
+}
+DEFAULTS = {"template": "projects/init/init.flp", "effect_template": "projects/init/fx.flp"}
+
+
+class Missing(RuntimeError):
+    pass
+
+
+def load() -> dict:
+    try:
+        return json.loads(FILE.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {}
+
+
+def documents() -> Path:
+    try:
+        import winreg
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders") as k:
+            return Path(winreg.QueryValueEx(k, "Personal")[0])
+    except Exception:
+        return Path.home() / "Documents"
+
+
+def _fl_dir(data: dict) -> Path | None:
+    if data.get("fl_exe"):
+        return Path(data["fl_exe"]).parent
+    found = sorted(Path(r"C:\Program Files\Image-Line").glob("FL Studio*/FL64.exe"))
+    return found[-1].parent if found else None
+
+
+def detect(key: str, data: dict | None = None) -> str | None:
+    data = load() if data is None else data
+    d, fl = documents(), _fl_dir(data)
+    il = d / "Image-Line"
+    places = {
+        "fl_exe": [fl / "FL64.exe"] if fl else [],
+        "loopmidi_exe": [Path(r"C:\Program Files (x86)\Tobias Erichsen\loopMIDI\loopMIDI.exe"), Path(r"C:\Program Files\Tobias Erichsen\loopMIDI\loopMIDI.exe")],
+        "fl_hardware": [il / "FL Studio" / "Settings" / "Hardware"],
+        "fl_presets": [fl / "Data" / "Patches" / "Plugin presets"] if fl else [],
+        "fl_user_presets": [il / "FL Studio" / "Presets" / "Plugin presets"],
+        "plugin_db": [il / "FL Studio" / "Presets" / "Plugin database"],
+        "flex_packs": [il / "FLEX" / "Packs"],
+        "diva_presets": [d / "u-he" / "Diva.data" / "Presets" / "Diva"],
+        "sylenth1_presets": [d / "LennarDigital" / "Sylenth1" / "Presets"],
+        "serum2_presets": [d / "Xfer" / "Serum 2 Presets"],
+    }
+    return next((str(p) for p in places.get(key, []) if p.exists()), None)
+
+
+def get(key: str, default=None):
+    data = load()
+    if key in data:
+        return data[key]
+    if key in DEFAULTS:
+        return DEFAULTS[key]
+    found = detect(key, data)
+    return found if found is not None else default
+
+
+def need(key: str) -> str:
+    value = get(key)
+    if value:
+        return value
+    what, usual = KEYS[key]
+    raise Missing(f"{key} is not set: {what}, usually {usual}. Ask the user where it is on their machine, then set it with the config tool (key='{key}') or in {FILE.name}; do not guess.")
+
+
+def path(key: str) -> Path:
+    p = Path(need(key))
+    return p if p.is_absolute() else ROOT / p
+
+
+def put(key: str, value) -> dict:
+    data = load()
+    data[key] = value
+    FILE.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    return data
+
+
+def status() -> dict:
+    data = load()
+    out = {}
+    for key, (what, usual) in KEYS.items():
+        value = data.get(key, DEFAULTS.get(key))
+        found = None
+        if value is None:
+            found = detect(key, data)
+        if value is None and found is None:
+            out[key] = {"set": False, "what": what, "usually": usual}
+            continue
+        if found is not None:
+            out[key] = {"set": False, "detected": found, "exists": True}
+            continue
+        if not isinstance(value, str):
+            out[key] = {"set": True, "value": value}
+            continue
+        p = Path(value)
+        p = p if p.is_absolute() else ROOT / p
+        out[key] = {"set": True, "value": value, "exists": p.exists(), "default": key not in data}
+    for key in sorted(set(data) - set(KEYS)):
+        out[key] = {"set": True, "value": data[key]}
+    return out

@@ -1,0 +1,101 @@
+index	name	value	display	at 0	at 0.25	at 0.5	at 0.75	at 1
+0	Phase randomness	0.5000	Constant	100% spectral random	50% spectral random	Constant	50% running	100% running
+1	Low harmonics protection	0.2500	-21.7dB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+2	Sub harmonic 1	0.0000	-INFdB	-INFdB	-6.0dB	0.0dB	3.5dB	6.0dB
+3	Sub harmonic 3	0.0000	-INFdB	-INFdB	-6.0dB	0.0dB	3.5dB	6.0dB
+4	Sub harmonic 4	0.0000	-INFdB	-INFdB	-6.0dB	0.0dB	3.5dB	6.0dB
+5	Timbre EQ band 1	0.5000	0.0dB	-INFdB	-8.7dB	0.0dB	6.4dB	12.0dB
+6	Timbre EQ band 2	0.5000	0.0dB	-INFdB	-8.7dB	0.0dB	6.4dB	12.0dB
+7	Timbre EQ band 3	0.5000	0.0dB	-INFdB	-8.7dB	0.0dB	6.4dB	12.0dB
+8	Timbre EQ band 4	0.5000	0.0dB	-INFdB	-8.7dB	0.0dB	6.4dB	12.0dB
+9	Timbre EQ band 5	0.5000	0.0dB	-INFdB	-8.7dB	0.0dB	6.4dB	12.0dB
+10	Timbre EQ band 6	0.5000	0.0dB	-INFdB	-8.7dB	0.0dB	6.4dB	12.0dB
+11	Harmonic mask 1/12	1.0000	0.0dB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+12	Harmonic mask 2/12	0.0000	-INFdB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+13	Harmonic mask 3/12	1.0000	0.0dB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+14	Harmonic mask 4/12	0.0000	-INFdB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+15	Harmonic mask 5/12	1.0000	0.0dB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+16	Harmonic mask 6/12	0.0000	-INFdB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+17	Harmonic mask 7/12	1.0000	0.0dB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+18	Harmonic mask 8/12	0.0000	-INFdB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+19	Harmonic mask 9/12	1.0000	0.0dB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+20	Harmonic mask 10/12	0.0000	-INFdB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+21	Harmonic mask 11/12	1.0000	0.0dB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+22	Harmonic mask 12/12	0.0000	-INFdB	-INFdB	-21.7dB	-12.7dB	-6.0dB	0.0dB
+23	Harmonic mask mix	0.0000	0%	0%	25%	50%	75%	100%
+24	Harmonic mask mix LFO amount	0.5000	0%	-100%	-50%	0%	50%	100%
+25	Stereo tremolo depth	0.0000	0%	0%	25%	50%	75%	100%
+26	Volume env attack length	0.0000	0ms	0ms	109ms	452ms	1543ms	5000ms
+27	Volume env decay length	1.0000	Infinite	50ms	605ms	3725ms	21277ms	Infinite
+28	Volume env release length	0.2500	64ms	10ms	64ms	235ms	778ms	2500ms
+29	Velocity to attack	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+30	Release velocity to release	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+31	Pluck decay length	1.0000	100%	0%	25%	50%	75%	100%
+32	Velocity to pluck decay	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+33	Alternate pluck mode	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+34	Pluck uses harmonic mask	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+35	Pluck only on release	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+36	Master volume	0.5000	-2.5dB	-INFdB	-11.2dB	-2.5dB	3.9dB	9.5dB
+37	Velocity to volume	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+38	Master pitch	0.5000	+0.00 cent	-2400.00 cents	-1200.00 cents	+0.00 cent	+1200.00 cents	+2400.00 cents
+39	Detuning	0.5000	+0.00 cent	-2400.00 cents	-1200.00 cents	+0.00 cent	+1200.00 cents	+2400.00 cents
+40	Grittiness	0.5000	0%	-100%	-50%	0%	50%	100%
+41	Pitch vibrato depth	0.0000	0%	0%	25%	50%	75%	100%
+42	Pitch LFO amount	0.5000	0%	-100%	-50%	0%	50%	100%
+43	Portamento mode	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+44	Monophonic mode	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+45	Portamento / legato time	0.7000	128ms	-1500ms	-203ms	0ms	203ms	1500ms
+46	Velocity / release to portamento / legato time	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+47	Adaptive filter envelope mode	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+48	Filter env attack length	0.0000	0ms	0ms	555ms	3677ms	21235ms	Infinite
+49	Filter env decay length	0.5000	3677ms	0ms	555ms	3677ms	21235ms	Infinite
+50	Filter env attack slope	0.5000	0%	-100%	-50%	0%	50%	100%
+51	Filter env decay slope	0.3500	-30%	-100%	-50%	0%	50%	100%
+52	Filter env amount	0.5000	0%	-100%	-50%	0%	50%	100%
+53	Velocity to filter env amount	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+54	Filter frequency	1.0000	100%	0%	25%	50%	75%	100%
+55	Filter scale	0.0000	Oct	Oct	Oct [landed 0.000]	Oct [landed 0.000]	Hz [landed 1.000]	Hz
+56	Filter width	0.5000	50%	0%	25%	50%	75%	100%
+57	Key to filter frequency	0.7500	100%	-200%	-100%	0%	100%	200%
+58	Filter LFO amount	0.5000	0%	-100%	-50%	0%	50%	100%
+59	Resonance amount	0.0000	0%	0%	25%	50%	75%	100%
+60	Resonance scale	1.0000	Hz	Oct	Oct [landed 0.000]	Oct [landed 0.000]	Hz [landed 1.000]	Hz
+61	Resonance offset / noise length	0.5000	+0.00 cent	-2400.00 cents	-1200.00 cents	+0.00 cent	+1200.00 cents	+2400.00 cents
+62	Resonance self-oscillation	0.0000	0%	0%	25%	50%	75%	100%
+63	Adaptive width	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+64	Track filter frequency motion	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+65	Unison order	0.0000	1	1	3	5	7	9
+66	Unison panning	1.0000	100%	0%	25%	50%	75%	100%
+67	Unison pitch thickness	0.5000	50%	0%	25%	50%	75%	100%
+68	Unison phase	0.5000	50%	0%	25%	50%	75%	100%
+69	Unison variation	0.0000	0%	0%	25%	50%	75%	100%
+70	Unison type	1.0000	Blurred	Classic	Classic [landed 0.000]	Uniform	Blurred [landed 1.000]	Blurred
+71	Phaser mix	0.0000	0%	0%	25%	50%	75%	100%
+72	Phaser scale	0.5000	hz	oct	oct [landed 0.000]	hz	harmonic [landed 1.000]	harmonic
+73	Phaser width	0.5000	50%	0%	25%	50%	75%	100%
+74	Phaser width LFO amount	0.5000	0%	-100%	-50%	0%	50%	100%
+75	Phaser offset	0.5005	180	0	90	180	270	360
+76	Phaser offset LFO amount	0.5000	0%	-100%	-50%	0%	50%	100%
+77	Phaser offset motion speed	0.6875	32:00	-1:00	-16:00	Still	16:00	1:00
+78	Key to phaser offset	0.7500	100%	-200%	-100%	0%	100%	200%
+79	Harmonizer mix	0.0000	0%	0%	25%	50%	75%	100%
+80	Harmonizer width	0.5000	50%	0%	25%	50%	75%	100%
+81	Harmonizer width LFO amount	0.5000	0%	-100%	-50%	0%	50%	100%
+82	Velocity to harmonizer width	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+83	Harmonizer strength	0.2500	25%	0%	25%	50%	75%	100%
+84	Harmonizer type	0.0000	Oct up	Oct up	Oct up +1	Oct up +2	Harm up	Harm up +1
+85	Harmonizer position	1.0000	Final	Pre-filter	Pre-phaser [landed 0.333]	Pre-pluck [landed 0.667]	Pre-pluck [landed 0.667]	Final
+86	LFO shape / source	0.0000	Sine	Sine	Saw [landed 0.231]	Triangle [landed 0.462]	Filter frequency [landed 0.769]	Pitch
+87	Global / retriggered LFO	1.0000	on	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on
+88	LFO attack	0.0000	0%	0%	25%	50%	75%	100%
+89	LFO speed	0.6875	32:00	-1:00	-16:00	Still	16:00	1:00
+90	Chorus type	0.0000	Off	Off	Thick [landed 0.222]	Flanger [landed 0.444]	Modulation [landed 0.778]	Vibration
+91	Chorus mix	0.5000	50%	0%	25%	50%	75%	100%
+92	Delay type	0.0000	Off	Off	Classic [landed 0.333]	Ping-pong [landed 0.667]	Ping-pong [landed 0.667]	Stereoized
+93	Delay input level	0.5000	50%	0%	25%	50%	75%	100%
+94	Delay feedback level	0.3333	33%	0%	25%	50%	75%	100%
+95	Delay time	0.3750	3:00	0:00	2:00	4:00	6:00	8:00
+96	Reverb type	0.0000	Off	Off	Large hall [landed 0.333]	Cathedral	The venue [landed 0.667]	Small studio
+97	Reverb wet level	0.5000	50%	0%	25%	50%	75%	100%
+98	Compression level	0.5000	50%	0%	25%	50%	75%	100%
+99	Velocity to unison pitch thickness	0.0000	off	off	off [landed 0.000]	off [landed 0.000]	on [landed 1.000]	on

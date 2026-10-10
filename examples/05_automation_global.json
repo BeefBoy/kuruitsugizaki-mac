@@ -1,0 +1,28 @@
+{
+ "about": "Automation of FL's global controls. An automation clip has a target and points [beat, value, tension?] counted in beats from the clip's start; it acts where it sits on the playlist. Tempo: value = (bpm - 60) / 120, so 0.5 is 120 BPM and 0.9167 is 170; here it climbs from 120 to 170 over four bars, then a tape stop drops it to 60 inside one bar. Master pitch ({global: main_pitch}): 0.5 is in tune and the knob spans an octave each way (0.25 = -6 semitones); the whole mix slides down a whole tone in the last two bars. The overall fade is the master insert's fader, {mixer: 0, param: vol}. {global: main_vol} also exists and is written, but FL 2025 ignores it: the level did not move, in a render or live.",
+ "format": "compact",
+ "project": {"bpm": 120, "ppq": 96, "title": "05 global automation", "author": "Claude Opus 5.5 (Anthropic), kuruitsugizaki examples"},
+ "instruments": [
+  {"id": "kick", "name": "kick", "kind": "sampler", "path": "%FLStudioFactoryData%/Data/Patches/Packs/Drums/Kicks/Jung Kick.wav", "mixer": 1},
+  {"id": "hat", "name": "hat", "kind": "sampler", "path": "%FLStudioFactoryData%/Data/Patches/Packs/Drums/Hats/909 CH 1.wav", "mixer": 2},
+  {"id": "organ", "name": "organ", "kind": "plugin", "plugin": "Sytrus", "preset": "Organ/Deep", "mixer": 3}
+ ],
+ "automation": [
+  {"id": "tempo", "name": "tempo", "kind": "automation", "target": {"global": "tempo"}, "points": [[0, 0.5], [16, 0.9167], [20, 0.9167], [22, 0.9167], [24, 0.0, 0.6], [24.01, 0.9167], [32, 0.9167]]},
+  {"id": "master pitch", "name": "master pitch", "kind": "automation", "target": {"global": "main_pitch"}, "points": [[0, 0.5], [24, 0.5], [32, 0.4167, 0.3]]},
+  {"id": "master fade", "name": "master fade", "kind": "automation", "target": {"mixer": 0, "param": "vol"}, "points": [[0, 0.8], [24, 0.8], [32, 0.0, 0.3]]}
+ ],
+ "note_cols": ["bar", "beat", "tick", "len", "key", "vel", "inst"],
+ "patterns": [{"id": "pulse", "notes": [
+  [1, 1, 0, 24, "C4", 100, "kick"], [1, 2, 0, 24, "C4", 90, "kick"], [1, 3, 0, 24, "C4", 96, "kick"], [1, 4, 0, 24, "C4", 90, "kick"],
+  [1, 1, 48, 12, "C4", 70, "hat"], [1, 2, 48, 12, "C4", 70, "hat"], [1, 3, 48, 12, "C4", 70, "hat"], [1, 4, 48, 12, "C4", 70, "hat"],
+  [1, 1, 0, 40, "D#4", 90, "organ"], [1, 1, 48, 40, "A#4", 80, "organ"], [1, 2, 0, 40, "F#4", 86, "organ"], [1, 2, 48, 40, "D#5", 80, "organ"],
+  [1, 3, 0, 40, "C#5", 86, "organ"], [1, 3, 48, 40, "F#4", 80, "organ"], [1, 4, 0, 40, "A#4", 86, "organ"], [1, 4, 48, 40, "E4", 80, "organ"]
+ ]}],
+ "clip_cols": ["track", "bar", "beat", "tick", "len", "src", "trim?"],
+ "arrangements": [{"name": "Arrangement", "clips": [
+  [1, 1, 1, 0, 384, "pulse"], [1, 2, 1, 0, 384, "pulse"], [1, 3, 1, 0, 384, "pulse"], [1, 4, 1, 0, 384, "pulse"],
+  [1, 5, 1, 0, 384, "pulse"], [1, 6, 1, 0, 384, "pulse"], [1, 7, 1, 0, 384, "pulse"], [1, 8, 1, 0, 384, "pulse"],
+  [3, 1, 1, 0, 3072, "a0"], [4, 1, 1, 0, 3072, "a1"], [5, 1, 1, 0, 3072, "a2"]
+ ]}]
+}
