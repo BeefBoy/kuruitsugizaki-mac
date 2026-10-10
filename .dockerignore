@@ -1,0 +1,6 @@
+.git/
+.venv/
+tmp/
+projects/examples/
+**/__pycache__/
+kuruitsugizaki.json

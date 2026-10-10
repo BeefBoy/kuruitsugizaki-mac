@@ -1,4 +1,3 @@
-import _winapi
 import json
 import os
 import re
@@ -11,6 +10,12 @@ from mcp.server.mcpserver import MCPServer
 
 import config as cfg
 
+try:
+    import _winapi
+except ImportError:  # not Windows: the file tools work, the live link to FL does not
+    _winapi = None
+
+NO_LIVE = "the live link to FL needs Windows with FL Studio installed"
 ROOT = Path(__file__).resolve().parents[1]
 BOX = ROOT / "tmp" / "bridge"
 MORE_DATA = 234
@@ -177,6 +182,8 @@ def _ensure_fl() -> float | None:
 
 
 def fl(req: dict, timeout: float = 10.0) -> dict:
+    if _winapi is None:
+        return {"ok": False, "error": NO_LIVE}
     try:
         launched = _ensure_fl()
     except RuntimeError as e:
@@ -209,6 +216,8 @@ def config(key: str | None = None, value: str | None = None) -> dict:
 
 @mcp.tool(description="Install FL's controller script into FL's Settings\\Hardware folder (config key fl_hardware) with this folder's bridge path written in, and, unless a MIDI input in FL already has the script, make a loopMIDI port named kuruitsugizaki and assign the script to it in FL's MIDI settings (both live in the registry; FL has to be closed for that part, and the answer's midi entry says when it was not done and what to do by hand). Needed once at setup and again after this folder moves; FL picks it up on its next start.")
 def fl_install() -> dict:
+    if _winapi is None:
+        return {"ok": False, "error": NO_LIVE}
     try:
         hw = cfg.path("fl_hardware")
     except cfg.Missing as e:
@@ -264,6 +273,8 @@ def _live(code: str, timeout: float = 5.0):
 
 
 def _running(image: str) -> bool:
+    if os.name != "nt":
+        return False
     out = subprocess.run(["tasklist", "/FI", f"IMAGENAME eq {image}", "/FO", "CSV", "/NH"], capture_output=True, text=True).stdout
     return f'"{image.lower()}"' in out.lower()
 

@@ -56,6 +56,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `scripts/server.py` | the MCP server: tools, and the live link to FL |
 | `scripts/config.py` | the machine paths, read from `kuruitsugizaki.json` |
 | `setup.bat`, `setup.ps1` | the one-step install (`INSTALL.md`, The short way) |
+| `Dockerfile` | for MCP directories' automated checks: runs the server on Linux, where the file tools work and the live link to FL answers that it needs Windows |
 | `scripts/doctor.py` | `doctor.py [--install] [--claude [config]] [--live]`: one line per requirement of this machine's setup, `ok` or `MISSING` with what to do; `--install` runs `fl_install`, `--claude` adds the server to the Claude desktop app's config, `--live` starts FL and asks it for its API version |
 | `scripts/midisetup.py` | the loopMIDI port and FL's MIDI input setting, both in the registry: reads them, and makes them when no input has the script |
 | `fl/device_kuruitsugizaki.py` | FL controller script; `fl_install` puts it in place |
