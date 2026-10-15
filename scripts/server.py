@@ -419,16 +419,18 @@ def _reload():
 
 
 @mcp.tool(annotations=WRITE, description=(
-    "Write a project document to an .flp file, replacing a file already at path; this is how music gets made. The "
-    "document is the compact form project_read returns (format='compact') or its full form; examples/README.md has one "
-    "per feature. Instruments need state {from: file, channel: n} (a channel copied from any saved project, as "
-    "profile's pointers give) or a plugin by name (plugins lists them) with an optional preset; mixer: n routes them. "
-    "Samples need a path or state. Effects: mixer.effects [{track, slot, plugin or from: {file, track, slot}}]. "
-    "Automation: target {global: tempo} | {mixer: t, param: vol|pan|sep} | {mixer: t, slot: s, param: n} | "
-    "{channel: id, param: n}, points [[beat, value, tension?]]; tempo value = (bpm-60)/120, mixer vol 0.8 = 0 dB. "
-    "Keys like 'D#4' (MIDI 60 = C4), 96 ticks per beat, 4/4. Without open, FL need not run. With open, FL saves the "
-    "project it has open first (so no dialog appears), then opens this one. Returns what it wrote, read back: channels, "
-    "notes per pattern, clips per arrangement, and writer warnings, which are worth reading."))
+    "Write a project document to an .flp file, replacing any file at path. This is how a piece gets made.\n\n"
+    "The document: the compact form project_read returns, or its full form. The field reference is README.md, "
+    "'Project JSON, compact form'; examples/README.md has a working document per feature. Read one before a first write.\n\n"
+    "Sounds:\n"
+    "- an instrument is a plugin by name (see plugins) with an optional preset, or a channel copied from a saved project, "
+    "state {from: file, channel: n}, as profile's pointers give;\n"
+    "- an effect is mixer.effects {track, slot, plugin} or one copied, {track, slot, from: {file, track, slot}}.\n\n"
+    "Units that are easy to get wrong: 96 ticks per beat, 4/4; keys like 'D#4' with MIDI 60 = C4; mixer volume 0.8 = 0 dB; "
+    "a tempo automation value is (bpm - 60) / 120.\n\n"
+    "Without open, FL need not run. With open or play, FL first saves the project it has open (so no dialog appears), "
+    "then opens this one.\n\n"
+    "Returns the file read back (channels, notes per pattern, clips per arrangement) and the writer's warnings; read them."))
 def project_write(doc: Annotated[dict, Field(description="the project document, compact or full")],
                   path: Annotated[str, Field(description="the .flp to write, absolute or relative to the repo; pieces go to projects/music/<piece>.flp")],
                   open: Annotated[bool, Field(description="open it in FL afterwards, launching FL if needed")] = False,
