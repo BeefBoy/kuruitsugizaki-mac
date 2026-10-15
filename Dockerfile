@@ -2,7 +2,7 @@
 # On Linux the file tools work (project_read, project_write, config, test); the live link to FL and
 # fl_install need Windows with FL Studio, so they answer with an error there. To use it, install on
 # Windows: INSTALL.md.
-FROM python:3.12-slim
+FROM python:3.13-slim
 COPY --from=ghcr.io/astral-sh/uv:0.10.4 /uv /usr/local/bin/uv
 WORKDIR /app
 COPY . .
