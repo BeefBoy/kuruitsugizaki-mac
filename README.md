@@ -63,6 +63,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `scripts/flp.py` | `.flp` event codec: parse, serialize (byte-exact), notes, diff |
 | `scripts/project.py` | `.flp` -> full project JSON (round-trips byte-identical) |
 | `scripts/view.py` | compact and summary views, compact -> full |
+| `scripts/style.py` | `style.py <folder> [out]`: the style profile behind `profile` |
 | `scripts/writer.py` | project JSON -> `.flp`, template based |
 | `scripts/automation.py` | automation points (event 234) and targets (event 227) |
 | `scripts/levels.py` | mixer fader and main volume records in event 225 |
@@ -96,6 +97,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `fl_install()` | installs the controller script into FL's Hardware folder with the bridge path written in and, with FL closed and unless an input in FL already has the script, adds a loopMIDI port named `kuruitsugizaki` and assigns the script to it in FL's MIDI settings (`midisetup.py`); the answer's `midi` entry says what was done or what is left to do by hand |
 | `project_read(path, view="compact", patterns=None, arrangements=None, unused=False)` | `.flp` -> JSON. `compact`: rows with pointers, the form `project_write` takes. `summary`: per-pattern stats and a per-track timeline. `full`: exact round-trip form |
 | `project_write(doc, path, open=False, play=None)` | JSON (compact or full) -> `.flp`; `open` loads it in FL (launching FL if needed), `play` = `song` or `pattern` |
+| `profile(folder)` | a person's style from a folder of their `.flp` (read only): tempo, key, form, drum grids per role, chords relative to the key, which instrument plays which role, mixer chains, automation; `favourites/` count three times, `negative/` is kept apart as contrast. Writes `profile.md` (a Read back list to check with the person) and `profile.json` (with `pointers`: the file and channel of each sound, for `project_write` as `{from: file, channel: n}`) to `tmp/profile/<folder>/` |
 | `fl_render(path, reopen=True)` | saves FL's open project, then runs `render.py <path> --close [--reopen]` detached; returns the log path under `tmp/render_logs/` |
 | `fl_transport(action, mode=None, pattern=None)` | play / stop, song / pattern mode |
 | `plugins(query=None)` | every plugin FL has installed, and every instance in the optional library project (see Plugins by name): name, instrument or effect, vendor, format, source, how many presets load by name, whether it has a parameter map |
@@ -104,7 +106,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `fl_exec(code, out=None, timeout=10)`, `fl_call(fn, args)`, `fl_probe()` | raw access to FL's Python API inside the running FL; `fl_exec` returns what the code assigns to `result`, or writes it as JSON to `out` (also when `result` is `{'__out__': path, 'data': value}`) |
 | `test()` | returns `ok` |
 
-`project_read`, `project_write`, `plugins`, `presets` and `params` reload the codec modules on every call; a change to `server.py`, `flex.py` or `diva.py` needs an MCP restart, and a new tool reaches a client only in a session started after it.
+`project_read`, `project_write`, `profile`, `plugins`, `presets` and `params` reload the codec modules on every call; a change to `server.py`, `flex.py` or `diva.py` needs an MCP restart, and a new tool reaches a client only in a session started after it.
 
 ## The template
 

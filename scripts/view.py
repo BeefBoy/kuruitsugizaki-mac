@@ -96,6 +96,8 @@ def summarize(doc: dict) -> dict:
         tracks = defaultdict(list)
         end = 0
         for c in sorted(a["clips"], key=lambda c: (c["track"], tick(c["at"]))):
+            if tick(c["at"], ppq) >= PARKED:
+                continue
             src = c.get("pattern") or c.get("audio") or c.get("automation") or c.get("channel")
             s = tick(c["at"], ppq)
             e = s + c["len"]
@@ -123,7 +125,7 @@ def read(path: str, view: str = "summary", patterns: list[str] | None = None, ar
     return doc
 
 
-PARKED = 1 << 31
+PARKED = 1 << 30  # FL parks clips near 2**31 ticks, some just under it (2**31 - 128 in six of one person's projects)
 NOTE_COLS = ["bar", "beat", "tick", "len", "key", "vel", "inst"]
 CLIP_COLS = ["track", "bar", "beat", "tick", "len", "src", "trim?"]
 

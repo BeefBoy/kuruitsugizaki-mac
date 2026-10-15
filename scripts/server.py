@@ -369,7 +369,7 @@ def project_read(path: str, view: str = "compact", patterns: list[str] | None = 
 def _reload():
     import importlib
     import sys as _sys
-    for name in ("config", "flp", "automation", "levels", "sylenth1", "serum2", "presets", "mixerfx", "project", "vst3state", "library", "writer", "view"):
+    for name in ("config", "flp", "automation", "levels", "sylenth1", "serum2", "presets", "mixerfx", "project", "vst3state", "library", "writer", "view", "style"):
         if name in _sys.modules:
             importlib.reload(_sys.modules[name])
 
@@ -471,6 +471,17 @@ def params(plugin: str, query: str | None = None) -> dict:
 @mcp.tool(description="FL transport: action 'play' or 'stop'; mode 'song' or 'pattern'; pattern number to select in pattern mode.")
 def fl_transport(action: str, mode: str | None = None, pattern: int | None = None) -> dict:
     return _transport(action, mode, pattern)
+
+
+@mcp.tool(description="Profile a person's style from a folder of their .flp projects (read only; subfolders included): tempo, key, form, a drum grid per role, chords relative to the key, which instrument plays which role, master and insert chains, what gets automated. Files under favourites/ count three times, files under negative/ are kept apart as contrast. Returns profile.md (start with its Read back list: read it to the person and let them strike lines) and the path of profile.json, whose aggregate.pointers name the file and channel of each sound, usable in project_write as an instrument's state {from: file, channel: n}. Written to tmp/profile/<folder name>/.")
+def profile(folder: str) -> dict:
+    _reload()
+    import style
+    try:
+        r = style.build(folder)
+    except (ValueError, OSError) as e:
+        return {"ok": False, "error": str(e)}
+    return {"md": r["md"], "json": r["json"], "read": r["read"], "not_read": r["not_read"], "profile": r["profile"]}
 
 
 def main():

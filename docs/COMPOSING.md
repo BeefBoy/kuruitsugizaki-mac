@@ -13,6 +13,7 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 
 Write in stages and check each before the next, so a wrong sound or groove is caught cheaply:
 
+0. **Whose piece**: when the person has projects of their own, run `profile` on their folder first and read its Read back list to them; what they keep sets the tempo, key, form, drum grid and sounds below, and its pointers bring their own sounds in without decoding them. Ask for favourites (a `favourites/` folder) when they can name any.
 1. **The piece**: tempo, tonal centre, a form sketch: sections, lengths, where each switch happens and what kind (§7).
 2. **Sounds**: pick from the catalogs by role, render a short test, measure each one's sounding octave and tuning (§8).
 3. **Harmony and lines** (§3).
