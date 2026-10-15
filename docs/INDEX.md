@@ -1,28 +1,40 @@
-# kuruitsugizaki: index
+# kuruitsugizaki
 
-An MCP server that reads and writes FL Studio `.flp` and drives a running FL, so a model can write music. The `.flp` format is reverse-engineered here and checked by a byte-identical round trip; projects are written from templates FL saved; the live link is a named pipe into FL's controller script. Renders come back as numbers and images, not sound. FL Studio is the first integration; the harness is meant to reach more software later.
+A music MCP for FL Studio: it writes whole projects (`.flp`) and drives a running FL, so a model can make music for
+someone. The model cannot hear. A render comes back as numbers and pictures; the person listens, and their ears are
+the only verdict.
 
-This file points; it does not restate. Nothing behind a pointer is in context until that file is opened.
+## Writing a piece
 
-## First run
+**1. `COMPOSING.md`.** How pieces here have been written: the order of work, what went wrong in earlier pieces and
+the rules that came out of it, measured mixing levels and widths, how to read a render. Earlier experience, not law.
 
-Paths on the user's machine (FL, loopMIDI, FL's Hardware folder, preset libraries) are not known in advance. Call `config` first. For every key a task needs that is not set, ask the user where that thing is on their machine and set it with `config`; never guess a path, and never search their disk for it without asking. A tool that hits an unset key answers with the key and what it is: ask, set, call again. Then `fl_install`, and the FL-side steps in `../README.md`, Setup.
+**2. Preference.** Read `compositions/PREFERENCE.md`: what the person likes and rejects, in their words, gathered
+from every verdict they have given.
 
-## Docs
+**3. Their projects.** Open the ones that matter and read them in full (`project_read`): their drum programming,
+their lines, how a track is built from start to end. `profile` lists which of their projects hold what, so you know
+which to open.
 
-| file | charter |
-|---|---|
-| `../INSTALL.md` | what the user does by hand to install it, and what to check when the live link fails |
-| `../README.md` | the deliverable: setup, tools, the template, the effect library, the compact JSON format, what is not written yet |
-| `../examples/README.md` | a working document for each part of the format, every automation target's value scale, and a full piece written as a script; read before writing a first piece |
-| `MECHANICS.md` | how a piece is built through the tools: the piece script, positions, units, samples, mixer, sounds, effects, the write / open / save / render loop. Read before writing a piece |
-| `COMPOSING.md` | how to write a piece: a method, stage by stage |
-| `DRUMS.md` | drum-writing research from outside sources, measured vs opinion tagged |
-| `FX.md` | effects' automatable parameters as FL exposes them, with the measured value-to-unit mappings |
-| `FLP.md` | the `.flp` format as decoded, each fact with the evidence it rests on; for work on the reader and writer, not needed to write a piece |
-| `ARCHITECTURE.md` | decisions and their reasons; for work on the server |
+**4. What to make sound with.** Every plugin on the machine (`plugins`, `presets`); an instrument channel from one of
+their projects, copied with its sound (`state: {from, channel}`); their sample library; FL's factory content. Effects
+are chosen and set for this piece.
 
-## Where work goes
+**5. `MECHANICS.md`.** How the harness builds a piece: the piece script, positions, units, samples, mixer, effects,
+automation, and the write / open / render loop. `../examples/README.md` has one small working document per feature
+and every automation scale; `../README.md`, "Project JSON, compact form", has every field.
 
-- A piece: `compositions/<piece>.py` writes `compositions/<piece>.json`, built to `projects/music/<piece>.flp`; why each part is where it is goes in `compositions/<piece>.md`. Both folders are the user's and git ignores them.
-- Scratch: `tmp/`, ignored.
+**6. The work.** A part at a time, the way a producer works by ear: write it, render it, look at what it actually
+does, change it, go on. The render is your only ear: where each note really sounds, what is crowded or empty, whether
+a section lifts or sits flat, how wide and loud it is. Numbers cannot tell a dull melody or a lifeless drum part from
+a good one; say what you could not judge rather than calling it done.
+
+**7. Where it goes.** `compositions/<piece>.py` writes `compositions/<piece>.json`, built to
+`projects/music/<piece>.flp`; both folders are the person's and git ignores them. `compositions/<piece>.md`, written
+as you go: each part, what it is, where it came from, what else was tried, what a render changed, and what you did
+not check; their verdict goes at its end. Play it for them when it is done: the mp3 path, and the project open and
+playing in FL. Scratch goes in `tmp/`.
+
+## Work on the server itself, not on music
+
+`FLP.md` (the format) and `ARCHITECTURE.md` (why it is built this way).
