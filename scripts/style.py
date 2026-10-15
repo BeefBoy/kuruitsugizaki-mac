@@ -1,4 +1,4 @@
-"""A list of a person's projects from a folder of .flp: tempo, key, arrangement length and FL version of each, so a
+"""A list of a person's projects from a folder of .flp: tempo, key and arrangement length of each, so a
 model knows which projects to open and read in full. Reads only; writes profile.md and profile.json to
 tmp/profile/<folder name>/.
 
@@ -64,7 +64,7 @@ def drum(c: dict) -> bool:
 def one(path: Path, root: Path, any_fav: bool) -> dict:
     raw = path.read_bytes()
     d = project.export(str(path))
-    out = {"file": path.relative_to(root).as_posix(), "fl": d["project"].get("fl_version"), "bpm": d["project"].get("bpm"),
+    out = {"file": path.relative_to(root).as_posix(), "bpm": d["project"].get("bpm"),
            "flags": [] if flp.serialize(flp.parse(raw)) == raw else ["does not round-trip"]}
     chans = {c["id"]: c for c in d["instruments"] + d["samples"]}
     pcs = [0.0] * 12
@@ -88,12 +88,12 @@ def one(path: Path, root: Path, any_fav: bool) -> dict:
 
 def markdown(rows: list[dict], errors: dict, root: Path) -> str:
     L = [f"# Projects in {root.name}", "", f"{len(rows)} read" + (f", {len(errors)} not read" if errors else "") + ".", "",
-         "## Projects", "", "| file | weight | BPM | key (fit) | bars | FL |", "|---|---|---|---|---|---|"]
+         "## Projects", "", "| file | weight | BPM | key (fit) | bars |", "|---|---|---|---|---|"]
     for r in sorted(rows, key=lambda r: (-r["weight"], r["file"])):
         flag = f" ({'; '.join(r['flags'])})" if r["flags"] else ""
-        L.append(f"| {r['file']}{flag} | {r['weight']:g} | {r['bpm']:g} | {r['key']} ({r['key_fit']}) | {r['bars']} | {r['fl']} |")
+        L.append(f"| {r['file']}{flag} | {r['weight']:g} | {r['bpm']:g} | {r['key']} ({r['key_fit']}) | {r['bars']} |")
     for f, e in sorted(errors.items()):
-        L.append(f"| {f} (not read: {e}) | | | | | |")
+        L.append(f"| {f} (not read: {e}) | | | | |")
     return "\n".join(L) + "\n"
 
 
