@@ -1,10 +1,10 @@
 # Composing: how to write a piece
 
-A method from an empty project to a rendered piece. Mechanics (tools, the piece script, positions, units, samples, effects, render) are in `MECHANICS.md`; drum craft from outside sources in `DRUMS.md`. Nothing here is a law: there is no wrong music, only pieces that went wrong or right for the person listening. Their verdict outranks all of this.
+A method from an empty project to a rendered piece. Mechanics (tools, the piece script, positions, units, samples, effects, render) are in `MECHANICS.md`; drum craft from outside sources in `DRUMS.md`. Nothing here is a law. Their verdict outranks all of this.
 
 ## 0. Stance
 
-- **Write from nothing.** No existing project as a base, no channel copied for its sound, no old composition script read to learn from. A copied base drags in another piece's mixer and choices; a copied script anchors the new piece on the last one.
+- **Write from nothing.** Unless asked otherwise. No existing project as a base, no channel copied for its sound, no old composition script read to learn from. A copied base drags in another piece's mixer and choices; a copied script anchors the new piece on the last one.
 - **Decide every placement.** A generator is a tool; a part nobody decided is not a part. A drum hit without a reason should not be there (§4).
 - **Measure to know, never to correct.** A render says where a note sounds and how wide and loud each section is. Detune, an octave accident, a peak past 0 dBFS are choices once known; breaking a rule never makes something wrong.
 - **Write a whole piece**: one to two minutes with a form, not an 8-bar loop.
