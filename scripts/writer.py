@@ -144,8 +144,9 @@ def channel_block(c: dict, index: int) -> list[flp.Event]:
         at20 = max((i for i, e in enumerate(out) if e.id == 20), default=len(out) - 1)
         out.insert(at20 + 1, flp.Event(196, utf16(c["path"])))
     for e in out:
-        if e.id == 203 and c.get("name"):
-            e.data = utf16(c["name"])
+        if e.id == 203 and (c.get("name") or c.get("id")):
+            # without a name a channel kept its template's: every unnamed automation clip read "Tempo" in FL
+            e.data = utf16(c.get("name") or c["id"])
         if e.id == 196 and c.get("path"):
             e.data = utf16(c["path"])
         if e.id == 104 and "mixer" in c:
@@ -229,6 +230,8 @@ def build(doc: dict) -> tuple[bytes, list[str]]:
             continue
         if "target_id" in c:
             tid = int(str(c["target_id"]), 16) if isinstance(c["target_id"], str) else int(c["target_id"])
+            if auto.PLUG20 <= tid < 0x30000000:
+                tid += auto.PLUG - auto.PLUG20
         elif "target" in c:
             tid = auto.encode_target(c["target"], index)
         else:

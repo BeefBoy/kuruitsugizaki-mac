@@ -14,6 +14,7 @@ KINDS = {0: "sampler", 2: "plugin", 4: "audio", 5: "automation"}
 PITCH = "C C# D D# E F F# G G# A A# B".split()
 NOTE_FIELDS = ("pan", "fine", "release", "modx", "mody", "flags", "group", "u1", "midich")
 PATTERN_BASE = 0x5000
+ITEM = 80
 TEMPLATES = config.get("template")
 _item_tpl = {}
 
@@ -23,8 +24,8 @@ def item_templates() -> dict:
         p = flp.parse(Path(TEMPLATES).read_bytes())
         for e in p.events:
             if e.id == 233:
-                for i in range(0, len(e.data), 80):
-                    r = e.data[i:i + 80]
+                for i in range(0, len(e.data), ITEM):
+                    r = e.data[i:i + ITEM]
                     kind = "pattern" if struct.unpack_from("<H", r, 6)[0] >= PATTERN_BASE else "channel"
                     _item_tpl.setdefault(kind, r)
     return _item_tpl
@@ -55,6 +56,12 @@ def at(t: int, ppq: int, beats: int = 4) -> list[int]:
     bar, r = divmod(t, ppq * beats)
     beat, tick = divmod(r, ppq)
     return [bar + 1, beat + 1, tick]
+
+
+def item_size(version: str | None) -> int:
+    """Bytes per playlist item (event 233): FL 20 writes the first 32 bytes of the FL 25 layout."""
+    major = int(version.split(".")[0]) if version else 25
+    return 32 if major < 21 else ITEM
 
 
 def wrapper(data: bytes) -> dict:
@@ -104,7 +111,7 @@ def export(path: str) -> dict:
         sample = next((text(e) for e in blk if e.id == 196), None)
         if sample:
             ch["path"] = sample
-        route = next((u(e) for e in blk if e.id == 104), None)
+        route = next((u(e) for e in blk if e.id == 104), next((u(e) for e in blk if e.id == 22), None))
         if route is not None:
             ch["mixer"] = route
         channels.append(ch)
@@ -161,16 +168,22 @@ def export(path: str) -> dict:
             pt["note_event"] = False
         end = max((n["at"][0] - 1) * 4 * ppq + (n["at"][1] - 1) * ppq + n["at"][2] + n["len"] for n in pt["notes"]) if pt["notes"] else 0
         pt["len_from_notes"] = end
+    version = next((e.data[:-1].decode() for e in ev if e.id == 199), None)
+    size = item_size(version)
     arrangements, arr = [], None
     for n, e in enumerate(ev[first_arr:], first_arr):
         if e.id == 241:
             arr = {"name": text(e), "clips": []}
             arrangements.append(arr)
         elif e.id == 233 and arr is not None:
-            for i in range(0, len(e.data), 80):
-                r = e.data[i:i + 80]
+            if len(e.data) % size:
+                raise ValueError(f"{path}: FL {version} playlist is {len(e.data)} bytes, not a multiple of {size}-byte items")
+            for i in range(0, len(e.data), size):
+                r = e.data[i:i + size]
                 pos, base, ref, length, track = struct.unpack_from("<IHHII", r)
-                clip = {"track": 500 - track, "at": at(pos, ppq), "len": length, "item": struct.unpack_from("<I", r, 32)[0]}
+                clip = {"track": 500 - track, "at": at(pos, ppq), "len": length}
+                if size == ITEM:
+                    clip["item"] = struct.unpack_from("<I", r, 32)[0]
                 if ref >= PATTERN_BASE:
                     clip["pattern"] = f"p{ref - PATTERN_BASE}"
                     tpl = item_templates()["pattern"]
@@ -187,7 +200,7 @@ def export(path: str) -> dict:
                 t16[3] = (t16[3] & 0x7F) | (r[19] & 0x80)
                 if r[16:24] != t16:
                     clip["raw16"] = r[16:24].hex()
-                if r[36:80] != tpl[36:80]:
+                if size == ITEM and r[36:80] != tpl[36:80]:
                     clip["raw36"] = r[36:80].hex()
                 if ref >= PATTERN_BASE and r[24:32] != tpl[24:32]:
                     clip["raw24"] = r[24:32].hex()
@@ -212,7 +225,7 @@ def export(path: str) -> dict:
             mixer.append(fx)
     return {
         "project": {"source": path, "bpm": next((u(e) / 1000 for e in ev if e.id == 156), None), "ppq": ppq,
-                    "time_sig": "unmapped (4/4 assumed for bar math)", "fl_version": next((e.data[:-1].decode() for e in ev if e.id == 199), None),
+                    "time_sig": "unmapped (4/4 assumed for bar math)", "fl_version": version,
                     **{k: text(e) for e in ev[:starts[0] if starts else first_arr] for i, k in flp.META.items() if e.id == i and text(e)}},
         "instruments": [c for c in channels if c["kind"] in ("sampler", "plugin")],
         "samples": [c for c in channels if c["kind"] == "audio"],

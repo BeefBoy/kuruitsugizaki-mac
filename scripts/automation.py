@@ -12,6 +12,7 @@ TAIL = bytes.fromhex(
 )
 LINK = bytes.fromhex("00000000000000000000000008000000d5010000")
 PLUG, MIXER_VOL, MIXER_PAN, MIXER_SEP = 0x70000000, 0x1FC0, 0x1FC1, 0x1FC2
+PLUG20 = 0x20000000  # FL 20's mixer base; only master volume measured (walk.flp)
 CHAN = {"vol": 0x0, "pan": 0x1, "fcut": 0x2, "fres": 0x3, "pitch": 0x4, "mute": 0x7, "fxtrack": 0x8}
 GLOBAL = {"tempo": 0x40000005, "main_vol": 0x40000000, "main_pitch": 0x40000002}
 
@@ -66,8 +67,9 @@ def decode_target(eid: int, channel_ids: dict) -> dict:
     for k, v in GLOBAL.items():
         if eid == v:
             return {"global": k}
-    if PLUG <= eid < 0xF0000000:
-        rel = eid - PLUG
+    base = PLUG if PLUG <= eid < 0xF0000000 else PLUG20 if PLUG20 <= eid < 0x30000000 else None
+    if base is not None:
+        rel = eid - base
         track, slot, low = rel >> 22, (rel >> 16) & 0x3F, rel & 0xFFFF
         if low >= 0x8000:
             return {"mixer": track, "slot": slot, "param": low - 0x8000}
