@@ -1,10 +1,6 @@
 """A list of a person's projects from a folder of .flp: tempo, key and arrangement length of each, so a
 model knows which projects to open and read in full. Reads only; writes profile.md and profile.json to
 tmp/profile/<folder name>/.
-
-Weight: files under a favourites/ (favorites/, fav/) folder 3; files under negative/ (bad/, hate/) 0. Without
-favourites, 1, plus 0.5 each for 32 bars or more of arrangement, a render (.wav/.mp3) beside it, and a name that reads
-as a later version (v2, final, _3).
 """
 import json
 import math
@@ -17,7 +13,6 @@ import project
 from view import PARKED, midi, tick
 
 BAR = 384
-FAV, NEG = {"favourites", "favorites", "fav"}, {"negative", "bad", "hate"}
 KITS = {"FPC", "Addictive Drums 2", "Kickstart 2", "Battery 4", "Fruity slicer", "Slicex"}
 DRUM = r"kick|kck|\bbd\b|bassdrum|808|snare|snr|\bsd\b|\brim|clap|clp|\b[foc]?hats?\b|hihat|hi hat|\bhh\b|\boh\b|\bch\b|shaker|crash|\bride\b|cymbal|perc|\btoms?\b|conga|bongo"
 PROFILES = {  # Krumhansl-Kessler
@@ -25,18 +20,6 @@ PROFILES = {  # Krumhansl-Kessler
     "minor": [6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17],
 }
 PC = "C C# D D# E F F# G G# A A# B".split()
-
-
-def weight_of(path: Path, root: Path, bars: float, any_fav: bool) -> float:
-    parts = {p.lower() for p in path.relative_to(root).parts[:-1]}
-    if parts & NEG:
-        return 0.0
-    if any_fav:
-        return 3.0 if parts & FAV else 1.0
-    w = 1.0 + 0.5 * (bars >= 32)
-    w += 0.5 * any(path.with_suffix(s).exists() for s in (".wav", ".mp3"))
-    w += 0.5 * bool(re.search(r"v\d|final|_\d+$", path.stem.lower()))
-    return w
 
 
 def key_of(pcs: list[float]) -> tuple[str, float]:
@@ -61,7 +44,7 @@ def drum(c: dict) -> bool:
     return c.get("kind") in ("sampler", "audio") and bool(re.search(DRUM, name))
 
 
-def one(path: Path, root: Path, any_fav: bool) -> dict:
+def one(path: Path, root: Path) -> dict:
     raw = path.read_bytes()
     d = project.export(str(path))
     out = {"file": path.relative_to(root).as_posix(), "bpm": d["project"].get("bpm"),
@@ -82,18 +65,17 @@ def one(path: Path, root: Path, any_fav: bool) -> dict:
     end = max((tick(c["at"]) + c["len"] for c in clips if c not in bad), default=0)
     out["bars"] = math.ceil(end / BAR)
     out["path"] = str(path.resolve())
-    out["weight"] = weight_of(path, root, out["bars"], any_fav)
     return out
 
 
 def markdown(rows: list[dict], errors: dict, root: Path) -> str:
     L = [f"# Projects in {root.name}", "", f"{len(rows)} read" + (f", {len(errors)} not read" if errors else "") + ".", "",
-         "## Projects", "", "| file | weight | BPM | key (fit) | bars |", "|---|---|---|---|---|"]
-    for r in sorted(rows, key=lambda r: (-r["weight"], r["file"])):
+         "## Projects", "", "| file | BPM | key (fit) | bars |", "|---|---|---|---|"]
+    for r in sorted(rows, key=lambda r: r["file"].lower()):
         flag = f" ({'; '.join(r['flags'])})" if r["flags"] else ""
-        L.append(f"| {r['file']}{flag} | {r['weight']:g} | {r['bpm']:g} | {r['key']} ({r['key_fit']}) | {r['bars']} |")
+        L.append(f"| {r['file']}{flag} | {r['bpm']:g} | {r['key']} ({r['key_fit']}) | {r['bars']} |")
     for f, e in sorted(errors.items()):
-        L.append(f"| {f} (not read: {e}) | | | | |")
+        L.append(f"| {f} (not read: {e}) | | | |")
     return "\n".join(L) + "\n"
 
 
@@ -102,11 +84,10 @@ def build(folder: str, out_dir: str | None = None) -> dict:
     files = sorted(root.rglob("*.flp"))
     if not files:
         raise ValueError(f"no .flp under {root}")
-    any_fav = any({p.lower() for p in f.relative_to(root).parts[:-1]} & FAV for f in files)
     rows, errors = [], {}
     for f in files:
         try:
-            rows.append(one(f, root, any_fav))
+            rows.append(one(f, root))
         except Exception as e:
             errors[f.relative_to(root).as_posix()] = repr(e)[:200]
     out = Path(out_dir) if out_dir else Path(__file__).resolve().parent.parent / "tmp" / "profile" / root.name

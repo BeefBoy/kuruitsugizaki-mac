@@ -558,8 +558,7 @@ def fl_transport(action: Annotated[str, Field(description="'play' or 'stop'")],
 @mcp.tool(annotations=LIVE, description=(
     "List a person's projects from a folder of their .flp files; for one project's contents use project_read. Reads "
     "every .flp under the folder, subfolders included, and changes none of them; FL need not run; about 2 s for 80 "
-    "projects. Files "
-    "under favourites/ weigh 3, files under negative/ 0. Returns a table of the projects: weight, tempo, key, "
+    "projects. Returns a table of the projects: tempo, key, "
     "arrangement length in bars, so you know which to open and read in full with project_read; it "
     "decides nothing. Also written as profile.md and profile.json to tmp/profile/<folder name>/. Projects that fail to "
     "read are listed, not fatal; a folder with no .flp returns {ok: false, error}."))
