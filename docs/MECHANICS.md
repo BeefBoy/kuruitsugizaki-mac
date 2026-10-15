@@ -1,6 +1,6 @@
 # Writing a piece: the mechanics
 
-How a piece is built through the tools. How to work with the person is `COMPOSING.md`, the compact JSON fields `../README.md`. Nothing below is taste.
+How a piece is built through the tools. How to write is `COMPOSING.md`, drum craft `DRUMS.md`, the compact JSON fields `../README.md`. Nothing below is taste.
 
 Learn the plumbing here, not from an old composition script: a script carries its piece's musical choices along with its plumbing, and reading it anchors the next piece on the last one.
 
@@ -119,7 +119,7 @@ A position is the beat it belongs to plus a fraction of a beat, never a tick cou
 | `P(4, 1, 6)` | the first 16th-triplet step after beat 4 |
 | `P(2, 1, 8)` | a 32nd after beat 2 |
 
-Written so, the denominator says how fine the subdivision is: 1 the beat, 2 the "and", 4 the 16ths, anything finer between them. `at(bar, p)` turns bar plus position into absolute ticks for the helpers; nothing is typed in absolute ticks by hand.
+Written so, the denominator names the tier a hit sits on (`COMPOSING.md` §2): 1 the beat, 2 the "and", 4 the 16ths, anything finer the off-beat tiers. `at(bar, p)` turns bar plus position into absolute ticks for the helpers; nothing is typed in absolute ticks by hand.
 
 ## Units
 
@@ -163,7 +163,7 @@ Catalogs, one row per preset, built into `tmp/` from the library folders in `con
 
 Run them from the repo root with `.venv/Scripts/python scripts/<script>`. Choose from these, not from an old script.
 
-**Before writing a range, know the preset's transpose and tuning**: several presets sound one or two octaves below the written note, and Sytrus `Bass/Sub bass` three (written D#4 sounds D#1). Check the lowest partial in a one-note render. The render log says how much of the energy sits below 20 Hz and warns over 5%: that is a sound written octaves too low (one piece carried 16-18% in its drops; finished mixes of a user's ran 0-2.6%).
+**Before writing a range, know the preset's transpose and tuning** (`COMPOSING.md` §8): several presets sound one or two octaves below the written note, and Sytrus `Bass/Sub bass` three (written D#4 sounds D#1). Check the lowest partial in a one-note render. The render log says how much of the energy sits below 20 Hz and warns over 5%: that is a sound written octaves too low (one piece carried 16-18% in its drops; finished mixes of a user's ran 0-2.6%).
 
 **A channel copied with `state: {from, channel}` arrives switched on**, even when it was muted in its source project; many saved projects have muted channels. `muted: true` on the instrument keeps it off.
 
@@ -185,7 +185,7 @@ Any project the user saved in FL is a library too: `project_read` with `view="su
 
 **Sidechain:** route the trigger insert to the ducked one at level 0, `mixer.routes: [{"from": 1, "to": 4, "level": 0.0}]`, and copy the 3/0 limiter into the ducked insert's first slot. `"on": false` removes a route.
 
-**Master limiter:** the 2/0 limiter into master slot 9. Past 0 dBFS is allowed when chosen.
+**Master limiter:** the 2/0 limiter into master slot 9. Past 0 dBFS is allowed as a sound (`COMPOSING.md` §9).
 
 **Faders:** `mixer.volume: {insert: value}`; `main_volume` 0.8 is the template's.
 
