@@ -64,6 +64,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `scripts/project.py` | `.flp` -> full project JSON (round-trips byte-identical) |
 | `scripts/view.py` | compact and summary views, compact -> full |
 | `scripts/style.py` | `style.py <folder> [out]`: the style profile behind `profile` |
+| `scripts/selftest.py` | what CI runs, no FL needed: templates round-trip, a project from shipped parts builds and reads back, profile, the server's tool list; on Windows with FL also every example |
 | `scripts/writer.py` | project JSON -> `.flp`, template based |
 | `scripts/automation.py` | automation points (event 234) and targets (event 227) |
 | `scripts/levels.py` | mixer fader and main volume records in event 225 |
@@ -104,7 +105,6 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `presets(plugin, query=None, limit=200)` | a library plugin's preset ids, filtered by words; the id goes into `project_write` as `preset` |
 | `params(plugin, query=None)` | a library plugin's parameters from `docs/params/`: index (for automation targets), name, saved value and display, and FL's display at 0, .25, .5, .75 and 1 where swept |
 | `fl_exec(code, out=None, timeout=10)`, `fl_call(fn, args)`, `fl_probe()` | raw access to FL's Python API inside the running FL; `fl_exec` returns what the code assigns to `result`, or writes it as JSON to `out` (also when `result` is `{'__out__': path, 'data': value}`) |
-| `test()` | returns `ok` |
 
 `project_read`, `project_write`, `profile`, `plugins`, `presets` and `params` reload the codec modules on every call; a change to `server.py`, `flex.py` or `diva.py` needs an MCP restart, and a new tool reaches a client only in a session started after it.
 

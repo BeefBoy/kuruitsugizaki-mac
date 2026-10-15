@@ -5,8 +5,11 @@ import subprocess
 import threading
 import time
 from pathlib import Path
+from typing import Annotated
 
 from mcp.server.mcpserver import MCPServer
+from mcp.types import ToolAnnotations
+from pydantic import Field
 
 import config as cfg
 
@@ -23,6 +26,10 @@ BOOT_WAIT = 45.0
 BOOT_GIVEUP = 240.0
 
 mcp = MCPServer("kuruitsugizaki")
+READ = ToolAnnotations(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=False)
+LIVE = ToolAnnotations(read_only_hint=False, destructive_hint=False, idempotent_hint=True, open_world_hint=False)
+RAW = ToolAnnotations(read_only_hint=False, destructive_hint=True, idempotent_hint=False, open_world_hint=False)
+WRITE = ToolAnnotations(read_only_hint=False, destructive_hint=True, idempotent_hint=True, open_world_hint=False)
 
 
 class Link:
@@ -197,13 +204,13 @@ def fl(req: dict, timeout: float = 10.0) -> dict:
     return res
 
 
-@mcp.tool()
-def test() -> str:
-    return "ok"
-
-
-@mcp.tool(description="Paths on this machine the server needs. No arguments: every key, its value and whether that path exists. key and value: set one. When a tool answers that a key is not set, ask the user where that thing is on their machine and set it here; never guess a path.")
-def config(key: str | None = None, value: str | None = None) -> dict:
+@mcp.tool(annotations=LIVE, description=(
+    "The paths on this machine the server needs (FL, loopMIDI, FL's Hardware folder, preset libraries), stored in "
+    "kuruitsugizaki.json. Call it first in a new install, and whenever another tool answers that a key is not set. "
+    "No arguments: every key with its value or the path detected for it, and whether that path exists. key alone: that "
+    "key. key and value: set it. Never guess a path or search the disk for one: ask the user where it is, then set it."))
+def config(key: Annotated[str | None, Field(description="a key name, as the no-argument call lists them, e.g. 'fl_exe'")] = None,
+           value: Annotated[str | None, Field(description="the path to set for key; omit to read the key")] = None) -> dict:
     if key is None:
         return {"file": str(cfg.FILE), "keys": cfg.status()}
     if key not in cfg.KEYS:
@@ -214,7 +221,16 @@ def config(key: str | None = None, value: str | None = None) -> dict:
     return {"ok": True, key: cfg.status()[key]}
 
 
-@mcp.tool(description="Install FL's controller script into FL's Settings\\Hardware folder (config key fl_hardware) with this folder's bridge path written in, and, unless a MIDI input in FL already has the script, make a loopMIDI port named kuruitsugizaki and assign the script to it in FL's MIDI settings (both live in the registry; FL has to be closed for that part, and the answer's midi entry says when it was not done and what to do by hand). Needed once at setup and again after this folder moves; FL picks it up on its next start.")
+@mcp.tool(annotations=WRITE, description=(
+    "Set up the live link to FL. Needed once per install, and again after this folder moves. Close FL first. "
+    "It does two things: "
+    "1) writes FL's controller script into FL's Settings\\Hardware folder (config key fl_hardware), with this folder's "
+    "bridge path in it, replacing an older copy; "
+    "2) unless a MIDI input in FL already has the script, makes a loopMIDI port named kuruitsugizaki and assigns the "
+    "script to it in FL's MIDI settings. Both live in the registry, which FL rewrites when it closes; if FL was open, "
+    "the answer's midi entry says so and what to do by hand. "
+    "Returns {ok, installed, bridge, changed, midi, next}. Then start FL and call fl_probe to see the script answer. "
+    "Windows with FL Studio only."))
 def fl_install() -> dict:
     if _winapi is None:
         return {"ok": False, "error": NO_LIVE}
@@ -237,18 +253,35 @@ def fl_install() -> dict:
                     "In FL: Options > MIDI settings, select the loopMIDI input port, set its controller type to kuruitsugizaki. Restart FL if it was running."}
 
 
-@mcp.tool(description="Report FL's scripting API version, its embedded Python version, FL's pid and the pipe handle it holds.")
+@mcp.tool(annotations=LIVE, description=(
+    "Check the live link to FL: returns FL's scripting API version, its embedded Python version, FL's pid and the pipe "
+    "handle it holds, or an error saying what is missing. Call it first when a live tool (fl_exec, fl_call, "
+    "fl_transport, project_write with open) fails, and after fl_install. Launches loopMIDI and FL when they are not "
+    "running (launched_fl_seconds says how long FL took). Reads nothing from the project. Windows with FL Studio only."))
 def fl_probe() -> dict:
     return fl({"op": "probe"})
 
 
-@mcp.tool(description="Call one FL scripting API function inside the running FL, e.g. fn='plugins.getParamName', args=[0, 5, -1]. Returns {ok, value} or {ok: false, error}.")
-def fl_call(fn: str, args: list | None = None) -> dict:
+@mcp.tool(annotations=RAW, description=(
+    "Call one function of FL's scripting API inside the running FL and return what it returns: {ok, value} or "
+    "{ok: false, error}. For a single read or change, e.g. a parameter name or a mixer level of the open project. Use "
+    "fl_exec for several calls or logic; use project_read and project_write for anything the .flp file holds, which "
+    "need no FL. A setter changes the open project as an edit by hand would; nothing is saved. Launches FL if needed. "
+    "Windows with FL Studio only."))
+def fl_call(fn: Annotated[str, Field(description="module.function as FL's API names it, e.g. 'plugins.getParamName'")],
+            args: Annotated[list | None, Field(description="its positional arguments, e.g. [0, 5, -1]")] = None) -> dict:
     return fl({"op": "call", "fn": fn, "args": args or []})
 
 
-@mcp.tool(description="Run Python inside the running FL's embedded interpreter; FL modules are importable there. Assign to `result` to return a value. out: a path (relative to the repo) to write the result to as JSON instead of returning it, for large reads; the same happens when `result` is {'__out__': path, 'data': value}, for clients whose cached schema lacks out. timeout: seconds to wait for FL, default 10.")
-def fl_exec(code: str, out: str | None = None, timeout: float = 10.0) -> dict:
+@mcp.tool(annotations=RAW, description=(
+    "Run Python inside the running FL's embedded interpreter, where FL's modules (channels, mixer, plugins, transport, "
+    "patterns, general ...) import. For live reads or changes that need several calls or logic; one call is simpler with "
+    "fl_call. Returns {ok, value} with what the code assigns to `result`, or {ok: false, error} with the traceback. FL's "
+    "sandbox refuses files, sockets and pipes. Changes act on the open project and are not saved. Launches FL if "
+    "needed. Windows with FL Studio only."))
+def fl_exec(code: Annotated[str, Field(description="Python source; assign the answer to `result`")],
+            out: Annotated[str | None, Field(description="write the result as JSON to this path (relative to the repo) and return only its size, for large reads; also when `result` is {'__out__': path, 'data': value}")] = None,
+            timeout: Annotated[float, Field(description="seconds to wait for FL's answer")] = 10.0) -> dict:
     res = fl({"op": "exec", "code": code}, float(timeout))
     v = res.get("value")
     if not out and isinstance(v, dict) and isinstance(v.get("__out__"), str):
@@ -352,15 +385,26 @@ def _transport(action: str, mode: str | None = None, pattern: int | None = None)
     if pattern:
         code += f"patterns.jumpToPattern({int(pattern)})\n"
     if action == "play":
-        code += "transport.setSongPos(0)\ntransport.start()\n"
+        code += "transport.setSongPos(0)\nif not transport.isPlaying():\n    transport.start()\n"  # start() toggles: a second play would pause
     elif action == "stop":
         code += "transport.stop()\n"
     code += "result = {'playing': transport.isPlaying(), 'mode': 'song' if transport.getLoopMode() else 'pattern'}"
     return _live(code)
 
 
-@mcp.tool(description="Read an FL Studio .flp. view='compact' (default): rows with pointers, the same shape project_write accepts; notes [bar, beat, tick, len_ticks, key, vel, instrument#], clips [track, bar, beat, tick, len_ticks, src, trim?] where src is a pattern id, s<N> sample, a<N> automation; unplaced patterns and parked clips are omitted unless unused=true. view='summary': per-pattern stats and a per-track arrangement timeline. view='full': exact round-trip JSON. patterns / arrangements filter by id / name.")
-def project_read(path: str, view: str = "compact", patterns: list[str] | None = None, arrangements: list[str] | None = None, unused: bool = False) -> dict:
+@mcp.tool(annotations=READ, description=(
+    "Read one FL Studio .flp file into JSON; FL need not run and the file is not changed. Use it to see what a project "
+    "holds, to take parts from it, or to check what project_write wrote. For the style across many projects use "
+    "profile; for the project open in FL right now, fl_exec. Views: 'summary' (start here: instruments, per-pattern "
+    "stats, a per-track arrangement timeline, mixer effects); 'compact' (default: every note and clip as rows, the same "
+    "shape project_write accepts; notes [bar, beat, tick, len_ticks, key, vel, instrument#], clips [track, bar, beat, "
+    "tick, len_ticks, src, trim?] where src is a pattern id, s<N> a sample, a<N> an automation clip); 'full' (exact, "
+    "round-trips byte for byte; large). Fails with the parser's error on a file that is not an .flp."))
+def project_read(path: Annotated[str, Field(description="the .flp file, absolute or relative to the repo")],
+                 view: Annotated[str, Field(description="'compact', 'summary' or 'full'")] = "compact",
+                 patterns: Annotated[list[str] | None, Field(description="only these pattern ids (compact and full)")] = None,
+                 arrangements: Annotated[list[str] | None, Field(description="only these arrangements, by name")] = None,
+                 unused: Annotated[bool, Field(description="also list patterns not placed in the playlist and parked clips")] = False) -> dict:
     _reload()
     import view as v
     return v.read(path, view, patterns, arrangements, unused)
@@ -374,8 +418,21 @@ def _reload():
             importlib.reload(_sys.modules[name])
 
 
-@mcp.tool(description="Write a project to a .flp. Accepts the compact form project_read returns (format='compact') or the full form. Set base to an existing .flp to inherit its mixer and globals (default projects/init/init.flp). Instruments need state {from: file, channel: n} or a plugin template: serum2, vital, sylenth1, diva, flex; add mixer: n to route. Samples need a path or state. Automation: target {global: tempo} | {mixer: t, param: vol|pan} | {mixer: t, slot: s, param: n} | {channel: id, param: n}, points [[beat, value, tension?]]; tempo value = (bpm-60)/120, mixer vol 0.8 = 0 dB. Keys like 'D#4' (MIDI 60 = C4), 96 ticks per beat, 4/4. Audio clips without trim play the whole sample. open=true loads it in FL; play='song' or 'pattern' starts playback.")
-def project_write(doc: dict, path: str, open: bool = False, play: str | None = None) -> dict:
+@mcp.tool(annotations=WRITE, description=(
+    "Write a project document to an .flp file, replacing a file already at path; this is how music gets made. The "
+    "document is the compact form project_read returns (format='compact') or its full form; examples/README.md has one "
+    "per feature. Instruments need state {from: file, channel: n} (a channel copied from any saved project, as "
+    "profile's pointers give) or a plugin by name (plugins lists them) with an optional preset; mixer: n routes them. "
+    "Samples need a path or state. Effects: mixer.effects [{track, slot, plugin or from: {file, track, slot}}]. "
+    "Automation: target {global: tempo} | {mixer: t, param: vol|pan|sep} | {mixer: t, slot: s, param: n} | "
+    "{channel: id, param: n}, points [[beat, value, tension?]]; tempo value = (bpm-60)/120, mixer vol 0.8 = 0 dB. "
+    "Keys like 'D#4' (MIDI 60 = C4), 96 ticks per beat, 4/4. Without open, FL need not run. With open, FL saves the "
+    "project it has open first (so no dialog appears), then opens this one. Returns what it wrote, read back: channels, "
+    "notes per pattern, clips per arrangement, and writer warnings, which are worth reading."))
+def project_write(doc: Annotated[dict, Field(description="the project document, compact or full")],
+                  path: Annotated[str, Field(description="the .flp to write, absolute or relative to the repo; pieces go to projects/music/<piece>.flp")],
+                  open: Annotated[bool, Field(description="open it in FL afterwards, launching FL if needed")] = False,
+                  play: Annotated[str | None, Field(description="'song' or 'pattern': open it and start playback")] = None) -> dict:
     _reload()
     import project
     import writer
@@ -408,8 +465,14 @@ def project_write(doc: dict, path: str, open: bool = False, play: str | None = N
     return res
 
 
-@mcp.tool(description="Render a .flp to wav and mp3 beside it with render.py, then spectro and stereo stats. Saves the project open in FL first (restoring `path` if that save overwrote it), so closing FL never raises a save dialog. Runs detached and returns at once; read the log file it names. reopen=true opens the project in FL again afterwards.")
-def fl_render(path: str, reopen: bool = True) -> dict:
+@mcp.tool(annotations=WRITE, description=(
+    "Render an .flp to audio: a .wav and .mp3 beside it (replacing earlier ones), then spectrogram and stereo "
+    "statistics, so the result can be read as numbers and pictures. Call it after project_write to check a piece. FL "
+    "renders from the command line, so the FL that is open is saved first (path itself is restored if that save "
+    "overwrote it) and closed. Runs detached and returns at once with the log file to read for the results and file "
+    "names; a 2-minute piece takes under a minute. Windows with FL Studio only."))
+def fl_render(path: Annotated[str, Field(description="the .flp to render")],
+              reopen: Annotated[bool, Field(description="open the project in FL again when done")] = True) -> dict:
     target = Path(path).resolve()
     if not target.exists():
         return {"ok": False, "error": f"{target} does not exist"}
@@ -443,16 +506,30 @@ def _lib(fn):
         return {"ok": False, "error": str(e.args[0]) if e.args else str(e)}
 
 
-@mcp.tool(description="Every plugin FL has installed (its plugin database) and every tuned instance in the optional library project: name, kind (instrument or effect), vendor, format (native, vst3, clap, vst), source (fl or library), how many presets load by name, whether it has a parameter map. query filters by name. Any of them goes into project_write by name: an instrument as {kind: plugin, plugin: <name>, preset?: <id>, format?: <format>}, an effect as mixer.effects [{track, slot, plugin: <name>, preset?: <id>, format?}]. Without preset it arrives fresh, as if dragged in from FL's browser (a library instance arrives as saved). A plugin installed in several formats is one name; native, then vst3, clap, vst is preferred unless format is given.")
-def plugins(query: str | None = None) -> dict:
+@mcp.tool(annotations=READ, description=(
+    "List the plugins this machine has: every plugin in FL's plugin database, and every tuned instance in the optional "
+    "library project. Call it to choose instruments and effects before project_write; then presets for a plugin's "
+    "presets, params for its automatable parameters. Each row: name, kind (instrument or effect), vendor, format (native, "
+    "vst3, clap, vst), source (fl or library), how many presets load by name, whether it has a parameter map. Any of "
+    "them goes into project_write by name: an instrument as {kind: plugin, plugin: <name>, preset?, format?}, an effect "
+    "as mixer.effects [{track, slot, plugin: <name>, preset?, format?}]; without a preset it arrives as if dragged in "
+    "fresh from FL's browser, a library instance as saved. A plugin installed in several formats is one name (native, "
+    "then vst3, clap, vst unless format is given). Reads files only; FL need not run."))
+def plugins(query: Annotated[str | None, Field(description="keep names containing this text, case-insensitive, e.g. 'serum'; omit for all")] = None) -> dict:
     def go(L):
         rows = L.summary(query)
         return {"plugin_db": str(L.db_root()), "library": str(L.lib_path()), "count": len(rows), "plugins": rows}
     return _lib(go)
 
 
-@mcp.tool(description="A library plugin's presets, by id; the id goes into project_write as preset. query: words that must all appear in the id, e.g. 'bass reese'. limit caps the rows (default 200); total is always the full count.")
-def presets(plugin: str, query: str | None = None, limit: int = 200) -> dict:
+@mcp.tool(annotations=READ, description=(
+    "List the presets that load by name for one plugin, as ids in catalog order; an id goes into project_write as an "
+    "instrument's or effect's preset. Call it after plugins, when choosing a sound. Returns {plugin, kind, total, "
+    "presets}; total counts every match even when limit cuts the list. A plugin name that matches nothing or several "
+    "plugins returns {ok: false, error} naming the candidates. Reads files only; FL need not run."))
+def presets(plugin: Annotated[str, Field(description="the plugin's name as plugins lists it; a unique part of it works")],
+            query: Annotated[str | None, Field(description="words that must all appear in the id, case-insensitive, any order, e.g. 'bass reese'")] = None,
+            limit: Annotated[int, Field(description="at most this many ids")] = 200) -> dict:
     def go(L):
         e = L.find(plugin)
         rows = L.presets(e, query)
@@ -460,21 +537,32 @@ def presets(plugin: str, query: str | None = None, limit: int = 200) -> dict:
     return _lib(go)
 
 
-@mcp.tool(description="A library plugin's automatable parameters as FL exposes them: index (the param of an automation target {channel: id, param: index} or {mixer: t, slot: s, param: index}), name, and what the knob's normalised value means where measured. query: words that must all appear in the name.")
-def params(plugin: str, query: str | None = None) -> dict:
+@mcp.tool(annotations=READ, description="A plugin's automatable parameters, for writing automation: each one's index (the param of an automation target {channel: id, param: index} or {mixer: t, slot: s, param: index}), its name, and what its normalised value means where measured (FL's display at 0, .25, .5, .75 and 1, so a value can be picked for a wanted Hz, dB or %). Call it before automating a plugin or effect knob. It answers only for plugins with a parameter map (plugins shows which); for any other, read names live with fl_call('plugins.getParamName', ...). Not for choosing a sound: plugins lists what is installed, presets a plugin's presets. Reads files only; FL need not run.")
+def params(plugin: Annotated[str, Field(description="the plugin's name as plugins lists it; a unique part of it works")],
+           query: Annotated[str | None, Field(description="words that must all appear in the parameter name, case-insensitive, e.g. 'filter cutoff'")] = None) -> dict:
     def go(L):
         e = L.find(plugin)
         return {"plugin": e["name"], "kind": e["kind"], "params": L.params(e, query)}
     return _lib(go)
 
 
-@mcp.tool(description="FL transport: action 'play' or 'stop'; mode 'song' or 'pattern'; pattern number to select in pattern mode.")
-def fl_transport(action: str, mode: str | None = None, pattern: int | None = None) -> dict:
+@mcp.tool(annotations=LIVE, description="Play or stop whatever project is open in the running FL, to hear it; it changes nothing in any file. action 'play' jumps to the start and plays (from the start, not from where it stopped; called while playing, it restarts from the start). action 'stop' stops playback. mode 'song' plays the arrangement, 'pattern' loops one pattern (pattern: its number, selected first); without mode FL keeps the one it has. Launches FL when it is not running, but then nothing is open: open a project with project_write(open=true), which can also start playback itself (play='song'). Returns {playing, mode}. To get audio out, use fl_render, which saves and closes FL instead. Windows with FL Studio only.")
+def fl_transport(action: Annotated[str, Field(description="'play' or 'stop'")],
+                 mode: Annotated[str | None, Field(description="'song' or 'pattern'; omit to keep FL's")] = None,
+                 pattern: Annotated[int | None, Field(description="in pattern mode, the pattern number to select first")] = None) -> dict:
     return _transport(action, mode, pattern)
 
 
-@mcp.tool(description="Profile a person's style from a folder of their .flp projects (read only; subfolders included): tempo, key, form, a drum grid per role, chords relative to the key, which instrument plays which role, master and insert chains, what gets automated. Files under favourites/ count three times, files under negative/ are kept apart as contrast. Returns profile.md (start with its Read back list: read it to the person and let them strike lines) and the path of profile.json, whose aggregate.pointers name the file and channel of each sound, usable in project_write as an instrument's state {from: file, channel: n}. Written to tmp/profile/<folder name>/.")
-def profile(folder: str) -> dict:
+@mcp.tool(annotations=LIVE, description=(
+    "Learn a person's style from a folder of their own .flp projects, before writing a piece for them (see "
+    "docs/COMPOSING.md). Use it when they have projects; for one project's contents use project_read. Reads every .flp "
+    "under the folder, subfolders included, and changes none of them; FL need not run; about 2 s for 80 projects. Files "
+    "under favourites/ count three times, files under negative/ are kept apart as contrast. Returns the profile as "
+    "markdown (start with its Read back list: read it to the person and let them strike lines) plus the paths of "
+    "profile.md and profile.json, written to tmp/profile/<folder name>/. profile.json's aggregate.pointers name the file "
+    "and channel of each role's sound, for project_write as {state: {from: file, channel: n}}, and the master chain, for "
+    "mixer.effects. Projects that fail to read are listed, not fatal; a folder with no .flp returns {ok: false, error}."))
+def profile(folder: Annotated[str, Field(description="the folder of .flp projects, absolute or relative to the repo")]) -> dict:
     _reload()
     import style
     try:

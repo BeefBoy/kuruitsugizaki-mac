@@ -19,7 +19,6 @@ Signatures as `scripts/server.py` defines them:
 | `fl_call(fn, args=None)` | one FL API function, e.g. `fn='plugins.getParamName', args=[0, 5, -1]`; returns `{ok, value}` or `{ok: false, error}` |
 | `fl_transport(action, mode=None, pattern=None)` | `play` / `stop`; `song` / `pattern`; a pattern number in pattern mode |
 | `fl_probe()` | FL's API version, its Python, its pid and the pipe handle it holds |
-| `test()` | returns `ok` |
 
 **What reloads without a restart:** `project_read` and `project_write` re-import `flp`, `automation`, `levels`, `sylenth1`, `serum2`, `presets`, `mixerfx`, `project`, `writer`, `view` on every call. Anything else needs an MCP restart: `server.py`, `config.py`, `flex.py`, `diva.py`. A tool added in `server.py` may not appear until a new session, because a client keeps the tool list it started with.
 
