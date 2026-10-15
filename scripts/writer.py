@@ -140,6 +140,10 @@ def channel_block(c: dict, index: int) -> list[flp.Event]:
         src = template_block(c["kind"])
     out = [flp.Event(e.id, e.data) for e in src]
     out[0].data = index.to_bytes(2, "little")
+    on = next((e for e in out[:12] if e.id == 0 and len(e.data) == 1), None)
+    if on is not None and ("from" in st or "muted" in c):
+        # a channel copied by pointer arrives playing even when its source was muted; muted: true keeps it off
+        on.data = b"\0" if c.get("muted") else b"\1"
     if c.get("path") and not any(e.id == 196 for e in out):
         at20 = max((i for i, e in enumerate(out) if e.id == 20), default=len(out) - 1)
         out.insert(at20 + 1, flp.Event(196, utf16(c["path"])))

@@ -163,7 +163,9 @@ Catalogs, one row per preset, built into `tmp/` from the library folders in `con
 
 Run them from the repo root with `.venv/Scripts/python scripts/<script>`. Choose from these, not from an old script.
 
-**Before writing a range, know the preset's transpose and tuning**: several presets sound one or two octaves below the written note. Check the lowest partial in a render.
+**Before writing a range, know the preset's transpose and tuning**: several presets sound one or two octaves below the written note, and Sytrus `Bass/Sub bass` three (written D#4 sounds D#1). Check the lowest partial in a one-note render. The render log says how much of the energy sits below 20 Hz and warns over 5%: that is a sound written octaves too low (one piece carried 16-18% in its drops; finished mixes of a user's ran 0-2.6%).
+
+**A channel copied with `state: {from, channel}` arrives switched on**, even when it was muted in its source project; many saved projects have muted channels. `muted: true` on the instrument keeps it off.
 
 ## Effects, sidechain, levels
 

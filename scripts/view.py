@@ -136,7 +136,7 @@ def to_compact(doc: dict, unused: bool = False) -> dict:
     si = {c["id"]: i for i, c in enumerate(doc["samples"])}
     ai = {c["id"]: i for i, c in enumerate(doc["automation"])}
     placed = {c.get("pattern") for a in doc["arrangements"] for c in a["clips"]}
-    keep = lambda c: {k: v for k, v in c.items() if k in ("id", "name", "plugin", "mixer", "path", "target", "state", "kind", "ch")}
+    keep = lambda c: {k: v for k, v in c.items() if k in ("id", "name", "plugin", "mixer", "path", "target", "state", "kind", "ch", "muted")}
     out = {"format": "compact", "project": {k: doc["project"][k] for k in ("bpm", "ppq", "source", "title", "author", "genre", "comment") if k in doc["project"]},
            "note_cols": NOTE_COLS, "clip_cols": CLIP_COLS,
            "instruments": [keep(c) for c in doc["instruments"]],

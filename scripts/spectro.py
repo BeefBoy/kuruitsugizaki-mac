@@ -14,6 +14,7 @@ HOP = 2048
 LO_MIDI, HI_MIDI = 24, 96
 CHROMA_LO = 36
 PC = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+INFRA_WARN = 0.05  # share of energy below 20 Hz; glass_vertebrae's drops carried 16-18%
 
 
 def decode(path: str, start: float = 0.0, end: float | None = None) -> np.ndarray:
@@ -150,6 +151,11 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
     plt.close(fig)
     integ = 20 * np.log10(np.sqrt(np.mean(mono ** 2)) + 1e-12)
     print(f"{out}  {dur:.1f} s  rms {integ:.1f} dBFS  peak {20 * np.log10(np.max(np.abs(st)) + 1e-12):.1f} dBFS  corr mean {corr.mean():+.2f}")
+    f = np.fft.rfftfreq(N_FFT, 1 / SR)
+    infra = float(P[:, f < 20].sum() / max(P.sum(), 1e-12))
+    print(f"below 20 Hz {infra * 100:.1f}% of the energy" + (
+        f"  WARNING: inaudible energy above {INFRA_WARN * 100:g}%; it costs the limiter headroom. A sound may sit octaves "
+        f"under its written note: render one note of each low sound and read its lowest partial" if infra > INFRA_WARN else ""))
     for r in rows:
         print(r)
 

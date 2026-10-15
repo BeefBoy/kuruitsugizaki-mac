@@ -39,7 +39,8 @@ def analyse(wav: Path, bpm: float | None):
     here = Path(__file__).resolve().parent
     cmd = [sys.executable, str(here / "spectro.py"), str(wav)] + (["--bpm", str(bpm)] if bpm else [])
     r = subprocess.run(cmd, capture_output=True, text=True, cwd=here.parent)
-    print(r.stdout.splitlines()[0] if r.stdout else r.stderr[-400:])
+    lines = r.stdout.splitlines()
+    print("\n".join(lines[:1] + [x for x in lines if x.startswith("below 20 Hz")]) if lines else r.stderr[-400:])
     import numpy as np
     sys.path.insert(0, str(here))
     from spectro import decode

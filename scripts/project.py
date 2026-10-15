@@ -90,6 +90,8 @@ def export(path: str) -> dict:
         kind = next((KINDS.get(u(e), u(e)) for e in blk if e.id == 21), None)
         name = next((text(e) for e in blk if e.id == 203), f"channel {u(ev[n])}")
         ch = {"id": slug(name, taken), "name": name, "kind": kind, "ch": u(ev[n])}
+        if any(e.id == 0 and e.data == b"\0" for e in blk[:12]):  # byte event 0: the channel's on switch
+            ch["muted"] = True
         internal = next((text(e) for e in blk if e.id == 201 and len(e.data) > 2), None)
         state = next((e.data for e in blk if e.id == 213), None)
         if internal == "Fruity Wrapper" and state:

@@ -113,6 +113,7 @@ Other events that changed across that save: 237 (as before), the 212 record of b
 | id | what | evidence |
 |---|---|---|
 | 64 | channel start, u16 channel index; a channel block runs from 64 to the next 64 or 99 | every file |
+| 0 | the channel's on switch, one byte in its block: 0 muted, 1 playing | two channels muted in their projects read 0 (a sampler and a Vital), playing ones 1; written as 1 into a copy, FL's `channels.isChannelMuted` read False, written 0, True |
 | 21 | channel type: 0 sampler, 2 plugin, 4 audio clip, 5 automation clip | a saved project: FLEX/Fruity Wrapper = 2, sample paths = 4, `Tempo`/`Gross Beat` = 5 |
 | 104 | mixer track the channel feeds. FL 20 has no 104 and stores it as byte event 22 in the channel block | set live with channels.setTargetFxTrack, two FL saves differing only in routing: exactly the three 104 values changed (3->4, 7->8, 12->13). 22: FL 20.0.3 and 20.7.2 files (33, str, boring); boring's Morphine has 22 = 6 and Gross Beat sits on insert 6, str's audio clip has 1 and the effect chain is on insert 1 |
 | 65 / 224 | pattern index / its notes; a pattern may carry other events between them (223, unmapped) and may have no 224 | a saved project |
