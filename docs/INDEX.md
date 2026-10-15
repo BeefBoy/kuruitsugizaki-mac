@@ -6,11 +6,12 @@ the only verdict.
 
 ## Writing a piece
 
-**1. `COMPOSING.md`.** How pieces here have been written: the order of work, what went wrong in earlier pieces and
-the rules that came out of it, measured mixing levels and widths, how to read a render. Earlier experience, not law.
-
-**2. Preference.** Read `compositions/PREFERENCE.md`: what the person likes and rejects, in their words, gathered
+**1. Preference.** Read `compositions/PREFERENCE.md`: what the person likes and rejects, in their words, gathered
 from every verdict they have given.
+
+**2. `COMPOSING.md`.** A general method, written before this person said how their music should go: the order of
+work, what went wrong in earlier pieces and the rules that came out of it, measured mixing levels and widths, how to
+read a render. Where it and their preference disagree, the preference wins.
 
 **3. Their projects.** Open the ones that matter and read them in full (`project_read`): their drum programming,
 their lines, how a track is built from start to end. `profile` lists which of their projects hold what, so you know
