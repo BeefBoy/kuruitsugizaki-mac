@@ -14,8 +14,8 @@ work, what went wrong in earlier pieces and the rules that came out of it, measu
 read a render. Where it and their preference disagree, the preference wins.
 
 **3. Their projects.** Open the ones that matter and read them in full (`project_read`): their drum programming,
-their lines, how a track is built from start to end. `profile` lists which of their projects hold what, so you know
-which to open.
+their lines, how a track is built from start to end. `profile` lists their projects with tempo, key and length, so you
+know which to open.
 
 **4. What to make sound with.** Every plugin on the machine (`plugins`, `presets`); an instrument channel from one of
 their projects, copied with its sound (`state: {from, channel}`); their sample library; FL's factory content. Effects

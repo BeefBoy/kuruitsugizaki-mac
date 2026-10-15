@@ -424,7 +424,7 @@ def _reload():
     "'Project JSON, compact form'; examples/README.md has a working document per feature. Read one before a first write.\n\n"
     "Sounds:\n"
     "- an instrument is a plugin by name (see plugins) with an optional preset, or a channel copied from a saved project, "
-    "state {from: file, channel: n}, as profile's pointers give;\n"
+    "state {from: file, channel: n};\n"
     "- an effect is mixer.effects {track, slot, plugin} or one copied, {track, slot, from: {file, track, slot}}.\n\n"
     "Units that are easy to get wrong: 96 ticks per beat, 4/4; keys like 'D#4' with MIDI 60 = C4; mixer volume 0.8 = 0 dB; "
     "a tempo automation value is (bpm - 60) / 120.\n\n"
@@ -556,14 +556,13 @@ def fl_transport(action: Annotated[str, Field(description="'play' or 'stop'")],
 
 
 @mcp.tool(annotations=LIVE, description=(
-    "Learn a person's style from a folder of their own .flp projects, before writing a piece for them (see "
-    "docs/COMPOSING.md). Use it when they have projects; for one project's contents use project_read. Reads every .flp "
-    "under the folder, subfolders included, and changes none of them; FL need not run; about 2 s for 80 projects. Files "
-    "under favourites/ count three times, files under negative/ are kept apart as contrast. Returns the profile as "
-    "markdown (start with its Read back list: read it to the person and let them strike lines) plus the paths of "
-    "profile.md and profile.json, written to tmp/profile/<folder name>/. profile.json's aggregate.pointers name the file "
-    "and channel of each role's sound, for project_write as {state: {from: file, channel: n}}, and the master chain, for "
-    "mixer.effects. Projects that fail to read are listed, not fatal; a folder with no .flp returns {ok: false, error}."))
+    "List a person's projects from a folder of their .flp files; for one project's contents use project_read. Reads "
+    "every .flp under the folder, subfolders included, and changes none of them; FL need not run; about 2 s for 80 "
+    "projects. Files "
+    "under favourites/ weigh 3, files under negative/ 0. Returns a table of the projects: weight, tempo, key, "
+    "arrangement length in bars and FL version, so you know which to open and read in full with project_read; it "
+    "decides nothing. Also written as profile.md and profile.json to tmp/profile/<folder name>/. Projects that fail to "
+    "read are listed, not fatal; a folder with no .flp returns {ok: false, error}."))
 def profile(folder: Annotated[str, Field(description="the folder of .flp projects, absolute or relative to the repo")]) -> dict:
     _reload()
     import style
