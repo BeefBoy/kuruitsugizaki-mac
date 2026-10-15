@@ -29,7 +29,7 @@ The shipped template and effect library were themselves written this way and the
 
 ## Live link: handle injection
 
-Forced by FL. FL's script sandbox refuses to create sockets, files, directories, named pipes and shared memory (`NOTES.md`), and `_winapi` hides some of those refusals by returning an invalid handle instead of raising. Using a handle is not refused. So the MCP server creates a named pipe, copies one end into FL's process with `DuplicateHandle`, and names the handle in a file under `tmp/bridge/` that FL finds with `os.listdir`, the one filesystem call it allows. FL then only peeks, reads and writes. The FL pid is in the file name so a stale file cannot be adopted.
+Forced by FL. FL's script sandbox refuses to create sockets, files, directories, named pipes and shared memory, and `_winapi` hides some of those refusals by returning an invalid handle instead of raising. Using a handle is not refused. So the MCP server creates a named pipe, copies one end into FL's process with `DuplicateHandle`, and names the handle in a file under `tmp/bridge/` that FL finds with `os.listdir`, the one filesystem call it allows. FL then only peeks, reads and writes. The FL pid is in the file name so a stale file cannot be adopted.
 
 The controller script cannot read a config file, so `fl_install` writes the bridge folder's path into the installed copy.
 

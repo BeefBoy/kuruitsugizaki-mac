@@ -1,6 +1,6 @@
 # Writing a piece: the mechanics
 
-How a piece is built through the tools. How to write is `COMPOSING.md`, drum craft `DRUMS.md`, the compact JSON fields `../README.md`. Nothing below is taste.
+How a piece is built through the tools. How to work with the person is `COMPOSING.md`, the compact JSON fields `../README.md`. Nothing below is taste.
 
 Learn the plumbing here, not from an old composition script: a script carries its piece's musical choices along with its plumbing, and reading it anchors the next piece on the last one.
 
@@ -120,7 +120,7 @@ A position is the beat it belongs to plus a fraction of a beat, never a tick cou
 | `P(4, 1, 6)` | the first 16th-triplet step after beat 4 |
 | `P(2, 1, 8)` | a 32nd after beat 2 |
 
-Written so, the denominator names the tier a hit sits on (`COMPOSING.md` §2): 1 the beat, 2 the "and", 4 the 16ths, anything finer the off-beat tiers. `at(bar, p)` turns bar plus position into absolute ticks for the helpers; nothing is typed in absolute ticks by hand.
+Written so, the denominator says how fine the subdivision is: 1 the beat, 2 the "and", 4 the 16ths, anything finer between them. `at(bar, p)` turns bar plus position into absolute ticks for the helpers; nothing is typed in absolute ticks by hand.
 
 ## Units
 
@@ -144,7 +144,7 @@ The user's sample folders are theirs to name; ask where they are. Large librarie
 
 ## Mixer layout
 
-- The template has master + inserts 1-17, no effects, no names, all at 0.8. Insert 17 takes no fader there (`NOTES.md`); use 1-16. An instrument routed past `mixer.trackCount()` is silent with no error; check after opening with `channels.getTargetFxTrack(i, True)`.
+- The template has master + inserts 1-17, no effects, no names, all at 0.8. Insert 17 takes no fader there: a volume clip aimed at it does nothing and an audio clip on it plays at full level; use 1-16. An instrument routed past `mixer.trackCount()` is silent with no error; check after opening with `channels.getTargetFxTrack(i, True)`.
 - Every sound on its own insert. Grouping by role leaves nothing processable alone.
 - Inserts at 0 dB are left out of `mixer.volume` on read.
 
@@ -164,7 +164,7 @@ Catalogs, one row per preset, built into `tmp/` from the library folders in `con
 
 Run them from the repo root with `.venv/Scripts/python scripts/<script>`. Choose from these, not from an old script.
 
-**Before writing a range, know the preset's transpose and tuning** (`COMPOSING.md` §8): several presets sound one or two octaves below the written note. Check the lowest partial in a render.
+**Before writing a range, know the preset's transpose and tuning**: several presets sound one or two octaves below the written note. Check the lowest partial in a render.
 
 ## Effects, sidechain, levels
 
@@ -184,7 +184,7 @@ Any project the user saved in FL is a library too: `project_read` with `view="su
 
 **Sidechain:** route the trigger insert to the ducked one at level 0, `mixer.routes: [{"from": 1, "to": 4, "level": 0.0}]`, and copy the 3/0 limiter into the ducked insert's first slot. `"on": false` removes a route.
 
-**Master limiter:** the 2/0 limiter into master slot 9. Past 0 dBFS is allowed as a sound (`COMPOSING.md` §9).
+**Master limiter:** the 2/0 limiter into master slot 9. Past 0 dBFS is allowed when chosen.
 
 **Faders:** `mixer.volume: {insert: value}`; `main_volume` 0.8 is the template's.
 
@@ -218,4 +218,8 @@ The render is numbers and pictures, not sound. The user listens; their verdict d
 - **A sampler plays its whole sample through any stop:** a two-bar loop on a sampler cannot be cut by a stop in its second bar. Place such notes clear of stops, or use an audio clip, which can be trimmed.
 - **Save before opening another project.** `project_write(open=True)` and `fl_render` do it; anything else that closes FL or opens a file should save through the bridge first.
 - **FL resaves a project it has open.** Treat anything in `projects/music/` as FL's copy; rebuild from `compositions/` to get the written file.
+- **Don't name an instrument or pattern `s1`, `a2` and the like.** In a compact document a clip `src` of `s<N>` or `a<N>` is read as a sample or automation pointer.
+- **The compact view drops a clip's start offset inside its pattern.** A clip that starts playing a pattern from its middle reads back as starting from the pattern's start; use `view="full"` for such projects.
+- **A copied Parametric EQ 2 is not neutral.** The one in `projects/init/fx.flp` is a high shelf at -18 dB and still took 4.3 dB off 16-20 kHz at its extreme setting; automate the band's level to 0.5 (0 dB) outside the move.
+- **A vocal to a key: stretch, not resample.** The writer cannot set FL's per-clip stretch mode, so shift it offline (`librosa.effects.pitch_shift`) into a new WAV; resampling changes its speed too.
 - **Scratch goes in the repo's `tmp/`.**

@@ -16,12 +16,10 @@ Paths on the user's machine (FL, loopMIDI, FL's Hardware folder, preset librarie
 | `../README.md` | the deliverable: setup, tools, the template, the effect library, the compact JSON format, what is not written yet |
 | `../examples/README.md` | a working document for each part of the format, every automation target's value scale, and a full piece written as a script; read before writing a first piece |
 | `MECHANICS.md` | how a piece is built through the tools: the piece script, positions, units, samples, mixer, sounds, effects, the write / open / save / render loop. Read before writing a piece |
-| `COMPOSING.md` | how to write a piece: a method, stage by stage |
-| `DRUMS.md` | drum-writing research from outside sources, measured vs opinion tagged |
+| `COMPOSING.md` | how to write a piece for someone: their profile first, their sounds, stages, render and compare with their projects |
 | `FX.md` | effects' automatable parameters as FL exposes them, with the measured value-to-unit mappings |
-| `FLP.md` | the `.flp` format as decoded, each fact with the evidence it rests on |
-| `NOTES.md` | traps, each with its mechanism |
-| `ARCHITECTURE.md` | decisions and their reasons |
+| `FLP.md` | the `.flp` format as decoded, each fact with the evidence it rests on; for work on the reader and writer, not needed to write a piece |
+| `ARCHITECTURE.md` | decisions and their reasons; for work on the server |
 
 ## Where work goes
 

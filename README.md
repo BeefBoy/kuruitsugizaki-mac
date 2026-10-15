@@ -110,7 +110,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 
 ## The template
 
-`projects/init/init.flp`, saved by FL: a Sampler, Serum 2, FLEX, one audio channel and one automation clip; master plus inserts 1-17, no effects. Route to inserts 1-16: insert 17 takes no fader on this mixer (`docs/NOTES.md`). A `plugin` instrument is copied from the template channel of that plugin, so with this template `plugin` takes `serum2` or `flex`. The preset loaders also handle Vital, Diva and Sylenth1: to use them, save a template of your own in FL holding those plugins and set `template` to it, or take a channel from any project with `state: {from, channel}`. Template plugins are matched by name: `Serum2`, `FLEX`, `Vital`, `Sylenth1`, `Diva(x64)`.
+`projects/init/init.flp`, saved by FL: a Sampler, Serum 2, FLEX, one audio channel and one automation clip; master plus inserts 1-17, no effects. Route to inserts 1-16: insert 17 takes no fader on this mixer. A `plugin` instrument is copied from the template channel of that plugin, so with this template `plugin` takes `serum2` or `flex`. The preset loaders also handle Vital, Diva and Sylenth1: to use them, save a template of your own in FL holding those plugins and set `template` to it, or take a channel from any project with `state: {from, channel}`. Template plugins are matched by name: `Serum2`, `FLEX`, `Vital`, `Sylenth1`, `Diva(x64)`.
 
 ## Effects
 

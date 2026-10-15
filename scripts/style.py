@@ -269,6 +269,8 @@ def one(path: Path, root: Path, any_fav: bool) -> dict:
     for e in sorted(d["mixer"]["effects"], key=lambda e: (e["track"], e["slot"])):
         fx[e["track"]].append(e["plugin"])
     out["master"] = fx.get(0, [])
+    out["master_slots"] = [e["slot"] for e in sorted(d["mixer"]["effects"], key=lambda e: e["slot"]) if e["track"] == 0]
+    out["path"] = str(path.resolve())
     out["inserts"] = {r: fx[e["insert"]] for e in pal for r in [e["role"]] if e.get("insert") and fx.get(e["insert"])}
     autos = []
     for a in d["automation"]:
@@ -357,7 +359,12 @@ def aggregate(rows: list[dict]) -> dict:
                 pointers[e["role"]].append({k: e[k] for k in ("plugin", "sample", "from", "channel", "hints") if k in e})
     ag["palette"] = {role: dict(c.most_common(6)) for role, c in sorted(roles.items(), key=lambda kv: -sum(kv[1].values()))}
     ag["pointers"] = dict(pointers)
-    ag["master"] = {" > ".join(k): round(100 * v / W) for k, v in wsum(use, lambda r: [tuple(r["master"])]).most_common(5)}
+    chains = wsum(use, lambda r: [tuple(r["master"])])
+    ag["master"] = {" > ".join(k): round(100 * v / W) for k, v in chains.most_common(5)}
+    top = next((k for k, _ in chains.most_common() if k), None)
+    if top:  # the chain itself, to copy: mixer.effects [{track: 0, slot, from: {file, track: 0, slot}}]
+        r = max((r for r in use if tuple(r["master"]) == top), key=lambda r: r["weight"])
+        ag["pointers"]["master chain"] = [{"plugin": p, "from": {"file": r["path"], "track": 0, "slot": s}} for p, s in zip(r["master"], r["master_slots"])]
     ag["master_plugins"] = pct(wsum(use, lambda r: set(r["master"])), 10)
     ins = defaultdict(Counter)
     for r in use:
@@ -417,7 +424,8 @@ def markdown(ag: dict, rows: list[dict], folder: Path) -> str:
           "takes them as an instrument's state, `{from: file, channel: n}`, so a sound is reused without being decoded.", ""]
     for role, c in ag["palette"].items():
         L.append(f"- {role}: {', '.join(f'{k} {v:g}' for k, v in c.items())}")
-    L += ["", "## Mixer", "", f"- Master plugins: {kv(ag['master_plugins'])}", "- Master chains:"]
+    L += ["", "## Mixer", "", f"- Master plugins: {kv(ag['master_plugins'])}",
+          "- Master chains (the most common non-empty one is in `pointers['master chain']`, ready for `mixer.effects`):"]
     L += [f"  - {k or '(empty)'}: {v}%" for k, v in ag["master"].items()]
     for role, c in ag["inserts"].items():
         L.append(f"- {role} insert: {', '.join(c)}")
