@@ -183,3 +183,5 @@ Mixer pans and sends as static settings; a plugin FL's plugin manager has not sc
 ## License
 
 MIT, see `LICENSE`. It covers this code and these docs, not FL Studio, the plugins or their presets.
+
+mic check
