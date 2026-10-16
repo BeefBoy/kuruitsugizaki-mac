@@ -36,6 +36,8 @@ as you go: each part, what it is, where it came from, what else was tried, what 
 not check; their verdict goes at its end. Play it for them when it is done: the mp3 path, and the project open and
 playing in FL. Scratch goes in `tmp/`.
 
+Content of compositions/ is not for your read unless its yours file created fresh.
+
 ## Work on the server itself, not on music
 
 `FLP.md` (the format) and `ARCHITECTURE.md` (why it is built this way).
