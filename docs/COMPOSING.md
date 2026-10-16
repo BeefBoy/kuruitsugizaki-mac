@@ -265,7 +265,7 @@ The render log's `wash:` lines and the `ghost %` strip under the spectrogram (`s
 
 - **ghost**: a semitone cell still sounding 0.5 s after its band's last onset, 3 dB or more under that onset's peak, and not faint. Master fades and drop-outs are removed first.
 - **stretches**: 4 s windows over 30% ghost, joined across gaps up to 6 s.
-- **weight**: grows with length (under 10 s near 0, 20 s half, 30 s nearly full). It shrinks when ghost climbs into or falls out of the stretch faster than 2 points/s, multiplied by 2/rate: a wash drifts, while a section change jumps. Once stretches cover half the track, all count fully. **score** is the weighted share of the track; over 18 is a wash.
+- **weight**: grows with length (under 10 s near 0, 20 s half, 30 s nearly full). It shrinks when ghost climbs into or falls out of the stretch faster than 2 points/s, multiplied by 2/rate: a wash drifts, while a section change jumps. Once stretches cover half the track, all count fully. **score** is the weighted share of the track: under 6 clear, 6-16 haze, over 18 wash.
 - **head**: how far fresh notes stand over the ghosts, in dB. Under 12 is tagged wash, over 12 haze.
 
 The cut-offs (30%, 12 dB, 2 points/s, score 18) rest on few labelled tracks.
