@@ -7,6 +7,7 @@ GAP = 6.0
 HEAD = 12.0
 DRIFT = 2.0
 SCORE = 18.0
+HAZE = (6.0, 16.0)
 
 
 def _flatten(r, fps):
@@ -16,13 +17,13 @@ def _flatten(r, fps):
     return np.clip(r - (slow - slow.max())[:, None], -60, 0), lvl
 
 
-def _dropouts(lvl, fps, fall=10, within=0.5, hold=2.0):
+def _dropouts(lvl, fps, fall=10, within=0.5, hold=2.0, texture=0.2):
     k, h = int(within * fps), int(hold * fps)
     bad = np.zeros(len(lvl), bool)
     for t in range(k, len(lvl)):
         if lvl[t - k:t].max() - lvl[t] > fall:
             bad[t:t + h] = True
-    return bad
+    return bad if bad.mean() <= texture else np.zeros(len(lvl), bool)
 
 
 def _grid(r, fps, hold=0.5, drop=3, rise=3, faint=-36):
@@ -85,10 +86,18 @@ def analyse(r, fps):
                 score=100 * sum(s["weight"] * s["dur"] for s in segs) / dur if dur else 0)
 
 
+def verdict(score):
+    if score > SCORE:
+        return "WASH"
+    if score >= HAZE[1]:
+        return "haze to wash"
+    return "haze" if score >= HAZE[0] else "clear"
+
+
 def lines(a, start=0.0, bar_s=None, first_bar=1):
     where = (lambda x: f"{start + x:.0f}s" + (f" (bar {int((start + x) / bar_s) + first_bar})" if bar_s else ""))
     out = [f"wash: ghost {a['whole']:.1f}% of sounding cells, {a['cover']:.0f}% of the track in stretches over {THR:g}%, "
-           f"score {a['score']:.1f}{' WASH' if a['score'] > SCORE else ''} (over {SCORE:g} is a wash)  (ghost = a pitch still fading 0.5 s after its last onset; score = stretches weighted by length "
+           f"score {a['score']:.1f} {verdict(a['score'])} (under {HAZE[0]:g} clear, {HAZE[0]:g}-{HAZE[1]:g} haze, over {SCORE:g} wash)  (ghost = a pitch still fading 0.5 s after its last onset; score = stretches weighted by length "
            f"(under 10 s near 0, 20 s half, 30 s nearly full) and by how fast ghost climbs into and falls out of them "
            f"(a wash drifts under {DRIFT:g} points/s, a section change jumps; weight x {DRIFT:g}/rate above that), "
            f"all full once they cover half the track; head = how far fresh notes "

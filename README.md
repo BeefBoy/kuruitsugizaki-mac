@@ -73,7 +73,8 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `scripts/serum2.py`, `sylenth1.py`, `diva.py`, `flex.py` | each synth's preset format, and `<script> catalog [out.tsv]`: one TSV row per preset in that library |
 | `scripts/catalog.py` | `catalog.py <preset folder> <out.tsv>`: Vital presets by style, oscillators, unison, effects on, macro names |
 | `scripts/render.py` | `render.py <flp> [--close] [--reopen]`: FL's command-line render to wav and mp3 beside the project, then spectro and stereo stats. FL must be closed first; `--close` asks it to (never forced) |
-| `scripts/spectro.py` | render -> PNG: semitone piano-roll spectrogram, chroma, 20 Hz-20 kHz spectrogram, RMS/peak, L/R correlation; `--bpm` adds bar lines. PNGs in `tmp/spectro/` |
+| `scripts/spectro.py` | render -> PNG: semitone piano-roll spectrogram, chroma, 20 Hz-20 kHz spectrogram, RMS/peak, L/R correlation, ghost % over time with wash stretches (`wash.py`); `--bpm` adds bar lines. PNGs in `tmp/spectro/` |
+| `scripts/wash.py` | the wash check `spectro.py` runs on every render: ghost % per 4 s window, stretches weighted by length and edge rate, head over trail, a score where over 18 is a wash (`docs/COMPOSING.md` §9) |
 | `scripts/loudness.py` | integrated and momentary LUFS, LRA, true peak, RMS; `--zwicker` adds ISO 532-1 loudness in sones |
 | `scripts/scope.py` | stereo density heatmaps per moment and band, `--timeline` for width over time |
 | `scripts/waveshape.py` | A/B of several renders at several zooms around each file's loudest second |
