@@ -1,5 +1,5 @@
 # For MCP directories' automated checks (Glama and the like): builds the server and runs it over stdio.
-# On Linux the file tools work (project_read, project_write, config, test); the live link to FL and
+# On Linux the file tools work (project_read, project_write, config, profile); the live link to FL and
 # fl_install need Windows with FL Studio, so they answer with an error there. To use it, install on
 # Windows: INSTALL.md.
 FROM python:3.13-slim

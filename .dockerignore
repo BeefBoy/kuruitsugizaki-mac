@@ -1,7 +1,12 @@
 .git/
 .venv/
 tmp/
-projects/examples/
 **/__pycache__/
 kuruitsugizaki.json
+projects/*
+!projects/init/
+projects/init/*
+!projects/init/init.flp
+!projects/init/fx.flp
+compositions/
 profile/
