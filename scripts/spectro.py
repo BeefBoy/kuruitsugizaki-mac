@@ -8,6 +8,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
+import wash
+
 SR = 44100
 N_FFT = 16384
 HOP = 2048
@@ -185,7 +187,7 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
     corr = correlation(st, len(P))
 
     width = min(40, max(14, dur / 5))
-    fig, ax = plt.subplots(5, 1, figsize=(width, 16), sharex=True, gridspec_kw={"height_ratios": [5, 2.2, 3, 1.3, 1]})
+    fig, ax = plt.subplots(6, 1, figsize=(width, 18), sharex=True, gridspec_kw={"height_ratios": [5, 2.2, 3, 1.3, 1, 1.3]})
     sd = db(S.T)
     top = np.percentile(sd, 99.5)
     ax[0].imshow(sd, aspect="auto", origin="lower", cmap="magma", vmin=top - 60, vmax=top,
@@ -215,7 +217,14 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
     ax[4].axhline(0, color="grey", lw=0.5)
     ax[4].set_ylim(-1.05, 1.05)
     ax[4].set_ylabel("L/R corr")
-    ax[4].set_xlabel("seconds")
+    wa = wash.analyse(np.clip(sd - top, -60, 0).T, SR / HOP)
+    ax[5].plot(wa["t"] + start, wa["ghost"], lw=0.9, color="crimson")
+    ax[5].axhline(wash.THR, color="grey", lw=0.6, ls="--")
+    for sg in wa["segs"]:
+        ax[5].axvspan(start + sg["start"], start + sg["end"], color="crimson", alpha=0.12, lw=0)
+    ax[5].set_ylim(0, 50)
+    ax[5].set_ylabel("ghost %")
+    ax[5].set_xlabel("seconds")
     hz = 440 * 2 ** ((logc - 69) / 12)
     bm, bv = bass_track(P)
     rows = []
@@ -261,6 +270,8 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
         print(line)
     fr = 20 * np.log10(rms)
     print(balance_line(ld, hz, lt, fr > np.percentile(fr, 90) - 10))
+    for line in wash.lines(wa, start, 240 / bpm if bpm else None, first_bar):
+        print(line)
     if rows:
         print(f"per {'bar' if bars else '8 bars'} (a grid at {bpm:g} BPM; tempo automation is not followed): top pitch classes, classes sounding, "
               "bass frames within 25 cents, bands 20-60/60-250/250-1k/1k-4k/4k-20k against the loudest and % hot in each, rms, corr")
