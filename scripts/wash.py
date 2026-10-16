@@ -5,6 +5,8 @@ THR = 30.0
 WIN = 4.0
 GAP = 6.0
 HEAD = 12.0
+DRIFT = 2.0
+SCORE = 18.0
 
 
 def _flatten(r, fps):
@@ -73,8 +75,11 @@ def analyse(r, fps):
     for s, e in spans:
         sel = (t >= s) & (t + WIN <= e + 1e-6)
         d = e - s
-        segs.append(dict(start=s, end=e, dur=d, weight=1.0 if cover >= 0.5 else float(_weight(d)),
-                         ghost=float(np.nanmean(gh[sel])), head=float(np.nanmedian(hd[sel])) if np.isfinite(hd[sel]).any() else float("nan")))
+        y = gh[np.searchsorted(t, s - 3):np.searchsorted(t, e - WIN + 3) + 1]
+        rate = (np.nanmax(y[3:] - y[:-3]) - np.nanmin(y[3:] - y[:-3])) / 6 if len(y) > 3 else 0.0
+        steep = min(1.0, DRIFT / rate) if rate > 0 else 1.0
+        segs.append(dict(start=s, end=e, dur=d, rate=float(rate), steep=float(steep),
+                         weight=1.0 if cover >= 0.5 else float(_weight(d)) * steep, ghost=float(np.nanmean(gh[sel])), head=float(np.nanmedian(hd[sel])) if np.isfinite(hd[sel]).any() else float("nan")))
     whole = 100 * ghost[live].sum() / max(1, live.sum())
     return dict(t=t + WIN / 2, ghost=gh, head=hd, segs=segs, cover=100 * cover, whole=whole,
                 score=100 * sum(s["weight"] * s["dur"] for s in segs) / dur if dur else 0)
@@ -83,10 +88,12 @@ def analyse(r, fps):
 def lines(a, start=0.0, bar_s=None, first_bar=1):
     where = (lambda x: f"{start + x:.0f}s" + (f" (bar {int((start + x) / bar_s) + first_bar})" if bar_s else ""))
     out = [f"wash: ghost {a['whole']:.1f}% of sounding cells, {a['cover']:.0f}% of the track in stretches over {THR:g}%, "
-           f"score {a['score']:.1f}  (ghost = a pitch still fading 0.5 s after its last onset; score = stretches weighted by length, "
-           f"under 10 s near 0, 20 s half, 30 s nearly full, all full once they cover half the track; head = how far fresh notes "
+           f"score {a['score']:.1f}{' WASH' if a['score'] > SCORE else ''} (over {SCORE:g} is a wash)  (ghost = a pitch still fading 0.5 s after its last onset; score = stretches weighted by length "
+           f"(under 10 s near 0, 20 s half, 30 s nearly full) and by how fast ghost climbs into and falls out of them "
+           f"(a wash drifts under {DRIFT:g} points/s, a section change jumps; weight x {DRIFT:g}/rate above that), "
+           f"all full once they cover half the track; head = how far fresh notes "
            f"stand over the ghosts in dB, under {HEAD:g} reads as wash, over it as a held haze)"]
     for s in a["segs"]:
         tag = "wash" if s["head"] == s["head"] and s["head"] < HEAD else "haze"
-        out.append(f"  {where(s['start'])}-{where(s['end'])}  {s['dur']:.0f} s  ghost {s['ghost']:.0f}%  weight {s['weight']:.2f}  head {s['head']:.1f} dB  {tag}")
+        out.append(f"  {where(s['start'])}-{where(s['end'])}  {s['dur']:.0f} s  ghost {s['ghost']:.0f}%  edges {s['rate']:.1f} pt/s  weight {s['weight']:.2f}  head {s['head']:.1f} dB  {tag}")
     return out

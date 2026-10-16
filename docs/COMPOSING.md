@@ -259,17 +259,18 @@ Read per section: RMS, side/mid, correlation, the bass's lowest partial, where e
 
 ### Wash
 
-A wash is every note leaving a fading copy that still sounds under the next ones. The user, on Still Water Nocturne's first render: "pile of shit dragged over the canvas, not solid, not faint, plain middle, garbage as is". It is not density: a track lit wall to wall and held at the top is "a stone wall", and pumping or gated sound with clear on and off is structure. Neither is a wash. A wash can't be good; a well-made blur (DVRST's Static in Mirrors) is something else, "its not here its not there".
+Every note leaves a fading copy that still sounds under the next ones, at a middle level: neither held nor gone. It is not density. Sound held at the top is a wall; sound with a clear on and off is structure. A blur with fresh notes standing clearly above it is haze, not wash.
 
 The render log's `wash:` lines and the `ghost %` strip under the spectrogram (`scripts/wash.py`):
 
-- **ghost**: a semitone cell still sounding 0.5 s after its band's last onset, already 3 dB or more under that onset's peak, and not faint. Master fades and drop-outs are removed first, because everything rings out there.
-- **stretches**: 4 s windows over 30% ghost, joined across gaps up to 6 s. The **weight** grows with length (under 10 s near 0, 20 s half, 30 s nearly full); once stretches cover half the track, all count fully. **score** is the weighted share of the track.
-- **head**: how far fresh notes stand over the ghosts, in dB. Under 12 is tagged wash, over it haze: in a wash the new notes do not stand out from their own trails.
+- **ghost**: a semitone cell still sounding 0.5 s after its band's last onset, 3 dB or more under that onset's peak, and not faint. Master fades and drop-outs are removed first.
+- **stretches**: 4 s windows over 30% ghost, joined across gaps up to 6 s.
+- **weight**: grows with length (under 10 s near 0, 20 s half, 30 s nearly full). It shrinks when ghost climbs into or falls out of the stretch faster than 2 points/s, multiplied by 2/rate: a wash drifts, while a section change jumps. Once stretches cover half the track, all count fully. **score** is the weighted share of the track; over 18 is a wash.
+- **head**: how far fresh notes stand over the ghosts, in dB. Under 12 is tagged wash, over 12 haze.
 
-Measured, for orientation only: the nocturne's washed render scored 33 with heads of 11-12 dB, and the first 22 s of We're in the 70s (chill breakcore, which the user called a wash) had a head of 10 dB. Of 53 chill breakcore tracks, none went over 25% ghost for the whole track. Stretches in intros and outros are common in finished records. The cut-offs rest on those few labelled cases.
+The cut-offs (30%, 12 dB, 2 points/s, score 18) rest on few labelled tracks.
 
-Causes found so far: effects built into an instrument (FLEX's delay and reverb, `MECHANICS.md` Traps), a reverb on every channel, a pedal held over a fast arpeggio. To find which: render one note per channel and see how long it takes to die. With Δ the time between notes on that channel, the dip between notes is 60·Δ/T60 dB; under about 6 dB, the notes never separate.
+Causes: effects built into an instrument (FLEX, `MECHANICS.md` Traps), a reverb on every channel, a pedal held over a fast arpeggio. To find which, render one note per channel. With Δ the time between notes on that channel, the dip between notes is 60·Δ/T60 dB; under about 6 dB, the notes never separate.
 
 ### Reading someone else's chain
 
