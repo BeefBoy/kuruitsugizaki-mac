@@ -7,7 +7,7 @@ the only verdict.
 ## Writing a piece
 
 **1. Preference.** Read `compositions/PREFERENCE.md`: what the person likes and rejects, in their words, gathered
-from every verdict they have given.
+from every verdict they have given. If such doc does't exist yet, create it empty.
 
 **2. `COMPOSING.md`.** A general method, written before this person said how their music should go: the order of
 work, what went wrong in earlier pieces and the rules that came out of it, measured mixing levels and widths, how to
