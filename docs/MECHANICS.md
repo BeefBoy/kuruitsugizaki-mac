@@ -14,7 +14,7 @@ Signatures as `scripts/server.py` defines them:
 | `fl_install()` | writes the controller script into FL's Hardware folder with the bridge path and, with FL closed and unless an input in FL already has the script, makes a loopMIDI port named `kuruitsugizaki` and assigns the script to it in FL's MIDI settings. Read its `midi` entry: when that is not `ok` it says what the user has to do |
 | `project_write(doc, path, open=False, play=None)` | compact or full JSON -> `.flp`. Returns `wrote`, `bytes`, **`warnings`**, `channels`, `patterns` (notes per pattern), `clips` (per arrangement). Read `warnings`: a skipped insert or an unmapped field is reported there and nowhere else. `open` saves what FL has open first, then loads the new file, starting loopMIDI and FL if they are closed; it returns `open_error` instead when FL holds unsaved changes it cannot save. `play`: `song` or `pattern` |
 | `project_read(path, view="compact", patterns=None, arrangements=None, unused=False)` | `.flp` -> JSON. `compact` is the shape `project_write` takes; `summary` gives per-pattern stats and a per-track timeline; `full` is the exact round-trip form. Unplaced patterns and parked clips are left out unless `unused` |
-| `fl_render(path, reopen=True)` | saves FL's open project (restoring `path` if that save overwrote it), then starts `render.py <path> --close [--reopen]` detached and returns at once with the log file, `tmp/render_logs/<stem>-<hhmmss>.log` |
+| `fl_render(path, reopen=True, key=None)` | saves FL's open project (restoring `path` if that save overwrote it), then starts `render.py <path> --close [--reopen] [--key K]` detached and returns at once with the log file, `tmp/render_logs/<stem>-<hhmmss>.log`. The log reports level and width, pitch against `key` (classes sounding per moment, energy outside the scale, where the tonic ranks), bass tuning, band balance, and a row per 8 bars at the project's base tempo |
 | `fl_exec(code)` | Python inside the running FL; the value assigned to `result` comes back |
 | `fl_call(fn, args=None)` | one FL API function, e.g. `fn='plugins.getParamName', args=[0, 5, -1]`; returns `{ok, value}` or `{ok: false, error}` |
 | `fl_transport(action, mode=None, pattern=None)` | `play` / `stop`; `song` / `pattern`; a pattern number in pattern mode |
@@ -82,6 +82,8 @@ def dur(p):
     return float(subprocess.run(["ffprobe", "-v", "quiet", "-show_entries", "format=duration", "-of", "csv=p=0", p],
                                 capture_output=True, text=True).stdout)
 ```
+
+Drums and bass are written out row by row. A helper such as `note()` writes the row it is given; it never decides where a row goes (COMPOSING §0).
 
 The document at the end:
 

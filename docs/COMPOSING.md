@@ -5,7 +5,8 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 ## 0. Stance
 
 - **Write from nothing.** Unless asked otherwise. No existing project as a base, no channel copied for its sound, no old composition script read to learn from. A copied base drags in another piece's mixer and choices; a copied script anchors the new piece on the last one.
-- **Decide every placement.** A generator is a tool; a part nobody decided is not a part. A drum hit without a reason should not be there (§4).
+- **Write every drum hit and bass note out by hand.** The piece script places no drum hit or bass note through code: no `for` or `while` over bars or steps, no function that returns a pattern, no formula, modulo or random choice that picks a position, length or pitch. Each hit and each note is its own row. A written bar or phrase may be placed again whole as a pattern clip; a bar that differs is written as its own bar. Code that places notes makes them free to add, so they pile up without being weighed.
+- **Every drum hit is there for something**: it fills, answers or sets up (§4).
 - **Measure to know, never to correct.** A render says where a note sounds and how wide and loud each section is. Detune, an octave accident, a peak past 0 dBFS are choices once known; breaking a rule never makes something wrong.
 - **Write a whole piece**: one to two minutes with a form, not an 8-bar loop.
 
@@ -57,7 +58,8 @@ A predictable grid and progression is one option, worth knowing how to use and h
 
 - **Few pitches**: a lead can live on four notes for 32 bars.
 - **Leaps and neighbours**: 4ths, 5ths, 3rds, whole-step swaps around a note; three notes stepping one way is rare.
-- **A dotted grid**: bass and chords 6 sixteenths apart (0, 6, 12), not on every beat.
+- **A dotted grid, when syncopation is the goal**: bass and chord changes 6 sixteenths apart (0, 6, 12) instead of on the beat. It sets where a note starts, not how long it lasts.
+- **The bass holds by default**: few notes, each held for a bar or more, while the drums do the punctuating. Short bass hits locked to the kick are a valid choice, but a nuanced one that has to be executed well: the bass tuned to the kick, the kick's own pitch and tail, what fills the gaps. Make it on purpose, never by habit.
 - **Cells restated with one substitution**: the one change is what gets heard.
 - **Pedal against movement**: one voice holds while another moves, so the same note changes meaning (A#4 over E).
 - **Played, not quantised**: onsets 2-22 ticks late, notes landing just before the bar line. A consistent lateness per part reads as feel; random per-note jitter does not.
@@ -73,7 +75,7 @@ A predictable grid and progression is one option, worth knowing how to use and h
 ### Method
 
 1. A tonal centre and the 3-5 pitches the lead mostly uses; which one is the anchor.
-2. Bass roots first, on a grid that is not every beat; with a vocal, from the vocal (§6).
+2. Bass roots first: few notes, each held until the next change. With a vocal, from the vocal (§6).
 3. Chords with little motion between them; let a held note change meaning over a moving bass.
 4. A 1-2 bar lead cell from leaps and neighbour swaps, restated with one substitution; the larger change at a section switch.
 5. Any run, trill or four-equal-chord loop is a decision to defend or remove.
@@ -245,7 +247,6 @@ The first failure to look for is mud: the mix sounding submerged because the low
 - **Width per element, both directions**: narrow what is too open (an impact so wide it reads as reverb), widen what needs space; drums placed in the panorama, not one cloud.
 - **Bring quiet passages up** so detail does not drop out.
 - **Leave the limiter little to do**: bring the sum in below the master and make level up there.
-- **Timing is part of the mix**: moving a bass note off the kick, or shortening it, clears space no effect can.
 
 ### Loudness is what the ear hears
 
@@ -273,6 +274,7 @@ Round after round of fixes on a piece whose hard part stays as it was rarely sav
 ## Checklist before calling a piece done
 
 - Every drum hit has a reason; no accidental equal spacing or staircase; tier 4-5 hits justified.
+- Every drum hit and bass note written out row by row in the script; no code computes any of them.
 - Runs, trills and four-equal-chord loops only by choice.
 - Every synth on a preset, its sounding octave measured.
 - Every sound on its own insert.

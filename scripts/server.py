@@ -474,7 +474,9 @@ def project_write(doc: Annotated[dict, Field(description="the project document, 
     "overwrote it) and closed. Runs detached and returns at once with the log file to read for the results and file "
     "names; a 2-minute piece takes under a minute. Windows with FL Studio only."))
 def fl_render(path: Annotated[str, Field(description="the .flp to render")],
-              reopen: Annotated[bool, Field(description="open the project in FL again when done")] = True) -> dict:
+              reopen: Annotated[bool, Field(description="open the project in FL again when done")] = True,
+              key: Annotated[str | None, Field(description="the key the piece is written in, e.g. 'F minor' or 'G#m'; "
+                                                           "the log then says how much pitch energy falls outside its scale")] = None) -> dict:
     target = Path(path).resolve()
     if not target.exists():
         return {"ok": False, "error": f"{target} does not exist"}
@@ -490,7 +492,8 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
     logs.mkdir(parents=True, exist_ok=True)
     log = logs / f"{target.stem}-{time.strftime('%H%M%S')}.log"
     import sys as _sys
-    cmd = [_sys.executable, "-B", str(ROOT / "scripts" / "render.py"), str(target), "--close"] + (["--reopen"] if reopen else [])
+    cmd = ([_sys.executable, "-B", str(ROOT / "scripts" / "render.py"), str(target), "--close"] + (["--reopen"] if reopen else [])
+           + (["--key", key] if key else []))
     with open(log, "w", encoding="utf-8") as fh:
         subprocess.Popen(cmd, cwd=str(ROOT), stdin=subprocess.DEVNULL, stdout=fh, stderr=subprocess.STDOUT,
                          creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP)

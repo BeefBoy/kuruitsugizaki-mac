@@ -35,12 +35,21 @@ def mode_warning(flp: Path):
         print(f"WARNING: {flp.name} is saved in pattern mode with {pats} patterns; the command-line render plays the current pattern only, not the song")
 
 
-def analyse(wav: Path, bpm: float | None):
+def project_bpm(flp: Path) -> float | None:
+    """the project's base tempo (event 156, BPM x 1000); tempo automation is not read"""
     here = Path(__file__).resolve().parent
-    cmd = [sys.executable, str(here / "spectro.py"), str(wav)] + (["--bpm", str(bpm)] if bpm else [])
+    sys.path.insert(0, str(here))
+    import flp as flpmod
+    p = flpmod.parse(flp.read_bytes())
+    return next((int.from_bytes(e.data, "little") / 1000 for e in p.events if e.id == 156), None)
+
+
+def analyse(wav: Path, bpm: float | None, key: str | None = None):
+    """everything spectro.py reports: level, pitch against the key, bass tuning, band balance, rows per 8 bars"""
+    here = Path(__file__).resolve().parent
+    cmd = [sys.executable, str(here / "spectro.py"), str(wav)] + (["--bpm", str(bpm)] if bpm else []) + (["--key", key] if key else [])
     r = subprocess.run(cmd, capture_output=True, text=True, cwd=here.parent)
-    lines = r.stdout.splitlines()
-    print("\n".join(lines[:1] + [x for x in lines if x.startswith("below 20 Hz")]) if lines else r.stderr[-400:])
+    print(r.stdout.rstrip() if r.stdout.strip() else r.stderr[-400:])
     import numpy as np
     sys.path.insert(0, str(here))
     from spectro import decode
@@ -58,7 +67,8 @@ def main():
     ap.add_argument("--formats", default="wav,mp3")
     ap.add_argument("--close", action="store_true", help="ask a running FL to close first (never forced)")
     ap.add_argument("--reopen", action="store_true", help="open the project in FL after rendering")
-    ap.add_argument("--bpm", type=float, default=None)
+    ap.add_argument("--bpm", type=float, default=None, help="grid for the per-8-bar rows; default the project's base tempo")
+    ap.add_argument("--key", default=None, help="the intended key, e.g. 'F minor': the log reports the pitch energy outside its scale")
     ap.add_argument("--timeout", type=float, default=900)
     a = ap.parse_args()
     flp = Path(a.flp).resolve()
@@ -89,7 +99,7 @@ def main():
         print(f"not written: {[str(o) for o in missing]}")
     wav = next((o for o in done if o.suffix == ".wav"), None) or next(iter(done), None)
     if wav:
-        analyse(wav, a.bpm)
+        analyse(wav, a.bpm or project_bpm(flp), a.key)
     if a.reopen:
         subprocess.Popen([fl_exe, str(flp)])
         print("reopened in FL")

@@ -15,6 +15,11 @@ LO_MIDI, HI_MIDI = 24, 96
 CHROMA_LO = 36
 PC = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 INFRA_WARN = 0.05  # share of energy below 20 Hz; glass_vertebrae's drops carried 16-18%
+MAJOR = np.array([6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88])  # Krumhansl-Kessler
+MINOR = np.array([6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17])
+STEPS = {"major": [0, 2, 4, 5, 7, 9, 11], "minor": [0, 2, 3, 5, 7, 8, 10]}
+BANDS = [(20, 60), (60, 250), (250, 1000), (1000, 4000), (4000, 20000)]
+LIT = 0.6  # a pitch class counts as sounding when its chroma is over this share of the frame's strongest class
 
 
 def decode(path: str, start: float = 0.0, end: float | None = None) -> np.ndarray:
@@ -71,7 +76,93 @@ def correlation(st: np.ndarray, frames: int) -> np.ndarray:
     return out
 
 
-def analyse(path: str, start: float, end: float | None, bpm: float | None, out: Path, first_bar: int):
+def parse_key(key: str | None) -> tuple[int, str] | None:
+    """'F minor', 'F#m', 'Eb major' -> (pitch class, mode)"""
+    if not key:
+        return None
+    k = key.strip()
+    mode = "minor" if k.endswith("m") or "min" in k.lower() else "major"
+    name = k.split()[0] if " " in k else k[:-1] if k.endswith("m") else k
+    flats = {"Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"}
+    return PC.index(flats.get(name, name)), mode
+
+
+def key_fit(c: np.ndarray) -> tuple[str, float]:
+    best = max((np.corrcoef(np.roll(prof, k), c)[0, 1], f"{PC[k]} {mode}")
+               for k in range(12) for prof, mode in ((MAJOR, "major"), (MINOR, "minor")))
+    return best[1], best[0]
+
+
+def bass_track(P: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """the strongest partial between 25 and 130 Hz per frame, in fractional MIDI, and whether it is loud enough to count"""
+    f = np.fft.rfftfreq(N_FFT, 1 / SR)
+    lo, hi = np.searchsorted(f, 25), np.searchsorted(f, 130)
+    seg = P[:, lo:hi]
+    k = np.argmax(seg, axis=1)
+    lp = np.log(np.maximum(seg, 1e-20))
+    r = np.arange(len(P))
+    a = lp[r, np.clip(k - 1, 0, seg.shape[1] - 1)]
+    b = lp[r, k]
+    c = lp[r, np.clip(k + 1, 0, seg.shape[1] - 1)]
+    den = a - 2 * b + c
+    off = np.where(np.abs(den) > 1e-9, 0.5 * (a - c) / np.where(np.abs(den) > 1e-9, den, 1), 0.0)
+    hz = f[lo + k] + np.clip(off, -1, 1) * (f[1] - f[0])
+    peak = seg[r, k]
+    voiced = peak > np.percentile(peak, 95) * 10 ** (-25 / 10)
+    return 69 + 12 * np.log2(np.maximum(hz, 1e-9) / 440), voiced
+
+
+def pitch_lines(chroma: np.ndarray, chroma_n: np.ndarray, bm: np.ndarray, bv: np.ndarray, key) -> list[str]:
+    tot = chroma.sum(axis=0)
+    share = tot / max(tot.sum(), 1e-12)
+    order = [int(i) for i in np.argsort(share)[::-1]]
+    lit = (chroma_n > LIT).sum(axis=1)
+    loud = chroma.sum(axis=1) > np.percentile(chroma.sum(axis=1), 20)
+    name, fit = key_fit(tot)
+    out = [f"pitch: {lit[loud].mean():.1f} classes sounding per moment (chroma > {LIT})  top "
+           + " ".join(f"{PC[i]} {share[i] * 100:.0f}%" for i in order[:6]) + f"  best-fitting key {name} ({fit:.2f})"]
+    if key:
+        root, mode = key
+        scale = {(root + st) % 12 for st in STEPS[mode]}
+        outside = [i for i in order if i not in scale]
+        out.append(f"against {PC[root]} {mode}: {sum(share[i] for i in outside) * 100:.0f}% of the pitch energy is outside the scale ("
+                   + " ".join(f"{PC[i]} {share[i] * 100:.0f}%" for i in outside[:3]) + f"); the tonic ranks {order.index(root) + 1} of 12")
+    if bv.sum() >= 8:
+        cents = 100 * (bm[bv] - np.round(bm[bv]))
+        d = np.abs(np.diff(bm))
+        both = bv[1:] & bv[:-1]
+        glide = (d > 0.15) & (d < 2.5) & both
+        bpc = np.bincount(np.round(bm[bv]).astype(int) % 12, minlength=12) / bv.sum()
+        bo = np.argsort(bpc)[::-1]
+        out.append(f"bass (strongest partial 25-130 Hz): {np.mean(np.abs(cents) <= 25) * 100:.0f}% of sounding frames within 25 cents of a semitone, "
+                   f"median {np.median(np.abs(cents)):.0f} cents off; moving in {glide.sum() / max(both.sum(), 1) * 100:.0f}% of frame pairs (glides, bends); on "
+                   + " ".join(f"{PC[i]} {bpc[i] * 100:.0f}%" for i in bo[:4]))
+    return out
+
+
+def band_means(ld: np.ndarray, hz: np.ndarray, floor: float, sel=None) -> list[float]:
+    x = np.maximum(ld if sel is None else ld[:, sel], floor)
+    return [float(x[(hz >= lo) & (hz < hi)].mean()) for lo, hi in BANDS]
+
+
+def band_hot(ld: np.ndarray, hz: np.ndarray, top: float, sel=None) -> list[float]:
+    """share of each band's cells within 14 dB of the track's top: the yellow in the Hz panel"""
+    x = ld if sel is None else ld[:, sel]
+    return [float((x[(hz >= lo) & (hz < hi)] > top - 14).mean()) for lo, hi in BANDS]
+
+
+def balance_line(ld: np.ndarray, hz: np.ndarray, top: float, loud: np.ndarray) -> str:
+    """band balance over the loud part only, so intros, breakdowns and tails do not dilute it"""
+    means = band_means(ld, hz, top - 70, loud)
+    hot = band_hot(ld, hz, top, loud)
+    lab = ["20-60", "60-250", "250-1k", "1k-4k", "4k-20k"]
+    return (f"balance, loud part ({loud.mean() * 100:.0f}% of the track, frames within 10 dB of the 90th-percentile RMS): "
+            + " | ".join(f"{l} {m - max(means):+.1f} dB, {h * 100:.0f}% hot" for l, m, h in zip(lab, means, hot))
+            + "  (mean level per log-frequency band against the loudest band; hot = within 14 dB of the track's top, the yellow in the Hz panel)")
+
+
+def analyse(path: str, start: float, end: float | None, bpm: float | None, out: Path, first_bar: int,
+            key: str | None = None, bars: bool = False):
     st = decode(path, start, end)
     mono = st.mean(axis=1)
     dur = len(mono) / SR
@@ -125,6 +216,8 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
     ax[4].set_ylim(-1.05, 1.05)
     ax[4].set_ylabel("L/R corr")
     ax[4].set_xlabel("seconds")
+    hz = 440 * 2 ** ((logc - 69) / 12)
+    bm, bv = bass_track(P)
     rows = []
     if bpm:
         bar_s = 240 / bpm
@@ -136,13 +229,21 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
                 a.axvline(x, color="white" if a in ax[:3] else "grey", lw=0.4 if b % 4 else 0.9, alpha=0.5)
             if b % 4 == 0:
                 ax[0].text(x, HI_MIDI, f"{b + first_bar}", color="white", fontsize=8, va="top")
-            sel = (t >= x) & (t < x + bar_s)
-            if sel.sum() >= 2:
+            span = 1 if bars else 8
+            sel = (t >= x) & (t < x + span * bar_s)
+            if (b - b0) % span == 0 and sel.sum() >= 2:
                 c = chroma[sel].sum(axis=0)
                 share = c / max(c.sum(), 1e-12)
                 topk = np.argsort(share)[::-1][:3]
                 r = rms[sel]
-                rows.append(f"bar {b + first_bar:3}  {' '.join(f'{PC[i]:2}{share[i] * 100:3.0f}%' for i in topk)}   rms {20 * np.log10(np.sqrt(np.mean(r ** 2))):6.1f} dBFS  corr {corr[sel].mean():+.2f}")
+                bl = band_means(ld, hz, lt - 70, sel)
+                bh = band_hot(ld, hz, lt, sel)
+                bs = sel & bv
+                grid = np.mean(np.abs(100 * (bm[bs] - np.round(bm[bs]))) <= 25) * 100 if bs.any() else float("nan")
+                where = f"bar {b + first_bar:3}" + ("" if bars else f"-{b + first_bar + 7:<3}")
+                rows.append(f"{where}  {' '.join(f'{PC[i]:2}{share[i] * 100:3.0f}%' for i in topk)}  sounding {(chroma_n[sel] > LIT).sum(axis=1).mean():.1f}"
+                            f"  bass on-grid {grid:3.0f}%  bands {' '.join(f'{v - max(bl):+5.1f}' for v in bl)}  hot {'/'.join(f'{h * 100:.0f}' for h in bh)}"
+                            f"  rms {20 * np.log10(np.sqrt(np.mean(r ** 2))):6.1f} dBFS  corr {corr[sel].mean():+.2f}")
             b += 1
     fig.suptitle(f"{Path(path).name}  {start:.1f}-{start + dur:.1f} s" + (f"  {bpm} BPM" if bpm else ""), fontsize=11)
     fig.tight_layout()
@@ -156,6 +257,13 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
     print(f"below 20 Hz {infra * 100:.1f}% of the energy" + (
         f"  WARNING: inaudible energy above {INFRA_WARN * 100:g}%; it costs the limiter headroom. A sound may sit octaves "
         f"under its written note: render one note of each low sound and read its lowest partial" if infra > INFRA_WARN else ""))
+    for line in pitch_lines(chroma, chroma_n, bm, bv, parse_key(key)):
+        print(line)
+    fr = 20 * np.log10(rms)
+    print(balance_line(ld, hz, lt, fr > np.percentile(fr, 90) - 10))
+    if rows:
+        print(f"per {'bar' if bars else '8 bars'} (a grid at {bpm:g} BPM; tempo automation is not followed): top pitch classes, classes sounding, "
+              "bass frames within 25 cents, bands 20-60/60-250/250-1k/1k-4k/4k-20k against the loudest and % hot in each, rms, corr")
     for r in rows:
         print(r)
 
@@ -168,6 +276,8 @@ if __name__ == "__main__":
     ap.add_argument("--bpm", type=float, default=None)
     ap.add_argument("--first-bar", type=int, default=1)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--key", default=None, help="the intended key, e.g. 'F minor' or 'G#m': reports the pitch energy outside its scale")
+    ap.add_argument("--bars", action="store_true", help="rows per bar instead of per 8 bars")
     a = ap.parse_args()
     name = Path(a.path).stem + (f"_{a.start:g}-{a.end:g}" if a.end else "")
-    analyse(a.path, a.start, a.end, a.bpm, Path(a.out) if a.out else Path("tmp/spectro") / f"{name}.png", a.first_bar)
+    analyse(a.path, a.start, a.end, a.bpm, Path(a.out) if a.out else Path("tmp/spectro") / f"{name}.png", a.first_bar, a.key, a.bars)
