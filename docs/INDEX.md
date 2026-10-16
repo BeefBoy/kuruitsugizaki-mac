@@ -7,7 +7,7 @@ the only verdict.
 ## Writing a piece
 
 **1. Preference.** Read `compositions/PREFERENCE.md`: what the person likes and rejects, in their words, gathered
-from every verdict they have given. If such doc does't exist yet, create it empty.
+from every verdict they have given. If such doc does't exist, it was not written yet.
 
 **2. `COMPOSING.md`.** A general method, written before this person said how their music should go: the order of
 work, what went wrong in earlier pieces and the rules that came out of it, measured mixing levels and widths, how to
@@ -36,7 +36,7 @@ as you go: each part, what it is, where it came from, what else was tried, what 
 not check; their verdict goes at its end. Play it for them when it is done: the mp3 path, and the project open and
 playing in FL. Scratch goes in `tmp/`.
 
-Content of compositions/ is not for your read unless its yours file created fresh.
+Content of compositions/ is not for your read unless its yours file created fresh or PREFERENCE.md doc.
 
 ## Work on the server itself, not on music
 
