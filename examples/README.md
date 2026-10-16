@@ -4,6 +4,8 @@ Small documents that each show one part of the compact format, and one full piec
 
 Every sound is FL Studio factory content: Sytrus and 3x Osc presets, FL's own effects, and samples from FL's own packs, referenced as `%FLStudioFactoryData%/Data/Patches/Packs/...`, a path FL resolves on any install. Built and rendered with FL Studio 2025 (25.1.6). An FL edition without Sytrus or one of the effects loads that slot empty or as a demo.
 
+Never meant to be copied for prod, for illustrative purpose only. Write your own stuff.
+
 ## Use
 
 Hand any `.json` here to the model and ask it to write and open it (`project_write` with `open: true`), or build them all from a terminal in this folder's parent:
