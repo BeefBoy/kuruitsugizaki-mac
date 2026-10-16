@@ -37,6 +37,8 @@ not check; their verdict goes at its end. Play it for them when it is done: the 
 playing in FL. Scratch goes in `tmp/`.
 
 Content of compositions/ is not for your read unless its yours file created fresh or PREFERENCE.md doc.
+Forbidden unless told otherwise E:\dev\kuruitsugizaki\examples\seance.md
+E:\dev\kuruitsugizaki\examples\seance.py
 
 ## Work on the server itself, not on music
 

@@ -9,6 +9,7 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 - **Every drum hit is there for something**: it fills, answers or sets up (§4).
 - **Measure to know, never to correct.** A render says where a note sounds and how wide and loud each section is. Detune, an octave accident, a peak past 0 dBFS are choices once known; breaking a rule never makes something wrong.
 - **Write a whole piece**: one to two minutes with a form, not an 8-bar loop.
+- **More does not name the dimension.** A request for more (harder, more complex, deeper) does not name the dimension. Candidates: harmony and voicing, layering and counter-lines, sound design and processing, arrangement and contrast, rhythm.
 
 ## 1. Order of work
 
@@ -58,7 +59,7 @@ A predictable grid and progression is one option, worth knowing how to use and h
 
 - **Few pitches**: a lead can live on four notes for 32 bars.
 - **Leaps and neighbours**: 4ths, 5ths, 3rds, whole-step swaps around a note; three notes stepping one way is rare.
-- **A dotted grid, when syncopation is the goal**: bass and chord changes 6 sixteenths apart (0, 6, 12) instead of on the beat. It sets where a note starts, not how long it lasts.
+- **Syncopation, when it is the goal**: a dotted grid (0, 6, 12) is one way: bass and chord changes 6 sixteenths apart instead of on the beat. It sets where a note starts, not how long it lasts.
 - **The bass holds by default**: few notes, each held for a bar or more, while the drums do the punctuating. Short bass hits locked to the kick are a valid choice, but a nuanced one that has to be executed well: the bass tuned to the kick, the kick's own pitch and tail, what fills the gaps. Make it on purpose, never by habit.
 - **Cells restated with one substitution**: the one change is what gets heard.
 - **Pedal against movement**: one voice holds while another moves, so the same note changes meaning (A#4 over E).
@@ -70,7 +71,7 @@ A predictable grid and progression is one option, worth knowing how to use and h
 - **Scale runs**: a chord tone, a leap, then the scale walked back. It sounds like an exercise.
 - **A two-note trill** for a whole cell.
 - **A plain progression** (four equal chords in order) unless it is a deliberate transition.
-- **Too straightforward**: correct, with nothing unexpected.
+- **Nothing unexpected anywhere.** The unexpected can be a sound, a chord, a stop, a drop or a transition. It does not have to be a displaced hit.
 
 ### Method
 

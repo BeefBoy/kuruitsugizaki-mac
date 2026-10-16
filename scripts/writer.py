@@ -265,7 +265,12 @@ def build(doc: dict) -> tuple[bytes, list[str]]:
                 ref, r = index[cid], bytearray(tpl["channel"])
             struct.pack_into("<IHHII", r, 0, ticks(clip["at"], ppq), 0x5000, ref, int(clip["len"]), 500 - int(clip["track"]))
             r[19] = (r[19] | 0x80) if clip.get("flag_b19") else (r[19] & 0x7F)
-            if "trim" in clip:
+            if "pattern" in clip:
+                # start and end inside the pattern, in ticks; with the template's -1/-1 FL plays the whole pattern
+                # whatever the clip's length, so a clip shorter than its pattern would run on past its end
+                lo, hi = clip.get("trim") or (0, int(clip["len"]))
+                struct.pack_into("<ii", r, 24, int(lo), int(hi))
+            elif "trim" in clip:
                 struct.pack_into("<ff", r, 24, *clip["trim"])
             for key, off in (("raw16", 16), ("raw24", 24), ("raw36", 36)):
                 if key in clip:

@@ -123,6 +123,8 @@ Other events that changed across that save: 237 (as before), the 212 record of b
 | 227 | one per automation clip, 20 bytes: u16 channel at 2, u32 target at 8 as FL's REC event id | REC_Tempo 0x40000005, REC_Mixer_Vol 0x70001FC0 + track<<22, plugin params 0x70008000 + (track<<22 or slot<<16) + param, channel params ch<<16; checked against midi.REC_* and mixer.getTrackPluginId in FL. FL 20 puts the mixer block at 0x20000000 instead of 0x70000000: walk.flp's two `Master - Volume` clips target 0x20001FC0; only master volume is measured, the same track and slot layout is assumed, and the writer moves such ids to 0x7 |
 | 234 | automation points: 21-byte header with u32 count at 17, 24-byte points (f64 beats since previous point, f64 value, f32 tension, shape byte at 23), 112-byte tail | five clips in two projects; re-encodes byte-identical |
 
+A pattern clip's 8 bytes at 24 are not floats but i32 start and end inside the pattern, in ticks: FL wrote (0, 2880) for a clip of 2880, (576, 5952) for one cut at both ends (jackal7r). Left at the template's -1, -1, FL plays the whole pattern whatever the clip's length: a 4-bar clip of an 8-bar pattern ran all 8 bars in a render (tallow_vigil). The writer now writes (0, length), or the clip's `trim` as ticks.
+
 Automation clip trim is in beats (Master Volume: points to 9.65 beats, trim [0, 10.18], clip 977 ticks). Audio clip trim is in milliseconds (measured below). An untrimmed audio clip plays its whole sample whatever its length says: FL rewrote 48- and 24-tick hat clips to the sample's 50 ticks on save.
 
 ### VST2 plugin state inside the wrapper

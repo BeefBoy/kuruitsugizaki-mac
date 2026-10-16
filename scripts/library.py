@@ -111,17 +111,20 @@ def _scan_db(root: Path) -> list[dict]:
 def entries() -> list[dict]:
     lib, db = lib_path(), db_root()
     key = (str(lib), lib.stat().st_mtime_ns if lib else 0, str(db), max((d.stat().st_mtime_ns for d, _, _ in _db_dirs(db)), default=0) if db else 0)
-    if _cache.get("key") != key:
-        _cache.clear()
-        _cache["key"] = key
-        own = _scan_library(lib) if lib else []
-        seen = {(e["kind"], e["name"].lower(), e["format"]) for e in own}
-        fl = [e for e in (_scan_db(db) if db else []) if (e["kind"], e["name"].lower(), e["format"]) not in seen]
-        allx = own + fl
-        for e in allx:
-            e["id"] = slug(e["name"])
-        _cache["entries"] = allx
-    return _cache["entries"]
+    # Every tool call reloads this module, which replaces _cache with a new dict; a call running in parallel can
+    # find its cache emptied between writing and reading it. So read once, build into locals, return the local.
+    hit = _cache.get("entries")
+    if _cache.get("key") == key and hit is not None:
+        return hit
+    own = _scan_library(lib) if lib else []
+    seen = {(e["kind"], e["name"].lower(), e["format"]) for e in own}
+    fl = [e for e in (_scan_db(db) if db else []) if (e["kind"], e["name"].lower(), e["format"]) not in seen]
+    allx = own + fl
+    for e in allx:
+        e["id"] = slug(e["name"])
+    _cache.clear()
+    _cache.update(key=key, entries=allx)
+    return allx
 
 
 def _rank(e: dict) -> tuple:
@@ -156,7 +159,8 @@ def has(query: str, kind: str | None = None, fmt: str | None = None) -> bool:
 def _templates() -> dict:
     import writer
     from project import TEMPLATES
-    if "tpl" not in _cache:
+    tpl = _cache.get("tpl")
+    if tpl is None:
         _, lay = writer.load(TEMPLATES)
         inst = next((b for b in lay["channels"] if next((int.from_bytes(e.data, "little") for e in b if e.id == 21), None) == 2), None)
         fx = None
@@ -166,8 +170,8 @@ def _templates() -> dict:
             first = next(iter(mixerfx.effects(flay["tail"])), None)
             if first:
                 fx = mixerfx.block(flay["tail"], first["track"], first["slot"])
-        _cache["tpl"] = {"instrument": inst, "effect": fx, "effect_file": str(p)}
-    return _cache["tpl"]
+        tpl = _cache["tpl"] = {"instrument": inst, "effect": fx, "effect_file": str(p)}
+    return tpl
 
 
 def _fresh(e: dict) -> list:
@@ -239,8 +243,9 @@ def _vendor(e: dict) -> list[dict]:
 
 def catalog(e: dict) -> list[dict]:
     ck = ("catalog", e["kind"], e["name"], e["format"])
-    if ck in _cache:
-        return _cache[ck]
+    hit = _cache.get(ck)
+    if hit is not None:
+        return hit
     out = []
     for tag, root in _roots():
         d = _folder(root, e)
