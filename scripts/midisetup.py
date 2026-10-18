@@ -65,8 +65,9 @@ def ensure(fl_exe: str | None, loopmidi_exe: str | None) -> dict:
             winreg.SetValueEx(k, NAME, 0, winreg.REG_DWORD, 1)
         if was:
             subprocess.Popen([loopmidi_exe])
-    used = {values(rf"{key}\Devices\{d}\{n}").get("Port") for d in ("MIDI input", "MIDI output") for n in subkeys(rf"{key}\Devices\{d}")}
-    number = next(str(n) for n in range(10, 256) if str(n) not in used)
+    paired = values(rf"{key}\Devices\MIDI output\{NAME}").get("Port")
+    used = {values(rf"{key}\Devices\{d}\{n}").get("Port") for d in ("MIDI input", "MIDI output") for n in subkeys(rf"{key}\Devices\{d}") if (d, n) != ("MIDI output", NAME)}
+    number = paired if paired and paired != "-1" and paired not in used else next(str(n) for n in range(10, 256) if str(n) not in used)
     with winreg.CreateKey(HKCU, rf"{key}\Devices\MIDI input\{NAME}") as k:
         for name, value in (("Type", "-3"), ("ScriptFolder", NAME), ("IDString", "-"), ("ConnectionCounter", "0"), ("Port", number), ("Enabled", "1")):
             winreg.SetValueEx(k, name, 0, winreg.REG_SZ, value)

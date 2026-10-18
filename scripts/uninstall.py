@@ -32,6 +32,9 @@ def midi() -> list[str]:
                     winreg.SetValueEx(k, "ScriptFolder", 0, winreg.REG_SZ, "")
                     winreg.SetValueEx(k, "Type", 0, winreg.REG_SZ, "0")
                 out.append(f"FL MIDI input {n!r}: script unassigned, port kept")
+        if ms.values(rf"{key}\Devices\MIDI output\{NAME}"):
+            winreg.DeleteKey(ms.HKCU, rf"{key}\Devices\MIDI output\{NAME}")
+            out.append(f"FL MIDI output {NAME!r}: removed")
     else:
         out.append("FL's settings not found in the registry; nothing to unassign")
     if NAME in ms.values(ms.LOOP):
