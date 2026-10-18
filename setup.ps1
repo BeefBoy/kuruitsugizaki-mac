@@ -1,4 +1,4 @@
-param([switch]$Yes, [string]$ClaudeConfig = "", [switch]$NoClaudeCode, [switch]$NoLive)
+param([switch]$Yes, [switch]$Custom, [string]$ClaudeConfig = "", [switch]$NoClaudeCode, [switch]$NoLive)
 
 $here = $PSScriptRoot
 Set-Location $here
@@ -80,10 +80,11 @@ Say "ffmpeg (analyses renders; optional)"
 if ((Have ffmpeg) -and (Have ffprobe)) { Write-Host "found $((Get-Command ffmpeg).Source)" }
 elseif (Ask "ffmpeg is not installed. Install it?") { Get-Package "Gyan.FFmpeg" "ffmpeg" }
 
-Say "Paths (each shows what is set or was found; Enter keeps it)"
+if ($Custom -and -not $Yes) { Say "Paths (each shows what is set or was found; Enter keeps it)" }
+else { Say "Paths (the ones found are used; setup.bat -Custom asks for each)" }
 $python = Join-Path $here ".venv\Scripts\python.exe"
 $paths = @("scripts\setup_paths.py")
-if ($Yes) { $paths += "--yes" }
+if ($Yes -or -not $Custom) { $paths += "--yes" }
 & $python @paths
 function Setting($expr) { return (& $python -c "import sys; sys.path.insert(0, 'scripts'); import config; print($expr)") }
 
