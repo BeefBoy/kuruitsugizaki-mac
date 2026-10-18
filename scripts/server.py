@@ -12,6 +12,7 @@ from mcp.types import ToolAnnotations
 from pydantic import Field
 
 import config as cfg
+import flproc
 
 try:
     import _winapi
@@ -36,6 +37,7 @@ class Link:
     def __init__(self):
         self.srv = None
         self.pid = None
+        self.who = None
         self.seq = 0
         self.lock = threading.Lock()
 
@@ -51,21 +53,10 @@ class Link:
             _winapi.CloseHandle(h)
 
     def fl_pid(self) -> int:
-        if os.environ.get("KURUITSUGIZAKI_FL_PID"):
-            return int(os.environ["KURUITSUGIZAKI_FL_PID"])
         if self.pid and self.alive(self.pid):
             return self.pid
-        out = subprocess.run(["tasklist", "/FI", "IMAGENAME eq FL64.exe", "/FO", "CSV", "/NH"],
-                             capture_output=True, text=True).stdout
-        pids = [int(line.split('","')[1]) for line in out.splitlines() if line.startswith('"FL64.exe"')]
-        if not pids:
-            raise RuntimeError("FL64.exe is not running")
-        if len(pids) > 1:
-            ps = subprocess.run(["powershell", "-NoProfile", "-Command",
-                                 "Get-Process FL64 | Sort-Object StartTime | Select-Object -First 1 -ExpandProperty Id"],
-                                capture_output=True, text=True).stdout.strip()
-            pids = [int(ps)] if ps.isdigit() else sorted(pids)
-        self.pid = pids[0]
+        env = os.environ.get("KURUITSUGIZAKI_FL_PID")
+        self.pid, self.who = flproc.choose(int(env) if env else None)
         return self.pid
 
     def close(self):
@@ -162,7 +153,7 @@ def _ensure_loopmidi() -> bool:
 def _ensure_fl() -> float | None:
     _ensure_loopmidi()
     if not _fl_running():
-        subprocess.Popen([cfg.need("fl_exe")])
+        flproc.launch([cfg.need("fl_exe")])
         LINK.close()
         LINK.pid = None
         BOOT["t"] = time.monotonic()
@@ -201,10 +192,14 @@ def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
         return {"ok": False, "error": str(e)}
     try:
         res = LINK.call(req, timeout)
+    except flproc.Ambiguous as e:
+        return {"ok": False, "error": str(e)}
     except Exception as e:
         return {"ok": False, "error": f"{e!r}: is FL running with the kuruitsugizaki controller script loaded?"}
-    if launched is not None and isinstance(res, dict):
-        res["launched_fl_seconds"] = launched
+    if isinstance(res, dict):
+        res["fl"] = {"pid": LINK.pid, "started_by": LINK.who}
+        if launched is not None:
+            res["launched_fl_seconds"] = launched
     return res
 
 
@@ -273,13 +268,15 @@ def fl_probe() -> dict:
 
 
 def _close_fl(timeout: float = 30.0):
-    subprocess.run(["taskkill", "/IM", "FL64.exe"], capture_output=True)
+    mine = [p for p in flproc.owned() if p in flproc.pids()]
+    for p in mine:
+        subprocess.run(["taskkill", "/PID", str(p)], capture_output=True)
     t0 = time.monotonic()
-    while _fl_running() and time.monotonic() - t0 < timeout:
+    while any(p in flproc.pids() for p in mine) and time.monotonic() - t0 < timeout:
         time.sleep(0.5)
     LINK.close()
     LINK.pid = None
-    if _fl_running():
+    if any(p in flproc.pids() for p in mine):
         raise RuntimeError(f"FL did not close within {timeout:.0f}s; a dialog in FL may be waiting")
 
 
@@ -381,11 +378,15 @@ def _save_open(protect: Path | None = None, timeout: float = 5.0) -> dict:
 
 
 def _open(path: Path, names: list[str], timeout: float = 120.0) -> dict:
-    if _fl_running():
+    running = flproc.pids()
+    if len(running) > 1:
+        raise RuntimeError(f"{len(running)} FL instances are open (pids {running}); FL opens a file in the newest one, not a chosen one, so close the others and call again")
+    if running:
         _save_open(path)
+        subprocess.Popen([cfg.need("fl_exe"), str(path)])
     else:
         _ensure_loopmidi()
-    subprocess.Popen([cfg.need("fl_exe"), str(path)])
+        flproc.launch([cfg.need("fl_exe"), str(path)])
     code = "import channels\nresult = [channels.getChannelName(i, True) for i in range(channels.channelCount(True))]"
     t0 = time.time()
     while time.time() - t0 < timeout:

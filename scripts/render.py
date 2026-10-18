@@ -101,7 +101,8 @@ def main():
     if wav:
         analyse(wav, a.bpm or project_bpm(flp), a.key)
     if a.reopen:
-        subprocess.Popen([fl_exe, str(flp)])
+        import flproc
+        flproc.launch([fl_exe, str(flp)])
         print("reopened in FL")
 
 
