@@ -556,10 +556,12 @@ def _lib(fn):
     "them goes into project_write by name: an instrument as {kind: plugin, plugin: <name>, preset?, format?}, an effect "
     "as mixer.effects [{track, slot, plugin: <name>, preset?, format?}]; without a preset it arrives as if dragged in "
     "fresh from FL's browser, a library instance as saved. A plugin installed in several formats is one name (native, "
-    "then vst3, clap, vst unless format is given). Reads files only; FL need not run."))
-def plugins(query: Annotated[str | None, Field(description="keep names containing this text, case-insensitive, e.g. 'serum'; omit for all")] = None) -> dict:
+    "then vst3, clap, vst unless format is given). native=false leaves out FL's own plugins and lists only VST3 and "
+    "CLAP ones. Reads files only; FL need not run."))
+def plugins(query: Annotated[str | None, Field(description="keep names containing this text, case-insensitive, e.g. 'serum'; omit for all")] = None,
+            native: Annotated[bool, Field(description="false leaves out FL's own (native) plugins")] = True) -> dict:
     def go(L):
-        rows = L.summary(query)
+        rows = L.summary(query, native)
         return {"plugin_db": str(L.db_root()), "library": str(L.lib_path()), "count": len(rows), "plugins": rows}
     return _lib(go)
 
