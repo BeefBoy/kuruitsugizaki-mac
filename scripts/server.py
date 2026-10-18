@@ -143,12 +143,17 @@ NOT_OPEN = "FL is not running, and it is not started just for this: open a proje
 def _ensure_loopmidi() -> bool:
     if _running("loopMIDI.exe"):
         return False
-    subprocess.Popen([cfg.need("loopmidi_exe")])
-    t0 = time.monotonic()
-    while not _running("loopMIDI.exe") and time.monotonic() - t0 < 10:
-        time.sleep(0.25)
+    flproc.launch([cfg.need("loopmidi_exe")], image="loopMIDI.exe", path=flproc.LOOP_OWNED)
     time.sleep(1.5)
     return True
+
+
+def _close_loopmidi():
+    """Close a loopMIDI the harness started, once no FL is left that could be using its ports."""
+    if flproc.pids():
+        return
+    for p in flproc.owned(flproc.LOOP_OWNED):
+        subprocess.run(["taskkill", "/F", "/PID", str(p)], capture_output=True)
 
 
 def _ensure_fl() -> float | None:
@@ -364,6 +369,7 @@ def _close_fl(timeout: float = 30.0):
     left = [p for p in mine if p in flproc.pids()]
     if left:
         raise RuntimeError(f"FL did not close within {timeout:.0f}s: " + (" ".join(filter(None, (_dialog(p) for p in left))) or "no dialog found"))
+    _close_loopmidi()
 
 
 @mcp.tool(annotations=RAW, description=(

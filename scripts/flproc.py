@@ -8,15 +8,16 @@ from ctypes import wintypes
 from pathlib import Path
 
 OWNED = Path(__file__).resolve().parents[1] / "tmp" / "bridge" / "owned.json"
+LOOP_OWNED = OWNED.with_name("owned_loopmidi.json")  # loopMIDI processes the harness started, kept apart from FL's
 
 
 class Ambiguous(RuntimeError):
     pass
 
 
-def pids() -> list[int]:
-    out = subprocess.run(["tasklist", "/FI", "IMAGENAME eq FL64.exe", "/FO", "CSV", "/NH"], capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
-    return [int(line.split('","')[1]) for line in out.splitlines() if line.lower().startswith('"fl64.exe"')]
+def pids(image: str = "FL64.exe") -> list[int]:
+    out = subprocess.run(["tasklist", "/FI", f"IMAGENAME eq {image}", "/FO", "CSV", "/NH"], capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
+    return [int(line.split('","')[1]) for line in out.splitlines() if line.lower().startswith(f'"{image.lower()}"')]
 
 
 def created(pid: int) -> int | None:
@@ -33,37 +34,37 @@ def created(pid: int) -> int | None:
         k.CloseHandle(h)
 
 
-def _load() -> dict:
+def _load(path: Path = OWNED) -> dict:
     try:
-        return json.loads(OWNED.read_text(encoding="utf-8"))
+        return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {}
 
 
-def _save(data: dict):
-    OWNED.parent.mkdir(parents=True, exist_ok=True)
-    OWNED.write_text(json.dumps(data), encoding="utf-8")
+def _save(data: dict, path: Path = OWNED):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data), encoding="utf-8")
 
 
-def owned() -> list[int]:
-    data = _load()
+def owned(path: Path = OWNED) -> list[int]:
+    data = _load(path)
     alive = {p: t for p, t in data.items() if created(int(p)) == t}
     if alive != data:
-        _save(alive)
+        _save(alive, path)
     return [int(p) for p, _ in sorted(alive.items(), key=lambda kv: kv[1])]
 
 
-def launch(args: list[str], wait: float = 10.0) -> list[int]:
-    before = set(pids())
+def launch(args: list[str], wait: float = 10.0, image: str = "FL64.exe", path: Path = OWNED) -> list[int]:
+    before = set(pids(image))
     subprocess.Popen(args)
     t0 = time.monotonic()
     new = []
     while not new and time.monotonic() - t0 < wait:
         time.sleep(0.25)
-        new = [p for p in pids() if p not in before]
-    data = {str(p): created(p) for p in owned()}
+        new = [p for p in pids(image) if p not in before]
+    data = {str(p): created(p) for p in owned(path)}
     data.update({str(p): created(p) for p in new})
-    _save(data)
+    _save(data, path)
     return new
 
 

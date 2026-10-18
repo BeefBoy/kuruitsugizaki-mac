@@ -8,6 +8,7 @@ import winreg
 from pathlib import Path
 
 import config as cfg
+import flproc
 import midisetup as ms
 
 ROOT = cfg.ROOT
@@ -38,14 +39,20 @@ def midi() -> list[str]:
         out.append("FL's settings not found in the registry; nothing to unassign")
     if NAME in ms.values(ms.LOOP):
         was = ms.running("loopMIDI.exe")
+        harness = bool(flproc.owned(flproc.LOOP_OWNED))
         if was:
             subprocess.run(["taskkill", "/F", "/IM", "loopMIDI.exe"], capture_output=True)
             time.sleep(1)
         with winreg.OpenKey(ms.HKCU, ms.LOOP, 0, winreg.KEY_SET_VALUE) as k:
             winreg.DeleteValue(k, NAME)
-        if was and cfg.get("loopmidi_exe"):
+        if was and not harness and cfg.get("loopmidi_exe"):
             subprocess.Popen([cfg.get("loopmidi_exe")])
-        out.append(f"loopMIDI port {NAME!r}: removed")
+        out.append(f"loopMIDI port {NAME!r}: removed" + ("; loopMIDI started again, it was running before" if was and not harness else
+                                                          "; loopMIDI left closed, kuruitsugizaki had started it" if was else ""))
+    elif flproc.owned(flproc.LOOP_OWNED):
+        for p in flproc.owned(flproc.LOOP_OWNED):
+            subprocess.run(["taskkill", "/F", "/PID", str(p)], capture_output=True)
+        out.append("loopMIDI: closed, kuruitsugizaki had started it")
     return out or ["no FL MIDI input had the script and no loopMIDI port was named kuruitsugizaki"]
 
 

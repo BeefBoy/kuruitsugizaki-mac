@@ -57,13 +57,17 @@ def ensure(fl_exe: str | None, loopmidi_exe: str | None) -> dict:
         return {"ok": False, "error": f"FL is running and writes its MIDI settings when it closes; close FL and call fl_install again, or {BY_HAND}"}
     made = NAME not in s["loopmidi_ports"]
     if made:
+        import flproc
         was = running("loopMIDI.exe")
+        ours = bool(flproc.owned(flproc.LOOP_OWNED))
         if was:
             subprocess.run(["taskkill", "/F", "/IM", "loopMIDI.exe"], capture_output=True)
             time.sleep(1)
         with winreg.CreateKey(HKCU, LOOP) as k:
             winreg.SetValueEx(k, NAME, 0, winreg.REG_DWORD, 1)
-        if was:
+        if was and ours:
+            flproc.launch([loopmidi_exe], image="loopMIDI.exe", path=flproc.LOOP_OWNED)
+        elif was:
             subprocess.Popen([loopmidi_exe])
     paired = values(rf"{key}\Devices\MIDI output\{NAME}").get("Port")
     used = {values(rf"{key}\Devices\{d}\{n}").get("Port") for d in ("MIDI input", "MIDI output") for n in subkeys(rf"{key}\Devices\{d}") if (d, n) != ("MIDI output", NAME)}
