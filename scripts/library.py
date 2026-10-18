@@ -215,7 +215,7 @@ def _fresh(e: dict) -> list:
         elif x.id == STATE:
             if st is not None:
                 out.append(flp.Event(STATE, st))
-        elif x.id == LABEL and e["kind"] == "instrument":
+        elif x.id == LABEL:
             out.append(flp.Event(LABEL, e["name"].encode("utf-16-le") + b"\0\0"))
         else:
             out.append(flp.Event(x.id, x.data))
