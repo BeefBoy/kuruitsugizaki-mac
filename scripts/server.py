@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 from typing import Annotated
 
-from mcp.server.mcpserver import MCPServer
+from mcp.server.mcpserver import Image, MCPServer
 from mcp.types import ToolAnnotations
 from pydantic import Field
 
@@ -659,11 +659,11 @@ def project_write(doc: Annotated[dict, Field(description="the project document, 
 
 
 @mcp.tool(annotations=WRITE, description=(
-    "Render an .flp to audio: a .wav and .mp3 beside it (replacing earlier ones), then spectrogram and stereo "
-    "statistics, so the result can be read as numbers and pictures. Call it after project_write to check a piece. FL "
-    "renders from the command line, so the FL that is open is saved first (path itself is restored if that save "
-    "overwrote it) and closed. Runs detached and returns at once with the log file to read for the results and file "
-    "names; a 2-minute piece takes under a minute. Windows with FL Studio only."))
+    "Render an .flp to audio: a .wav and .mp3 beside it (replacing earlier ones), then a spectrogram and a short "
+    "report. Call it after project_write to check a piece. FL renders from the command line, so the FL that is open "
+    "is saved first (path itself is restored if that save overwrote it) and closed. Runs detached and returns at once; "
+    "a 2-minute piece takes under a minute. Read the result with render_report(path), which returns the report and "
+    "the spectrogram picture. Windows with FL Studio only."))
 def fl_render(path: Annotated[str, Field(description="the .flp to render")],
               reopen: Annotated[bool, Field(description="open the project in FL again when done")] = True,
               key: Annotated[str | None, Field(description="the key the piece is written in, e.g. 'F minor' or 'G#m'; "
@@ -691,6 +691,47 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
     LINK.close()
     LINK.pid = None
     return {"ok": True, "rendering": str(target), "log": str(log), "saved_open_project": saved}
+
+
+@mcp.tool(annotations=READ, description=(
+    "A finished render of a project: its short report (length, peak, key, wash, and flags only where something is "
+    "there) and the spectrogram picture. Look at it before handing a piece over; the full analysis is in the .txt it "
+    "names. Says so when the render is still running."))
+def render_report(path: Annotated[str, Field(description="the .flp (or its .wav) that fl_render rendered")]) -> list:
+    stem = Path(path).stem
+    logs = sorted((ROOT / "tmp" / "render_logs").glob(f"{stem}-*.log"), key=lambda p: p.stat().st_mtime)
+    if not logs:
+        return [f"no render log for {stem} in tmp/render_logs; call fl_render first"]
+    text = logs[-1].read_text(encoding="utf-8", errors="replace")
+    if "next: render_report" not in text and "not written" not in text and "FL exited" not in text:
+        return [f"{stem} is still rendering (log {logs[-1].name}); call again in a moment"]
+    png = ROOT / "tmp" / "spectro" / f"{stem}.png"
+    keep = [line for line in text.splitlines() if not line.startswith(("next: render_report", "reopened in FL"))]
+    if not any(line.startswith("look: ") for line in keep):
+        import sys as _sys
+        src = Path(path).resolve()
+        wav = src if src.suffix.lower() == ".wav" else src.with_suffix(".wav")
+        if wav.exists():
+            sys_path = str(ROOT / "scripts")
+            if sys_path not in _sys.path:
+                _sys.path.insert(0, sys_path)
+            import render
+            bpm = render.project_bpm(wav.with_suffix(".flp")) if wav.with_suffix(".flp").exists() else None
+            r = subprocess.run([_sys.executable, str(ROOT / "scripts" / "spectro.py"), str(wav)] + (["--bpm", str(bpm)] if bpm else []),
+                               capture_output=True, text=True, cwd=str(ROOT), stdin=subprocess.DEVNULL)
+            keep = keep[:1] + r.stdout.strip().splitlines()
+    if not png.exists():
+        return ["\n".join(keep), "no spectrogram was written"]
+    view = png.with_name(f"{stem}_view.png")
+    try:
+        from PIL import Image as PILImage
+        im = PILImage.open(png)
+        if im.width > 1600:
+            im = im.resize((1600, round(im.height * 1600 / im.width)))
+        im.convert("RGB").save(view)
+    except Exception:
+        view = png
+    return ["\n".join(keep), Image(path=str(view))]
 
 
 def _lib(fn):

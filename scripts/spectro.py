@@ -163,8 +163,69 @@ def balance_line(ld: np.ndarray, hz: np.ndarray, top: float, loud: np.ndarray) -
             + "  (mean level per log-frequency band against the loudest band; hot = within 14 dB of the track's top, the yellow in the Hz panel)")
 
 
+def _clock(x: float, bar_s: float | None, first_bar: int) -> str:
+    return f"{int(x // 60)}:{int(x % 60):02d}" + (f" (bar {int(x / bar_s) + first_bar})" if bar_s else "")
+
+
+def _runs(mask: np.ndarray, t: np.ndarray, least: float) -> list[tuple[float, float]]:
+    out, s = [], None
+    for i, m in enumerate(mask):
+        if m and s is None:
+            s = i
+        if (not m or i == len(mask) - 1) and s is not None:
+            e = i if not m else i + 1
+            if t[min(e, len(t) - 1)] - t[s] >= least:
+                out.append((float(t[s]), float(t[min(e, len(t) - 1)])))
+            s = None
+    return out
+
+
+def summary(path, out, st, t, rms, corr, sd, top, infra, chroma, bm, bv, key, wa, bpm, first_bar) -> list[str]:
+    bar_s = 240 / bpm if bpm else None
+    when = lambda x: _clock(x, bar_s, first_bar)
+    dur = len(st) / SR
+    pk = float(np.max(np.abs(st)))
+    mono = st.mean(axis=1)
+    lines = [f"{Path(path).name}  {_clock(dur, None, 1)}  peak {20 * np.log10(pk + 1e-12):.1f} dBFS  rms {20 * np.log10(np.sqrt(np.mean(mono ** 2)) + 1e-12):.1f} dBFS",
+             f"look: {out}"]
+    tot = chroma.sum(axis=0)
+    share = tot / max(tot.sum(), 1e-12)
+    k = parse_key(key)
+    if k:
+        root, mode = k
+        scale = {(root + s) % 12 for s in STEPS[mode]}
+        lines.append(f"key: {PC[root]} {mode}, {sum(share[i] for i in range(12) if i not in scale) * 100:.0f}% of the pitch energy outside it")
+    else:
+        name, fit = key_fit(tot)
+        lines.append(f"key: {name} fits best ({fit:.2f})")
+    segs = sorted(wa["segs"], key=lambda s: -s["dur"])
+    lines.append(f"wash: {wa['score']:.1f} {wash.verdict(wa['score'])}" + (f", longest stretch {when(segs[0]['start'])}-{when(segs[0]['end'])} ({segs[0]['dur']:.0f} s)" if segs else ""))
+    flags = []
+    full = np.abs(st) >= 0.999
+    if pk >= 0.999 and int(np.sum(full[1:] & full[:-1])):
+        flags.append(f"clipping: {int(np.sum(full[1:] & full[:-1]))} consecutive full-scale samples")
+    if infra > INFRA_WARN:
+        flags.append(f"{infra * 100:.0f}% of the energy below 20 Hz")
+    lvl = 20 * np.log10(rms)
+    p90 = np.percentile(lvl, 90)
+    up = lvl > p90 - 30
+    last = t[np.nonzero(up)[0][-1]] if up.any() else 0.0
+    end = t[-1] + HOP / SR
+    if end - last > 4:
+        flags.append(f"the last {end - last:.0f} s sit more than 30 dB under the piece (from {when(last)})")
+    quiet = (lvl < p90 - 40) & (t > t[0] + 1) & (t < last)
+    for s, e in _runs(quiet, t, 1.5)[:3]:
+        flags.append(f"near-silence {when(s)}, {e - s:.1f} s")
+    for s, e in _runs(corr < -0.2, t, 1.0)[:3]:
+        flags.append(f"out of phase {when(s)}, {e - s:.1f} s")
+    if bv.sum() >= 8 and np.mean(np.abs(100 * (bm[bv] - np.round(bm[bv]))) <= 25) < 0.7:
+        flags.append("bass often off the semitone grid (detail has the figure)")
+    lines.append("flags: " + ("; ".join(flags) if flags else "none"))
+    return lines
+
+
 def analyse(path: str, start: float, end: float | None, bpm: float | None, out: Path, first_bar: int,
-            key: str | None = None, bars: bool = False):
+            key: str | None = None, bars: bool = False, detail: bool = False):
     st = decode(path, start, end)
     mono = st.mean(axis=1)
     dur = len(mono) / SR
@@ -260,23 +321,28 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
     fig.savefig(out, dpi=100)
     plt.close(fig)
     integ = 20 * np.log10(np.sqrt(np.mean(mono ** 2)) + 1e-12)
-    print(f"{out}  {dur:.1f} s  rms {integ:.1f} dBFS  peak {20 * np.log10(np.max(np.abs(st)) + 1e-12):.1f} dBFS  corr mean {corr.mean():+.2f}")
+    full = [f"{out}  {dur:.1f} s  rms {integ:.1f} dBFS  peak {20 * np.log10(np.max(np.abs(st)) + 1e-12):.1f} dBFS  corr mean {corr.mean():+.2f}"]
     f = np.fft.rfftfreq(N_FFT, 1 / SR)
     infra = float(P[:, f < 20].sum() / max(P.sum(), 1e-12))
-    print(f"below 20 Hz {infra * 100:.1f}% of the energy" + (
+    full.append(f"below 20 Hz {infra * 100:.1f}% of the energy" + (
         f"  WARNING: inaudible energy above {INFRA_WARN * 100:g}%; it costs the limiter headroom. A sound may sit octaves "
         f"under its written note: render one note of each low sound and read its lowest partial" if infra > INFRA_WARN else ""))
-    for line in pitch_lines(chroma, chroma_n, bm, bv, parse_key(key)):
-        print(line)
+    full += pitch_lines(chroma, chroma_n, bm, bv, parse_key(key))
     fr = 20 * np.log10(rms)
-    print(balance_line(ld, hz, lt, fr > np.percentile(fr, 90) - 10))
-    for line in wash.lines(wa, start, 240 / bpm if bpm else None, first_bar):
-        print(line)
+    full.append(balance_line(ld, hz, lt, fr > np.percentile(fr, 90) - 10))
+    full += wash.lines(wa, start, 240 / bpm if bpm else None, first_bar)
+    m, s = st[:, 0] + st[:, 1], st[:, 0] - st[:, 1]
+    full.append(f"side/mid {10 * np.log10((s ** 2).sum() / max((m ** 2).sum(), 1e-12)):.1f} dB")
     if rows:
-        print(f"per {'bar' if bars else '8 bars'} (a grid at {bpm:g} BPM; tempo automation is not followed): top pitch classes, classes sounding, "
-              "bass frames within 25 cents, bands 20-60/60-250/250-1k/1k-4k/4k-20k against the loudest and % hot in each, rms, corr")
-    for r in rows:
-        print(r)
+        full.append(f"per {'bar' if bars else '8 bars'} (a grid at {bpm:g} BPM; tempo automation is not followed): top pitch classes, classes sounding, "
+                    "bass frames within 25 cents, bands 20-60/60-250/250-1k/1k-4k/4k-20k against the loudest and % hot in each, rms, corr")
+    full += rows
+    out.with_suffix(".txt").write_text("\n".join(full) + "\n", encoding="utf-8")
+    if detail:
+        print("\n".join(full))
+    else:
+        print("\n".join(summary(path, out, st, t, rms, corr, sd, top, infra, chroma, bm, bv, key, wa, bpm, first_bar)))
+        print(f"detail: {out.with_suffix('.txt')}")
 
 
 if __name__ == "__main__":
@@ -289,6 +355,7 @@ if __name__ == "__main__":
     ap.add_argument("--out", default=None)
     ap.add_argument("--key", default=None, help="the intended key, e.g. 'F minor' or 'G#m': reports the pitch energy outside its scale")
     ap.add_argument("--bars", action="store_true", help="rows per bar instead of per 8 bars")
+    ap.add_argument("--detail", action="store_true", help="print the full report instead of the summary; it is always written beside the picture as .txt")
     a = ap.parse_args()
     name = Path(a.path).stem + (f"_{a.start:g}-{a.end:g}" if a.end else "")
-    analyse(a.path, a.start, a.end, a.bpm, Path(a.out) if a.out else Path("tmp/spectro") / f"{name}.png", a.first_bar, a.key, a.bars)
+    analyse(a.path, a.start, a.end, a.bpm, Path(a.out) if a.out else Path("tmp/spectro") / f"{name}.png", a.first_bar, a.key, a.bars, a.detail)

@@ -44,21 +44,11 @@ def project_bpm(flp: Path) -> float | None:
     return next((int.from_bytes(e.data, "little") / 1000 for e in p.events if e.id == 156), None)
 
 
-def analyse(wav: Path, bpm: float | None, key: str | None = None):
-    """everything spectro.py reports: level, pitch against the key, bass tuning, band balance, rows per 8 bars"""
+def analyse(wav: Path, bpm: float | None, key: str | None = None, detail: bool = False):
     here = Path(__file__).resolve().parent
-    cmd = [sys.executable, str(here / "spectro.py"), str(wav)] + (["--bpm", str(bpm)] if bpm else []) + (["--key", key] if key else [])
+    cmd = [sys.executable, str(here / "spectro.py"), str(wav)] + (["--bpm", str(bpm)] if bpm else []) + (["--key", key] if key else []) + (["--detail"] if detail else [])
     r = subprocess.run(cmd, capture_output=True, text=True, cwd=here.parent)
     print(r.stdout.rstrip() if r.stdout.strip() else r.stderr[-400:])
-    import numpy as np
-    sys.path.insert(0, str(here))
-    from spectro import decode
-    x = decode(str(wav))
-    m, s = x[:, 0] + x[:, 1], x[:, 0] - x[:, 1]
-    a = np.abs(x)
-    pk = a.max()
-    runs = int(np.sum((a[1:] >= pk * 0.999) & (a[:-1] >= pk * 0.999)))
-    print(f"side/mid {10 * np.log10((s ** 2).sum() / (m ** 2).sum()):.1f} dB  consecutive full-scale samples {runs}")
 
 
 def main():
@@ -70,6 +60,7 @@ def main():
     ap.add_argument("--bpm", type=float, default=None, help="grid for the per-8-bar rows; default the project's base tempo")
     ap.add_argument("--key", default=None, help="the intended key, e.g. 'F minor': the log reports the pitch energy outside its scale")
     ap.add_argument("--timeout", type=float, default=900)
+    ap.add_argument("--detail", action="store_true", help="the full analysis in the log instead of the summary")
     a = ap.parse_args()
     flp = Path(a.flp).resolve()
     mode_warning(flp)
@@ -99,7 +90,8 @@ def main():
         print(f"not written: {[str(o) for o in missing]}")
     wav = next((o for o in done if o.suffix == ".wav"), None) or next(iter(done), None)
     if wav:
-        analyse(wav, a.bpm or project_bpm(flp), a.key)
+        analyse(wav, a.bpm or project_bpm(flp), a.key, a.detail)
+        print(f"next: render_report('{flp}') returns this with the spectrogram picture; look at it before handing the piece over")
     if a.reopen:
         import flproc
         flproc.launch([fl_exe, str(flp)])

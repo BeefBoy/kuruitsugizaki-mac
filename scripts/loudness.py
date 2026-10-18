@@ -48,41 +48,16 @@ def true_peak(x):
     return 20 * np.log10(np.abs(resample_poly(x, 4, 1, axis=0)).max() + 1e-12)
 
 
-def zwicker(path, spl_fs):
-    from mosqito.sq_metrics import loudness_zwtv
-    fs = 48000
-    x = load(path, fs, 1) * 2e-5 * 10 ** (spl_fs / 20) * np.sqrt(2)
-    N, Ns, bark, t = loudness_zwtv(x, fs, field_type="free")
-    return N, Ns, bark, t
-
-
-BARKS = ((0, 3), (3, 6), (6, 9), (9, 12), (12, 15), (15, 18), (18, 21), (21, 24.1))
-HZ = {0: 0, 3: 300, 6: 630, 9: 1080, 12: 1720, 15: 2700, 18: 4400, 21: 7700, 24.1: 15500}
-
-
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("files", nargs="+")
-    p.add_argument("--zwicker", action="store_true", help="ISO 532-1 time-varying loudness; about a minute per 25 s of audio")
-    p.add_argument("--spl", type=float, default=92.0, help="SPL of a full-scale sine, the playback assumption for --zwicker")
     a = p.parse_args()
-    zw = []
     for f in a.files:
         x = load(f)
         i, m, lra = lufs(x)
         tp = true_peak(x)
         rms = 10 * np.log10(np.mean(x ** 2) + 1e-20)
         print(f"{f}\n  integrated {i:6.1f} LUFS  max momentary {m:6.1f}  LRA {lra:4.1f} LU  true peak {tp:+5.2f} dBTP  rms {rms:6.1f} dBFS  PLR {tp - i:4.1f}")
-        if a.zwicker:
-            N, Ns, bark, t = zwicker(f, a.spl)
-            zw.append((f, N, Ns, bark))
-            print(f"  zwicker at {a.spl:.0f} dB SPL full scale: mean {N.mean():5.1f} sone  N50 {np.median(N):5.1f}  N5 {np.percentile(N, 95):5.1f}  max {N.max():5.1f}")
-            print("  specific loudness, time mean, sone/bark: " + "  ".join(f"{HZ[lo]}-{HZ[hi]} Hz {Ns[(bark >= lo) & (bark < hi)].mean():.2f}" for lo, hi in BARKS))
-    if len(zw) > 1:
-        f0, N0 = zw[0][0], zw[0][1]
-        for f, N, *_ in zw[1:]:
-            r = np.median(N) / np.median(N0)
-            print(f"{f} against {f0}: median loudness x{r:.2f} ({10 * np.log2(r):+.1f} phon)")
 
 
 if __name__ == "__main__":
