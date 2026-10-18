@@ -115,7 +115,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 
 ## Effects
 
-The writer cannot make an effect; it copies one, with its settings, from a project FL saved. `projects/init/fx.flp` holds FL's own:
+An effect goes in by name: any effect FL has installed (Plugins by name). One can also be copied, with its settings, from a project FL saved. `projects/init/fx.flp` holds FL's own, set up as follows, and its first effect is also the block by-name effects are built on (config `effect_template`):
 
 | from insert/slot | effect |
 |---|---|
@@ -127,7 +127,7 @@ The writer cannot make an effect; it copies one, with its settings, from a proje
 | 6/0 | Soundgoodizer |
 | 7/0 | Gross Beat |
 
-Soundgoodizer and Gross Beat load only in an FL edition that includes them. Any other installed effect goes in by name (Plugins by name).
+Soundgoodizer and Gross Beat load only in an FL edition that includes them.
 
 ## Plugins by name
 
