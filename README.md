@@ -83,6 +83,7 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 | `scripts/chop.py` | cuts time ranges of a file into their own WAVs with short fades, optionally reversed |
 | `scripts/vox.py` | vocal -> syllables with a median pitch each |
 | `scripts/sampleindex.py` | the index behind `samples`: every audio file under a folder with size and modified time from listings, lengths from headers on demand |
+| `scripts/pick.py` | how every long list is cut: one item from each equal slice, first to last, at a random place in it, so each call differs |
 | `scripts/cli.py` | how setup, doctor and uninstall print: a rule per section, aligned rows with a coloured status |
 | `scripts/setup_paths.py` | setup's path questions (`setup.bat -Custom`): each path set or found, Enter keeps it; `--yes` asks nothing |
 | `scripts/samples.py` | `samples.py <folder>`: per file duration, BPM and key from the name, levels, width, onsets, centroid -> `tmp/samples/<folder>.tsv` |
