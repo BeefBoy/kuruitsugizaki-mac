@@ -482,6 +482,37 @@ def presets(e: dict, query: str | None = None) -> list[dict]:
     return [r for r in rows if all(w in r["id"].lower() for w in words)]
 
 
+def spread(rows: list[dict], n: int, seed: int | None = None) -> list[dict]:
+    import random
+    if n <= 0:
+        return []
+    if len(rows) <= n:
+        return rows
+    rng = random.Random(seed)
+    groups: dict[str, list[dict]] = {}
+    for r in rows:
+        groups.setdefault(r["id"].rsplit("/", 1)[0] if "/" in r["id"] else "", []).append(r)
+    share = {g: 0 for g in groups}
+    left = n
+    while left:
+        open_ = [g for g in groups if share[g] < len(groups[g])]
+        if not open_:
+            break
+        if left < len(open_):
+            open_ = rng.sample(open_, left)
+        for g in open_:
+            share[g] += 1
+        left = n - sum(share.values())
+    out = []
+    for g, items in groups.items():
+        k = share[g]
+        if not k:
+            continue
+        step = len(items) / k
+        out += [items[min(len(items) - 1, int((i + rng.random()) * step))] for i in range(k)]
+    return out
+
+
 def resolve_preset(e: dict, preset: str) -> Path:
     p = Path(preset)
     if p.is_absolute() and p.is_file():

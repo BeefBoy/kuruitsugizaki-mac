@@ -724,9 +724,10 @@ def plugins(query: Annotated[str | None, Field(description="keep names containin
 
 
 @mcp.tool(annotations=READ, description=(
-    "List the presets that load by name for one plugin, as ids in catalog order; an id goes into project_write as an "
-    "instrument's or effect's preset. Call it after plugins, when choosing a sound. Returns {plugin, kind, total, "
-    "presets}; total counts every match even when limit cuts the list. A plugin name that matches nothing or several "
+    "List the presets that load by name for one plugin; an id goes into project_write as an instrument's or effect's "
+    "preset. Call it after plugins, when choosing a sound. Returns {plugin, kind, total, presets}; total counts every "
+    "match, and when there are more than limit the list is an even spread across the preset folders, each folder an "
+    "equal share, not the first ones. A plugin name that matches nothing or several "
     "plugins returns {ok: false, error} naming the candidates. Reads files only; FL need not run."))
 def presets(plugin: Annotated[str, Field(description="the plugin's name as plugins lists it; a unique part of it works")],
             query: Annotated[str | None, Field(description="words that must all appear in the id, case-insensitive, any order, e.g. 'bass reese'")] = None,
@@ -738,7 +739,12 @@ def presets(plugin: Annotated[str, Field(description="the plugin's name as plugi
             HARVEST["replace"] = False
             L.refresh(e)
         rows = L.presets(e, query)
-        return {"plugin": e["name"], "kind": e["kind"], "total": len(rows), "presets": [r["id"] for r in rows[:max(0, int(limit))]]}
+        picked = L.spread(rows, max(0, int(limit)))
+        res = {"plugin": e["name"], "kind": e["kind"], "total": len(rows), "presets": [r["id"] for r in picked]}
+        if len(picked) < len(rows):
+            folders = len({r["id"].rsplit("/", 1)[0] if "/" in r["id"] else "" for r in rows})
+            res["note"] = f"an even spread of {len(picked)} of {len(rows)} across {folders} folders, each folder an equal share; query narrows"
+        return res
     return _lib(go)
 
 
