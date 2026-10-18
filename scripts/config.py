@@ -21,6 +21,7 @@ KEYS = {
     "serum2_presets": ("more folders of .SerumPreset files, read after Serum 2's own preset folder; a folder or a list", r"Documents\Xfer\Serum 2 Presets"),
     "vital_presets": ("more folders of .vital files, read after Vital's own User folder", r"Documents\Vital\User"),
     "nks_presets": ("more folders of NKS .nksf presets, read after Native Instruments' User Content and the libraries in Public Documents", r"Documents\Native Instruments\User Content"),
+    "projects_folder": ("the folder of the user's own .flp projects, which profile reads; asked once, 'none' when they have none", r"Documents\Image-Line\FL Studio\Projects"),
     "hide_plugins": ("plugins from FL's plugin database to leave out of plugins and by-name lookup: names or * patterns, case-insensitive, '<format>:<name>' (native, vst3, clap, vst) for one format only, and 'category:<folder>' for every plugin the database files under that category (Effects\\<folder>, Generators\\<folder>); a value set here replaces the default list", "['VFX *', '*NoteBook*', 'category:Visual']"),
 }
 HIDE = ["Fruity Video Player", "Wave Traveller", "BeepMap", "BassDrum", "Fruity Voltage Controller", "Dashboard", "Fruit Kick",
@@ -29,6 +30,7 @@ HIDE = ["Fruity Video Player", "Wave Traveller", "BeepMap", "BassDrum", "Fruity 
         "vst:Absynth 5", "vst:Absynth 5 Stereo", "vst:Ample Metal Eclipse", "vst:DUNE 3", "vst:FL Studio VSTi", "vst:FL Studio VSTi (Multi)",
         "vst:Nexus", "vst:Omnisphere", "vst:Absynth 5 FX", "vst:Absynth 5 FX Surround", "vst:FX-Omnisphere", "vst:GClip",
         "vst:HalfTime-64bit", "vst:iZotope Trash 2"]
+ASKED = {"projects_folder"}  # asked of the user once, never detected; [] records the answer "none"
 DEFAULTS = {"template": "projects/init/init.flp", "effect_template": "projects/init/fx.flp", "hide_plugins": HIDE}
 
 
@@ -139,6 +141,9 @@ def status() -> dict:
             continue
         if found is not None:
             out[key] = {"set": False, "detected": found, "exists": True}
+            continue
+        if key in ASKED and value == []:
+            out[key] = {"set": True, "value": "none", "what": what}
             continue
         if not isinstance(value, str):
             out[key] = {"set": key in data, "value": value}

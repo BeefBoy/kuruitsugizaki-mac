@@ -234,6 +234,8 @@ def config(key: Annotated[str | None, Field(description="a key name, as the no-a
         return {"ok": False, "error": f"unknown key {key!r}; keys are {list(cfg.KEYS)}"}
     if value is None:
         return {key: cfg.status()[key]}
+    if key in cfg.ASKED and value.strip().lower() == "none":
+        value = []
     cfg.put(key, value)
     return {"ok": True, key: cfg.status()[key]}
 
@@ -821,15 +823,30 @@ def fl_transport(action: Annotated[str, Field(description="'play' or 'stop'")],
     "projects. Returns a table of the projects: tempo, key, "
     "arrangement length in bars, so you know which to open and read in full with project_read; it "
     "decides nothing. Also written as profile.md and profile.json to tmp/profile/<folder name>/. Projects that fail to "
-    "read are listed, not fatal; a folder with no .flp returns {ok: false, error}."))
-def profile(folder: Annotated[str, Field(description="the folder of .flp projects, absolute or relative to the repo")]) -> dict:
+    "read are listed, not fatal; a folder with no .flp returns {ok: false, error}. Without folder it reads config "
+    "projects_folder; when that is not set, ask the user where their own projects are and pass that folder, which is "
+    "then saved there, so later sessions do not ask again. When they have none, set projects_folder to 'none' with "
+    "config, and profile then answers that."))
+def profile(folder: Annotated[str | None, Field(description="the folder of .flp projects, absolute or relative to the repo; omit to use config projects_folder")] = None) -> dict:
     _reload()
     import style
+    saved = cfg.load().get("projects_folder")
+    if folder is None:
+        if saved == []:
+            return {"ok": True, "none": True, "note": "the user has no projects of their own (projects_folder is 'none')"}
+        if not saved:
+            return {"ok": False, "error": "projects_folder is not set: ask the user where their own FL projects are and "
+                    "call profile with that folder, which saves it; if they have none, config(key='projects_folder', value='none')"}
+        folder = saved
     try:
         r = style.build(folder)
     except (ValueError, OSError) as e:
         return {"ok": False, "error": str(e)}
-    return {"md": r["md"], "json": r["json"], "read": r["read"], "not_read": r["not_read"], "profile": r["profile"]}
+    out = {"md": r["md"], "json": r["json"], "read": r["read"], "not_read": r["not_read"], "profile": r["profile"]}
+    if not saved:
+        cfg.put("projects_folder", str((ROOT / folder).resolve()))
+        out["saved"] = "projects_folder"
+    return out
 
 
 def main():
