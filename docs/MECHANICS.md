@@ -146,7 +146,7 @@ Samples come through `samples`. Its first call shows the user's sample folders, 
 
 ## Mixer layout
 
-- The template has master + inserts 1-17, no effects, no names, all at 0.8. Insert 17 takes no fader there: a volume clip aimed at it does nothing and an audio clip on it plays at full level; use 1-16. An instrument routed past `mixer.trackCount()` is silent with no error; check after opening with `channels.getTargetFxTrack(i, True)`.
+- The mixer has inserts 1-125, no effects, no names, all at 0.8; a document routing past 125 is refused. Check routing after opening with `channels.getTargetFxTrack(i, True)`.
 - Every sound on its own insert. Grouping by role leaves nothing processable alone.
 - Inserts at 0 dB are left out of `mixer.volume` on read.
 

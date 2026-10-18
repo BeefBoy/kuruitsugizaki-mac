@@ -649,7 +649,7 @@ def _harvest_programs(e: dict, saved, loc: tuple[int, int], cap: int = 128) -> i
     "state {from: file, channel: n};\n"
     "- an effect is mixer.effects {track, slot, plugin} or one copied, {track, slot, from: {file, track, slot}}.\n\n"
     "Units that are easy to get wrong: 96 ticks per beat, 4/4; keys like 'D#4' with MIDI 60 = C4; mixer volume 0.8 = 0 dB; "
-    "a tempo automation value is (bpm - 60) / 120.\n\n"
+    "a tempo automation value is (bpm - 60) / 120. Mixer inserts run 1-125.\n\n"
     "Without open, FL need not run. With open or play, FL first saves the project it has open (so no dialog appears), "
     "then opens this one.\n\n"
     "Returns the file read back (channels, notes per pattern, clips per arrangement) and the writer's warnings; read them."))
