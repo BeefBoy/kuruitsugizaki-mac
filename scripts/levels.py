@@ -51,6 +51,27 @@ def read(data: bytes) -> dict:
     return {"volume": vol, "main_volume": main}
 
 
+def track_of(rid: int) -> int | None:
+    """The mixer track a 0x7... record belongs to (the Current track is 501), else None."""
+    return (rid - 0x70000000) >> 22 if rid >> 28 == 7 else None
+
+
+def add_tracks(data: bytes, model: bytes, src: int, first: int, last: int) -> bytes:
+    """Records for inserts first..last, copied from track src of the model table (a clean template's), sends left out:
+    FL keeps a set of records per insert and stores a send only when one is made."""
+    mine = [struct.unpack_from("<IIi", model, i) for i in range(0, len(model) - 11, 12)]
+    tmpl = [(z, r & 0x3FFFFF, v) for z, r, v in mine if track_of(r) == src and (r & 0x3FF000) != 0x2000]
+    recs = [struct.unpack_from("<IIi", data, i) for i in range(0, len(data) - 11, 12)]
+    have = {r for _, r, _ in recs}
+    # FL keeps the table in track order, 32 records an insert, the Current track's last: the new ones go after the
+    # last insert's
+    before = [k for k, (_, r, _) in enumerate(recs) if track_of(r) is not None and track_of(r) < first]
+    at = before[-1] + 1 if before else len(recs)
+    recs[at:at] = [(z, 0x70000000 + (t << 22) + low, v) for t in range(first, last + 1) for z, low, v in tmpl
+                   if 0x70000000 + (t << 22) + low not in have]
+    return b"".join(struct.pack("<IIi", *r) for r in recs)
+
+
 def write(data: bytes, volume: dict | None, main: float | None, warn: list) -> bytes:
     b = bytearray(data)
     at = {struct.unpack_from("<I", b, i + 4)[0]: i for i in range(0, len(b) - 11, 12)}

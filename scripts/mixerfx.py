@@ -30,6 +30,28 @@ def _marker(tail: list, track: int, slot: int) -> tuple[int, int]:
     raise IndexError(f"mixer track {track} has no slot {slot} marker")
 
 
+MAX_INSERT = 125  # FL 2025's mixer: master, inserts 1-125, Current
+
+
+def inserts(tail: list) -> int:
+    """How many inserts the mixer has: its track groups less master and the Current track FL keeps last."""
+    return max(0, len(_tracks(tail)) - 2)
+
+
+def add_inserts(tail: list, model: list, upto: int) -> list:
+    """Inserts up to upto, each a copy of the model mixer's last plain insert group, placed before the Current group as
+    FL places a track added in its mixer."""
+    have = inserts(tail)
+    if upto <= have:
+        return tail
+    spans = _tracks(model)
+    a, b = spans[len(spans) - 2]
+    group = model[a:b]
+    cur = _tracks(tail)[-1][0]
+    add = [flp.Event(e.id, e.data) for _ in range(upto - have) for e in group]
+    return tail[:cur] + add + tail[cur:]
+
+
 def block(tail: list, track: int, slot: int) -> list:
     prev, mark = _marker(tail, track, slot)
     return tail[prev + 1:mark]

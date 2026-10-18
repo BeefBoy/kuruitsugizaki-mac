@@ -293,11 +293,32 @@ def build(doc: dict) -> tuple[bytes, list[str]]:
     tail = load(mix)[1]["tail"] if mix else lay["tail"]
     mx = doc.get("mixer") or {}
     tail = [flp.Event(e.id, e.data) for e in tail]
+    used = [int(c["mixer"]) for c in chans if "mixer" in c] + [int(fx["track"]) for fx in mx.get("effects") or []] \
+        + [int(r[k]) for r in mx.get("routes") or [] for k in ("from", "to")] + [int(t) for t in (mx.get("volume") or {})]
+    upto, grown = max(used, default=0), None
+    if upto > mixerfx.MAX_INSERT:
+        raise ValueError(f"insert {upto}: FL's mixer has inserts 1-{mixerfx.MAX_INSERT}, and FL crashes opening a project "
+                         "that routes past them")
+    if upto > mixerfx.inserts(tail):
+        # more inserts than the base mixer holds: added as FL adds a mixer track, from the clean template's last insert
+        grown = (mixerfx.inserts(tail) + 1, upto)
+        tail = mixerfx.add_inserts(tail, load(TEMPLATES)[1]["tail"], upto)
     if mx.get("effects"):
         tail = mixerfx.apply(tail, mx["effects"], warn)
     for r in mx.get("routes") or []:
         tail = mixerfx.set_route(tail, int(r["from"]), int(r["to"]), r.get("on", True))
     events += tail
+    if grown:
+        # event 103 is FL's mixer track count (master, inserts, Current); FL crashed reading more groups than it says
+        groups = sum(1 for e in events if e.id == mixerfx.TRACK)
+        for e in events:
+            if e.id == 103:
+                e.data = groups.to_bytes(len(e.data), "little")
+        model = next(e.data for e in load(TEMPLATES)[1]["tail"] if e.id == 225)
+        src = mixerfx.inserts(load(TEMPLATES)[1]["tail"])
+        for e in events:
+            if e.id == 225:
+                e.data = levels.add_tracks(e.data, model, src, *grown)
     if mx.get("volume") or mx.get("main_volume") is not None or mx.get("routes"):
         for e in events:
             if e.id == 225:
