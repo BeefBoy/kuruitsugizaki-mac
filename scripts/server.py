@@ -173,6 +173,10 @@ def _ensure_fl() -> float | None:
             LINK.close()
             if not LINK.alive(LINK.pid or 0):
                 LINK.pid = None
+        crash = _crashed()
+        if crash:
+            BOOT["t"] = None
+            raise RuntimeError(f"while FL was starting: {crash}")
         since = time.monotonic() - BOOT["t"]
         if since > BOOT_GIVEUP:
             BOOT["t"] = None
@@ -204,6 +208,9 @@ def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
     except flproc.Ambiguous as e:
         return {"ok": False, "error": str(e)}
     except Exception as e:
+        crash = _crashed(LINK.pid) or _dialog(LINK.pid)
+        if crash:
+            return {"ok": False, "error": crash}
         return {"ok": False, "error": f"{e!r}: is FL running with the kuruitsugizaki controller script loaded?"}
     if isinstance(res, dict):
         res["fl"] = {"pid": LINK.pid, "started_by": LINK.who}
@@ -278,6 +285,32 @@ def fl_probe() -> dict:
     return res
 
 
+def _dialog(pid: int | None) -> str | None:
+    if not pid:
+        return None
+    found = flproc.dialogs(pid, ROOT / "tmp" / "fl_dialogs")
+    if not found:
+        return None
+    what = "; ".join(f"'{d['title']}' ({d['class']}), picture {d.get('picture')}" for d in found)
+    return (f"FL (pid {pid}) is showing a dialog, and the controller script cannot answer until it is closed: {what}. "
+            "Nothing more is sent to FL while it is up.")
+
+
+def _crashed(pid: int | None = None) -> str | None:
+    for fpid, info in flproc.crashes().items():
+        if pid is not None and fpid != pid:
+            continue
+        mine = fpid in flproc.owned()
+        if mine:
+            flproc.reap(fpid)
+            LINK.close()
+            LINK.pid = None
+        cause = ", ".join(f"{k} {v}" for k, v in info.items() if k != "werfault") or "cause not in the Application log yet"
+        return (f"FL (pid {fpid}) crashed: {cause}. " + ("It was started by the harness, so it, its crash handler and the Windows crash dialog were closed." if mine
+                else "The user started it, so its crash dialog is left open."))
+    return None
+
+
 def _backup_user(pid: int) -> dict | None:
     import shutil
     title = _fl_title()
@@ -305,14 +338,28 @@ def _backup_user(pid: int) -> dict | None:
 def _close_fl(timeout: float = 30.0):
     mine = [p for p in flproc.owned() if p in flproc.pids()]
     for p in mine:
+        note = _dialog(p)
+        if note:
+            raise RuntimeError(f"FL was not closed: {note}")
+    if mine:
+        try:
+            if _live("import general\nresult = general.getChangedFlag()"):
+                _live("import transport, midi\nresult = transport.globalTransport(midi.FPT_Save, 1)")
+                t0 = time.monotonic()
+                while _live("import general\nresult = general.getChangedFlag()") and time.monotonic() - t0 < 10:
+                    time.sleep(0.25)
+        except RuntimeError:
+            pass
+    for p in mine:
         subprocess.run(["taskkill", "/PID", str(p)], capture_output=True)
     t0 = time.monotonic()
     while any(p in flproc.pids() for p in mine) and time.monotonic() - t0 < timeout:
         time.sleep(0.5)
     LINK.close()
     LINK.pid = None
-    if any(p in flproc.pids() for p in mine):
-        raise RuntimeError(f"FL did not close within {timeout:.0f}s; a dialog in FL may be waiting")
+    left = [p for p in mine if p in flproc.pids()]
+    if left:
+        raise RuntimeError(f"FL did not close within {timeout:.0f}s: " + (" ".join(filter(None, (_dialog(p) for p in left))) or "no dialog found"))
 
 
 @mcp.tool(annotations=RAW, description=(
@@ -423,11 +470,20 @@ def _open(path: Path, names: list[str], timeout: float = 120.0) -> dict:
         _ensure_loopmidi()
         flproc.launch([cfg.need("fl_exe"), str(path)])
     code = "import channels\nresult = [channels.getChannelName(i, True) for i in range(channels.channelCount(True))]"
-    t0 = time.time()
+    t0 = checked = time.time()
     while time.time() - t0 < timeout:
         time.sleep(0.5)
         r = fl({"op": "exec", "code": code}, 5)
         if not r.get("ok"):
+            if "crashed" in str(r.get("error")):
+                raise RuntimeError(f"while opening {path.name}: {r['error']}")
+            if "dialog" in str(r.get("error")):
+                raise RuntimeError(f"while opening {path.name}: {r['error']}")
+            if time.time() - checked > 2:
+                checked = time.time()
+                crash = _crashed() or next((d for d in (_dialog(p) for p in flproc.pids()) if d), None)
+                if crash:
+                    raise RuntimeError(f"while opening {path.name}: {crash}")
             LINK.close()
             if not LINK.alive(LINK.pid or 0):
                 LINK.pid = None

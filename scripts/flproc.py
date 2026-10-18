@@ -67,6 +67,89 @@ def launch(args: list[str], wait: float = 10.0) -> list[int]:
     return new
 
 
+def windows(pid: int) -> list[tuple[int, str, str]]:
+    u, out = ctypes.windll.user32, []
+
+    @ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
+    def each(h, _):
+        p = wintypes.DWORD()
+        u.GetWindowThreadProcessId(h, ctypes.byref(p))
+        if p.value == pid and u.IsWindowVisible(h):
+            c, t = ctypes.create_unicode_buffer(128), ctypes.create_unicode_buffer(512)
+            u.GetClassNameW(h, c, 128)
+            u.GetWindowTextW(h, t, 512)
+            out.append((int(h), c.value, t.value))
+        return True
+
+    u.EnumWindows(each, 0)
+    return out
+
+
+def dialogs(pid: int, shots: Path | None = None) -> list[dict]:
+    found = []
+    for h, cls, title in windows(pid):
+        if cls in ("TFruityLoopsMainForm", "TApplication"):
+            continue
+        d = {"title": title, "class": cls}
+        if shots is not None:
+            try:
+                d["picture"] = str(capture(h, shots / f"{pid}-{time.strftime('%Y%m%d-%H%M%S')}-{h}.png"))
+            except Exception as e:
+                d["picture"] = f"not taken: {e!r}"
+        found.append(d)
+    return found
+
+
+def capture(hwnd: int, path: Path) -> Path:
+    from PIL import Image
+    u, g = ctypes.windll.user32, ctypes.windll.gdi32
+    r = wintypes.RECT()
+    u.GetWindowRect(hwnd, ctypes.byref(r))
+    w, h = r.right - r.left, r.bottom - r.top
+    hdc = u.GetWindowDC(hwnd)
+    mdc = g.CreateCompatibleDC(hdc)
+    bmp = g.CreateCompatibleBitmap(hdc, w, h)
+    g.SelectObject(mdc, bmp)
+    try:
+        u.PrintWindow(hwnd, mdc, 2)
+        head = struct.pack("<IiiHHIIiiII", 40, w, -h, 1, 32, 0, 0, 0, 0, 0, 0)
+        buf = ctypes.create_string_buffer(w * h * 4)
+        g.GetDIBits(mdc, bmp, 0, h, buf, ctypes.create_string_buffer(head, 44), 0)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        Image.frombuffer("RGBA", (w, h), buf, "raw", "BGRA", 0, 1).convert("RGB").save(path)
+    finally:
+        g.DeleteObject(bmp)
+        g.DeleteDC(mdc)
+        u.ReleaseDC(hwnd, hdc)
+    return path
+
+
+def crashes() -> dict[int, dict]:
+    out = subprocess.run(["powershell", "-NoProfile", "-Command", "Get-CimInstance Win32_Process -Filter \"Name='WerFault.exe'\" | ForEach-Object { '{0} {1}' -f $_.ProcessId, $_.CommandLine }"],
+                         capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
+    running = set(pids())
+    found = {}
+    for line in out.splitlines():
+        m = re.search(r"^(\d+) .*-p (\d+)", line.strip())
+        if m and int(m.group(2)) in running:
+            found[int(m.group(2))] = {"werfault": int(m.group(1))}
+    for pid, info in found.items():
+        info.update(fault(pid))
+    return found
+
+
+def fault(pid: int) -> dict:
+    ps = ("Get-WinEvent -FilterHashtable @{LogName='Application'; Id=1000; StartTime=(Get-Date).AddMinutes(-30)} -ErrorAction SilentlyContinue | "
+          f"Where-Object {{ $_.Message -match 'Faulting process id: 0x{pid:x}\\b' }} | Select-Object -First 1 -ExpandProperty Message")
+    msg = subprocess.run(["powershell", "-NoProfile", "-Command", ps], capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
+    get = lambda label: (re.search(label + r":\s*(.+)", msg) or [None, None])[1]
+    return {k: v.strip() for k, v in (("module", get("Faulting module path")), ("code", get("Exception code")), ("report", get("Report Id"))) if v}
+
+
+def reap(pid: int):
+    subprocess.run(["taskkill", "/F", "/T", "/PID", str(pid)], capture_output=True, stdin=subprocess.DEVNULL)
+
+
 def cmdline(pid: int) -> str:
     out = subprocess.run(["powershell", "-NoProfile", "-Command", f"(Get-CimInstance Win32_Process -Filter 'ProcessId={int(pid)}').CommandLine"],
                          capture_output=True, text=True, stdin=subprocess.DEVNULL)
