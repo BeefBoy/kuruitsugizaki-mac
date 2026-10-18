@@ -47,7 +47,7 @@ Then, in a chat with the model, FL closed:
 
 Script output in FL shows `kuruitsugizaki {'api': 38, ...}` on load. `.venv\Scripts\python scripts\doctor.py` prints one line per requirement, any time.
 
-The server opens FL only for a project: `project_write(open=true)` and `fl_render`. Other live tools answer that FL is closed instead of starting it; `fl_probe` starts it to test the link and closes it again, and a first-time saved plugin state is made in FL and FL closed again (Plugins by name).
+The server opens FL only for a project: `project_write(open=true)` and `fl_render`. Other live tools answer that FL is closed instead of starting it; `fl_probe` starts it to test the link and closes it again, and a first-time saved plugin state is made in FL and FL closed again (Plugins by name). An FL you started yourself is used when it is the only one open, and the result says so; the server closes only FLs it started, and with several FLs open and none of them its own it does nothing until you close the extra ones. Before acting on an FL you started, the server copies the project it has open to `tmp/backups/<name>-<time>.flp`, once per project per server run; the result says where the copy went and whether FL holds unsaved changes the copy lacks. FL gives no path, so the file is found by its name in the window title, and an untitled project is not copied.
 
 ## Layout
 
