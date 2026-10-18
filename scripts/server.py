@@ -732,27 +732,35 @@ def plugins(query: Annotated[str | None, Field(description="keep names containin
 def presets(plugin: Annotated[str, Field(description="the plugin's name as plugins lists it; a unique part of it works")],
             query: Annotated[str | None, Field(description="words that must all appear in the id, case-insensitive, any order, e.g. 'bass reese'")] = None,
             limit: Annotated[int, Field(description="at most this many ids")] = 200,
-            harvest: Annotated[bool, Field(description="first read the plugin's built-in presets from FL (opens it there once, about a second per preset); for a plugin whose presets live inside it, not in files")] = False) -> dict:
+            harvest: Annotated[bool, Field(description="first read the plugin's built-in presets from FL (opens it there once, about a second per preset); for a plugin whose presets live inside it, not in files")] = False,
+            kind: Annotated[str | None, Field(description="'instrument' or 'effect', for a name that is both (Serum2); without it the instrument is taken")] = None) -> dict:
     def go(L):
-        e = L.find(plugin)
+        e = L.find(plugin, kind, prefer="instrument")
         if harvest:
             HARVEST["replace"] = False
             L.refresh(e)
         rows = L.presets(e, query)
         picked = L.spread(rows, max(0, int(limit)))
         res = {"plugin": e["name"], "kind": e["kind"], "total": len(rows), "presets": [r["id"] for r in picked]}
+        notes = []
         if len(picked) < len(rows):
             folders = len({r["id"].rsplit("/", 1)[0] if "/" in r["id"] else "" for r in rows})
-            res["note"] = f"an even spread of {len(picked)} of {len(rows)} across {folders} folders, each folder an equal share; query narrows"
+            notes.append(f"an even spread of {len(picked)} of {len(rows)} across {folders} folders, each folder an equal share; query narrows")
+        other = "effect" if e["kind"] == "instrument" else "instrument"
+        if not kind and L.has(e["name"], other):
+            notes.append(f"{e['name']} is also an {other}; kind='{other}' lists that one")
+        if notes:
+            res["note"] = "; ".join(notes)
         return res
     return _lib(go)
 
 
 @mcp.tool(annotations=READ, description="A plugin's automatable parameters, for writing automation: each one's index (the param of an automation target {channel: id, param: index} or {mixer: t, slot: s, param: index}), its name, and what its normalised value means where measured (FL's display at 0, .25, .5, .75 and 1, so a value can be picked for a wanted Hz, dB or %). Call it before automating a plugin or effect knob. It answers only for plugins with a parameter map (plugins shows which); for any other, read names live with fl_call('plugins.getParamName', ...). Not for choosing a sound: plugins lists what is installed, presets a plugin's presets. Reads files only; FL need not run.")
 def params(plugin: Annotated[str, Field(description="the plugin's name as plugins lists it; a unique part of it works")],
-           query: Annotated[str | None, Field(description="words that must all appear in the parameter name, case-insensitive, e.g. 'filter cutoff'")] = None) -> dict:
+           query: Annotated[str | None, Field(description="words that must all appear in the parameter name, case-insensitive, e.g. 'filter cutoff'")] = None,
+           kind: Annotated[str | None, Field(description="'instrument' or 'effect', for a name that is both; without it the instrument is taken")] = None) -> dict:
     def go(L):
-        e = L.find(plugin)
+        e = L.find(plugin, kind, prefer="instrument")
         return {"plugin": e["name"], "kind": e["kind"], "params": L.params(e, query)}
     return _lib(go)
 

@@ -160,7 +160,7 @@ def _rank(e: dict) -> tuple:
     return (0 if e["source"] == "library" else 1, RANK.get(e["format"], 9))
 
 
-def find(query: str, kind: str | None = None, fmt: str | None = None) -> dict:
+def find(query: str, kind: str | None = None, fmt: str | None = None, prefer: str | None = None) -> dict:
     q = query.strip().lower()
     pool = [e for e in entries() if (kind is None or e["kind"] == kind) and (fmt is None or e["format"] == fmt.lower())]
     tests = (lambda e: e["name"].lower() == q, lambda e: e["id"] == slug(q), lambda e: e.get("alias", "").lower() == q,
@@ -172,6 +172,10 @@ def find(query: str, kind: str | None = None, fmt: str | None = None) -> dict:
         names = sorted({e["name"] for e in hit})
         if len({(e["kind"], e["name"].lower()) for e in hit}) == 1:
             return min(hit, key=_rank)
+        if len({e["name"].lower() for e in hit}) == 1:
+            if prefer in {e["kind"] for e in hit}:
+                return min((e for e in hit if e["kind"] == prefer), key=_rank)
+            raise KeyError(f"{names[0]!r} is both an instrument and an effect; pass kind='instrument' or kind='effect'")
         raise KeyError(f"{query!r} matches {len(names)} plugins: {names[:12]}")
     where = " or ".join(x for x in ("FL's plugin database" if db_root() else "", "the library" if lib_path() else "") if x) or "nowhere: neither FL's plugin database (config plugin_db) nor a library (config library) was found"
     raise KeyError(f"{query!r} is not in {where}; plugins(query) lists what is")
