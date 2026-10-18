@@ -47,7 +47,7 @@ Then, in a chat with the model, FL closed:
 
 Script output in FL shows `kuruitsugizaki {'api': 38, ...}` on load. `.venv\Scripts\python scripts\doctor.py` prints one line per requirement, any time.
 
-The server starts loopMIDI and FL itself when a live tool finds them closed.
+The server opens FL only for a project: `project_write(open=true)` and `fl_render`. Other live tools answer that FL is closed instead of starting it; `fl_probe` starts it to test the link and closes it again, and a first-time saved plugin state is made in FL and FL closed again (Plugins by name).
 
 ## Layout
 
@@ -58,7 +58,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `setup.bat`, `setup.ps1` | the one-step install (`INSTALL.md`, The short way) |
 | `uninstall.bat`, `scripts/uninstall.py` | undoes the setup: controller script, the MIDI port and FL's MIDI setting, the Claude entries, saved plugin states; settings move to `tmp/uninstall`; uv, loopMIDI, ffmpeg and `.venv` stay |
 | `Dockerfile` | for MCP directories' automated checks: runs the server on Linux, where the file tools work and the live link to FL answers that it needs Windows |
-| `scripts/doctor.py` | `doctor.py [--install] [--claude [config]] [--live]`: one line per requirement of this machine's setup, `ok` or `MISSING` with what to do; `--install` runs `fl_install`, `--claude` adds the server to the Claude desktop app's config, `--live` starts FL and asks it for its API version |
+| `scripts/doctor.py` | `doctor.py [--install] [--claude [config]] [--live]`: one line per requirement of this machine's setup, `ok` or `MISSING` with what to do; `--install` runs `fl_install`, `--claude` adds the server to the Claude desktop app's config, `--live` starts FL, asks it for its API version and closes it again |
 | `scripts/midisetup.py` | the loopMIDI port and FL's MIDI input setting, both in the registry: reads them, and makes them when no input has the script |
 | `fl/device_kuruitsugizaki.py` | FL controller script; `fl_install` puts it in place |
 | `scripts/flp.py` | `.flp` event codec: parse, serialize (byte-exact), notes, diff |
@@ -102,11 +102,11 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `project_write(doc, path, open=False, play=None)` | JSON (compact or full) -> `.flp`; `open` loads it in FL (launching FL if needed), `play` = `song` or `pattern` |
 | `profile(folder)` | a table of the `.flp` projects under a folder (read only): tempo, key, arrangement length; which to open with `project_read`. Also written to `tmp/profile/<folder>/` |
 | `fl_render(path, reopen=True)` | saves FL's open project, then runs `render.py <path> --close [--reopen]` detached; returns the log path under `tmp/render_logs/` |
-| `fl_transport(action, mode=None, pattern=None)` | play / stop, song / pattern mode |
+| `fl_transport(action, mode=None, pattern=None)` | play / stop, song / pattern mode; needs a project open in FL |
 | `plugins(query=None, native=False)` | the VST3 and CLAP plugins FL has installed, and every instance in the optional library project (see Plugins by name); `native=True` adds FL's own: name, instrument or effect, vendor, format, source, how many presets load by name, whether it has a parameter map |
 | `presets(plugin, query=None, limit=200)` | a plugin's preset ids, filtered by words; the id goes into `project_write` as `preset` |
 | `params(plugin, query=None)` | a library plugin's parameters from `docs/params/`: index (for automation targets), name, saved value and display, and FL's display at 0, .25, .5, .75 and 1 where swept |
-| `fl_exec(code, out=None, timeout=10)`, `fl_call(fn, args)`, `fl_probe()` | raw access to FL's Python API inside the running FL; `fl_exec` returns what the code assigns to `result`, or writes it as JSON to `out` (also when `result` is `{'__out__': path, 'data': value}`) |
+| `fl_exec(code, out=None, timeout=10)`, `fl_call(fn, args)`, `fl_probe()` | raw access to FL's Python API inside the running FL; `fl_exec` returns what the code assigns to `result`, or writes it as JSON to `out` (also when `result` is `{'__out__': path, 'data': value}`); they need FL open, and `fl_probe` starts it and closes it again |
 
 `project_read`, `project_write`, `profile`, `plugins`, `presets` and `params` reload the codec modules on every call; a change to `server.py`, `flex.py` or `diva.py` needs an MCP restart, and a new tool reaches a client only in a session started after it.
 

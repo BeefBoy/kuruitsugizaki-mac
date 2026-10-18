@@ -24,7 +24,7 @@ There are two ways. The short way is one script; the long way is the same steps 
 | FL's MIDI setting | assigns the controller script to that port | registry, `HKCU\Software\Image-Line\FL Studio <version>\Devices\MIDI input\kuruitsugizaki` |
 | Claude desktop app | adds the server under `mcpServers`; the old file is kept beside it as `.bak` | `%APPDATA%\Claude\claude_desktop_config.json` |
 | Claude Code | if it is installed, offers `claude mcp add` | Claude Code's user config |
-| check | prints one line per requirement, then starts FL and asks it for its version | nothing |
+| check | prints one line per requirement, then starts FL, asks it for its version and closes it again | nothing |
 
 The port and FL's MIDI setting are skipped when an input in FL already has the script. The check alone, any time: `.venv\Scripts\python scripts\doctor.py` (add `--live` to start FL and test the link).
 
@@ -107,7 +107,7 @@ View, Script output in FL shows a line starting `kuruitsugizaki {'api': 38`. Or 
 
 ## Done
 
-From here the model writes projects, opens them in FL, plays and renders them, with any plugin FL has installed (as FL's plugin manager last scanned them) and its presets. It starts loopMIDI and FL itself when they are closed. Before writing music it should read the docs in `docs/`, starting at `docs/INDEX.md`; if it does not, point it there.
+From here the model writes projects, opens them in FL, plays and renders them, with any plugin FL has installed (as FL's plugin manager last scanned them) and its presets. It opens FL itself when it opens a project, and leaves FL closed otherwise. Before writing music it should read the docs in `docs/`, starting at `docs/INDEX.md`; if it does not, point it there.
 
 ## When something is wrong
 
