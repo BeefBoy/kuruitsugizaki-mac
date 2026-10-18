@@ -11,7 +11,7 @@ There are two ways. The short way is one script; the long way is the same steps 
 3. Double-click `setup.bat`.
 4. When it says Ready, quit the Claude app fully (tray icon, Quit), start it again, and in a new chat ask it to read `docs/INDEX.md` in this folder and write something.
 
-`setup.bat` says what it is about to do and asks once, then asks again before installing ffmpeg and before touching a Claude config. What it does, in order:
+`setup.bat` says what it is about to do and asks once, then asks again before installing ffmpeg and before touching a Claude config. It uses the paths it finds (FL, loopMIDI, FL's Hardware and Plugin database folders, the Claude desktop config, the Claude Code profile); `setup.bat -Custom` shows each one and asks, Enter keeping it, and asks for your projects and sample folders too. What it does, in order:
 
 | step | what | where it lands |
 |---|---|---|
@@ -19,16 +19,17 @@ There are two ways. The short way is one script; the long way is the same steps 
 | environment | `uv sync` | `.venv` in this folder, about 400 MB |
 | loopMIDI | installs it if missing (winget, else it opens the download page and waits) | Program Files |
 | ffmpeg | offers to install it if missing (winget); optional | your user profile |
+| paths | the ones found are used; with `-Custom` each is shown and asked, and one you type, and your projects and sample folders, are saved | `kuruitsugizaki.json` in this folder |
 | controller script | copies `fl/device_kuruitsugizaki.py` with this folder's path written in | FL's `Settings\Hardware\kuruitsugizaki` |
 | MIDI port | adds a loopMIDI port named `kuruitsugizaki` | registry, `HKCU\Software\Tobias Erichsen\loopMIDI\Ports` |
 | FL's MIDI setting | assigns the controller script to that port | registry, `HKCU\Software\Image-Line\FL Studio <version>\Devices\MIDI input\kuruitsugizaki` |
-| Claude desktop app | adds the server under `mcpServers`; the old file is kept beside it as `.bak` | `%APPDATA%\Claude\claude_desktop_config.json` |
-| Claude Code | if it is installed, offers `claude mcp add` | Claude Code's user config |
+| Claude desktop app | adds the server under `mcpServers`; the old file is kept beside it as `.bak` | `%APPDATA%\Claude\claude_desktop_config.json`, or the one given with `-Custom` |
+| Claude Code | if it is installed, offers `claude mcp add` | Claude Code's user config, or the profile given with `-Custom` |
 | check | prints one line per requirement, then starts FL, asks it for its version and closes it again | nothing |
 
 The port and FL's MIDI setting are skipped when an input in FL already has the script. The check alone, any time: `.venv\Scripts\python scripts\doctor.py` (add `--live` to start FL and test the link).
 
-Running it again is safe; it changes only what is missing. From a terminal it takes `-Yes` (no questions), `-NoLive` (do not start FL), `-NoClaudeCode`, and `-ClaudeConfig <path>` for a config file elsewhere.
+Running it again is safe; it changes only what is missing. From a terminal it takes `-Yes` (no questions), `-Custom` (asks for each path), `-NoLive` (do not start FL), `-NoClaudeCode`, and `-ClaudeConfig <path>` for a config file elsewhere.
 
 ## By hand
 
