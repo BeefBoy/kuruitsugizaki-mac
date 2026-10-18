@@ -73,10 +73,10 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 | `scripts/presets.py` | puts a preset into a plugin channel's state: `.vital` (Vital), `.h2p` (Diva), `.fxp` (Sylenth1), `.SerumPreset` (Serum 2), `<pack>/<preset>` (FLEX) |
 | `scripts/serum2.py`, `sylenth1.py`, `diva.py`, `flex.py` | each synth's preset format, and `<script> catalog [out.tsv]`: one TSV row per preset in that library |
 | `scripts/catalog.py` | `catalog.py <preset folder> <out.tsv>`: Vital presets by style, oscillators, unison, effects on, macro names |
-| `scripts/render.py` | `render.py <flp> [--close] [--reopen]`: FL's command-line render to wav and mp3 beside the project, then spectro and stereo stats. FL must be closed first; `--close` asks it to (never forced) |
-| `scripts/spectro.py` | render -> PNG: semitone piano-roll spectrogram, chroma, 20 Hz-20 kHz spectrogram, RMS/peak, L/R correlation, ghost % over time with wash stretches (`wash.py`); `--bpm` adds bar lines. PNGs in `tmp/spectro/` |
+| `scripts/render.py` | `render.py <flp> [--close] [--reopen]`: FL's command-line render to wav and mp3 beside the project, then a short report and the spectrogram (spectro.py). FL must be closed first; `--close` asks it to (never forced); `--detail` puts the full analysis in the log |
+| `scripts/spectro.py` | render -> PNG: semitone piano-roll spectrogram, chroma, 20 Hz-20 kHz spectrogram, RMS/peak, L/R correlation, ghost % over time with wash stretches (`wash.py`); `--bpm` adds bar lines. PNGs in `tmp/spectro/`. It prints a short report (length, peak, RMS, key, and flags only where something is there) and writes the full analysis beside the picture as `.txt`; `--detail` prints that instead |
 | `scripts/wash.py` | the wash check `spectro.py` runs on every render: ghost % per 4 s window, stretches weighted by length and edge rate, head over trail, a score where over 18 is a wash (`docs/COMPOSING.md` §9) |
-| `scripts/loudness.py` | integrated and momentary LUFS, LRA, true peak, RMS; `--zwicker` adds ISO 532-1 loudness in sones |
+| `scripts/loudness.py` | integrated and momentary LUFS, LRA, true peak, RMS |
 | `scripts/scope.py` | stereo density heatmaps per moment and band, `--timeline` for width over time |
 | `scripts/waveshape.py` | A/B of several renders at several zooms around each file's loudest second |
 | `scripts/onsets.py` | hit onsets of a WAV, for chopping loops |
@@ -101,7 +101,8 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 | `project_read(path, view="compact", patterns=None, arrangements=None, unused=False)` | `.flp` -> JSON. `compact`: rows with pointers, the form `project_write` takes. `summary`: per-pattern stats and a per-track timeline. `full`: exact round-trip form |
 | `project_write(doc, path, open=False, play=None)` | JSON (compact or full) -> `.flp`; `open` loads it in FL (launching FL if needed), `play` = `song` or `pattern` |
 | `profile(folder)` | a table of the `.flp` projects under a folder (read only): tempo, key, arrangement length; which to open with `project_read`. Also written to `tmp/profile/<folder>/` |
-| `fl_render(path, reopen=True)` | saves FL's open project, then runs `render.py <path> --close [--reopen]` detached; returns the log path under `tmp/render_logs/` |
+| `fl_render(path, reopen=True)` | saves FL's open project, then runs `render.py <path> --close [--reopen]` detached; read the result with `render_report` |
+| `render_report(path)` | a finished render: the short report and the spectrogram picture together; says so while the render is still running |
 | `fl_transport(action, mode=None, pattern=None)` | play / stop, song / pattern mode; needs a project open in FL |
 | `plugins(query=None, native=False)` | the VST3 and CLAP plugins FL has installed, and every instance in the optional library project (see Plugins by name); `native=True` adds FL's own: name, instrument or effect, vendor, format, source, how many presets load by name, whether it has a parameter map |
 | `presets(plugin, query=None, limit=200, harvest=False, kind=None)` | a plugin's preset ids, filtered by words; the id goes into `project_write` as `preset`. When more than `limit` match, the list is an even spread across the preset folders, each folder an equal share, drawn anew on each call. `harvest=True` first reads the presets built into the plugin from FL (it opens the plugin there once, about a second per preset). `kind` picks `instrument` or `effect` for a name that is both, such as Serum2; without it the instrument is taken |

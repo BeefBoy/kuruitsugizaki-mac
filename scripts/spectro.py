@@ -199,8 +199,9 @@ def summary(path, out, st, t, rms, corr, sd, top, infra, chroma, bm, bv, key, wa
         name, fit = key_fit(tot)
         lines.append(f"key: {name} fits best ({fit:.2f})")
     segs = sorted(wa["segs"], key=lambda s: -s["dur"])
-    lines.append(f"wash: {wa['score']:.1f} {wash.verdict(wa['score'])}" + (f", longest stretch {when(segs[0]['start'])}-{when(segs[0]['end'])} ({segs[0]['dur']:.0f} s)" if segs else ""))
     flags = []
+    if wa["score"] >= wash.HAZE[1]:
+        flags.append(f"wash {wa['score']:.1f} ({wash.verdict(wa['score'])})" + (f", longest stretch {when(segs[0]['start'])}-{when(segs[0]['end'])} ({segs[0]['dur']:.0f} s)" if segs else ""))
     full = np.abs(st) >= 0.999
     if pk >= 0.999 and int(np.sum(full[1:] & full[:-1])):
         flags.append(f"clipping: {int(np.sum(full[1:] & full[:-1]))} consecutive full-scale samples")

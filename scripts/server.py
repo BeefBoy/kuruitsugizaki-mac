@@ -694,7 +694,7 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
 
 
 @mcp.tool(annotations=READ, description=(
-    "A finished render of a project: its short report (length, peak, key, wash, and flags only where something is "
+    "A finished render of a project: its short report (length, peak, key, and flags only where something is "
     "there) and the spectrogram picture. Look at it before handing a piece over; the full analysis is in the .txt it "
     "names. Says so when the render is still running."))
 def render_report(path: Annotated[str, Field(description="the .flp (or its .wav) that fl_render rendered")]) -> list:

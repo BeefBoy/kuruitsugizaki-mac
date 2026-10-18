@@ -251,22 +251,24 @@ The first failure to look for is mud: the mix sounding submerged because the low
 
 ### Loudness is what the ear hears
 
-Peak, RMS and LUFS can call two masters equal within 0.6 dB while one is clearly louder. Zwicker (ISO 532-1, `loudness.py --zwicker`) put the louder one 22% up, in 630 Hz-4.4 kHz. Compare masters by that, never by peak.
+Peak, RMS and LUFS can rate two masters equal while one sounds clearly louder. They do not settle which is louder; listening does.
 
 ### Measure the mix
 
-Read per section: RMS, side/mid, correlation, the bass's lowest partial, where each part sits in the spectrogram; `scope.py` for width per moment and band. Correct from those, the way an assistant EQ would.
+Read a render through `render_report`: the spectrogram first, the flags second. A measurement points at a place to listen; it is not a target. A small dip, a short gap or a score inside its band is not a defect, and the fix for a thin passage is in the writing (note lengths, voicing, what sustains), not a layer added over it. Ask for detail (`--detail`, `scope.py`) only for a question the picture raised.
 
 ### Wash
 
 Every note leaves a fading copy that still sounds under the next ones, at a middle level: neither held nor gone. It is not density. Sound held at the top is a wall; sound with a clear on and off is structure. A blur with fresh notes standing clearly above it is haze, not wash.
 
-The render log's `wash:` lines and the `ghost %` strip under the spectrogram (`scripts/wash.py`):
+The report's wash flag, the `ghost %` strip under the spectrogram, and the wash table in the `.txt` (`scripts/wash.py`):
 
 - **ghost**: a semitone cell still sounding 0.5 s after its band's last onset, 3 dB or more under that onset's peak, and not faint. Master fades and drop-outs are removed first.
 - **stretches**: 4 s windows over 30% ghost, joined across gaps up to 6 s.
 - **weight**: grows with length (under 10 s near 0, 20 s half, 30 s nearly full). It shrinks when ghost climbs into or falls out of the stretch faster than 2 points/s, multiplied by 2/rate: a wash drifts, while a section change jumps. Once stretches cover half the track, all count fully. **score** is the weighted share of the track: under 6 clear, 6-16 haze, over 18 wash.
 - **head**: how far fresh notes stand over the ghosts, in dB. Under 12 is tagged wash, over 12 haze.
+
+The report flags wash only from a score of 16 up; clear and haze are not reported.
 
 The cut-offs (30%, 12 dB, 2 points/s, score 18) rest on few labelled tracks.
 
