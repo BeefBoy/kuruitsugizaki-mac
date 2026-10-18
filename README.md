@@ -118,7 +118,7 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 
 ## The template
 
-`projects/init/init.flp`, saved by FL: a Sampler, Serum 2, FLEX, one audio channel and one automation clip; master plus inserts 1-17, no effects. Route to inserts 1-16: insert 17 takes no fader on this mixer. A `plugin` instrument is copied from the template channel of that plugin, so with this template `plugin` takes `serum2` or `flex`. Vital, Diva and Sylenth1 load by name with a preset (`{"kind": "plugin", "plugin": "Vital", "format": "vst3", "preset": "<id>"}`), into a state FL saved for them (Plugins by name); a template of your own holding them still works, matched by name: `Serum2`, `FLEX`, `Vital`, `Sylenth1`, `Diva(x64)`.
+`projects/init/init.flp`, saved by FL: a Sampler, Serum 2, FLEX, one audio channel and one automation clip; master plus inserts 1-17, no effects. Route to inserts 1-16: insert 17 takes no fader on this mixer. A `plugin` instrument is copied from the template channel of that plugin, so with this template `plugin` takes `serum2` or `flex`. Vital, Diva and Sylenth1 load by name with a preset (`{"kind": "plugin", "plugin": "Vital", "preset": "<id>"}`), into a state FL saved for them (Plugins by name); a template of your own holding them still works, matched by name: `Serum2`, `FLEX`, `Vital`, `Sylenth1`, `Diva(x64)`.
 
 ## Effects
 
