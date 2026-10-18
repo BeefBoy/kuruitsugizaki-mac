@@ -135,7 +135,7 @@ LINK = Link()
 
 
 BOOT = {"t": None}
-HARVEST = {"replace": False}
+HARVEST = {"replace": False, "programs": False}  # programs: also read the presets built into the plugin (presets harvest=True)
 BACKED: set = set()
 NOT_OPEN = "FL is not running, and it is not started just for this: open a project in it with project_write(open=true), or ask the user to open one"
 
@@ -587,7 +587,13 @@ def _harvest(e: dict) -> bytes:
 
     st = saved()
     try:
-        _harvest_programs(e, saved, (0, -1) if e["kind"] == "instrument" else (1, 0))
+        if HARVEST["programs"]:
+            _harvest_programs(e, saved, (0, -1) if e["kind"] == "instrument" else (1, 0))
+    except (RuntimeError, TimeoutError) as err:
+        # the presets built into the plugin are extra; the state is what this harvest is for
+        (ROOT / "tmp" / "states").mkdir(parents=True, exist_ok=True)
+        with open(ROOT / "tmp" / "states" / "programs.log", "a", encoding="utf-8") as log:
+            log.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {e['name']}: built-in presets not read: {err}\n")
     finally:
         if not was and not HARVEST["replace"]:
             _close_fl()
@@ -597,16 +603,29 @@ def _harvest(e: dict) -> bytes:
 def _harvest_programs(e: dict, saved, loc: tuple[int, int], cap: int = 128) -> int:
     import library
     i, s = loc
-    n, prog = _live(f"import plugins\nresult = (plugins.getPresetCount({i}, {s}), next((k for k in range(plugins.getParamCount({i}, {s})) if plugins.getParamName(k, {i}, {s}) == 'Program'), None))", 30)
+    # a channel is addressed by its global index: a written channel can sit outside the rack's shown group, where the
+    # rack index FL's plugins functions take by default finds nothing ("Index out of range")
+    g = "True" if s == -1 else "False"
+    # FL's parameter count can run past the plugin's own parameters, where getParamName raises: stop there
+    n, prog = _live("import plugins\nprog = None\n"
+                    f"for k in range(plugins.getParamCount({i}, {s}, {g})):\n"
+                    "    try:\n"
+                    f"        name = plugins.getParamName(k, {i}, {s}, {g})\n"
+                    "    except Exception:\n"
+                    "        break\n"
+                    "    if name == 'Program':\n"
+                    "        prog = k\n"
+                    "        break\n"
+                    f"result = (plugins.getPresetCount({i}, {s}, {g}), prog)", 30)
     if not n or n < 2 or prog is None:
         return 0
     d = library.programs_dir(e)
     d.mkdir(parents=True, exist_ok=True)
     index, seen = [], set()
     for k in range(min(n, cap)):
-        _live(f"import plugins\nplugins.setParamValue({k} / {n - 1}, {prog}, {i}, {s})\nresult = 0")
+        _live(f"import plugins\nplugins.setParamValue({k} / {n - 1}, {prog}, {i}, {s}, 0, {g})\nresult = 0")
         time.sleep(0.3)
-        name = str(_live(f"import plugins\nresult = plugins.getParamValueString({prog}, {i}, {s})")).strip()
+        name = str(_live(f"import plugins\nresult = plugins.getParamValueString({prog}, {i}, {s}, {g})")).strip()
         state = saved()
         if not name or state in seen:
             continue
@@ -639,7 +658,10 @@ def project_write(doc: Annotated[dict, Field(description="the project document, 
     import project
     import writer
     HARVEST["replace"] = bool(open or play)
-    raw, warn = writer.build(doc)
+    try:
+        raw, warn = writer.build(doc)
+    except (KeyError, ValueError, RuntimeError, TimeoutError, cfg.Missing) as e:
+        return {"ok": False, "error": str(e.args[0]) if e.args else repr(e)}
     out = Path(path)
     out.parent.mkdir(parents=True, exist_ok=True)
     saved = None
@@ -788,8 +810,11 @@ def presets(plugin: Annotated[str, Field(description="the plugin's name as plugi
     def go(L):
         e = L.find(plugin, kind, prefer="instrument")
         if harvest:
-            HARVEST["replace"] = False
-            L.refresh(e)
+            HARVEST.update(replace=False, programs=True)
+            try:
+                L.refresh(e)
+            finally:
+                HARVEST["programs"] = False
         rows = L.presets(e, query)
         picked = L.spread(rows, max(0, int(limit)))
         res = {"plugin": e["name"], "kind": e["kind"], "total": len(rows), "presets": [r["id"] for r in picked]}

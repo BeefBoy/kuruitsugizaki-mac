@@ -21,11 +21,16 @@ def pids(image: str = "FL64.exe") -> list[int]:
 
 
 def created(pid: int) -> int | None:
+    """The creation time of a running process; None once it has exited, though Windows keeps an exited process's
+    object, times and all, while any handle to it is open (loopMIDI's driver holds some)."""
     k = ctypes.windll.kernel32
     h = k.OpenProcess(0x1000, False, pid)
     if not h:
         return None
     try:
+        code = wintypes.DWORD()
+        if not k.GetExitCodeProcess(h, ctypes.byref(code)) or code.value != 259:  # 259: STILL_ACTIVE
+            return None
         t = [wintypes.FILETIME() for _ in range(4)]
         if not k.GetProcessTimes(h, *(ctypes.byref(x) for x in t)):
             return None

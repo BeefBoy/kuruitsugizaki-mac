@@ -118,7 +118,7 @@ def utf16(s: str) -> bytes:
 def library_entry(c: dict) -> dict | None:
     name = str(c.get("plugin") or "")
     fmt = c.get("format")
-    if not name or (name.lower().replace(" ", "") in PLUGIN_TEMPLATES and not fmt):
+    if not name or (not fmt and name.lower().replace(" ", "") in template_plugins()):
         return None
     return library.find(name, "instrument", fmt) if library.has(name, "instrument", fmt) else None
 
