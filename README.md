@@ -103,7 +103,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `profile(folder)` | a table of the `.flp` projects under a folder (read only): tempo, key, arrangement length; which to open with `project_read`. Also written to `tmp/profile/<folder>/` |
 | `fl_render(path, reopen=True)` | saves FL's open project, then runs `render.py <path> --close [--reopen]` detached; returns the log path under `tmp/render_logs/` |
 | `fl_transport(action, mode=None, pattern=None)` | play / stop, song / pattern mode |
-| `plugins(query=None)` | every plugin FL has installed, and every instance in the optional library project (see Plugins by name): name, instrument or effect, vendor, format, source, how many presets load by name, whether it has a parameter map |
+| `plugins(query=None, native=False)` | the VST3 and CLAP plugins FL has installed, and every instance in the optional library project (see Plugins by name); `native=True` adds FL's own: name, instrument or effect, vendor, format, source, how many presets load by name, whether it has a parameter map |
 | `presets(plugin, query=None, limit=200)` | a library plugin's preset ids, filtered by words; the id goes into `project_write` as `preset` |
 | `params(plugin, query=None)` | a library plugin's parameters from `docs/params/`: index (for automation targets), name, saved value and display, and FL's display at 0, .25, .5, .75 and 1 where swept |
 | `fl_exec(code, out=None, timeout=10)`, `fl_call(fn, args)`, `fl_probe()` | raw access to FL's Python API inside the running FL; `fl_exec` returns what the code assigns to `result`, or writes it as JSON to `out` (also when `result` is `{'__out__': path, 'data': value}`) |

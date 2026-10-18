@@ -428,9 +428,11 @@ def _harvest(e: dict) -> bytes:
     out = ROOT / "tmp" / "states" / f"{e['kind']}_{e['id']}_{e['format']}.flp"
     spec = {"plugin": e["name"], "format": e["format"]}
     doc = {"patterns": [], "arrangements": [{"name": "A", "clips": []}]}
+    tag = f"harvest {e['id']}"
     if e["kind"] == "instrument":
-        doc["instruments"] = [{"id": "h", "kind": "plugin", **spec}]
+        doc["instruments"] = [{"id": tag, "kind": "plugin", **spec}]
     else:
+        doc["instruments"] = [{"id": tag, "kind": "sampler"}]
         doc["mixer"] = {"effects": [{"track": 1, "slot": 0, **spec}]}
     raw, _ = writer.build(doc)
     out.parent.mkdir(parents=True, exist_ok=True)
