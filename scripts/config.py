@@ -81,7 +81,7 @@ def _places(data: dict) -> dict:
         "serum2_presets": [d / "Xfer" / "Serum 2 Presets"],
         "vital_presets": [d / "Vital" / "User"],
         "nks_presets": [d / "Native Instruments" / "User Content"] + (sorted(pub.glob("* Library")) if pub.is_dir() else []),
-        "claude_desktop_config": [Path(os.environ.get("APPDATA", "")) / "Claude" / "claude_desktop_config.json"],
+        "claude_desktop_config": _claude_desktop_places(),
         "claude_code_dir": [Path(os.environ["CLAUDE_CONFIG_DIR"])] if os.environ.get("CLAUDE_CONFIG_DIR") else [Path.home() / ".claude"],
     }
 
@@ -126,9 +126,27 @@ def path(key: str) -> Path:
     return p if p.is_absolute() else ROOT / p
 
 
+def _claude_desktop_places() -> list[Path]:
+    """Where the Claude desktop app reads its config: the Microsoft Store build from its package's own Roaming folder,
+    the installer build from %APPDATA%\\Claude."""
+    name = Path("Claude") / "claude_desktop_config.json"
+    local = Path(os.environ.get("LOCALAPPDATA", "")) / "Packages"
+    store = [p / "LocalCache" / "Roaming" / name for p in sorted(local.glob("Claude_*"))] if local.is_dir() else []
+    return store + [Path(os.environ.get("APPDATA", "")) / name]
+
+
+def claude_desktop_found() -> Path | None:
+    """The Claude desktop app's config file on this machine: in the Store package when there is one, else in
+    %APPDATA%\\Claude when that folder exists; None when neither build is installed."""
+    places = _claude_desktop_places()
+    if len(places) > 1:
+        return places[0]
+    return places[-1] if places[-1].parent.is_dir() else None
+
+
 def claude_desktop() -> Path:
-    """The Claude desktop app's config file: the one setup was given, else the app's usual one."""
-    return Path(load().get("claude_desktop_config") or _places({})["claude_desktop_config"][0])
+    """The Claude desktop app's config file: the one setup was given, else the one found, else the installer build's."""
+    return Path(load().get("claude_desktop_config") or claude_desktop_found() or _claude_desktop_places()[-1])
 
 
 def claude_code_env() -> dict:

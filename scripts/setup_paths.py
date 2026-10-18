@@ -35,8 +35,8 @@ def found(key: str, data: dict) -> str | None:
     if data.get(key):
         return data[key]
     if key == "claude_desktop_config":
-        p = cfg._places(data)[key][0]
-        return str(p) if p.parent.is_dir() else None
+        p = cfg.claude_desktop_found()
+        return str(p) if p else None
     return cfg.detect(key, data)
 
 
