@@ -10,11 +10,15 @@ from project import text, wrapper
 
 ROOT = Path(__file__).resolve().parents[1]
 PARAMS = ROOT / "docs" / "params"
+STATES = ROOT / "tmp" / "states"
+harvester = None
 NAME = 201
 STATE = 213
 LABEL = 203
 DB_FORMATS = {"Fruity": "native", "VST3": "vst3", "CLAP": "clap", "VST": "vst"}
 RANK = {"native": 0, "vst3": 1, "clap": 2, "vst": 3}
+LOADERS = {("serum2", "vst3"): "serum2", ("vital", "vst3"): "vital", ("sylenth1", "vst3"): "sylenth1", ("diva(x64)", "vst3"): "diva", ("flex", "native"): "flex"}
+LOADER_FILES = {"serum2": ("serum2_presets", ".SerumPreset"), "vital": ("vital_presets", ".vital"), "diva": ("diva_presets", ".h2p"), "sylenth1": ("sylenth1_presets", ".fxp")}
 _cache: dict = {}
 
 
@@ -263,6 +267,130 @@ def _vendor(e: dict) -> list[dict]:
     return out
 
 
+def loader(e: dict) -> str | None:
+    return LOADERS.get((e["name"].lower(), e["format"])) if e["kind"] == "instrument" else None
+
+
+def _loader_roots(key: str) -> list[Path]:
+    if key == "flex":
+        v = cfg.get("flex_packs")
+        return [_abs(v)] if v and _abs(v).is_dir() else []
+    return cfg.roots(LOADER_FILES[key][0])
+
+
+def _files(roots: list[Path], pattern: str, folders=None) -> list[dict]:
+    out = []
+    for root in roots:
+        pre = f"{root.name}/" if len(roots) > 1 else ""
+        subs = [root / f for f in folders or [] if (root / f).is_dir()] or [root]
+        for sub in subs:
+            out += [{"id": pre + f.relative_to(root).with_suffix("").as_posix(), "path": str(f)} for f in sorted(sub.rglob(pattern)) if f.is_file()]
+    return out
+
+
+def _loader_rows(key: str) -> list[dict]:
+    roots = _loader_roots(key)
+    if not roots:
+        return []
+    if key == "flex":
+        import flex
+        out = []
+        for p in sorted(roots[0].glob("*.flexpack")):
+            try:
+                _, ents, _ = flex.directory(p)
+            except (ValueError, OSError):
+                continue
+            out += [{"id": f"{p.stem}/{n.removesuffix('.flexpreset')}", "path": f"{p.stem}/{n.removesuffix('.flexpreset')}"} for n, _, _ in ents if n.endswith(".flexpreset")]
+        return out
+    return _files(roots, "*" + LOADER_FILES[key][1], cfg.get("sylenth1_folders") if key == "sylenth1" else None)
+
+
+def _nks_index() -> dict:
+    hit = _cache.get("nks")
+    if hit is not None:
+        return hit
+    import nks
+    idx: dict = {}
+    for row in _files(cfg.roots("nks_presets"), "*.nksf"):
+        try:
+            h = nks.header(row["path"])
+        except Exception:
+            continue
+        for k in h["keys"]:
+            idx.setdefault(k, []).append(row)
+    _cache["nks"] = idx
+    return idx
+
+
+def _nks_rows(e: dict) -> list[dict]:
+    if e["format"] != "vst3":
+        return []
+    import nks
+    if e["source"] == "library":
+        st = next((x.data for x in block(e) if x.id == STATE), b"")
+    else:
+        st = next((x.data for x in flp.parse(Path(e["fst"]).read_bytes()).events if x.id == STATE), b"")
+    try:
+        r52 = dict(wrapper_recs(st)).get(52)
+    except ValueError:
+        r52 = None
+    idx, seen, out = _nks_index(), set(), []
+    for k in nks.keys_for(r52, e["name"]):
+        for row in idx.get(k, []):
+            if row["path"] not in seen:
+                seen.add(row["path"])
+                out.append(row)
+    return out
+
+
+def wrapper_recs(st: bytes) -> list:
+    import presets as P
+    return P.split_wrapper(st)[1] if st else []
+
+
+def _loader_path(key: str, preset: str) -> str:
+    if key != "flex":
+        p = Path(preset)
+        for c in (p, ROOT / p):
+            if c.is_file():
+                return str(c)
+    rows = _loader_rows(key)
+    ext = "" if key == "flex" else LOADER_FILES[key][1].lower()
+    want = preset.strip().replace("\\", "/").lower().removesuffix(ext).strip() if ext else preset.strip().lower()
+    hit = [r for r in rows if r["id"].strip().lower() == want]
+    if not hit:
+        hit = [r for r in rows if r["id"].rsplit("/", 1)[-1].strip().lower() == want.rsplit("/", 1)[-1].strip()]
+    if len(hit) == 1:
+        return hit[0]["path"]
+    if hit:
+        raise KeyError(f"preset {preset!r} is ambiguous: {[r['id'] for r in hit][:10]}")
+    if key == "flex" and "/" in preset:
+        return preset
+    where = ", ".join(str(r) for r in _loader_roots(key)) or f"nowhere: no default folder found and config {'flex_packs' if key == 'flex' else LOADER_FILES[key][0]} is not set"
+    raise KeyError(f"no preset {preset!r} in {where}; presets(plugin, query) searches its {len(rows)}")
+
+
+def loader_preset(key: str, state: bytes, preset: str) -> bytes:
+    import presets as P
+    if key not in LOADER_FILES and key != "flex":
+        return P.apply(key, state, preset)
+    return P.apply(key, state, _loader_path(key, preset))
+
+
+def saved_state(e: dict) -> bytes:
+    if e["source"] == "library":
+        return next(x.data for x in block(e) if x.id == STATE)
+    f = STATES / f"{e['kind']}_{e['id']}_{e['format']}.bin"
+    if f.exists():
+        return f.read_bytes()
+    if harvester is None:
+        raise KeyError(f"a {e['name']} preset loads into a saved instance of it, and none is cached in {STATES}; one is made once by opening {e['name']} in FL, which project_write does through the MCP server")
+    st = harvester(e)
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_bytes(st)
+    return st
+
+
 def catalog(e: dict) -> list[dict]:
     ck = ("catalog", e["kind"], e["name"], e["format"])
     hit = _cache.get(ck)
@@ -276,6 +404,9 @@ def catalog(e: dict) -> list[dict]:
         for f in sorted(d.rglob("*.fst")):
             out.append({"id": tag + f.relative_to(d).with_suffix("").as_posix(), "path": str(f)})
     out += _vendor(e)
+    if loader(e):
+        out += _loader_rows(loader(e))
+    out += _nks_rows(e)
     _cache[ck] = out
     return out
 
@@ -307,11 +438,16 @@ def resolve_preset(e: dict, preset: str) -> Path:
 
 
 def preset_state(e: dict, preset: str) -> bytes:
+    if loader(e):
+        return loader_preset(loader(e), saved_state(e), preset)
     f = resolve_preset(e, preset)
+    if f.suffix.lower() == ".nksf":
+        import nks
+        import vst3state
+        return vst3state.put_component(next(x.data for x in block(e) if x.id == STATE), nks.component(f))
     if f.suffix.lower() != ".fst":
         import vst3state
-        st = next(x.data for x in block(e) if x.id == STATE)
-        return vst3state.apply_file(st, f.read_bytes(), f.name)
+        return vst3state.apply_file(saved_state(e), f.read_bytes(), f.name)
     evs = flp.parse(f.read_bytes()).events
     names = [name_text(x) for x in evs if x.id == NAME and len(x.data) > 2]
     st = next((x.data for x in evs if x.id == STATE), None)

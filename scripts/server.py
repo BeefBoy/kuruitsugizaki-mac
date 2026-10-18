@@ -416,6 +416,43 @@ def _reload():
     for name in ("config", "flp", "automation", "levels", "sylenth1", "serum2", "presets", "mixerfx", "project", "vst3state", "library", "writer", "view", "style"):
         if name in _sys.modules:
             importlib.reload(_sys.modules[name])
+    import library
+    library.harvester = _harvest
+
+
+def _harvest(e: dict) -> bytes:
+    import flp
+    import mixerfx
+    import project
+    import writer
+    out = ROOT / "tmp" / "states" / f"{e['kind']}_{e['id']}_{e['format']}.flp"
+    spec = {"plugin": e["name"], "format": e["format"]}
+    doc = {"patterns": [], "arrangements": [{"name": "A", "clips": []}]}
+    if e["kind"] == "instrument":
+        doc["instruments"] = [{"id": "h", "kind": "plugin", **spec}]
+    else:
+        doc["mixer"] = {"effects": [{"track": 1, "slot": 0, **spec}]}
+    raw, _ = writer.build(doc)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_bytes(raw)
+    back = project.export(str(out))
+    _open(out.resolve(), [c["name"] for c in sorted(back["instruments"] + back["samples"] + back["automation"], key=lambda c: c["ch"])])
+    before = out.stat().st_mtime_ns
+    _live("import transport, midi\nresult = transport.globalTransport(midi.FPT_Save, 1)")
+    t0 = time.monotonic()
+    while out.stat().st_mtime_ns == before and time.monotonic() - t0 < 20:
+        time.sleep(0.25)
+    if out.stat().st_mtime_ns == before:
+        raise RuntimeError(f"FL did not save {out} within 20 s, so {e['name']}'s state could not be read")
+    lay = writer.layout(flp.parse(out.read_bytes()))
+    if e["kind"] == "instrument":
+        blk = next(b for b in lay["channels"] if next((int.from_bytes(x.data, "little") for x in b if x.id == 21), None) == 2)
+    else:
+        blk = mixerfx.block(lay["tail"], 1, 0)
+    st = next((x.data for x in blk if x.id == 213), None)
+    if st is None:
+        raise RuntimeError(f"FL saved no state for {e['name']} in {out}")
+    return st
 
 
 @mcp.tool(annotations=WRITE, description=(

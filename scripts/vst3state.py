@@ -104,6 +104,13 @@ def apply_file(state213: bytes, data: bytes, source: str) -> bytes:
     return presets.join_wrapper(head, recs + [(WRAP_STATE, r53)])
 
 
+def put_component(state213: bytes, comp: bytes) -> bytes:
+    head, recs = presets.split_wrapper(state213)
+    if any(rid == WRAP_STATE for rid, _ in recs):
+        return with_component(state213, comp)
+    return presets.join_wrapper(head, recs + [(WRAP_STATE, join(FRESH_HEAD, [(COMPONENT, comp)]))])
+
+
 def with_component(state213: bytes, comp: bytes) -> bytes:
     head, recs = presets.split_wrapper(state213)
     out = []

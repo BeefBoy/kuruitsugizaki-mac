@@ -156,7 +156,7 @@ def channel_block(c: dict, index: int) -> list[flp.Event]:
         if e.id == 104 and "mixer" in c:
             e.data = int(c["mixer"]).to_bytes(len(e.data), "little")
         if e.id == 213 and c.get("preset") and not (lib and "from" not in st):
-            e.data = library.preset_state(lib, c["preset"]) if lib else presets.apply(str(c.get("plugin", "")).lower(), e.data, c["preset"])
+            e.data = library.preset_state(lib, c["preset"]) if lib else library.loader_preset(str(c.get("plugin", "")).lower().replace(" ", ""), e.data, c["preset"])
         if e.id == 219 and c.get("_new_clip") and isinstance(c.get("target"), dict) and len(e.data) >= 8:
             e.data = struct.pack("<II", *((1250, 4250) if c["target"].get("global") == "tempo" else (0, 12800))) + e.data[8:]
         if e.id == 234 and isinstance(c.get("points"), list):

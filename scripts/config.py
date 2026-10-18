@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,9 +16,11 @@ KEYS = {
     "fl_user_presets": ("FL's user Plugin presets folder", r"Documents\Image-Line\FL Studio\Presets\Plugin presets"),
     "vst_presets": ("per VST plugin, its vendor preset folders: {plugin: {ext: '.vpreset', dirs: {'': factory folder, 'user': user folder}}}", "{}"),
     "flex_packs": ("FLEX's pack folder, holding the .flexpack files", r"Documents\Image-Line\FLEX\Packs"),
-    "diva_presets": ("Diva's preset folder, holding .h2p files", r"Documents\u-he\Diva.data\Presets\Diva"),
-    "sylenth1_presets": ("Sylenth1's preset folder, holding .fxp files", r"Documents\LennarDigital\Sylenth1\Presets"),
-    "serum2_presets": ("a folder of .SerumPreset files to catalog", r"Documents\Xfer\Serum 2 Presets"),
+    "diva_presets": ("more folders of Diva .h2p presets, read after Diva's own preset folder; a folder or a list", r"Documents\u-he\Diva.data\Presets\Diva"),
+    "sylenth1_presets": ("more folders of Sylenth1 .fxp presets, read after Sylenth1's own preset folder; a folder or a list", r"Documents\LennarDigital\Sylenth1\Presets"),
+    "serum2_presets": ("more folders of .SerumPreset files, read after Serum 2's own preset folder; a folder or a list", r"Documents\Xfer\Serum 2 Presets"),
+    "vital_presets": ("more folders of .vital files, read after Vital's own User folder", r"Documents\Vital\User"),
+    "nks_presets": ("more folders of NKS .nksf presets, read after Native Instruments' User Content and the libraries in Public Documents", r"Documents\Native Instruments\User Content"),
     "hide_plugins": ("plugins from FL's plugin database to leave out of plugins and by-name lookup: names or * patterns, case-insensitive, '<format>:<name>' (native, vst3, clap, vst) for one format only, and 'category:<folder>' for every plugin the database files under that category (Effects\\<folder>, Generators\\<folder>); a value set here replaces the default list", "['VFX *', '*NoteBook*', 'category:Visual']"),
 }
 HIDE = ["Fruity Video Player", "Wave Traveller", "BeepMap", "BassDrum", "Fruity Voltage Controller", "Dashboard", "Fruit Kick",
@@ -56,11 +59,11 @@ def _fl_dir(data: dict) -> Path | None:
     return found[-1].parent if found else None
 
 
-def detect(key: str, data: dict | None = None) -> str | None:
-    data = load() if data is None else data
+def _places(data: dict) -> dict:
     d, fl = documents(), _fl_dir(data)
     il = d / "Image-Line"
-    places = {
+    pub = Path(os.environ.get("PUBLIC", r"C:\Users\Public")) / "Documents"
+    return {
         "fl_exe": [fl / "FL64.exe"] if fl else [],
         "loopmidi_exe": [Path(r"C:\Program Files (x86)\Tobias Erichsen\loopMIDI\loopMIDI.exe"), Path(r"C:\Program Files\Tobias Erichsen\loopMIDI\loopMIDI.exe")],
         "fl_hardware": [il / "FL Studio" / "Settings" / "Hardware"],
@@ -71,8 +74,25 @@ def detect(key: str, data: dict | None = None) -> str | None:
         "diva_presets": [d / "u-he" / "Diva.data" / "Presets" / "Diva"],
         "sylenth1_presets": [d / "LennarDigital" / "Sylenth1" / "Presets"],
         "serum2_presets": [d / "Xfer" / "Serum 2 Presets"],
+        "vital_presets": [d / "Vital" / "User"],
+        "nks_presets": [d / "Native Instruments" / "User Content"] + (sorted(pub.glob("* Library")) if pub.is_dir() else []),
     }
-    return next((str(p) for p in places.get(key, []) if p.exists()), None)
+
+
+def detect(key: str, data: dict | None = None) -> str | None:
+    data = load() if data is None else data
+    return next((str(p) for p in _places(data).get(key, []) if p.exists()), None)
+
+
+def roots(key: str) -> list[Path]:
+    data = load()
+    v = data.get(key)
+    extra = [v] if isinstance(v, str) else list(v or [])
+    out = []
+    for p in [p for p in _places(data).get(key, []) if p.is_dir()] + [Path(x) if Path(x).is_absolute() else ROOT / x for x in extra]:
+        if p.is_dir() and all(p.resolve() != q.resolve() for q in out):
+            out.append(p)
+    return out
 
 
 def get(key: str, default=None):
@@ -94,7 +114,8 @@ def need(key: str) -> str:
 
 
 def path(key: str) -> Path:
-    p = Path(need(key))
+    v = need(key)
+    p = Path(v[0] if isinstance(v, list) else v)
     return p if p.is_absolute() else ROOT / p
 
 
