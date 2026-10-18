@@ -18,8 +18,15 @@ KEYS = {
     "diva_presets": ("Diva's preset folder, holding .h2p files", r"Documents\u-he\Diva.data\Presets\Diva"),
     "sylenth1_presets": ("Sylenth1's preset folder, holding .fxp files", r"Documents\LennarDigital\Sylenth1\Presets"),
     "serum2_presets": ("a folder of .SerumPreset files to catalog", r"Documents\Xfer\Serum 2 Presets"),
+    "hide_plugins": ("plugins from FL's plugin database to leave out of plugins and by-name lookup: names or * patterns, case-insensitive, '<format>:<name>' (native, vst3, clap, vst) for one format only, and 'category:<folder>' for every plugin the database files under that category (Effects\\<folder>, Generators\\<folder>); a value set here replaces the default list", "['VFX *', '*NoteBook*', 'category:Visual']"),
 }
-DEFAULTS = {"template": "projects/init/init.flp", "effect_template": "projects/init/fx.flp"}
+HIDE = ["Fruity Video Player", "Wave Traveller", "BeepMap", "BassDrum", "Fruity Voltage Controller", "Dashboard", "Fruit Kick",
+        "ReWired", "MIDI Out", "ZGameEditor Visualizer", "*NoteBook*", "Fruity Big Clock", "Razer Chroma", "Fruity Dance",
+        "VFX *", "Layer", "*Mobile*", "category:Visual", "Fruity Delay 2", "Fruity Parametric EQ",
+        "vst:Absynth 5", "vst:Absynth 5 Stereo", "vst:Ample Metal Eclipse", "vst:DUNE 3", "vst:FL Studio VSTi", "vst:FL Studio VSTi (Multi)",
+        "vst:Nexus", "vst:Omnisphere", "vst:Absynth 5 FX", "vst:Absynth 5 FX Surround", "vst:FX-Omnisphere", "vst:GClip",
+        "vst:HalfTime-64bit", "vst:iZotope Trash 2"]
+DEFAULTS = {"template": "projects/init/init.flp", "effect_template": "projects/init/fx.flp", "hide_plugins": HIDE}
 
 
 class Missing(RuntimeError):
@@ -113,7 +120,7 @@ def status() -> dict:
             out[key] = {"set": False, "detected": found, "exists": True}
             continue
         if not isinstance(value, str):
-            out[key] = {"set": True, "value": value}
+            out[key] = {"set": key in data, "value": value}
             continue
         p = Path(value)
         p = p if p.is_absolute() else ROOT / p

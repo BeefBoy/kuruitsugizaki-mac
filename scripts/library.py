@@ -1,4 +1,5 @@
 import csv
+import fnmatch
 import re
 from pathlib import Path
 
@@ -108,9 +109,29 @@ def _scan_db(root: Path) -> list[dict]:
     return out
 
 
+def _hider(db: Path | None, hide: list):
+    names, pats = set(), []
+    for h in hide:
+        h = str(h).strip().lower()
+        if h.startswith("category:"):
+            cat = h.split(":", 1)[1].strip()
+            if db and cat:
+                names |= {f.stem.lower() for k in ("Generators", "Effects") if (db / k / cat).is_dir() for f in (db / k / cat).glob("*.fst")}
+        elif h.split(":", 1)[0] in RANK and ":" in h:
+            fmt, p = h.split(":", 1)
+            pats.append((fmt, p.strip()))
+        elif h:
+            pats.append((None, h))
+    def hidden(e: dict) -> bool:
+        ns = [n for n in (e["name"].lower(), e.get("alias", "").lower()) if n]
+        return any(n in names or any(f in (None, e["format"]) and fnmatch.fnmatchcase(n, p) for f, p in pats) for n in ns)
+    return hidden
+
+
 def entries() -> list[dict]:
     lib, db = lib_path(), db_root()
-    key = (str(lib), lib.stat().st_mtime_ns if lib else 0, str(db), max((d.stat().st_mtime_ns for d, _, _ in _db_dirs(db)), default=0) if db else 0)
+    hide = list(cfg.get("hide_plugins") or [])
+    key = (str(lib), lib.stat().st_mtime_ns if lib else 0, str(db), max((d.stat().st_mtime_ns for d, _, _ in _db_dirs(db)), default=0) if db else 0, tuple(map(str, hide)))
     # Every tool call reloads this module, which replaces _cache with a new dict; a call running in parallel can
     # find its cache emptied between writing and reading it. So read once, build into locals, return the local.
     hit = _cache.get("entries")
@@ -118,7 +139,8 @@ def entries() -> list[dict]:
         return hit
     own = _scan_library(lib) if lib else []
     seen = {(e["kind"], e["name"].lower(), e["format"]) for e in own}
-    fl = [e for e in (_scan_db(db) if db else []) if (e["kind"], e["name"].lower(), e["format"]) not in seen]
+    hidden = _hider(db, hide)
+    fl = [e for e in (_scan_db(db) if db else []) if (e["kind"], e["name"].lower(), e["format"]) not in seen and not hidden(e)]
     allx = own + fl
     for e in allx:
         e["id"] = slug(e["name"])
