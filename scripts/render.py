@@ -69,6 +69,11 @@ def main():
     flp = Path(a.flp).resolve()
     mode_warning(flp)
     if fl_pids():
+        import flproc
+        theirs = [p for p in fl_pids() if p not in flproc.owned()]
+        if theirs:
+            sys.exit(f"an FL the user started is open (pid {', '.join(map(str, theirs))}); a command-line render hands over to "
+                     "it and renders nothing, and this does not close an FL it did not start: close it, then render again")
         if not a.close:
             sys.exit("FL is open; a command-line render hands over to it and renders nothing. Pass --close.")
         if not close_fl():

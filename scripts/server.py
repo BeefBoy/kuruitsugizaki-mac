@@ -695,8 +695,9 @@ def project_write(doc: Annotated[dict, Field(description="the project document, 
 
 @mcp.tool(annotations=WRITE, description=(
     "Render an .flp to audio: a .wav and .mp3 beside it (replacing earlier ones), then a spectrogram and a short "
-    "report. Call it after project_write to check a piece. FL renders from the command line, so the FL that is open "
-    "is saved first (path itself is restored if that save overwrote it) and closed. Runs detached and returns at once; "
+    "report. Call it after project_write to check a piece. FL renders from the command line, so an FL the harness "
+    "started is saved first (path itself is restored if that save overwrote it) and closed; an FL the user started is "
+    "left alone and the render refused until they close it. Runs detached and returns at once; "
     "a 2-minute piece takes under a minute. Read the result with render_report(path), which returns the report and "
     "the spectrogram picture. Windows with FL Studio only."))
 def fl_render(path: Annotated[str, Field(description="the .flp to render")],
@@ -710,6 +711,10 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
         cfg.need("fl_exe")
     except cfg.Missing as e:
         return {"ok": False, "error": str(e)}
+    theirs = [p for p in flproc.pids() if p not in flproc.owned()]
+    if theirs:
+        return {"ok": False, "error": f"an FL the user started is open (pid {', '.join(map(str, theirs))}); a render needs FL closed, "
+                "and the harness does not close an FL it did not start: ask the user to save and close it, then render again"}
     try:
         saved = _save_open(target)
     except RuntimeError as e:
