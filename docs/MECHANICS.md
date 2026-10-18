@@ -19,6 +19,7 @@ Signatures as `scripts/server.py` defines them:
 | `fl_call(fn, args=None)` | one FL API function, e.g. `fn='plugins.getParamName', args=[0, 5, -1]`; returns `{ok, value}` or `{ok: false, error}` |
 | `fl_transport(action, mode=None, pattern=None)` | `play` / `stop`; `song` / `pattern`; a pattern number in pattern mode |
 | `fl_probe()` | FL's API version, its Python, its pid and the pipe handle it holds |
+| `samples(folder=None, query=None, measure=False, limit=200)` | the user's sample folders from config `sample_folders`, asked once (`none` when they have none, and then FL's factory packs are the source); with `folder`, one level of it: subfolders with their counts, audio files by name. `measure` writes `tmp/samples/<folder>.tsv` |
 
 **What reloads without a restart:** `project_read` and `project_write` re-import `flp`, `automation`, `levels`, `sylenth1`, `serum2`, `presets`, `mixerfx`, `project`, `writer`, `view` on every call. Anything else needs an MCP restart: `server.py`, `config.py`, `flex.py`, `diva.py`. A tool added in `server.py` may not appear until a new session, because a client keeps the tool list it started with.
 
@@ -134,7 +135,7 @@ Written so, the denominator names the tier a hit sits on (`COMPOSING.md` §2): 1
 
 ## Samples
 
-The user's sample folders are theirs to name; ask where they are. Large libraries hold thousands of files per folder: list one folder level at a time, never recursively. `samples.py <folder>` (one folder, not recursive) writes `tmp/samples/<folder>.tsv`: duration, channels, BPM and key from the name, peak, RMS, side/mid, onsets per second, spectral centroid. FL's own drums are under FL's install folder, `Data\Patches\Packs\Drums\`.
+Samples come through `samples`. Its first call shows the user's sample folders, or says they have not been asked yet: then ask, and set `sample_folders`, `none` when they have none. Take samples only from folders they gave; FL's factory packs (`%FLStudioFactoryData%/Data/Patches/Packs`) are the source when they have none. Large libraries hold thousands of files per folder: `samples(folder)` lists one level at a time. `measure=true` (or `samples.py <folder>`) writes `tmp/samples/<folder>.tsv`: duration, channels, BPM and key from the name, peak, RMS, side/mid, onsets per second, spectral centroid.
 
 **Formats:** Python's `wave` reads PCM only. Tuned 808s are often 32-bit float (format tag 3); FL's pack WAVs are compressed (tag 26447). `dur()` (ffprobe) reads anything; `onsets.py` reads PCM 16/24 and float from the RIFF chunks itself.
 

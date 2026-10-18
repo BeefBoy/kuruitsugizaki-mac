@@ -18,7 +18,7 @@ their lines, how a track is built from start to end. `profile` lists their proje
 know which to open.
 
 **4. What to make sound with.** Every plugin on the machine (`plugins`, `presets`); an instrument channel from one of
-their projects, copied with its sound (`state: {from, channel}`); their sample library; FL's factory content. Effects
+their projects, copied with its sound (`state: {from, channel}`); their sample library (`samples`); FL's factory content when they have none. Effects
 are chosen and set for this piece.
 
 **5. `MECHANICS.md`.** How the harness builds a piece: the piece script, positions, units, samples, mixer, effects,
