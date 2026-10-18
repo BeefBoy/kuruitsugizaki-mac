@@ -56,7 +56,12 @@ if (-not (Have uv)) {
 Write-Host "found $((Get-Command uv).Source)"
 
 Say "Python environment (the first time this downloads about 400 MB)"
-uv sync
+$exe = Join-Path $here ".venv\Scripts\kuruitsugizaki.exe"
+if (Get-Process | Where-Object { $_.Path -eq $exe }) {
+    Write-Host "The server is running (an open Claude app holds it), so its exe cannot be replaced; syncing the packages and keeping the installed server, which runs this folder's code."
+    uv sync --no-install-project --inexact
+}
+else { uv sync }
 if ($LASTEXITCODE -ne 0) {
     Write-Host "uv sync failed; the lines above say why." -ForegroundColor Red
     exit 1
