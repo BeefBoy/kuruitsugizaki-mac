@@ -136,6 +136,7 @@ LINK = Link()
 
 BOOT = {"t": None}
 HARVEST = {"replace": False}
+BACKED: set = set()
 NOT_OPEN = "FL is not running, and it is not started just for this: open a project in it with project_write(open=true), or ask the user to open one"
 
 
@@ -190,6 +191,14 @@ def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
         launched = _ensure_fl()
     except RuntimeError as e:
         return {"ok": False, "error": str(e)}
+    backup = None
+    try:
+        if LINK.fl_pid() and LINK.who == "user":
+            backup = _backup_user(LINK.pid)
+    except flproc.Ambiguous as e:
+        return {"ok": False, "error": str(e)}
+    except Exception:
+        pass
     try:
         res = LINK.call(req, timeout)
     except flproc.Ambiguous as e:
@@ -198,6 +207,8 @@ def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
         return {"ok": False, "error": f"{e!r}: is FL running with the kuruitsugizaki controller script loaded?"}
     if isinstance(res, dict):
         res["fl"] = {"pid": LINK.pid, "started_by": LINK.who}
+        if backup:
+            res["backup"] = backup
         if launched is not None:
             res["launched_fl_seconds"] = launched
     return res
@@ -265,6 +276,30 @@ def fl_probe() -> dict:
         _close_fl()
         res["closed_fl"] = True
     return res
+
+
+def _backup_user(pid: int) -> dict | None:
+    import shutil
+    title = _fl_title()
+    if (pid, title) in BACKED:
+        return None
+    BACKED.add((pid, title))
+    path, why = flproc.project_file(pid, title, cfg.get("fl_exe"), cfg.documents() / "Image-Line" / "FL Studio" / "Projects")
+    if path:
+        dest = ROOT / "tmp" / "backups" / f"{path.stem}-{time.strftime('%Y%m%d-%H%M%S')}.flp"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, dest)
+        out = {"of": str(path), "to": str(dest), "how": why}
+    else:
+        out = {"not_made": why}
+    try:
+        if LINK.call({"op": "exec", "code": "import general\nresult = general.getChangedFlag()"}, 5).get("value"):
+            out["unsaved_changes"] = "FL holds changes the copy on disk does not have"
+    except Exception:
+        pass
+    with open(ROOT / "tmp" / "backups" / "backups.log", "a", encoding="utf-8") as fh:
+        fh.write(json.dumps({"at": time.strftime("%Y-%m-%d %H:%M:%S"), "pid": pid, "title": title, **out}) + "\n")
+    return out
 
 
 def _close_fl(timeout: float = 30.0):

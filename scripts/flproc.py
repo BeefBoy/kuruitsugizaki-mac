@@ -1,5 +1,6 @@
 import ctypes
 import json
+import re
 import subprocess
 import time
 from ctypes import wintypes
@@ -63,6 +64,40 @@ def launch(args: list[str], wait: float = 10.0) -> list[int]:
     data.update({str(p): created(p) for p in new})
     _save(data)
     return new
+
+
+def cmdline(pid: int) -> str:
+    out = subprocess.run(["powershell", "-NoProfile", "-Command", f"(Get-CimInstance Win32_Process -Filter 'ProcessId={int(pid)}').CommandLine"],
+                         capture_output=True, text=True, stdin=subprocess.DEVNULL)
+    return out.stdout.strip()
+
+
+def recent(fl_exe: str | None) -> list[str]:
+    import midisetup
+    key = midisetup.fl_key(fl_exe)
+    vals = midisetup.values(rf"{key}\MRU") if key else {}
+    return [v for k, v in sorted(vals.items(), key=lambda kv: int(kv[0]) if str(kv[0]).isdigit() else 1 << 30) if isinstance(v, str)]
+
+
+def project_file(pid: int, title: str, fl_exe: str | None, projects: Path | None = None) -> tuple[Path | None, str]:
+    name = title.rsplit(" - FL Studio", 1)[0].strip() if " - FL Studio" in title else ""
+    if not name:
+        return None, "untitled project: nothing on disk to copy"
+    want = Path(name if name.lower().endswith(".flp") else name + ".flp").name
+    mru = recent(fl_exe)
+    cands = re.findall(r'"([^"]+\.flp)"', cmdline(pid), re.I) + ([name] if "/" in name or "\\" in name else []) + mru
+    for c in cands:
+        p = Path(c)
+        if p.name.lower() == want.lower() and p.is_file():
+            return p, "found"
+    dirs = list(dict.fromkeys(Path(m).parent for m in mru))
+    found = [d / want for d in dirs if (d / want).is_file()]
+    if not found and projects and projects.is_dir():
+        found = list(projects.rglob(want))
+    if found:
+        found.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+        return found[0], "found by name" + (f"; {len(found) - 1} more of that name, newest taken" if len(found) > 1 else "")
+    return None, f"{want}: FL gives no path, and no file of that name is in its recent folders or Projects folder"
 
 
 def choose(pid: int | None = None) -> tuple[int, str]:
