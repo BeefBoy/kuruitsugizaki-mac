@@ -4,6 +4,7 @@ from pathlib import Path
 
 import numpy as np
 
+import pick
 from spectro import SR, decode
 
 PC = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
@@ -79,5 +80,7 @@ if __name__ == "__main__":
     from collections import Counter
     pcs = Counter(s["note"][:-3].rstrip("0123456789-") for s in voiced if s["note"] != "-")
     print("   pitch classes of voiced segments:", pcs.most_common(8))
-    for s in segs[:40]:
+    if len(segs) > 40:
+        print(f"   40 of {len(segs)} segments, spread from first to last")
+    for s in pick.even(segs, 40):
         print(f"   {s['t0']:7.3f}-{s['t1']:7.3f} ({s['dur']:5.3f}s) peak {s['peak_db']:6.1f} voiced {s['voiced']:.2f} f0 {s['f0']:6.1f} {s['note']:>7} spread {s['f0_spread_c']:>5}c")

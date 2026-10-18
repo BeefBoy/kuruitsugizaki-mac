@@ -3,6 +3,7 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import pick
 from project import export
 
 GRIDS = (("1/4", 96), ("1/8", 48), ("1/16", 24), ("1/32", 12), ("1/8T", 32), ("1/16T", 16))
@@ -104,7 +105,7 @@ def summarize(doc: dict) -> dict:
             end = max(end, e)
             tracks[c["track"]].append(f"{src}@{bars(s, ppq) + 1:g}-{bars(e, ppq) + 1:g}")
         out["arrangements"].append({"name": a["name"], "length_bars": bars(end, ppq), "clips": len(a["clips"]),
-                                    "tracks": {t: (v if len(v) <= 12 else v[:12] + [f"... {len(v) - 12} more"]) for t, v in sorted(tracks.items())}})
+                                    "tracks": {t: (v if len(v) <= 12 else pick.even(v, 12) + [f"12 of {len(v)}, spread from first to last"]) for t, v in sorted(tracks.items())}})
     for fx in doc["mixer"]["effects"]:
         out["mixer_effects"][fx["track"]].append(fx["plugin"])
     out["mixer_effects"] = dict(out["mixer_effects"])

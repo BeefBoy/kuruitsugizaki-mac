@@ -8,6 +8,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
+import pick
 import wash
 
 SR = 44100
@@ -215,10 +216,11 @@ def summary(path, out, st, t, rms, corr, sd, top, infra, chroma, bm, bv, key, wa
     if end - last > 4:
         flags.append(f"the last {end - last:.0f} s sit more than 30 dB under the piece (from {when(last)})")
     quiet = (lvl < p90 - 40) & (t > t[0] + 1) & (t < last)
-    for s, e in _runs(quiet, t, 1.5)[:3]:
-        flags.append(f"near-silence {when(s)}, {e - s:.1f} s")
-    for s, e in _runs(corr < -0.2, t, 1.0)[:3]:
-        flags.append(f"out of phase {when(s)}, {e - s:.1f} s")
+    for what, runs in (("near-silence", _runs(quiet, t, 1.5)), ("out of phase", _runs(corr < -0.2, t, 1.0))):
+        if len(runs) > 3:
+            flags.append(f"{what} in {len(runs)} places, 3 of them below")
+        for s, e in pick.even(runs, 3):
+            flags.append(f"{what} {when(s)}, {e - s:.1f} s")
     if bv.sum() >= 8 and np.mean(np.abs(100 * (bm[bv] - np.round(bm[bv]))) <= 25) < 0.7:
         flags.append("bass often off the semitone grid (detail has the figure)")
     lines.append("flags: " + ("; ".join(flags) if flags else "none"))

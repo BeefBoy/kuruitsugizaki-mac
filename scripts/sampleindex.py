@@ -8,6 +8,8 @@ import re
 import struct
 from pathlib import Path
 
+import pick
+
 ROOT = Path(__file__).resolve().parents[1]
 DIR = ROOT / "tmp" / "samples" / "index"
 AUDIO = {".wav", ".wv", ".flac", ".aif", ".aiff", ".mp3", ".ogg"}
@@ -168,8 +170,8 @@ def totals(idx: dict, rel: str) -> dict:
 
 def tree(idx: dict, rel: str, cap: int) -> tuple[dict, int]:
     """The folders below rel at every level, {path below rel: audio files through all its levels}, at most cap of them:
-    whole levels from the shallowest, and the level that does not fit shared out across its parents in turn, so every
-    parent shows some of its folders; and how many folders there are in all."""
+    whole levels from the shallowest, and the level that does not fit shared out across its parents by pick.grouped, so
+    every parent shows some of its folders; and how many folders there are in all."""
     pre = rel + "/" if rel else ""
     below = [k for k in idx["dirs"] if k != rel and k.startswith(pre)]
     count = dict.fromkeys(below, 0)
@@ -193,12 +195,7 @@ def tree(idx: dict, rel: str, cap: int) -> tuple[dict, int]:
         by_parent: dict[str, list[str]] = {}
         for k in level:
             by_parent.setdefault(k.rsplit("/", 1)[0] if "/" in k else "", []).append(k)
-        queues = list(by_parent.values())
-        while left > 0:
-            for q in queues:
-                if q and left > 0:
-                    order.append(q.pop(0))
-                    left -= 1
+        order += pick.grouped(list(by_parent.values()), left)
         break
     return {k[len(pre):]: count[k] for k in sorted(order, key=str.lower)}, len(below)
 

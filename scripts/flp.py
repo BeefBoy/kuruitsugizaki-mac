@@ -3,6 +3,8 @@ import sys
 from collections import Counter
 from dataclasses import dataclass, field
 
+import pick
+
 
 @dataclass
 class Event:
@@ -141,7 +143,7 @@ def diff(a: Project, b: Project) -> list[str]:
                         spans.append((s, k))
                     k += 1
                 out.append(f"~ #{i}->{j} id {ea.id} len {len(ea.data)}: {len(spans)} changed spans")
-                for s, e in spans[:12]:
+                for s, e in pick.even(spans, 12):
                     lo = max(0, s - 4)
                     out.append(f"    @{s}..{e}  {ea.data[lo:e + 4].hex(' ')}  ->  {eb.data[lo:e + 4].hex(' ')}")
             continue
@@ -172,7 +174,7 @@ def main(argv: list[str]) -> int:
             print(path, p.meta, len(p.events), "events")
             for eid, k in sorted(c.items()):
                 sizes = sorted({len(e.data) for e in p.events if e.id == eid})
-                print(f"  {eid:3} x{k:<4} sizes {sizes[:6]}{'...' if len(sizes) > 6 else ''}")
+                print(f"  {eid:3} x{k:<4} sizes {pick.even(sizes, 6)}{f' (6 of {len(sizes)})' if len(sizes) > 6 else ''}")
         elif cmd == "dump":
             print(path, p.meta)
             for n, e in enumerate(p.events):

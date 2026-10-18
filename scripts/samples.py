@@ -7,6 +7,8 @@ from pathlib import Path
 
 import numpy as np
 
+import pick
+
 AUDIO = {".wav", ".mp3", ".flac", ".ogg", ".aif", ".aiff"}
 KEY = re.compile(r"(?<![A-Za-z])([A-G])\s?([#b♭♯]?)\s?(m(?:in(?:or)?)?|maj(?:or)?|\s(?:minor|major))?(?![A-Za-z])")
 BPM = re.compile(r"(\d{2,3})\s?bpm", re.I)
@@ -115,6 +117,8 @@ if __name__ == "__main__":
         print(f"== {Path(folder).name}: {len(rows)} files -> {out}; subfolders: {[p.name for p in subdirs]}")
         if durs:
             print(f"   duration {min(durs):.2f}-{max(durs):.2f} s, median {sorted(durs)[len(durs) // 2]:.2f}; stereo {sum(1 for r in rows if r.get('ch') == 2)}/{len(rows)}; with bpm {sum(1 for r in rows if r.get('bpm'))}, with key {sum(1 for r in rows if r.get('key'))}")
-        for r in rows[:60]:
+        if len(rows) > 60:
+            print(f"   60 of {len(rows)}, spread from first to last; all of them in {out}")
+        for r in pick.even(rows, 60):
             if "dur" in r:
                 print(f"   {r['name'][:52]:52} {r['dur']:7.2f}s ch{r['ch']} bpm {r['bpm'] or '-':>3} key {r['key'] or '-':>4} rms {r['rms_db']:6.1f} w {r['side_mid_db'] if r['side_mid_db'] != '' else '-':>6} on/s {r['onsets_per_s']:5.2f} c {r['centroid_hz']:>5}")

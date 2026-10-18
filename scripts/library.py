@@ -176,7 +176,7 @@ def find(query: str, kind: str | None = None, fmt: str | None = None, prefer: st
             if prefer in {e["kind"] for e in hit}:
                 return min((e for e in hit if e["kind"] == prefer), key=_rank)
             raise KeyError(f"{names[0]!r} is both an instrument and an effect; pass kind='instrument' or kind='effect'")
-        raise KeyError(f"{query!r} matches {len(names)} plugins: {names[:12]}")
+        raise KeyError(f"{query!r} matches {len(names)} plugins: {_some(names, 12)}")
     where = " or ".join(x for x in ("FL's plugin database" if db_root() else "", "the library" if lib_path() else "") if x) or "nowhere: neither FL's plugin database (config plugin_db) nor a library (config library) was found"
     raise KeyError(f"{query!r} is not in {where}; plugins(query) lists what is")
 
@@ -403,7 +403,7 @@ def _loader_path(key: str, preset: str) -> str:
     if len(hit) == 1:
         return hit[0]["path"]
     if hit:
-        raise KeyError(f"preset {preset!r} is ambiguous: {[r['id'] for r in hit][:10]}")
+        raise KeyError(f"preset {preset!r} is ambiguous, {len(hit)} match: {_some([r['id'] for r in hit], 10)}")
     if key == "flex" and "/" in preset:
         return preset
     where = ", ".join(str(r) for r in _loader_roots(key)) or f"nowhere: no default folder found and config {'flex_packs' if key == 'flex' else LOADER_FILES[key][0]} is not set"
@@ -486,35 +486,21 @@ def presets(e: dict, query: str | None = None) -> list[dict]:
     return [r for r in rows if all(w in r["id"].lower() for w in words)]
 
 
+def _some(items: list, n: int) -> str:
+    import pick
+    return ", ".join(map(str, pick.even(items, n))) + (f" ({n} of {len(items)}, spread from first to last)" if len(items) > n else "")
+
+
 def spread(rows: list[dict], n: int, seed: int | None = None) -> list[dict]:
+    """n rows across their folders (the id up to its last /), by pick.grouped."""
     import random
-    if n <= 0:
-        return []
+    import pick
     if len(rows) <= n:
         return rows
-    rng = random.Random(seed)
     groups: dict[str, list[dict]] = {}
     for r in rows:
         groups.setdefault(r["id"].rsplit("/", 1)[0] if "/" in r["id"] else "", []).append(r)
-    share = {g: 0 for g in groups}
-    left = n
-    while left:
-        open_ = [g for g in groups if share[g] < len(groups[g])]
-        if not open_:
-            break
-        if left < len(open_):
-            open_ = rng.sample(open_, left)
-        for g in open_:
-            share[g] += 1
-        left = n - sum(share.values())
-    out = []
-    for g, items in groups.items():
-        k = share[g]
-        if not k:
-            continue
-        step = len(items) / k
-        out += [items[min(len(items) - 1, int((i + rng.random()) * step))] for i in range(k)]
-    return out
+    return pick.grouped(list(groups.values()), n, random.Random(seed) if seed is not None else None)
 
 
 def resolve_preset(e: dict, preset: str) -> Path:
@@ -531,7 +517,7 @@ def resolve_preset(e: dict, preset: str) -> Path:
     if not rows:
         raise KeyError(f"{e['name']} has no presets: none saved from FL as .fst and no vendor folder in config vst_presets; it loads in its initial state")
     if hit:
-        raise KeyError(f"preset {preset!r} for {e['name']} is ambiguous: {[r['id'] for r in hit][:10]}")
+        raise KeyError(f"preset {preset!r} for {e['name']} is ambiguous, {len(hit)} match: {_some([r['id'] for r in hit], 10)}")
     raise KeyError(f"no preset {preset!r} for {e['name']}; presets(plugin, query) searches its {len(rows)}")
 
 
