@@ -1,6 +1,6 @@
 # kuruitsugizaki
 
-An MCP server that lets a model read and write FL Studio projects and drive a running FL Studio, so it can write music. FL Studio is the first integration; the harness is meant to reach more software later.
+An MCP server that lets a model read and write FL Studio projects and drive a running FL Studio, so it can write music.
 
 The model does not listen. A render comes back as numbers and pictures (spectrograms, loudness, stereo width), and the person listens and decides.
 
