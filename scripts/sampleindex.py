@@ -167,8 +167,9 @@ def totals(idx: dict, rel: str) -> dict:
 
 
 def tree(idx: dict, rel: str, cap: int) -> tuple[dict, int]:
-    """The folders below rel at every level, {path below rel: audio files through all its levels}, shallowest first
-    and at most cap of them; and how many folders there are in all."""
+    """The folders below rel at every level, {path below rel: audio files through all its levels}, at most cap of them:
+    whole levels from the shallowest, and the level that does not fit shared out across its parents in turn, so every
+    parent shows some of its folders; and how many folders there are in all."""
     pre = rel + "/" if rel else ""
     below = [k for k in idx["dirs"] if k != rel and k.startswith(pre)]
     count = dict.fromkeys(below, 0)
@@ -179,7 +180,26 @@ def tree(idx: dict, rel: str, cap: int) -> tuple[dict, int]:
         parts = k[len(pre):].split("/")
         for i in range(1, len(parts) + 1):
             count[pre + "/".join(parts[:i])] += n
-    order = sorted(below, key=lambda k: (k.count("/"), k.lower()))[:cap]
+    levels: dict[int, list[str]] = {}
+    for k in below:
+        levels.setdefault(k.count("/"), []).append(k)
+    order: list[str] = []
+    for depth in sorted(levels):
+        level = sorted(levels[depth], key=str.lower)
+        left = cap - len(order)
+        if len(level) <= left:
+            order += level
+            continue
+        by_parent: dict[str, list[str]] = {}
+        for k in level:
+            by_parent.setdefault(k.rsplit("/", 1)[0] if "/" in k else "", []).append(k)
+        queues = list(by_parent.values())
+        while left > 0:
+            for q in queues:
+                if q and left > 0:
+                    order.append(q.pop(0))
+                    left -= 1
+        break
     return {k[len(pre):]: count[k] for k in sorted(order, key=str.lower)}, len(below)
 
 

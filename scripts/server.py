@@ -865,7 +865,7 @@ def _sample_place(d: Path, roots: list[Path]) -> tuple[Path, str]:
     "List samples for drums, one-shots, loops and breaks; a sample's path (its folder plus its name) goes into "
     "project_write as a sampler's or audio clip's path. Call it before choosing any sample. No arguments: the user's "
     "sample folders (config sample_folders), each with its folders at every level and how many audio files each holds, "
-    "at most max_folders, the shallowest first. When sample_folders is not set it "
+    "at most max_folders: whole levels from the top, the last one shared across its parents. When sample_folders is not set it "
     "returns {ok: false, error}: ask the user where their samples are and set it with config (a folder or a JSON list), "
     "or 'none' when they have none, which makes FL's factory packs the source; the answer is kept. Take samples only "
     "from folders the user gave. query: words that must all appear in the path below the sample folder, at any depth, "
@@ -906,7 +906,7 @@ def samples(folder: Annotated[str | None, Field(description="one folder to look 
                 idx = si.load(r)
                 sub, n = si.tree(idx, "", max(1, max_folders // len(roots)))
                 out["sample_folders"].append({"path": str(r), **si.totals(idx, ""), "folders": sub,
-                                              **({"note": f"{len(sub)} of {n} folders, the shallowest first; folder= opens one"} if n > len(sub) else {})})
+                                              **({"note": f"{len(sub)} of {n} folders: whole levels from the top, the last one shared across its parents; folder= opens one"} if n > len(sub) else {})})
             if none:
                 out["source"] = none
             return out
@@ -947,7 +947,7 @@ def samples(folder: Annotated[str | None, Field(description="one folder to look 
         sub, n = si.tree(si.load(r), rel, max_folders)
         out = {"ok": True, "folder": str(d), "folders": sub, **out}
         if n > len(sub):
-            out["folders_note"] = f"{len(sub)} of {n} folders, the shallowest first; folder= opens one"
+            out["folders_note"] = f"{len(sub)} of {n} folders: whole levels from the top, the last one shared across its parents; folder= opens one"
     if len(rows) > limit:
         out["note"] = f"{limit} of {len(rows)}, an even spread across folders; query narrows"
     if measure and folder is not None:
