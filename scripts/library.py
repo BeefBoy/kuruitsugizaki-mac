@@ -495,7 +495,7 @@ def params(e: dict, query: str | None = None) -> list[dict]:
     return rows
 
 
-def summary(query: str | None = None, native: bool = True) -> list[dict]:
+def summary(query: str | None = None, native: bool = False) -> list[dict]:
     out = []
     for e in entries():
         if query and query.lower() not in e["name"].lower():

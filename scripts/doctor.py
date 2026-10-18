@@ -52,7 +52,7 @@ def checks(claude: Path) -> list[tuple]:
     row(True, "FL MIDI setting", s["assigned"], f"script on input {s['assigned'][0]!r}" if s["assigned"] else "no input has the script; run fl_install with FL closed, or " + midisetup.BY_HAND)
     try:
         import library
-        rows = library.summary(None)
+        rows = library.summary(None, native=True)
         row(True, "FL plugin database", rows, f"{len(rows)} plugins, {sum(1 for r in rows if r.get('presets'))} with presets")
     except Exception as e:
         row(True, "FL plugin database", False, e)

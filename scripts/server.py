@@ -556,13 +556,16 @@ def _lib(fn):
     "them goes into project_write by name: an instrument as {kind: plugin, plugin: <name>, preset?, format?}, an effect "
     "as mixer.effects [{track, slot, plugin: <name>, preset?, format?}]; without a preset it arrives as if dragged in "
     "fresh from FL's browser, a library instance as saved. A plugin installed in several formats is one name (native, "
-    "then vst3, clap, vst unless format is given). native=false leaves out FL's own plugins and lists only VST3 and "
-    "CLAP ones. Reads files only; FL need not run."))
+    "then vst3, clap, vst unless format is given). By default it lists only VST3 and CLAP plugins; native=true adds "
+    "FL's own. Reads files only; FL need not run."))
 def plugins(query: Annotated[str | None, Field(description="keep names containing this text, case-insensitive, e.g. 'serum'; omit for all")] = None,
-            native: Annotated[bool, Field(description="false leaves out FL's own (native) plugins")] = True) -> dict:
+            native: Annotated[bool, Field(description="true also lists FL's own (native) plugins")] = False) -> dict:
     def go(L):
         rows = L.summary(query, native)
-        return {"plugin_db": str(L.db_root()), "library": str(L.lib_path()), "count": len(rows), "plugins": rows}
+        res = {"plugin_db": str(L.db_root()), "library": str(L.lib_path()), "count": len(rows), "plugins": rows}
+        if not native:
+            res["note"] = "FL's own plugins are not listed; native=true lists them"
+        return res
     return _lib(go)
 
 
