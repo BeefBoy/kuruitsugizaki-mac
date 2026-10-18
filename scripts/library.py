@@ -1,6 +1,8 @@
 import csv
 import fnmatch
+import os
 import re
+import zlib
 from pathlib import Path
 
 import config as cfg
@@ -249,21 +251,54 @@ def _folder(root: Path, e: dict) -> Path | None:
     return next((d for d in sub.iterdir() if d.is_dir() and d.name.lower() == want), None)
 
 
+def _vendor_defaults() -> dict:
+    pd = Path(os.environ.get("ProgramData", r"C:\ProgramData"))
+    ad = Path(os.environ.get("APPDATA", ""))
+    return {"Krush": {"ext": ".tkpreset", "dirs": {"": str(pd / "Tritik" / "Krush")}},
+            "Portal": {"ext": ".xml", "dirs": {"": str(pd / "Output" / "Portal" / "Presets")}},
+            "spiff_x64": {"ext": ".preset", "dirs": {"": str(pd / "oeksound" / "spiff" / "Presets")}},
+            "ShaperBox 3": {"ext": ".dat", "dirs": {"": str(ad / "Cableguys" / "ShaperBox3")}, "names": "inside"}}
+
+
+def _program_name(f: Path) -> str | None:
+    try:
+        b = f.read_bytes()
+        i = b.find(b"x\x9c")
+        d = zlib.decompressobj().decompress(b[i:], 1 << 16) if b.startswith(b"#zip#") and i >= 0 else b
+    except (OSError, zlib.error):
+        return None
+    m = re.search(rb"ProgramName\x00\x01.\x05([^\x00]*)\x00", d, re.S)
+    return m.group(1).decode("utf-8", "replace") if m else None
+
+
 def _vendor(e: dict) -> list[dict]:
-    spec = (cfg.get("vst_presets") or {}).get(e["name"])
-    if not spec or e["format"] == "native":
+    if e["format"] == "native":
+        return []
+    spec = (cfg.get("vst_presets") or {}).get(e["name"]) or _vendor_defaults().get(e["name"])
+    if not spec:
         return []
     ext = spec.get("ext", "").lower()
     dirs = spec.get("dirs", {})
-    out = []
+    out, seen = [], set()
     for tag, d in (dirs.items() if isinstance(dirs, dict) else (("", x) for x in dirs)):
         p = Path(d)
         if not p.is_dir():
             continue
         pre = f"{tag}/" if tag else ""
         for f in sorted(p.rglob("*")):
-            if f.is_file() and (not ext or f.suffix.lower() == ext):
-                out.append({"id": pre + f.relative_to(p).with_suffix("").as_posix(), "path": str(f)})
+            if not f.is_file() or (ext and f.suffix.lower() != ext):
+                continue
+            if spec.get("names") == "inside":
+                name = _program_name(f)
+                if not name:
+                    continue
+                rid, k = pre + name, 2
+                while rid.lower() in seen:
+                    rid, k = f"{pre}{name} ({k})", k + 1
+            else:
+                rid = pre + f.relative_to(p).with_suffix("").as_posix()
+            seen.add(rid.lower())
+            out.append({"id": rid, "path": str(f)})
     return out
 
 

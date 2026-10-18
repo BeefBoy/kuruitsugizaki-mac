@@ -72,12 +72,46 @@ def with_xml(comp: bytes, xml: bytes) -> bytes:
     return bytes(out)
 
 
+def merge(state: bytes, preset: bytes) -> bytes:
+    import xml.etree.ElementTree as ET
+    s = ET.fromstring(state.removeprefix(b"\xef\xbb\xbf").rstrip(b"\0 \r\n\t"))
+    p = ET.fromstring(preset.removeprefix(b"\xef\xbb\xbf").rstrip(b"\0 \r\n\t"))
+    by_id = {(el.tag, el.get("id")): el for el in s.iter() if el.get("id") is not None}
+
+    def walk(pe, se_path):
+        for c in pe:
+            path = se_path + [c.tag]
+            if c.get("id") is not None:
+                t = by_id.get((c.tag, c.get("id")))
+                if t is not None:
+                    t.attrib.update(c.attrib)
+            else:
+                hits = s.findall("./" + "/".join(path[1:]))
+                if len(hits) == 1:
+                    hits[0].attrib.update(c.attrib)
+                walk(c, path)
+    walk(p, [s.tag])
+    return b'<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(s, encoding="utf-8")
+
+
+def _needs_merge(state: bytes, preset: bytes) -> bool:
+    import xml.etree.ElementTree as ET
+    try:
+        s = ET.fromstring(state.removeprefix(b"\xef\xbb\xbf").rstrip(b"\0 \r\n\t"))
+        p = ET.fromstring(preset.removeprefix(b"\xef\xbb\xbf").rstrip(b"\0 \r\n\t"))
+    except ET.ParseError:
+        return False
+    return bool(set(s.attrib) - set(p.attrib))
+
+
 def convert(comp: bytes, data: bytes, source: str) -> bytes:
     fam = family(comp)
     if fam in ("juce", "juce-bank"):
         want, got = root_tag(juce_xml(comp)), root_tag(data)
         if not got or got != want:
             raise ValueError(f"{source}: root element <{got}> does not match the plugin state's <{want}>")
+        if _needs_merge(juce_xml(comp), data):
+            data = merge(juce_xml(comp), data)
         return with_xml(comp, data)
     if fam == "zip" and data.startswith(b"#zip#"):
         return data
