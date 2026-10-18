@@ -82,6 +82,7 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 | `scripts/onsets.py` | hit onsets of a WAV, for chopping loops |
 | `scripts/chop.py` | cuts time ranges of a file into their own WAVs with short fades, optionally reversed |
 | `scripts/vox.py` | vocal -> syllables with a median pitch each |
+| `scripts/sampleindex.py` | the index behind `samples`: every audio file under a folder with size and modified time from listings, lengths from headers on demand |
 | `scripts/samples.py` | `samples.py <folder>`: per file duration, BPM and key from the name, levels, width, onsets, centroid -> `tmp/samples/<folder>.tsv` |
 | `scripts/melstats.py` | per-instrument note overview of a project |
 | `scripts/fxdump_fl.py` | sent through `fl_exec`: every effect on every insert of the open project with its parameters |
@@ -101,7 +102,7 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 | `project_read(path, view="compact", patterns=None, arrangements=None, unused=False)` | `.flp` -> JSON. `compact`: rows with pointers, the form `project_write` takes. `summary`: per-pattern stats and a per-track timeline. `full`: exact round-trip form |
 | `project_write(doc, path, open=False, play=None)` | JSON (compact or full) -> `.flp`; `open` loads it in FL (launching FL if needed), `play` = `song` or `pattern` |
 | `profile(folder=None)` | a table of the `.flp` projects under a folder (read only): tempo, key, arrangement length; which to open with `project_read`. Also written to `tmp/profile/<folder>/`. Without `folder` it reads config `projects_folder`; the first folder given is saved there, and `none` records that the user has none |
-| `samples(folder=None, query=None, measure=False, limit=200)` | the user's sample folders from config `sample_folders`, asked once (`none` when they have none, and then FL's factory packs are the source); with `folder`, one level of it: subfolders with their counts, audio files by name. `measure` writes `tmp/samples/<folder>.tsv` |
+| `samples(folder=None, query=None, min_seconds=None, max_seconds=None, limit=100, max_folders=200, measure=False)` | the user's sample folders from config `sample_folders`, asked once (`none` when they have none, and then FL's factory packs are the source), each with its folders at every level and their file counts. `query` searches every level by words in the path; `min_seconds`/`max_seconds` by length; results `{folder: [[name, seconds]]}`, an even spread across folders above `limit`. Indexed in `tmp/samples/index/` from folder listings, relisted where a folder changed. `measure` writes `tmp/samples/<folder>.tsv` |
 | `fl_render(path, reopen=True)` | saves FL's open project, then runs `render.py <path> --close [--reopen]` detached; read the result with `render_report` |
 | `render_report(path)` | a finished render: the short report and the spectrogram picture together; says so while the render is still running |
 | `fl_transport(action, mode=None, pattern=None)` | play / stop, song / pattern mode; needs a project open in FL |
