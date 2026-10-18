@@ -62,6 +62,7 @@ A note names its instrument and a pattern is not tied to one, because a pattern 
 - Paths are looked for at their standard places first and asked only when not found.
 - A preset is one event: the plugin state, 213, swapped into the copied block. The slot record, 212, stays the library's.
 - Presets come from `.fst` files FL saved, for any plugin, and from vendor preset files where the plugin's state family has a converter (JUCE XML, Cableguys `#zip#`), named per plugin in `vst_presets`; a JUCE plugin needs no saved instance for that.
+- A preset that needs a saved instance of its plugin loads into one FL saved: the first time, `project_write` opens the plugin by name in FL, saves, and keeps the state in `tmp/states/`. Nothing about the user's own projects is required. His words: "we should be agnostic". NKS files carry the plugin's state whole and need none.
 - Parameter maps are generated files under `docs/params/`, read live and swept on a copy of the library, so a model can address any knob by index without reading the plugin.
 
 ## Deciding, not scripting

@@ -104,7 +104,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 | `fl_render(path, reopen=True)` | saves FL's open project, then runs `render.py <path> --close [--reopen]` detached; returns the log path under `tmp/render_logs/` |
 | `fl_transport(action, mode=None, pattern=None)` | play / stop, song / pattern mode |
 | `plugins(query=None, native=False)` | the VST3 and CLAP plugins FL has installed, and every instance in the optional library project (see Plugins by name); `native=True` adds FL's own: name, instrument or effect, vendor, format, source, how many presets load by name, whether it has a parameter map |
-| `presets(plugin, query=None, limit=200)` | a library plugin's preset ids, filtered by words; the id goes into `project_write` as `preset` |
+| `presets(plugin, query=None, limit=200)` | a plugin's preset ids, filtered by words; the id goes into `project_write` as `preset` |
 | `params(plugin, query=None)` | a library plugin's parameters from `docs/params/`: index (for automation targets), name, saved value and display, and FL's display at 0, .25, .5, .75 and 1 where swept |
 | `fl_exec(code, out=None, timeout=10)`, `fl_call(fn, args)`, `fl_probe()` | raw access to FL's Python API inside the running FL; `fl_exec` returns what the code assigns to `result`, or writes it as JSON to `out` (also when `result` is `{'__out__': path, 'data': value}`) |
 
@@ -112,7 +112,7 @@ The server starts loopMIDI and FL itself when a live tool finds them closed.
 
 ## The template
 
-`projects/init/init.flp`, saved by FL: a Sampler, Serum 2, FLEX, one audio channel and one automation clip; master plus inserts 1-17, no effects. Route to inserts 1-16: insert 17 takes no fader on this mixer. A `plugin` instrument is copied from the template channel of that plugin, so with this template `plugin` takes `serum2` or `flex`. The preset loaders also handle Vital, Diva and Sylenth1: to use them, save a template of your own in FL holding those plugins and set `template` to it, or take a channel from any project with `state: {from, channel}`. Template plugins are matched by name: `Serum2`, `FLEX`, `Vital`, `Sylenth1`, `Diva(x64)`.
+`projects/init/init.flp`, saved by FL: a Sampler, Serum 2, FLEX, one audio channel and one automation clip; master plus inserts 1-17, no effects. Route to inserts 1-16: insert 17 takes no fader on this mixer. A `plugin` instrument is copied from the template channel of that plugin, so with this template `plugin` takes `serum2` or `flex`. Vital, Diva and Sylenth1 load by name with a preset (`{"kind": "plugin", "plugin": "Vital", "format": "vst3", "preset": "<id>"}`), into a state FL saved for them (Plugins by name); a template of your own holding them still works, matched by name: `Serum2`, `FLEX`, `Vital`, `Sylenth1`, `Diva(x64)`.
 
 ## Effects
 
