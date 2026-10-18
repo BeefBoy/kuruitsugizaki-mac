@@ -33,8 +33,7 @@ a good one; say what you could not judge rather than calling it done.
 **7. Where it goes.** `compositions/<piece>.py` writes `compositions/<piece>.json`, built to
 `projects/music/<piece>.flp`; both folders are the person's and git ignores them. `compositions/<piece>.md`, written
 as you go: each part, what it is, where it came from, what else was tried, what a render changed, and what you did
-not check; their verdict goes at its end. Play it for them when it is done: the mp3 path, and the project open and
-playing in FL. Scratch goes in `tmp/`.
+not check; their verdict goes at its end. Scratch goes in `tmp/`.
 
 Content of compositions/ is not for your read unless its yours file created fresh or PREFERENCE.md doc.
 Forbidden unless told otherwise E:\dev\kuruitsugizaki\examples\seance.md
