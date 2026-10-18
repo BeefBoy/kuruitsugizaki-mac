@@ -851,74 +851,113 @@ def profile(folder: Annotated[str | None, Field(description="the folder of .flp 
     return out
 
 
-AUDIO = {".wav", ".mp3", ".flac", ".ogg", ".aif", ".aiff"}
-
-
-def _counts(path) -> dict:
-    subs = files = 0
-    try:
-        for e in os.scandir(path):
-            if e.is_dir():
-                subs += 1
-            elif os.path.splitext(e.name)[1].lower() in AUDIO:
-                files += 1
-    except OSError:
-        return {"missing": True}
-    return {"folders": subs, "files": files}
+def _sample_place(d: Path, roots: list[Path]) -> tuple[Path, str]:
+    """The indexed folder d belongs to (a sample folder holding it, else d itself) and d's path below it."""
+    for r in roots:
+        try:
+            return r, d.resolve().relative_to(r.resolve()).as_posix().strip(".")
+        except ValueError:
+            continue
+    return d, ""
 
 
 @mcp.tool(annotations=READ, description=(
-    "The user's sample folders, for drums, one-shots, loops and breaks: call it before choosing any sample. Without "
-    "folder: the folders saved in config sample_folders. When that is not set it says so: ask the user where their "
-    "samples are, then set sample_folders with config (a folder, or a JSON list of folders), or 'none' when they have "
-    "none; the answer is kept for later sessions. With 'none', FL's own factory packs are the source. A sample library "
-    "is the user's to name: do not take samples from a folder they did not give, FL's factory packs included, unless "
-    "sample_folders is 'none'. With folder (absolute, relative to one of the sample folders, or starting with "
-    "%FLStudioFactoryData%): one level of it, not recursive: its subfolders with how many folders and audio files "
-    "each holds, and its audio files by name; a sample's path for project_write is the folder plus the name. query "
-    "keeps names containing it. measure=true also measures the folder's audio files (duration, BPM and key from the "
-    "name, levels, width, onsets per second, spectral centroid) into tmp/samples/<folder>.tsv and returns that path. "
-    "Reads files only; FL need not run."))
-def samples(folder: Annotated[str | None, Field(description="a folder to list one level of; omit for the saved sample folders")] = None,
-            query: Annotated[str | None, Field(description="keep subfolders and files whose name contains this, case-insensitive")] = None,
-            measure: Annotated[bool, Field(description="also measure the folder's audio files into tmp/samples/<folder>.tsv")] = False,
-            limit: Annotated[int, Field(description="most files listed; more are shown as an even spread")] = 200) -> dict:
+    "List samples for drums, one-shots, loops and breaks; a sample's path (its folder plus its name) goes into "
+    "project_write as a sampler's or audio clip's path. Call it before choosing any sample. No arguments: the user's "
+    "sample folders (config sample_folders), each with its folders at every level and how many audio files each holds, "
+    "at most max_folders, the shallowest first. When sample_folders is not set it "
+    "returns {ok: false, error}: ask the user where their samples are and set it with config (a folder or a JSON list), "
+    "or 'none' when they have none, which makes FL's factory packs the source; the answer is kept. Take samples only "
+    "from folders the user gave. query: words that must all appear in the path below the sample folder, at any depth, "
+    "e.g. 'kick 808'; min_seconds and max_seconds filter by length. folder: one folder (absolute, below a sample folder, "
+    "or %FLStudioFactoryData%/...), its folders at every level the same way and its own files; with query, "
+    "the search stays inside it. Returns {total, results: {folder: [[name, seconds]]}}; when there are more than limit "
+    "the list is an even spread across folders. Folders are indexed in tmp/samples/index/ from their listings, no file "
+    "opened, and relisted only where they changed; a length is read from the file when shown. measure=true writes the "
+    "folder's own files' levels, width, onsets and centroid to tmp/samples/<folder>.tsv. Reads files only; FL need not run."))
+def samples(folder: Annotated[str | None, Field(description="one folder to look into; omit for all sample folders")] = None,
+            query: Annotated[str | None, Field(description="words that must all appear in the path, case-insensitive, any order, e.g. 'snare tight'")] = None,
+            min_seconds: Annotated[float | None, Field(description="keep samples at least this long")] = None,
+            max_seconds: Annotated[float | None, Field(description="keep samples at most this long, e.g. 1 for one-shots")] = None,
+            limit: Annotated[int, Field(description="at most this many samples")] = 100,
+            max_folders: Annotated[int, Field(description="at most this many folders in a folder listing")] = 200,
+            measure: Annotated[bool, Field(description="also measure the folder's own audio files into tmp/samples/<folder>.tsv")] = False) -> dict:
     _reload()
+    import sampleindex as si
+    from library import spread
     saved = cfg.load().get("sample_folders")
     fl_dir = cfg._fl_dir(cfg.load())
     factory = fl_dir / "Data" / "Patches" / "Packs" if fl_dir else None
     roots = [Path(p) for p in saved] if saved else [factory] if saved == [] and factory else []
     unset = None if saved is not None else ("sample_folders is not set: ask the user where their samples are, then "
                                             "config(key='sample_folders', value=<folder or JSON list>), or value='none' when they have none")
+    none = "the user has no sample folders (sample_folders is 'none'): FL's factory packs are the source" if saved == [] else None
+    filtered = query is not None or min_seconds is not None or max_seconds is not None
     if folder is None:
         if unset:
             return {"ok": False, "error": unset}
-        out = {"ok": True, "folders": [{"path": str(p), **_counts(p)} for p in roots]}
-        if saved == []:
-            out["note"] = "the user has no sample folders (sample_folders is 'none'): FL's factory packs are the source"
-        return out
-    if folder.startswith("%FLStudioFactoryData%") and fl_dir:
-        d = fl_dir / folder[len("%FLStudioFactoryData%"):].lstrip("/\\")
-    elif Path(folder).is_absolute():
-        d = Path(folder)
+        places = [(r, "") for r in roots if r.is_dir()]
+        if not filtered:
+            out = {"ok": True, "sample_folders": []}
+            for r in roots:
+                if not r.is_dir():
+                    out["sample_folders"].append({"path": str(r), "missing": True})
+                    continue
+                idx = si.load(r)
+                sub, n = si.tree(idx, "", max(1, max_folders // len(roots)))
+                out["sample_folders"].append({"path": str(r), **si.totals(idx, ""), "folders": sub,
+                                              **({"note": f"{len(sub)} of {n} folders, the shallowest first; folder= opens one"} if n > len(sub) else {})})
+            if none:
+                out["source"] = none
+            return out
     else:
-        d = next((r / folder for r in roots if (r / folder).is_dir()), ROOT / folder)
-    if not d.is_dir():
-        return {"ok": False, "error": f"{d} is not a folder"}
-    q = (query or "").lower()
-    entries = sorted(os.scandir(d), key=lambda e: e.name.lower())
-    subs = [{"name": e.name, **_counts(e.path)} for e in entries if e.is_dir() and q in e.name.lower()]
-    files = [e.name for e in entries if e.is_file() and os.path.splitext(e.name)[1].lower() in AUDIO and q in e.name.lower()]
-    out = {"ok": True, "folder": str(d), "folders": subs, "files": files}
-    if len(files) > limit:
-        out["files"] = [files[int(i * len(files) / limit)] for i in range(limit)]
-        out["note"] = f"{limit} of {len(files)} files, an even spread by name; query narrows"
-    if measure:
+        if folder.startswith("%FLStudioFactoryData%") and fl_dir:
+            d = fl_dir / folder[len("%FLStudioFactoryData%"):].lstrip("/\\")
+        elif Path(folder).is_absolute():
+            d = Path(folder)
+        else:
+            d = next((r / folder for r in roots if (r / folder).is_dir()), ROOT / folder)
+        if not d.is_dir():
+            return {"ok": False, "error": f"{d} is not a folder"}
+        places = [_sample_place(d, roots)]
+    rows, indexes = [], []
+    for r, rel in places:
+        idx = si.load(r)
+        indexes.append(idx)
+        hits = si.search(idx, rel, (query or "").split()) if filtered else [(rel, n) for n in idx["dirs"].get(rel, {}).get("files", {})]
+        if min_seconds is not None or max_seconds is not None:
+            secs = si.lengths(idx, hits, save=False)
+            hits = [h for h in hits if secs.get(h) is not None and (min_seconds is None or secs[h] >= min_seconds)
+                    and (max_seconds is None or secs[h] <= max_seconds)]
+        rows += [{"id": (r / h[0] / h[1] if h[0] else r / h[1]).as_posix(), "idx": idx, "key": h} for h in hits]
+    picked = spread(rows, limit)
+    results: dict[str, list] = {}
+    for p in picked:
+        results.setdefault(str(Path(p["id"]).parent), []).append(p)
+    for k, group in results.items():
+        secs = si.lengths(group[0]["idx"], [p["key"] for p in group], save=False)
+        results[k] = [[Path(p["id"]).name, round(s, 2) if (s := secs.get(p["key"])) is not None else None]
+                      for p in sorted(group, key=lambda p: p["id"].lower())]
+    for idx in indexes:
+        if idx.get("unsaved"):
+            si.save_index(idx)
+    out = {"ok": True, "total": len(rows), "results": results}
+    if folder is not None and not filtered:
+        r, rel = places[0]
+        sub, n = si.tree(si.load(r), rel, max_folders)
+        out = {"ok": True, "folder": str(d), "folders": sub, **out}
+        if n > len(sub):
+            out["folders_note"] = f"{len(sub)} of {n} folders, the shallowest first; folder= opens one"
+    if len(rows) > limit:
+        out["note"] = f"{limit} of {len(rows)}, an even spread across folders; query narrows"
+    if measure and folder is not None:
         import samples as smp
-        _, rows, tsv = smp.catalog(str(d), str(ROOT / "tmp" / "samples" / f"{d.name}.tsv"))
-        out["measured"] = {"tsv": str(tsv), "files": len(rows)}
+        _, measured, tsv = smp.catalog(str(d), str(ROOT / "tmp" / "samples" / f"{d.name}.tsv"))
+        out["measured"] = {"tsv": str(tsv), "files": len(measured)}
     if unset:
         out["setup"] = unset
+    elif none:
+        out["source"] = none
     return out
 
 
