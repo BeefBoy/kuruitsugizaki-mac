@@ -6,15 +6,16 @@ import os
 import sys
 from pathlib import Path
 
+import cli
 import config as cfg
 
 PATHS = [
-    ("fl_exe", "FL Studio's FL64.exe", "file"),
-    ("loopmidi_exe", "loopMIDI.exe", "file"),
-    ("fl_hardware", "FL's Settings\\Hardware folder (the controller script goes here)", "dir"),
-    ("plugin_db", "FL's Plugin database folder (every plugin FL has scanned)", "dir"),
-    ("claude_desktop_config", "the Claude desktop app's config file", "parent"),
-    ("claude_code_dir", "the Claude Code profile folder (CLAUDE_CONFIG_DIR; another login profile is another folder)", "dir"),
+    ("fl_exe", "FL Studio", "FL Studio's FL64.exe", "file"),
+    ("loopmidi_exe", "loopMIDI", "loopMIDI.exe", "file"),
+    ("fl_hardware", "FL Hardware folder", "FL's Settings\\Hardware folder, where the controller script goes", "dir"),
+    ("plugin_db", "FL plugin database", "FL's Plugin database folder, every plugin FL has scanned", "dir"),
+    ("claude_desktop_config", "Claude desktop config", "the Claude desktop app's config file", "parent"),
+    ("claude_code_dir", "Claude Code profile", "the Claude Code profile folder (CLAUDE_CONFIG_DIR); another login profile is another folder", "dir"),
 ]
 
 
@@ -40,69 +41,80 @@ def found(key: str, data: dict) -> str | None:
     return cfg.detect(key, data)
 
 
-def ask_path(key: str, what: str, kind: str, data: dict, yes: bool) -> None:
+def ask(prompt: str) -> str:
+    return cli.console.input(f"  [dim]{prompt}[/] ")
+
+
+def ask_path(key: str, short: str, what: str, kind: str, data: dict, yes: bool) -> tuple[str, str, str]:
     now = found(key, data)
-    if yes:
-        print(f"{what}: {now or 'not found'}")
-        return
-    while True:
-        hint = f"{now}\n  Enter keeps it, or type another path: " if now else "not found.\n  Type its path, or Enter to skip: "
-        typed = clean(input(f"{what}: {hint}"))
-        if not typed:
-            return
-        if not usable(typed, kind):
-            need = "a file that exists" if kind == "file" else "a folder that exists" if kind == "dir" else "a path whose folder exists"
-            print(f"  {typed} is not {need}.")
-            continue
-        if not same(typed, now) or key in data:
-            data[key] = typed
-        return
+    if not yes:
+        cli.say(f"\n[bold]{short}[/]  [dim]{what}[/]")
+        cli.say(f"  {now}" if now else "  [yellow]not found[/]")
+        while True:
+            typed = clean(ask("Enter keeps it, or type another path:" if now else "Type its path, or Enter to skip:"))
+            if not typed:
+                break
+            if not usable(typed, kind):
+                need = "a file that exists" if kind == "file" else "a folder that exists" if kind == "dir" else "a path whose folder exists"
+                cli.say(f"  [red]{typed} is not {need}[/]")
+                continue
+            if not same(typed, now) or key in data:
+                data[key] = typed
+            now = typed
+            break
+    status = "set" if key in data else "found" if now else "MISSING"
+    return status, short, now or "not found"
 
 
-def ask_answer(key: str, question: str, suggest: str | None, many: bool, data: dict, yes: bool) -> None:
-    now = data.get(key)
-    shown = "none" if now == [] else "; ".join(now) if isinstance(now, list) else now or suggest
-    if yes:
-        print(f"{question}: {shown if now is not None else 'left for the first chat'}")
-        return
-    while True:
-        hint = (f"{shown}\n  Enter keeps it, type another" if shown else "\n  Type a path") + (" (several: separate with ;)" if many else "") + \
-               ", 'none' when there is none" + ("" if shown else ", or Enter to leave it for the first chat") + ": "
-        typed = input(f"{question}: {hint}").strip()
-        if not typed:
-            if shown and now is None:
-                data[key] = [shown] if many else shown
-            return
-        if typed.lower() == "none":
-            data[key] = []
-            return
-        paths = [clean(p) for p in typed.split(";") if p.strip()] if many else [clean(typed)]
-        bad = [p for p in paths if not Path(p).is_dir()]
-        if bad:
-            print(f"  not a folder: {'; '.join(bad)}")
-            continue
-        data[key] = paths if many else paths[0]
-        return
+def ask_answer(key: str, short: str, what: str, suggest: str | None, many: bool, data: dict, yes: bool) -> tuple[str, str, str]:
+    def shown():
+        now = data.get(key)
+        return "none" if now == [] else "; ".join(now) if isinstance(now, list) else now
+    if not yes:
+        offer = shown() or suggest
+        cli.say(f"\n[bold]{short}[/]  [dim]{what}[/]")
+        if offer:
+            cli.say(f"  {offer}")
+        more = " (several: separate with ;)" if many else ""
+        while True:
+            typed = ask(f"Enter keeps it, type another{more}, or 'none':" if offer else
+                        f"Type a path{more}, 'none' when there is none, or Enter to leave it for the first chat:").strip()
+            if not typed:
+                if offer and key not in data:
+                    data[key] = [offer] if many else offer
+                break
+            if typed.lower() == "none":
+                data[key] = []
+                break
+            paths = [clean(p) for p in typed.split(";") if p.strip()] if many else [clean(typed)]
+            bad = [p for p in paths if not Path(p).is_dir()]
+            if bad:
+                cli.say(f"  [red]not a folder: {'; '.join(bad)}[/]")
+                continue
+            data[key] = paths if many else paths[0]
+            break
+    return ("set", short, shown()) if key in data else ("later", short, "left for the first chat")
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--yes", action="store_true", help="ask nothing; keep what is found")
     a = ap.parse_args()
-    sys.stdout.reconfigure(encoding="utf-8")
     data = cfg.load()
     before = dict(data)
-    print("Paths. Each shows what is set or was found.")
-    for key, what, kind in PATHS:
-        ask_path(key, what, kind, data, a.yes)
+    rows = [ask_path(key, short, what, kind, data, a.yes) for key, short, what, kind in PATHS]
     projects = cfg.documents() / "Image-Line" / "FL Studio" / "Projects"
-    ask_answer("projects_folder", "Your own FL projects, which the model reads to learn how you write",
-               str(projects) if projects.is_dir() and any(projects.rglob("*.flp")) else None, False, data, a.yes)
-    ask_answer("sample_folders", "Your sample folders", None, True, data, a.yes)
-    for key in data:
-        if data[key] != before.get(key):
-            cfg.put(key, data[key])
-            print(f"saved {key} in {cfg.FILE.name}")
+    rows.append(ask_answer("projects_folder", "Your projects", "your own FL projects, which the model reads to learn how you write",
+                           str(projects) if projects.is_dir() and any(projects.rglob("*.flp")) else None, False, data, a.yes))
+    rows.append(ask_answer("sample_folders", "Your samples", "your sample folders", None, True, data, a.yes))
+    if not a.yes:
+        cli.say("")
+    cli.rows(rows)
+    saved = [key for key in data if data[key] != before.get(key)]
+    for key in saved:
+        cfg.put(key, data[key])
+    if saved:
+        cli.say(f"[dim]saved in {cfg.FILE.name}: {', '.join(saved)}[/]")
 
 
 if __name__ == "__main__":

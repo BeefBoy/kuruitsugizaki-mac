@@ -5,6 +5,7 @@ import shutil
 import sys
 from pathlib import Path
 
+import cli
 import config as cfg
 import midisetup
 
@@ -72,6 +73,22 @@ def checks(claude: Path) -> list[tuple]:
     return out
 
 
+def install_rows(r: dict) -> list[tuple[str, str, str]]:
+    """fl_install's answer as rows."""
+    if not r.get("ok"):
+        return [("failed", "controller script", r.get("error", ""))]
+    out = [("made" if r["changed"] else "kept", "controller script", r["installed"])]
+    m = r["midi"]
+    if not m.get("ok"):
+        out.append(("failed", "FL MIDI setting", m.get("error", "")))
+    elif m.get("changed"):
+        made = f"loopMIDI port {m['port']!r} made; " if m.get("loopmidi_port_created") else ""
+        out.append(("made", "FL MIDI setting", f"{made}FL input {m['port']!r} on port {m['fl_port_number']} has the script"))
+    else:
+        out.append(("kept", "FL MIDI setting", f"FL input {m['port']!r} already has the script"))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(description="Check this machine's setup, and optionally do the parts a script can do.")
     ap.add_argument("--install", action="store_true", help="run fl_install: the controller script, the loopMIDI port and FL's MIDI setting")
@@ -81,10 +98,16 @@ def main():
     claude = Path(a.claude) if a.claude else CLAUDE
     if a.install or a.live:
         import server
+    done = []
     if a.install:
-        print("fl_install:", json.dumps(server.fl_install(), indent=1))
+        done += install_rows(server.fl_install())
     if a.claude:
-        print("claude:", json.dumps(register(claude), indent=1))
+        r = register(claude)
+        done.append(("failed", "Claude desktop app", r["error"]) if not r["ok"] else
+                    ("added" if r["changed"] else "kept", "Claude desktop app", f"{r['file']}" + ("" if r["changed"] else " (already there)")))
+    if done:
+        cli.rows(done)
+        cli.section("Check")
     rows = checks(claude)
     if a.live and all(ok for need, _, ok, _ in rows if need):
         r = server.fl_probe()
@@ -93,8 +116,7 @@ def main():
         rows.append((True, "live link", bool(r.get("ok")), f"FL answers, scripting API {r['value']['api']}" if r.get("ok") else r.get("error")))
     elif a.live:
         rows.append((True, "live link", False, "not tried; the lines marked MISSING come first"))
-    for need, name, ok, detail in rows:
-        print(f"{'ok' if ok else 'MISSING' if need else 'optional':<9}{name:<20}{detail}")
+    cli.rows([("ok" if ok else "MISSING" if need else "optional", name, detail) for need, name, ok, detail in rows])
     sys.exit(1 if any(need and not ok for need, _, ok, _ in rows) else 0)
 
 

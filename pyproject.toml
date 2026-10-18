@@ -9,6 +9,7 @@ dependencies = [
     "matplotlib>=3.11.2",
     "mcp>=2",
     "numpy>=2.5.3",
+    "rich>=15.0.0",
     "scipy>=1.18.1",
     "zstandard>=0.25.0",
 ]

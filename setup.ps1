@@ -3,7 +3,12 @@ param([switch]$Yes, [switch]$Custom, [string]$ClaudeConfig = "", [switch]$NoClau
 $here = $PSScriptRoot
 Set-Location $here
 
-function Say($text) { Write-Host ""; Write-Host "== $text" -ForegroundColor Cyan }
+function Say($text) {
+    $line = [string][char]0x2500
+    $width = [Math]::Max(40, $Host.UI.RawUI.WindowSize.Width - 1)
+    Write-Host ""
+    Write-Host ($line * 2 + " $text " + $line * [Math]::Max(3, $width - $text.Length - 4)) -ForegroundColor Cyan
+}
 function Ask($question) {
     if ($Yes) { return $true }
     $answer = Read-Host "$question [Y/n]"

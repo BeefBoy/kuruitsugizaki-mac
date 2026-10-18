@@ -7,6 +7,7 @@ import time
 import winreg
 from pathlib import Path
 
+import cli
 import config as cfg
 import flproc
 import midisetup as ms
@@ -124,8 +125,7 @@ def main():
     if not a.no_claude_code:
         lines.append(claude_code())
     lines += local(a.keep_config)
-    for line in lines:
-        print("  " + line)
+    cli.rows([("done", *line.partition(": ")[::2]) for line in lines])
     print("Done. The server still runs in an open Claude app until it is quit fully (tray icon, Quit). setup.bat installs it again.")
 
 
