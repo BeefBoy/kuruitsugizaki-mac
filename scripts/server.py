@@ -144,6 +144,8 @@ LINK = Link()
 
 
 BOOT = {"t": None}
+HARVEST = {"replace": False}
+NOT_OPEN = "FL is not running, and it is not started just for this: open a project in it with project_write(open=true), or ask the user to open one"
 
 
 def _ensure_loopmidi() -> bool:
@@ -188,9 +190,11 @@ def _ensure_fl() -> float | None:
         time.sleep(0.5)
 
 
-def fl(req: dict, timeout: float = 10.0) -> dict:
+def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
     if _winapi is None:
         return {"ok": False, "error": NO_LIVE}
+    if not launch and not _fl_running():
+        return {"ok": False, "error": NOT_OPEN}
     try:
         launched = _ensure_fl()
     except RuntimeError as e:
@@ -256,17 +260,35 @@ def fl_install() -> dict:
 @mcp.tool(annotations=LIVE, description=(
     "Check the live link to FL: returns FL's scripting API version, its embedded Python version, FL's pid and the pipe "
     "handle it holds, or an error saying what is missing. Call it first when a live tool (fl_exec, fl_call, "
-    "fl_transport, project_write with open) fails, and after fl_install. Launches loopMIDI and FL when they are not "
-    "running (launched_fl_seconds says how long FL took). Reads nothing from the project. Windows with FL Studio only."))
+    "fl_transport, project_write with open) fails, and after fl_install. When FL is closed it starts it (and loopMIDI) to "
+    "test the link and closes it again: launched_fl_seconds says how long FL took, closed_fl that it was closed. Reads "
+    "nothing from the project. Windows with FL Studio only."))
 def fl_probe() -> dict:
-    return fl({"op": "probe"})
+    was = _fl_running()
+    res = fl({"op": "probe"}, launch=True)
+    if not was and _fl_running():
+        _close_fl()
+        res["closed_fl"] = True
+    return res
+
+
+def _close_fl(timeout: float = 30.0):
+    subprocess.run(["taskkill", "/IM", "FL64.exe"], capture_output=True)
+    t0 = time.monotonic()
+    while _fl_running() and time.monotonic() - t0 < timeout:
+        time.sleep(0.5)
+    LINK.close()
+    LINK.pid = None
+    if _fl_running():
+        raise RuntimeError(f"FL did not close within {timeout:.0f}s; a dialog in FL may be waiting")
 
 
 @mcp.tool(annotations=RAW, description=(
     "Call one function of FL's scripting API inside the running FL and return what it returns: {ok, value} or "
     "{ok: false, error}. For a single read or change, e.g. a parameter name or a mixer level of the open project. Use "
     "fl_exec for several calls or logic; use project_read and project_write for anything the .flp file holds, which "
-    "need no FL. A setter changes the open project as an edit by hand would; nothing is saved. Launches FL if needed. "
+    "need no FL. A setter changes the open project as an edit by hand would; nothing is saved. Needs FL open; it is "
+    "not started for this. "
     "Windows with FL Studio only."))
 def fl_call(fn: Annotated[str, Field(description="module.function as FL's API names it, e.g. 'plugins.getParamName'")],
             args: Annotated[list | None, Field(description="its positional arguments, e.g. [0, 5, -1]")] = None) -> dict:
@@ -277,8 +299,8 @@ def fl_call(fn: Annotated[str, Field(description="module.function as FL's API na
     "Run Python inside the running FL's embedded interpreter, where FL's modules (channels, mixer, plugins, transport, "
     "patterns, general ...) import. For live reads or changes that need several calls or logic; one call is simpler with "
     "fl_call. Returns {ok, value} with what the code assigns to `result`, or {ok: false, error} with the traceback. FL's "
-    "sandbox refuses files, sockets and pipes. Changes act on the open project and are not saved. Launches FL if "
-    "needed. Windows with FL Studio only."))
+    "sandbox refuses files, sockets and pipes. Changes act on the open project and are not saved. Needs FL open; "
+    "it is not started for this. Windows with FL Studio only."))
 def fl_exec(code: Annotated[str, Field(description="Python source; assign the answer to `result`")],
             out: Annotated[str | None, Field(description="write the result as JSON to this path (relative to the repo) and return only its size, for large reads; also when `result` is {'__out__': path, 'data': value}")] = None,
             timeout: Annotated[float, Field(description="seconds to wait for FL's answer")] = 10.0) -> dict:
@@ -425,6 +447,9 @@ def _harvest(e: dict) -> bytes:
     import mixerfx
     import project
     import writer
+    was = _fl_running()
+    if was and not HARVEST["replace"]:
+        raise RuntimeError(f"a {e['name']} preset needs a saved state of {e['name']}, made once by opening it in FL, and FL has a project open that this write does not replace: write with open=true, or close FL and write again")
     out = ROOT / "tmp" / "states" / f"{e['kind']}_{e['id']}_{e['format']}.flp"
     spec = {"plugin": e["name"], "format": e["format"]}
     doc = {"patterns": [], "arrangements": [{"name": "A", "clips": []}]}
@@ -454,6 +479,8 @@ def _harvest(e: dict) -> bytes:
     st = next((x.data for x in blk if x.id == 213), None)
     if st is None:
         raise RuntimeError(f"FL saved no state for {e['name']} in {out}")
+    if not was and not HARVEST["replace"]:
+        _close_fl()
     return st
 
 
@@ -477,6 +504,7 @@ def project_write(doc: Annotated[dict, Field(description="the project document, 
     _reload()
     import project
     import writer
+    HARVEST["replace"] = bool(open or play)
     raw, warn = writer.build(doc)
     out = Path(path)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -595,10 +623,12 @@ def params(plugin: Annotated[str, Field(description="the plugin's name as plugin
     return _lib(go)
 
 
-@mcp.tool(annotations=LIVE, description="Play or stop whatever project is open in the running FL, to hear it; it changes nothing in any file. action 'play' jumps to the start and plays (from the start, not from where it stopped; called while playing, it restarts from the start). action 'stop' stops playback. mode 'song' plays the arrangement, 'pattern' loops one pattern (pattern: its number, selected first); without mode FL keeps the one it has. Launches FL when it is not running, but then nothing is open: open a project with project_write(open=true), which can also start playback itself (play='song'). Returns {playing, mode}. To get audio out, use fl_render, which saves and closes FL instead. Windows with FL Studio only.")
+@mcp.tool(annotations=LIVE, description="Play or stop whatever project is open in the running FL, to hear it; it changes nothing in any file. action 'play' jumps to the start and plays (from the start, not from where it stopped; called while playing, it restarts from the start). action 'stop' stops playback. mode 'song' plays the arrangement, 'pattern' loops one pattern (pattern: its number, selected first); without mode FL keeps the one it has. Needs FL open with a project; it is not started for this: open one with project_write(open=true), which can also start playback itself (play='song'). Returns {playing, mode}. To get audio out, use fl_render, which saves and closes FL instead. Windows with FL Studio only.")
 def fl_transport(action: Annotated[str, Field(description="'play' or 'stop'")],
                  mode: Annotated[str | None, Field(description="'song' or 'pattern'; omit to keep FL's")] = None,
                  pattern: Annotated[int | None, Field(description="in pattern mode, the pattern number to select first")] = None) -> dict:
+    if not _fl_running():
+        return {"ok": False, "error": NOT_OPEN}
     return _transport(action, mode, pattern)
 
 
