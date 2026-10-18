@@ -364,6 +364,9 @@ def _close_fl(timeout: float = 30.0):
     t0 = time.monotonic()
     while any(p in flproc.pids() for p in mine) and time.monotonic() - t0 < timeout:
         time.sleep(0.5)
+        for p in mine:
+            # saved just above; a plugin marking the project changed again since asks once more: No
+            flproc.press(p, "No")
     LINK.close()
     LINK.pid = None
     left = [p for p in mine if p in flproc.pids()]

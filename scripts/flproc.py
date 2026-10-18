@@ -106,6 +106,46 @@ def dialogs(pid: int, shots: Path | None = None) -> list[dict]:
     return found
 
 
+FL_BUTTONS = {3: ["yes", "no", "cancel"], 2: ["yes", "no"]}  # FL's own message box: text-less buttons, left to right
+
+
+def press(pid: int, label: str, skip: tuple = ("TFruityLoopsMainForm", "TApplication", "TWAVRenderForm")) -> str | None:
+    """Click the button named label ("No" matches "&No") in a dialog FL (pid) shows; the dialog's title, or None when
+    no dialog of it has such a button. FL's own message box (TMsgForm, "Save changes to x.flp?") draws its buttons with
+    no text, so there the button is the one at label's place, left to right."""
+    u = ctypes.windll.user32
+    for h, cls, title in windows(pid):
+        if cls in skip:
+            continue
+        named, drawn = [], []
+
+        @ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.HWND, wintypes.LPARAM)
+        def each(c, _):
+            t, k = ctypes.create_unicode_buffer(256), ctypes.create_unicode_buffer(64)
+            u.GetWindowTextW(c, t, 256)
+            u.GetClassNameW(c, k, 64)
+            if t.value.replace("&", "").strip().lower() == label.lower():
+                named.append(c)
+            elif k.value == "TQuickFocusBtn":
+                r = wintypes.RECT()
+                u.GetWindowRect(c, ctypes.byref(r))
+                drawn.append((r.left, c, r.right - r.left, r.bottom - r.top))
+            return True
+
+        u.EnumChildWindows(h, each, 0)
+        if named:
+            u.PostMessageW(named[0], 0x00F5, 0, 0)  # BM_CLICK
+            return title or cls
+        order = FL_BUTTONS.get(len(drawn), [])
+        if cls == "TMsgForm" and label.lower() in order:
+            _, b, w, hh = sorted(drawn)[order.index(label.lower())]
+            at = (hh // 2) << 16 | (w // 2)
+            u.PostMessageW(b, 0x0201, 1, at)  # WM_LBUTTONDOWN at the button's centre
+            u.PostMessageW(b, 0x0202, 0, at)  # WM_LBUTTONUP
+            return title or cls
+    return None
+
+
 def capture(hwnd: int, path: Path) -> Path:
     from PIL import Image
     u, g = ctypes.windll.user32, ctypes.windll.gdi32

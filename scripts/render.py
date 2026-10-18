@@ -16,11 +16,15 @@ def close_fl(timeout: float = 20.0) -> bool:
     pids = fl_pids()
     if not pids:
         return True
+    import flproc
     for p in pids:
         subprocess.run(["taskkill", "/PID", str(p)], capture_output=True)
     t0 = time.monotonic()
     while fl_pids() and time.monotonic() - t0 < timeout:
         time.sleep(0.5)
+        for p in fl_pids():
+            # fl_render saved the project just before; a plugin marking it changed again since asks once more: No
+            flproc.press(p, "No")
     return not fl_pids()
 
 
@@ -77,11 +81,32 @@ def main():
         fl_exe = config.need("fl_exe")
     except config.Missing as e:
         sys.exit(str(e))
+    import flproc
     p = subprocess.Popen([fl_exe, "/R", "/E" + ",".join(fmts), str(flp)])
+    # This FL only renders. When it is done it closes, and a project that loading its plugins marked changed makes it
+    # ask "Save changes?" first and wait there. The file was saved before the render, so that question is answered No;
+    # an FL that still does not close once its files are written is closed.
+    sizes, stable, answered = {}, None, False
     while p.poll() is None:
         if time.monotonic() - t0 > a.timeout:
             sys.exit(f"render still running after {a.timeout:.0f} s; left running")
         time.sleep(0.25)
+        now = {o: o.stat().st_size for o in outs if o.exists() and o.stat().st_mtime != before[o]}
+        if len(now) < len(outs) or now != sizes:
+            sizes, stable = now, None
+            continue
+        stable = stable or time.monotonic()
+        if time.monotonic() - stable < 1.0:
+            continue
+        title = flproc.press(p.pid, "No")
+        if title and not answered:
+            answered = True
+            print(f"answered No to FL's {title!r} (save changes) after the render; the project was saved before it")
+        if time.monotonic() - stable > 60:
+            subprocess.run(["taskkill", "/F", "/PID", str(p.pid)], capture_output=True)
+            print("the render's FL had not closed 60 s after writing its files; closed")
+            p.wait()
+            break
     took = time.monotonic() - t0
     done = [o for o in outs if o.exists() and o.stat().st_mtime != before[o]]
     print(f"FL exited {p.returncode} after {took:.1f} s; new files: {[str(o) for o in done]}")
@@ -93,7 +118,6 @@ def main():
         analyse(wav, a.bpm or project_bpm(flp), a.key, a.detail)
         print(f"next: render_report('{flp}') returns this with the spectrogram picture; look at it before handing the piece over")
     if a.reopen:
-        import flproc
         flproc.launch([fl_exe, str(flp)])
         print("reopened in FL")
 
