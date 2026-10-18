@@ -1,6 +1,7 @@
 import ctypes
 import json
 import re
+import struct
 import subprocess
 import time
 from ctypes import wintypes
@@ -97,7 +98,49 @@ def project_file(pid: int, title: str, fl_exe: str | None, projects: Path | None
     if found:
         found.sort(key=lambda p: p.stat().st_mtime, reverse=True)
         return found[0], "found by name" + (f"; {len(found) - 1} more of that name, newest taken" if len(found) > 1 else "")
-    return None, f"{want}: FL gives no path, and no file of that name is in its recent folders or Projects folder"
+    pool = [Path(c) for c in cands] + [f for d in dirs if d.is_dir() for f in d.glob("*.flp")]
+    titled = list(dict.fromkeys(p for p in pool if p.is_file() and flp_title(p) == name))
+    if titled:
+        titled.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+        return titled[0], "found by the project title FL shows" + (f"; {len(titled) - 1} more with that title, newest taken" if len(titled) > 1 else "")
+    return None, f"{name}: FL gives no path, and no file of that name or project title is in its recent files, their folders or the Projects folder"
+
+
+def flp_title(path: Path) -> str | None:
+    try:
+        with open(path, "rb") as fh:
+            b = fh.read(1 << 16)
+        if b[:4] != b"FLhd":
+            return None
+        i = 8 + struct.unpack_from("<I", b, 4)[0]
+        if b[i:i + 4] != b"FLdt":
+            return None
+        i += 8
+        while i < len(b):
+            eid = b[i]
+            i += 1
+            if eid < 64:
+                i += 1
+            elif eid < 128:
+                i += 2
+            elif eid < 192:
+                i += 4
+            else:
+                n = shift = 0
+                while True:
+                    c = b[i]
+                    i += 1
+                    n |= (c & 0x7F) << shift
+                    shift += 7
+                    if not c & 0x80:
+                        break
+                if eid == 194:
+                    d = b[i:i + n]
+                    return (d.decode("utf-16-le", "replace") if len(d) % 2 == 0 else d.decode("latin-1")).rstrip("\0")
+                i += n
+    except (OSError, IndexError, struct.error):
+        return None
+    return None
 
 
 def choose(pid: int | None = None) -> tuple[int, str]:
