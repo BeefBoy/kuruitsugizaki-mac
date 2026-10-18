@@ -556,24 +556,56 @@ def _harvest(e: dict) -> bytes:
     out.write_bytes(raw)
     back = project.export(str(out))
     _open(out.resolve(), [c["name"] for c in sorted(back["instruments"] + back["samples"] + back["automation"], key=lambda c: c["ch"])])
-    before = out.stat().st_mtime_ns
-    _live("import transport, midi\nresult = transport.globalTransport(midi.FPT_Save, 1)")
-    t0 = time.monotonic()
-    while out.stat().st_mtime_ns == before and time.monotonic() - t0 < 20:
-        time.sleep(0.25)
-    if out.stat().st_mtime_ns == before:
-        raise RuntimeError(f"FL did not save {out} within 20 s, so {e['name']}'s state could not be read")
-    lay = writer.layout(flp.parse(out.read_bytes()))
-    if e["kind"] == "instrument":
-        blk = next(b for b in lay["channels"] if next((int.from_bytes(x.data, "little") for x in b if x.id == 21), None) == 2)
-    else:
-        blk = mixerfx.block(lay["tail"], 1, 0)
-    st = next((x.data for x in blk if x.id == 213), None)
-    if st is None:
-        raise RuntimeError(f"FL saved no state for {e['name']} in {out}")
-    if not was and not HARVEST["replace"]:
-        _close_fl()
+
+    def saved() -> bytes:
+        before = out.stat().st_mtime_ns
+        _live("import transport, midi\nresult = transport.globalTransport(midi.FPT_Save, 1)")
+        t0 = time.monotonic()
+        while out.stat().st_mtime_ns == before and time.monotonic() - t0 < 20:
+            time.sleep(0.1)
+        if out.stat().st_mtime_ns == before:
+            raise RuntimeError(f"FL did not save {out} within 20 s, so {e['name']}'s state could not be read")
+        lay = writer.layout(flp.parse(out.read_bytes()))
+        if e["kind"] == "instrument":
+            blk = next(b for b in lay["channels"] if next((int.from_bytes(x.data, "little") for x in b if x.id == 21), None) == 2)
+        else:
+            blk = mixerfx.block(lay["tail"], 1, 0)
+        s = next((x.data for x in blk if x.id == 213), None)
+        if s is None:
+            raise RuntimeError(f"FL saved no state for {e['name']} in {out}")
+        return s
+
+    st = saved()
+    try:
+        _harvest_programs(e, saved, (0, -1) if e["kind"] == "instrument" else (1, 0))
+    finally:
+        if not was and not HARVEST["replace"]:
+            _close_fl()
     return st
+
+
+def _harvest_programs(e: dict, saved, loc: tuple[int, int], cap: int = 128) -> int:
+    import library
+    i, s = loc
+    n, prog = _live(f"import plugins\nresult = (plugins.getPresetCount({i}, {s}), next((k for k in range(plugins.getParamCount({i}, {s})) if plugins.getParamName(k, {i}, {s}) == 'Program'), None))", 30)
+    if not n or n < 2 or prog is None:
+        return 0
+    d = library.programs_dir(e)
+    d.mkdir(parents=True, exist_ok=True)
+    index, seen = [], set()
+    for k in range(min(n, cap)):
+        _live(f"import plugins\nplugins.setParamValue({k} / {n - 1}, {prog}, {i}, {s})\nresult = 0")
+        time.sleep(0.3)
+        name = str(_live(f"import plugins\nresult = plugins.getParamValueString({prog}, {i}, {s})")).strip()
+        state = saved()
+        if not name or state in seen:
+            continue
+        seen.add(state)
+        f = d / f"{k:03d}.bin"
+        f.write_bytes(state)
+        index.append({"name": name, "file": f.name, "program": k})
+    (d / "index.json").write_text(json.dumps(index, ensure_ascii=False, indent=1), encoding="utf-8")
+    return len(index)
 
 
 @mcp.tool(annotations=WRITE, description=(
@@ -698,9 +730,13 @@ def plugins(query: Annotated[str | None, Field(description="keep names containin
     "plugins returns {ok: false, error} naming the candidates. Reads files only; FL need not run."))
 def presets(plugin: Annotated[str, Field(description="the plugin's name as plugins lists it; a unique part of it works")],
             query: Annotated[str | None, Field(description="words that must all appear in the id, case-insensitive, any order, e.g. 'bass reese'")] = None,
-            limit: Annotated[int, Field(description="at most this many ids")] = 200) -> dict:
+            limit: Annotated[int, Field(description="at most this many ids")] = 200,
+            harvest: Annotated[bool, Field(description="first read the plugin's built-in presets from FL (opens it there once, about a second per preset); for a plugin whose presets live inside it, not in files")] = False) -> dict:
     def go(L):
         e = L.find(plugin)
+        if harvest:
+            HARVEST["replace"] = False
+            L.refresh(e)
         rows = L.presets(e, query)
         return {"plugin": e["name"], "kind": e["kind"], "total": len(rows), "presets": [r["id"] for r in rows[:max(0, int(limit))]]}
     return _lib(go)

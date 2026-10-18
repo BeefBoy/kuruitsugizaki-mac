@@ -1,5 +1,6 @@
 import csv
 import fnmatch
+import json
 import os
 import re
 import zlib
@@ -412,6 +413,32 @@ def loader_preset(key: str, state: bytes, preset: str) -> bytes:
     return P.apply(key, state, _loader_path(key, preset))
 
 
+def programs_dir(e: dict) -> Path:
+    return STATES / f"{e['kind']}_{e['id']}_{e['format']}.programs"
+
+
+def _program_rows(e: dict) -> list[dict]:
+    f = programs_dir(e) / "index.json"
+    if not f.exists():
+        return []
+    out, seen = [], set()
+    for r in json.loads(f.read_text(encoding="utf-8")):
+        rid, k = r["name"], 2
+        while rid.lower() in seen:
+            rid, k = f"{r['name']} ({k})", k + 1
+        seen.add(rid.lower())
+        out.append({"id": rid, "path": str(programs_dir(e) / r["file"])})
+    return out
+
+
+def refresh(e: dict) -> bytes:
+    import shutil
+    f = STATES / f"{e['kind']}_{e['id']}_{e['format']}.bin"
+    f.unlink(missing_ok=True)
+    shutil.rmtree(programs_dir(e), ignore_errors=True)
+    return saved_state(e)
+
+
 def saved_state(e: dict) -> bytes:
     if e["source"] == "library":
         return next(x.data for x in block(e) if x.id == STATE)
@@ -442,6 +469,7 @@ def catalog(e: dict) -> list[dict]:
     if loader(e):
         out += _loader_rows(loader(e))
     out += _nks_rows(e)
+    out += _program_rows(e)
     _cache[ck] = out
     return out
 
@@ -476,6 +504,8 @@ def preset_state(e: dict, preset: str) -> bytes:
     if loader(e):
         return loader_preset(loader(e), saved_state(e), preset)
     f = resolve_preset(e, preset)
+    if f.suffix.lower() == ".bin" and STATES in f.parents:
+        return f.read_bytes()
     if f.suffix.lower() == ".nksf":
         import nks
         import vst3state
