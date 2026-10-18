@@ -9,7 +9,6 @@ The model does not listen. A render comes back as numbers and pictures (spectrog
 https://github.com/user-attachments/assets/8ee80e6e-cf6b-459d-bbe1-a83a50da325c
 
 <p align="center">
-<img src="examples/demo.webp" alt="Factory Seance playing in FL Studio" width="560">
 <img src="examples/seance.png" alt="Factory Seance: piano-roll spectrogram, chroma, spectrogram, level and stereo correlation" width="560">
 </p>
 
