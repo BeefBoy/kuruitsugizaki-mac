@@ -1,6 +1,5 @@
 import argparse
 import json
-import os
 import re
 import shutil
 import sys
@@ -11,7 +10,7 @@ import midisetup
 
 ROOT = cfg.ROOT
 EXE = ROOT / ".venv" / "Scripts" / "kuruitsugizaki.exe"
-CLAUDE = Path(os.environ.get("APPDATA", "")) / "Claude" / "claude_desktop_config.json"
+CLAUDE = cfg.claude_desktop()
 
 
 def register(path: Path) -> dict:

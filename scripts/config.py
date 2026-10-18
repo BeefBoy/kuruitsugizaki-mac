@@ -21,6 +21,8 @@ KEYS = {
     "serum2_presets": ("more folders of .SerumPreset files, read after Serum 2's own preset folder; a folder or a list", r"Documents\Xfer\Serum 2 Presets"),
     "vital_presets": ("more folders of .vital files, read after Vital's own User folder", r"Documents\Vital\User"),
     "nks_presets": ("more folders of NKS .nksf presets, read after Native Instruments' User Content and the libraries in Public Documents", r"Documents\Native Instruments\User Content"),
+    "claude_desktop_config": ("the Claude desktop app's config file, where setup adds the server and uninstall removes it", r"%APPDATA%\Claude\claude_desktop_config.json"),
+    "claude_code_dir": ("the Claude Code profile folder (CLAUDE_CONFIG_DIR) setup adds the server to; not set means Claude Code's default", r"%USERPROFILE%\.claude"),
     "projects_folder": ("the folder of the user's own .flp projects, which profile reads; asked once, 'none' when they have none", r"Documents\Image-Line\FL Studio\Projects"),
     "sample_folders": ("the user's sample folders, which samples lists; a folder or a JSON list of folders, asked once, 'none' when they have none", "no usual place: ask the user"),
     "hide_plugins": ("plugins from FL's plugin database to leave out of plugins and by-name lookup: names or * patterns, case-insensitive, '<format>:<name>' (native, vst3, clap, vst) for one format only, and 'category:<folder>' for every plugin the database files under that category (Effects\\<folder>, Generators\\<folder>); a value set here replaces the default list", "['VFX *', '*NoteBook*', 'category:Visual']"),
@@ -79,6 +81,8 @@ def _places(data: dict) -> dict:
         "serum2_presets": [d / "Xfer" / "Serum 2 Presets"],
         "vital_presets": [d / "Vital" / "User"],
         "nks_presets": [d / "Native Instruments" / "User Content"] + (sorted(pub.glob("* Library")) if pub.is_dir() else []),
+        "claude_desktop_config": [Path(os.environ.get("APPDATA", "")) / "Claude" / "claude_desktop_config.json"],
+        "claude_code_dir": [Path(os.environ["CLAUDE_CONFIG_DIR"])] if os.environ.get("CLAUDE_CONFIG_DIR") else [Path.home() / ".claude"],
     }
 
 
@@ -120,6 +124,19 @@ def path(key: str) -> Path:
     v = need(key)
     p = Path(v[0] if isinstance(v, list) else v)
     return p if p.is_absolute() else ROOT / p
+
+
+def claude_desktop() -> Path:
+    """The Claude desktop app's config file: the one setup was given, else the app's usual one."""
+    return Path(load().get("claude_desktop_config") or _places({})["claude_desktop_config"][0])
+
+
+def claude_code_env() -> dict:
+    """The environment to run the claude CLI in: CLAUDE_CONFIG_DIR set to the profile folder setup was given, if any."""
+    env = dict(os.environ)
+    if load().get("claude_code_dir"):
+        env["CLAUDE_CONFIG_DIR"] = load()["claude_code_dir"]
+    return env
 
 
 def put(key: str, value) -> dict:

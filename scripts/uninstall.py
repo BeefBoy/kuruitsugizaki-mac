@@ -1,6 +1,5 @@
 import argparse
 import json
-import os
 import shutil
 import subprocess
 import sys
@@ -13,7 +12,7 @@ import midisetup as ms
 
 ROOT = cfg.ROOT
 NAME = ms.NAME
-CLAUDE = Path(os.environ.get("APPDATA", "")) / "Claude" / "claude_desktop_config.json"
+CLAUDE = cfg.claude_desktop()
 
 
 def midi() -> list[str]:
@@ -78,8 +77,10 @@ def claude_code() -> str:
     exe = shutil.which("claude")
     if not exe:
         return "Claude Code: not installed"
-    r = subprocess.run([exe, "mcp", "remove", "--scope", "user", NAME], capture_output=True, text=True, stdin=subprocess.DEVNULL)
-    return "Claude Code: entry removed" if r.returncode == 0 else "Claude Code: no kuruitsugizaki entry"
+    env = cfg.claude_code_env()
+    where = f" (profile {env['CLAUDE_CONFIG_DIR']})" if "CLAUDE_CONFIG_DIR" in env else ""
+    r = subprocess.run([exe, "mcp", "remove", "--scope", "user", NAME], capture_output=True, text=True, stdin=subprocess.DEVNULL, env=env)
+    return f"Claude Code{where}: entry removed" if r.returncode == 0 else f"Claude Code{where}: no kuruitsugizaki entry"
 
 
 def local(keep_config: bool) -> list[str]:

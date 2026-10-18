@@ -40,7 +40,7 @@ if (-not (Ask "Go on?")) { exit 0 }
 Say "FL Studio"
 $fl = Get-ChildItem "$env:ProgramFiles\Image-Line\FL Studio*\FL64.exe" -ErrorAction SilentlyContinue | Select-Object -Last 1
 if ($fl) { Write-Host "found $($fl.FullName)" }
-else { Write-Host "Not found in its usual place. Setup goes on; in the first chat the model asks where FL64.exe is." -ForegroundColor Yellow }
+else { Write-Host "Not found in its usual place. Setup goes on and asks for its path below." -ForegroundColor Yellow }
 
 Say "uv (builds the Python environment)"
 if (-not (Have uv)) { Get-Package "astral-sh.uv" "uv" }
@@ -80,14 +80,20 @@ Say "ffmpeg (analyses renders; optional)"
 if ((Have ffmpeg) -and (Have ffprobe)) { Write-Host "found $((Get-Command ffmpeg).Source)" }
 elseif (Ask "ffmpeg is not installed. Install it?") { Get-Package "Gyan.FFmpeg" "ffmpeg" }
 
+Say "Paths (each shows what is set or was found; Enter keeps it)"
+$python = Join-Path $here ".venv\Scripts\python.exe"
+$paths = @("scripts\setup_paths.py")
+if ($Yes) { $paths += "--yes" }
+& $python @paths
+function Setting($expr) { return (& $python -c "import sys; sys.path.insert(0, 'scripts'); import config; print($expr)") }
+
 Say "FL's controller script, the loopMIDI port and FL's MIDI setting"
 while ((Get-Process FL64 -ErrorAction SilentlyContinue) -and -not $Yes) {
     Read-Host "FL Studio is open, and it overwrites its MIDI settings when it closes. Save your work, close FL, then press Enter" | Out-Null
 }
-$python = Join-Path $here ".venv\Scripts\python.exe"
 $doctor = @("scripts\doctor.py", "--install")
 $config = $ClaudeConfig
-if (-not $config) { $config = "$env:APPDATA\Claude\claude_desktop_config.json" }
+if (-not $config) { $config = Setting "config.claude_desktop()" }
 if ($ClaudeConfig -or (Test-Path (Split-Path $config))) {
     if (Ask "Add kuruitsugizaki to the Claude desktop app ($config)?") { $doctor += @("--claude", $config) }
 }
@@ -99,8 +105,13 @@ if (-not $NoLive) {
 $ready = ($LASTEXITCODE -eq 0)
 
 if (-not $NoClaudeCode -and (Have claude)) {
-    if (Ask "Claude Code is installed. Add kuruitsugizaki to it too?") {
+    $codeDir = Setting "config.load().get('claude_code_dir') or ''"
+    $where = if ($codeDir) { " (profile $codeDir)" } else { "" }
+    if (Ask "Claude Code is installed. Add kuruitsugizaki to it too$where?") {
+        $was = $env:CLAUDE_CONFIG_DIR
+        if ($codeDir) { $env:CLAUDE_CONFIG_DIR = $codeDir }
         claude mcp add --scope user kuruitsugizaki -- (Join-Path $here ".venv\Scripts\kuruitsugizaki.exe")
+        $env:CLAUDE_CONFIG_DIR = $was
     }
 }
 
