@@ -133,8 +133,6 @@ An effect goes in by name: any effect FL has installed (Plugins by name). One ca
 | 6/0 | Soundgoodizer |
 | 7/0 | Gross Beat |
 
-Soundgoodizer and Gross Beat load only in an FL edition that includes them.
-
 ## Plugins by name
 
 Every plugin FL has installed can go into a project by name, with nothing to prepare: FL's plugin manager keeps one entry per plugin in its Plugin database (`Documents\Image-Line\FL Studio\Presets\Plugin database`, config key `plugin_db`, found by itself), and the writer builds the plugin from it on the template's blocks, fresh, as dragging it in from FL's browser does. `plugins` lists them; `project_write` takes an instrument as `{"kind": "plugin", "plugin": "<name>", "preset": "<id>"}` and an effect as `mixer.effects: [{"track": t, "slot": s, "plugin": "<name>", "preset": "<id>"}]`. A plugin installed in several formats is one name; add `"format": "vst3"` (or `native`, `clap`, `vst`) to pick one. A plugin FL has not scanned is not listed: run FL's plugin manager first. `plugins` leaves out what config `hide_plugins` names: by default FL's controllers, visualizers and notebooks, the VFX and FL Studio Mobile entries, Fruity Delay 2 and the first Parametric EQ, and every VST2 build. An entry is a name or `*` pattern, `<format>:<name>` for one format only, or `category:<folder>` for a category of FL's Plugin database. Setting the key replaces the default list. A hidden plugin cannot be written by name either.
