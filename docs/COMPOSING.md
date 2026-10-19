@@ -6,24 +6,21 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 
 - **Write from nothing.** Unless asked otherwise. No existing project as a base, no channel copied for its sound, no old composition script read to learn from. A copied base drags in another piece's mixer and choices; a copied script anchors the new piece on the last one.
 - **Write every drum hit and bass note out by hand.** The piece script places no drum hit or bass note through code: no `for` or `while` over bars or steps, no function that returns a pattern, no formula, modulo or random choice that picks a position, length or pitch. Each hit and each note is its own row. A written bar or phrase may be placed again whole as a pattern clip; a bar that differs is written as its own bar. Code that places notes makes them free to add, so they pile up without being weighed.
-- **Every drum hit is there for something**: it fills, answers or sets up (§4).
 - **Measure to know, never to correct.** A render says where a note sounds and how wide and loud each section is. Detune, an octave accident, a peak past 0 dBFS are choices once known; breaking a rule never makes something wrong.
-- **Write a whole piece**: one to two minutes with a form, not an 8-bar loop.
 - **More does not name the dimension.** A request for more (harder, more complex, deeper) does not name the dimension. Candidates: harmony and voicing, layering and counter-lines, sound design and processing, arrangement and contrast, rhythm.
 
 ## 1. Order of work
 
-Write in stages and check each before the next, so a wrong sound or groove is caught cheaply:
+Write starting from melodies, bass and drums
 
-0. **Whose piece**: run `profile` first. Without a folder it reads the one saved in `projects_folder`; when none is saved, ask the user where their projects are and pass that folder, or set `projects_folder` to `none` when they have none. Read its Read back list to them; what they keep sets the tempo, key, form, drum grid and sounds below, and its pointers bring their own sounds in without decoding them. Ask for favourites (a `favourites/` folder) when they can name any.
+0. **Whose piece**: run `profile` first. Without a folder it reads the one saved in `projects_folder`; when none is saved, ask the user where their projects are and pass that folder, or set `projects_folder` to `none` when they have none. Ask for favourites (a `favourites/` folder) when they can name any.
 1. **The piece**: tempo, tonal centre, a form sketch: sections, lengths, where each switch happens and what kind (§7).
-2. **Sounds**: pick from the catalogs by role, render a short test, measure each one's sounding octave and tuning (§8).
+2. **Sounds**: pick from the catalogs by role, measure sounding octave and tuning (§8).
 3. **Harmony and lines** (§3).
 4. **Drums**, if the piece needs them (§4).
-5. **Transitions**, each for its own spot (§5).
-6. **SFX and texture** in the gaps.
-7. **Levels and effects** (§9).
-8. **Render and read** (§10). Write what the piece does and why in `compositions/<piece>.md` before anyone hears it.
+5. **SFX and texture**
+6. **Levels and effects** (§9).
+7. **Render and read** (§10). Write what the piece does and why in `compositions/<piece>/<piece>.md` before anyone hears it.
 
 ## 2. Tempo and meter
 
@@ -69,9 +66,7 @@ A predictable grid and progression is one option, worth knowing how to use and h
 ### What fails
 
 - **Scale runs**: a chord tone, a leap, then the scale walked back. It sounds like an exercise.
-- **A two-note trill** for a whole cell.
 - **A plain progression** (four equal chords in order) unless it is a deliberate transition.
-- **Nothing unexpected anywhere.** The unexpected can be a sound, a chord, a stop, a drop or a transition. It does not have to be a displaced hit.
 
 ### Method
 
@@ -92,13 +87,11 @@ Two independent lines in one sound make harmony neither has alone:
 - Both played, not quantised: meetings a few ticks apart smear into one composite.
 - Repeat the lines and move the bass and pad under them (one root per bar, alternating a step apart): the same notes read as a minor colour over one root and a lydian major 9 over the next.
 
-An arp that worked: the voicing an octave up, one note per 16th, voice index `(3 * s + s // 4) mod 4` at step `s`.
-
 ## 4. Drums
 
 ### Whether the piece needs them
 
-Drums are a judgment per piece, not a default. Over a vocal they can pull against it, and leaving them out can be the right call.
+Drums are a judgment per piece.
 
 ### Floor, then additions
 
@@ -114,8 +107,6 @@ Drums are a judgment per piece, not a default. Over a vocal they can pull agains
 - Equal spacing: one hit per 16th, whatever the sounds, is a metronome.
 - Beat pieces in plain order: a staircase.
 - Everything on strong positions while trying to sound off-beat.
-- One edit per bar on a straight floor.
-- A march: single hits on a repeated 2-bar pattern.
 
 ### What gives movement
 
@@ -205,7 +196,6 @@ Measure tuning so detune is a choice. A preset a quarter tone sharp can be the b
 - **Rough sources make good chops**; pitch-tracker failures on screams say nothing about the chop.
 - **Chopped vocals work as percussion**: grains as pitched-up 16th-triplet hits, a vowel grain restruck every 32nd while diving.
 - **Breaks as a sound source**: slices pitched down for kicks, up for flams, a snare ratchet climbing an octave.
-- **A stutter wants a short grain**; a long vowel at 32nds on a sampler becomes one cloud.
 - **Chop entry points**: slices of one scream that all end at its tail but start at different points give a family of related hits. Restate the phrase in a later section, then thin it.
 - **A scrub by hand**: a recording cut into consecutive slices placed in order on uneven ticks reads as the sound dragged through; it suits the busiest bar of a transition.
 - **Overlapping slices alternate between two playlist tracks** so they do not crossfade.
@@ -217,7 +207,7 @@ An unmixed piece is not finished: write faders and effects into the document.
 
 ### Starting levels
 
-A starting point in dB under 0, from two mixes made by hand: bass -2, pad -4, lead -4, ostinato -6, kick -7, open hat -7, clap -8, crash -8, counter-line -10, closed hat -11, snare -11.5; master volume 12800 -> 10600. Adjust from the render.
+A starting point in dB under 0, from two mixes made by hand: bass -3, pad -4, lead -4, ostinato -6, kick -7, open hat -7, clap -8, crash -8, counter-line -10, closed hat -11, snare -11.5; master volume 12800 -> 10600. Adjust from the render.
 
 ### Width
 
@@ -225,7 +215,7 @@ There is no target width. Finished tracks run from near mono (correlation +0.94)
 
 ### Effects
 
-- **Reverb** can go anywhere; it often makes a sharp, dry sound more natural.
+- **Reverb** can go anywhere, doesn't mean should; it often makes a sharp, dry sound more natural.
 - **Sidechain** when needed: a level-0 route plus the compressor-mode Fruity Limiter on the ducked insert.
 - **Loudness**: a limiter on the master and gain up. Past 0 dBFS is a sound; clipping nobody chose (long full-scale runs in one section) is not.
 - **Gross Beat** for stutters, gates, half-speed and tape-stops on a bus or the master: parameters and slots in `FX.md` (slot = round(v x 35)), the unmapped pattern state in `FLP.md`.
@@ -282,7 +272,7 @@ Reason from what changed in the wave and spectrum (level, band balance, transien
 
 1. Render to wav and mp3 and run the analysis (`MECHANICS.md`).
 2. Check the length: the render runs to the last note or automation point (§7 for a tail).
-3. Read section by section against `compositions/<piece>.md`: does each switch show in level, width, spectrum? Any bass below about 30 Hz by accident, unintended clipping, a start that is not actually quiet, a wash stretch (§9)?
+3. Read section by section against `compositions/<piece>/<piece>.md`: does each switch show in level, width, spectrum? Any bass below about 30 Hz by accident, unintended clipping, a start that is not actually quiet, a wash stretch (§9)?
 4. The render is numbers and pictures; listening is the verdict, and it is the user's. Record what changes because of it.
 
 ## 11. Dropping a piece
@@ -293,11 +283,8 @@ Round after round of fixes on a piece whose hard part stays as it was rarely sav
 
 - Every drum hit has a reason; no accidental equal spacing or staircase; tier 4-5 hits justified.
 - Every drum hit and bass note written out row by row in the script; no code computes any of them.
-- Runs, trills and four-equal-chord loops only by choice.
-- Every synth on a preset, its sounding octave measured.
+- Runs, trills and four-equal-chord loops by choice.
+- Every synth on a preset.
 - Every sound on its own insert.
 - Faders and effects written; width read per element with `scope.py`.
-- No mud: every part audible where it was written, the bass heard and not only metered, loudness compared by ear model.
-- SFX where the drums leave gaps.
-- A tail, or a chosen hard cutoff.
-- `compositions/<piece>.md` says what each part is for.
+- `compositions/<piece>/<piece>.md` says what each part is for.
