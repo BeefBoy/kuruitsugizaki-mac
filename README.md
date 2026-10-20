@@ -12,7 +12,7 @@ https://github.com/user-attachments/assets/d5ddff3b-1f48-4249-9a7c-0230aac6e610
 <img src="examples/seance.png" alt="Factory Seance: piano-roll spectrogram, chroma, spectrogram, level and stereo correlation" width="560">
 </p>
 
-**Splinter Engine**
+**Splinter Engine**, made with 0.4.0.
 
 https://github.com/user-attachments/assets/2984c857-38cc-4384-b51d-e807018261eb
 
