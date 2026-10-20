@@ -6,11 +6,15 @@ The model does not listen. A render comes back as numbers and pictures (spectrog
 
 **Factory Seance**, two minutes of glitchy witch house and breakcore, was written start to finish by Claude Opus 5.5 through this harness, in about 35 minutes: every note, drum hit, sound choice, mixer route and automation clip, from FL's factory sounds only. Nobody edited it; the person who asked for it listened afterwards and kept it as it was. Listen: [`examples/seance.mp3`](examples/seance.mp3), the clip with sound: [`examples/demo.mp4`](examples/demo.mp4), how it was made: [`examples/seance.md`](examples/seance.md).
 
-https://github.com/user-attachments/assets/8ee80e6e-cf6b-459d-bbe1-a83a50da325c
+https://github.com/user-attachments/assets/d5ddff3b-1f48-4249-9a7c-0230aac6e610
 
 <p align="center">
 <img src="examples/seance.png" alt="Factory Seance: piano-roll spectrogram, chroma, spectrogram, level and stereo correlation" width="560">
 </p>
+
+**Splinter Engine**
+
+https://github.com/user-attachments/assets/2984c857-38cc-4384-b51d-e807018261eb
 
 Windows only. To install it, follow `INSTALL.md`. Everything past setup and the tools (how to write a piece, the file format, traps, decisions) is under `docs/`, starting at `docs/INDEX.md`.
 
