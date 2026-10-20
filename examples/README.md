@@ -49,5 +49,3 @@ Each file's `about` says what to listen for. The value scales the examples rely 
 ## The full piece
 
 `seance.py` writes `seance.json`: "Factory Seance", two minutes of glitchy witch house and breakcore at 170 BPM, built from everything above. `seance.md` explains each part and why it is there; `seance.mp3` is its render, `seance.png` the spectrogram and `seance_stereo.png` the stereo image the harness made of it, and `demo.mp4` (with sound), `demo.webp` and `demo.gif` a screen recording of it playing in FL, and `seance_full.mp4` the whole piece with sound over its spectrogram and `seance_strip.mp4` over its waveform (the player at the top of the main README), a playhead moving across each. It shipped exactly as written: the person who asked for it listened, tried a master of their own, and kept this one.
-
-It is also the reference for writing a piece as a script: positions as beat plus subdivision, helpers for notes, drum bars, audio-clip stutters and automation points, and the document assembled at the end.

@@ -7,7 +7,7 @@ the only verdict.
 ## Writing a piece
 
 **1. Preference.** Read `compositions/PREFERENCE.md`: what the person likes and rejects, in their words, gathered
-from every verdict they have given. If such doc does't exist, it was not written yet.
+from every verdict they have given. If such doc doesn't exist, it was not written yet.
 
 **2. `COMPOSING.md`.** A general method, written before this person said how their music should go: the order of
 work, what went wrong in earlier pieces and the rules that came out of it, measured mixing levels and widths, how to
@@ -30,8 +30,8 @@ does, change it, go on. The render is your only ear: where each note really soun
 a section lifts or sits flat, how wide and loud it is. Numbers cannot tell a dull melody or a lifeless drum part from
 a good one; say what you could not judge rather than calling it done.
 
-**7. Where it goes.** `compositions/<piece>.py` writes `compositions/<piece>.json`, built to
-`projects/music/<piece>.flp`; both folders are the person's and git ignores them. `compositions/<piece>.md`, written
+**7. Where it goes.** `compositions/<piece>/<piece>.py` writes `compositions/<piece>/<piece>.json`, built to
+`projects/music/<piece>.flp`; both folders are the person's and git ignores them. `compositions/<piece>/<piece>.md`, written
 as you go: each part, what it is, where it came from, what else was tried, what a render changed, and what you did
 not check; their verdict goes at its end. Scratch goes in `tmp/`.
 

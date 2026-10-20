@@ -15,7 +15,7 @@ Write starting from melodies, bass and drums
 
 0. **Whose piece**: run `profile` first. Without a folder it reads the one saved in `projects_folder`; when none is saved, ask the user where their projects are and pass that folder, or set `projects_folder` to `none` when they have none. Ask for favourites (a `favourites/` folder) when they can name any.
 1. **The piece**: tempo, tonal centre, a form sketch: sections, lengths, where each switch happens and what kind (§7).
-2. **Sounds**: pick from the catalogs by role, measure sounding octave and tuning (§8).
+2. **Sounds**: pick by role from `plugins`, `presets` and `samples`, measure sounding octave and tuning (§8).
 3. **Harmony and lines** (§3).
 4. **Drums**, if the piece needs them (§4).
 5. **SFX and texture**
@@ -179,7 +179,7 @@ Sketch the form as sections with what each changes: texture, density, width, reg
 ### Choosing synths
 
 - **Start from a preset.** A perfectly periodic init saw reads as machine-made.
-- **Ask what the user has and likes.** Which synths and libraries are on the machine is theirs to say, and so is which they trust; the catalogs (`MECHANICS.md`) list what each library holds.
+- **Ask what the user has and likes.** Which synths and libraries are on the machine is theirs to say, and so is which they trust; `plugins` and `presets` list what is installed and what loads.
 - **Choose by sound, not numbers**: a preset or sample that measures clean is not thereby good. Render candidates and keep what serves the part.
 - **Not binary**: a weak preset can work under effects or in a small role; an unlucky pick is replaced, not mixed around.
 

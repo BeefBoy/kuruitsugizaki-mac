@@ -23,7 +23,7 @@ There are two ways. The short way is one script; the long way is the same steps 
 | controller script | copies `fl/device_kuruitsugizaki.py` with this folder's path written in | FL's `Settings\Hardware\kuruitsugizaki` |
 | MIDI port | adds a loopMIDI port named `kuruitsugizaki` | registry, `HKCU\Software\Tobias Erichsen\loopMIDI\Ports` |
 | FL's MIDI setting | assigns the controller script to that port | registry, `HKCU\Software\Image-Line\FL Studio <version>\Devices\MIDI input\kuruitsugizaki` |
-| Claude desktop app | adds the server under `mcpServers`; the old file is kept beside it as `.bak` | `%APPDATA%\Claude\claude_desktop_config.json`, or the one given with `-Custom` |
+| Claude desktop app | adds the server under `mcpServers`; the old file is kept beside it as `.bak` | the Microsoft Store build's `claude_desktop_config.json` under `%LOCALAPPDATA%\Packages\Claude_*\LocalCache\Roaming\Claude`, else `%APPDATA%\Claude\claude_desktop_config.json`, or the one given with `-Custom` |
 | Claude Code | if it is installed, offers `claude mcp add` | Claude Code's user config, or the profile given with `-Custom` |
 | check | prints one line per requirement, then starts FL, asks it for its version and closes it again | nothing |
 
@@ -118,4 +118,5 @@ From here the model writes projects, opens them in FL, plays and renders them, w
 - **A project will not open.** FL holds changes it cannot save without asking you: an untitled project you edited, or a dialog that is already open. Save or discard in FL and ask again.
 - **The model cannot find a preset or sample.** It only knows the folders you gave it. Ask it to show `config`, and give it the missing path.
 - **Serum 2 channel shows as missing in FL.** Serum 2 is not installed; use FLEX or any other installed plugin by name, or ask the model to use a channel from one of your own projects.
+- **A render is refused while your FL is open.** FL passes a command-line render to the FL already running and renders nothing, and the harness does not close an FL you started. Save and close FL; the next render starts and closes its own.
 - **To undo the setup.** Close FL and double-click `uninstall.bat`. It removes the Claude entries, the controller script, the `kuruitsugizaki` port and FL's MIDI setting (a port you made yourself is kept, with the script unassigned), deletes the saved plugin states and moves `kuruitsugizaki.json` into `tmp/uninstall`. uv, loopMIDI, ffmpeg and `.venv` stay; delete this folder afterwards to remove the rest. `setup.bat` installs it again.

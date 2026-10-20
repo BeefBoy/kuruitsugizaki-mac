@@ -14,20 +14,25 @@ Signatures as `scripts/server.py` defines them:
 | `fl_install()` | writes the controller script into FL's Hardware folder with the bridge path and, with FL closed and unless an input in FL already has the script, makes a loopMIDI port named `kuruitsugizaki` and assigns the script to it in FL's MIDI settings. Read its `midi` entry: when that is not `ok` it says what the user has to do |
 | `project_write(doc, path, open=False, play=None)` | compact or full JSON -> `.flp`. Returns `wrote`, `bytes`, **`warnings`**, `channels`, `patterns` (notes per pattern), `clips` (per arrangement). Read `warnings`: a skipped insert or an unmapped field is reported there and nowhere else. `open` saves what FL has open first, then loads the new file, starting loopMIDI and FL if they are closed; it returns `open_error` instead when FL holds unsaved changes it cannot save. `play`: `song` or `pattern` |
 | `project_read(path, view="compact", patterns=None, arrangements=None, unused=False)` | `.flp` -> JSON. `compact` is the shape `project_write` takes; `summary` gives per-pattern stats and a per-track timeline; `full` is the exact round-trip form. Unplaced patterns and parked clips are left out unless `unused` |
-| `fl_render(path, reopen=True, key=None)` | saves FL's open project (restoring `path` if that save overwrote it), then starts `render.py <path> --close [--reopen] [--key K]` detached and returns at once with the log file, `tmp/render_logs/<stem>-<hhmmss>.log`. The log ends with a short report: length, peak, RMS, the key (energy outside `key` when given), and flags only where something is there: clipping, energy below 20 Hz, an ending more than 30 dB under the piece for over 4 s, near-silence of 1.5 s or more, phase, bass off the semitone grid, wash at haze-to-wash or worse. The full analysis is in `tmp/spectro/<stem>.txt` |
-| `fl_exec(code)` | Python inside the running FL; the value assigned to `result` comes back |
+| `fl_render(path, reopen=True, key=None)` | saves FL's open project (restoring `path` if that save overwrote it), then starts `render.py <path> --close [--reopen] [--key K]` detached and returns at once with the log file, `tmp/render_logs/<stem>-<hhmmss>.log`. With an FL the user started open it refuses: FL hands a command-line render to the FL already running, which renders nothing, and the harness closes only FLs it started. The log ends with a short report: length, peak, RMS, the key (energy outside `key` when given), and flags only where something is there: clipping, energy below 20 Hz, an ending more than 30 dB under the piece for over 4 s, near-silence of 1.5 s or more, phase, bass off the semitone grid, wash at haze-to-wash or worse. The full analysis is in `tmp/spectro/<stem>.txt` |
+| `fl_exec(code, out=None, timeout=10)` | Python inside the running FL; the value assigned to `result` comes back, or is written as JSON to `out` |
 | `fl_call(fn, args=None)` | one FL API function, e.g. `fn='plugins.getParamName', args=[0, 5, -1]`; returns `{ok, value}` or `{ok: false, error}` |
 | `fl_transport(action, mode=None, pattern=None)` | `play` / `stop`; `song` / `pattern`; a pattern number in pattern mode |
 | `fl_probe()` | FL's API version, its Python, its pid and the pipe handle it holds |
 | `samples(folder=None, query=None, min_seconds=None, max_seconds=None, limit=100, max_folders=200, measure=False)` | the user's sample folders from config `sample_folders`, asked once (`none` when they have none, and then FL's factory packs are the source), each with its folders at every level and their file counts. `query` searches every level by words in the path; `min_seconds`/`max_seconds` by length; results `{folder: [[name, seconds]]}`, an even spread across folders above `limit`. Indexed in `tmp/samples/index/` from folder listings, relisted where a folder changed. `measure` writes `tmp/samples/<folder>.tsv` |
+| `profile(folder=None)` | the user's projects with tempo, key and length, from config `projects_folder`, asked once (`none` when they have none) |
+| `plugins(query=None, native=False)` | installed VST3 and CLAP plugins, FL's own with `native=True`, minus config `hide_plugins`; each with how many presets load by name |
+| `presets(plugin, query=None, limit=200, harvest=False, kind=None)` | a plugin's preset ids for `project_write`; `harvest` first reads presets built into the plugin from FL; `kind` picks instrument or effect for a name that is both |
+| `params(plugin, query=None, kind=None)` | a mapped plugin's automatable parameters: index, name, display at 0, .25, .5, .75, 1 |
+| `render_report(path)` | a finished render's short report and spectrogram picture; says so while it is still rendering |
 
-**What reloads without a restart:** `project_read` and `project_write` re-import `flp`, `automation`, `levels`, `sylenth1`, `serum2`, `presets`, `mixerfx`, `project`, `writer`, `view` on every call. Anything else needs an MCP restart: `server.py`, `config.py`, `flex.py`, `diva.py`. A tool added in `server.py` may not appear until a new session, because a client keeps the tool list it started with.
+**What reloads without a restart:** `project_read`, `project_write`, `profile`, `plugins`, `presets` and `params` re-import `config`, `flp`, `automation`, `levels`, `sylenth1`, `serum2`, `presets`, `mixerfx`, `project`, `vst3state`, `library`, `writer`, `view`, `style` on every call. Anything else needs an MCP restart: `server.py`, `flex.py`, `diva.py`. A tool added in `server.py` may not appear until a new session, because a client keeps the tool list it started with.
 
-Killing the MCP server's process tree also kills FL and loopMIDI when it launched them. The next live call starts both again.
+Killing the MCP server's process tree also kills FL and loopMIDI when it launched them. FL starts again only for a project (`project_write` with `open`, `fl_render`).
 
 ## The piece script
 
-One file per piece, `compositions/<piece>.py`, writes `compositions/<piece>.json`, which becomes `projects/music/<piece>.flp`. The script and its JSON are the record; FL may resave the `.flp`. Why each part is where it is goes in `compositions/<piece>.md`.
+One folder per piece: `compositions/<piece>/<piece>.py` writes `compositions/<piece>/<piece>.json`, which becomes `projects/music/<piece>.flp`. The script and its JSON are the record; FL may resave the `.flp`. Why each part is where it is goes in `compositions/<piece>/<piece>.md`. Chops and other derived samples go in the same folder.
 
 Skeleton (plumbing only; every list in it is per piece):
 
@@ -102,10 +107,10 @@ doc = {
     "patterns": [{"id": k, "notes": v} for k, v in PATS.items() if v],
     "arrangements": [{"name": "<piece>", "clips": clips}],
 }
-Path("compositions/<piece>.json").write_text(json.dumps(doc, separators=(",", ":")), encoding="utf-8")
+Path("compositions/<piece>/<piece>.json").write_text(json.dumps(doc, separators=(",", ":")), encoding="utf-8")
 ```
 
-Run it from the repo root with the repo's environment: `.venv/Scripts/python compositions/<piece>.py`.
+Run it from the repo root with the repo's environment: `.venv/Scripts/python compositions/<piece>/<piece>.py`.
 
 **Notes always go through a pattern; patterns go on the playlist as clips.** A pattern can hold any number of instruments. Placing a whole-song pattern once at bar 1 (`[track, 1, 1, 0, length, pattern_id]`) and writing notes at their bars is the simplest arrangement; separate patterns placed several times is the other. `base` left out means the `template` key. Instrument and pattern ids must not look like `s<N>` or `a<N>`: a clip `src` of that shape is read as a sample or automation pointer.
 
@@ -152,27 +157,15 @@ Samples come through `samples`. Its first call shows the user's sample folders, 
 
 ## Sounds that load
 
-`plugin` takes a plugin the template holds: `serum2` and `flex` in the shipped one; `vital`, `sylenth1` and `diva` with a template of the user's that holds them (`../README.md`, The template). `preset` is a file path, except for FLEX, which takes `"<pack>/<preset>"`, e.g. `"Hard 808s/808 Clean Fuzz"`. A plugin with no `preset` loads its init state. Serum 1 `.fxp` do not load.
+`plugin` takes any plugin FL has installed, by the name `plugins` lists (`"Serum2"`, `"Vital"`, `"Diva(x64)"`); `serum2` and `flex` also name the template's own channels. `preset` takes an id from `presets(plugin, query)`; FLEX ids are `"<pack>/<preset>"`, e.g. `"Hard 808s/808 Clean Fuzz"`. A plugin with no `preset` loads its init state. Serum 1 `.fxp` do not load. Choose from `presets`, not from an old script.
 
-Catalogs, one row per preset, built into `tmp/` from the library folders in `config`:
-
-| built by | default output | selector column |
-|---|---|---|
-| `serum2.py catalog [folder] [out.tsv]` | `tmp/serum2.tsv` | `path` |
-| `flex.py catalog [out.tsv]` | `tmp/flex.tsv` | `preset` (the full `<pack>/<preset>`) |
-| `diva.py catalog [out.tsv]` | `tmp/diva.tsv` | `path` |
-| `sylenth1.py catalog [out.tsv]` | `tmp/sylenth1.tsv` | `path` |
-| `catalog.py <Vital preset folder> <out.tsv>` | | `path` |
-
-Run them from the repo root with `.venv/Scripts/python scripts/<script>`. Choose from these, not from an old script.
-
-**Before writing a range, know the preset's transpose and tuning** (`COMPOSING.md` §8): several presets sound one or two octaves below the written note, and Sytrus `Bass/Sub bass` three (written D#4 sounds D#1). Check the lowest partial in a one-note render. The render log says how much of the energy sits below 20 Hz and warns over 5%: that is a sound written octaves too low (one piece carried 16-18% in its drops; finished mixes of a user's ran 0-2.6%).
+**Before writing a range, know the preset's transpose and tuning** (`COMPOSING.md` §8): several presets sound one or two octaves below the written note, and Sytrus `Bass/Sub bass` three (written D#4 sounds D#1). Check the lowest partial in a one-note render. The render log says how much of the energy sits below 20 Hz and warns over 5%: that is a sound written octaves too low.
 
 **A channel copied with `state: {from, channel}` arrives switched on**, even when it was muted in its source project; many saved projects have muted channels. `muted: true` on the instrument keeps it off.
 
 ## Effects, sidechain, levels
 
-Effects are copied with their settings from a project FL saved: `mixer.effects: [{"track": t, "slot": s, "from": {"file": FX, "track": ft, "slot": fs}}]`. The shipped library is `projects/init/fx.flp`; placement there means nothing:
+An effect goes in by name, `mixer.effects: [{"track": t, "slot": s, "plugin": "<name>", "preset": "<id>"}]`, or is copied with its settings from a project FL saved, `{"track": t, "slot": s, "from": {"file": FX, "track": ft, "slot": fs}}`. The shipped library to copy from is `projects/init/fx.flp`; placement there means nothing:
 
 | from track/slot | effect |
 |---|---|
@@ -192,7 +185,7 @@ Any project the user saved in FL is a library too: `project_read` with `view="su
 
 **Faders:** `mixer.volume: {insert: value}`; `main_volume` 0.8 is the template's.
 
-**Not writable yet:** static pan and sends, pattern names, time signature, an effect FL never saved anywhere.
+**Not writable yet:** static pan and sends, pattern names, time signature.
 
 ## Write, open, save, render
 
@@ -205,13 +198,13 @@ Any project the user saved in FL is a library too: `project_read` with `view="su
      from pathlib import Path
      sys.path.insert(0, "scripts")
      import writer
-     raw, warnings = writer.build(json.loads(Path("compositions/<piece>.json").read_text(encoding="utf-8")))
+     raw, warnings = writer.build(json.loads(Path("compositions/<piece>/<piece>.json").read_text(encoding="utf-8")))
      Path("projects/music/<piece>.flp").write_bytes(raw)
      print(warnings)
      ```
      No tool opens an existing `.flp` without writing it. Render it straight away (`fl_render` reopens it in FL afterwards).
 3. If anything sounds missing, check routing live: `fl_exec` with `channels.getTargetFxTrack(i, True)` per channel.
-4. Render with `fl_render(path="projects/music/<piece>.flp")`. It saves FL's open project first, so closing FL never stops at a dialog, then runs `render.py <flp> --close --reopen` detached and returns the log path under `tmp/render_logs/`. Read the result with `render_report(path)`. Until the log shows the render finished, make no live call: a live call finds FL closed and says so. `render.py` also takes `--formats` (default `wav,mp3`) and `--bpm` (bar lines in the spectrogram). FL's split-mixer-tracks export must be off.
+4. Render with `fl_render(path="projects/music/<piece>.flp")`. With an FL the user started open it refuses (FL hands the render to that FL and nothing comes out); ask them to save and close it. It saves FL's open project first, so closing FL never stops at a dialog, then runs `render.py <flp> --close --reopen` detached and returns the log path under `tmp/render_logs/`. Read the result with `render_report(path)`. Until the log shows the render finished, make no live call: a live call finds FL closed and says so. `render.py` also takes `--formats` (default `wav,mp3`) and `--bpm` (bar lines in the spectrogram). FL's split-mixer-tracks export must be off.
 5. The render writes `.wav` and `.mp3` beside the project. `render_report` returns the short report and the spectrogram; look at the picture before handing a piece over, and treat a flag as something to listen for, not a defect to fix. `waveshape.py` compares renders when texture is the question; `scope.py <wav>... [--at s] [--lo Hz --hi Hz] [--timeline]` gives width per moment and per band.
 
 The render is numbers and pictures, not sound. The user listens; their verdict decides what changes.

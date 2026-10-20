@@ -6,7 +6,6 @@
 - **The model does not listen, it measures.** Renders come back as numbers and images: `render.py` exports wav and mp3 through FL's command line and runs the analysis on them; `spectro.py`, `loudness.py`, `scope.py`, `waveshape.py` read them. The person listens and decides.
 - **Measurement describes, it does not judge.** A quarter tone of detune or a 7-beat cycle over 4/4 is reported as what is there, never as an error to correct.
 - **Music first, synth parameters later.** The Serum 2 host-parameter mapping (`serum2.py`, `nudgemap.py`, `profiles/serum2/`) works and is parked; presets are how sounds are chosen.
-- **A piece is a whole piece**: one to two minutes with a form, not an 8-bar loop.
 
 ## The .flp format is reverse-engineered here
 
@@ -36,8 +35,6 @@ Which FL the server works with is a rule, not a pick by process id: a pid named 
 The controller script cannot read a config file, so `fl_install` writes the bridge folder's path into the installed copy.
 
 FL loads a controller script only on a MIDI input that has it as controller type, and its scripting API cannot set that. Both halves are registry values, so `fl_install` writes them (`scripts/midisetup.py`): loopMIDI's port list, and FL's entry for that input. It uses a port of its own, named `kuruitsugizaki`, so no port the user already has is touched, and it does nothing when an input already has the script. FL writes its device settings back when it closes, so this is done with FL closed.
-
-The server remembers the FL process it connected to, and prefers the oldest FL64.exe when there are several, because opening a project launches a second FL64.exe that hands the file over and lingers.
 
 ## Paths belong to the user's machine
 
@@ -69,7 +66,7 @@ A note names its instrument and a pattern is not tied to one, because a pattern 
 
 ## Deciding, not scripting
 
-The harness is for the model deciding where each note goes. Generator scripts are allowed as a tool; writing the compact JSON note by note and calling `project_write` is the other mode, and both stay.
+The harness is for the model deciding where each note goes. A piece script assembles the compact JSON, but places every drum hit and bass note as its own written row (`COMPOSING.md` §0); writing the JSON by hand and calling `project_write` is the other mode.
 
 ## Audio trim is optional
 
