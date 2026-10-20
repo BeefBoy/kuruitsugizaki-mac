@@ -207,7 +207,20 @@ An unmixed piece is not finished: write faders and effects into the document.
 
 ### Starting levels
 
-A starting point in dB under 0, from two mixes made by hand: bass -3, pad -4, lead -4, ostinato -6, kick -7, open hat -7, clap -8, crash -8, counter-line -10, closed hat -11, snare -11.5; master volume 12800 -> 10600. Adjust from the render.
+A starting point in dB under 0, from two mixes made by hand: bass -3, pad -4, lead -4, ostinato -6, kick -7, open hat -7, clap -8, crash -8, counter-line -10, closed hat -11, snare -11.5; master volume 12800 -> 10600. Adjust from the render to balance parts; a section's weight comes from what plays in it (below).
+
+### Faders balance; the writing gives a section its weight
+
+A fader balances parts that are already right. When a section sits wrong against the others (a drop no bigger than what came before it, a verse heavier than the drop), the cause is in what plays: which parts, their register and voicing, the sounds and their lengths, the processing. Find it and change that. Raising whatever already dominates, usually the drums, until the section's number comes out right covers the rest of the mix and drives the master limiter, which then pulls every other part down on each hit.
+
+A section gains weight without a fader through:
+
+- a part carrying the music in the 1-4 kHz range, not only drums: a saturated or layered lead, an octave doubling, stabs in the gaps of the break;
+- another written part: a counter-line, chops used as a line rather than an ornament;
+- contrast before it: the section before thinner, darker or narrower;
+- a mastered break loop brought down at the source and split into attacks and bodies (§4), so it sits with the music instead of over it.
+
+A section that is too heavy is a sound or length choice to revisit, such as an 808 ringing for two bars under a kick, not a reason to turn everything else up.
 
 ### Width
 
@@ -287,4 +300,5 @@ Round after round of fixes on a piece whose hard part stays as it was rarely sav
 - Every synth on a preset.
 - Every sound on its own insert.
 - Faders and effects written; width read per element with `scope.py`.
+- Each section's weight against the others comes from its parts and sounds; faders only balance them.
 - `compositions/<piece>/<piece>.md` says what each part is for.
