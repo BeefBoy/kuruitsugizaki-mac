@@ -526,7 +526,8 @@ def _transport(action: str, mode: str | None = None, pattern: int | None = None)
     "stats, a per-track arrangement timeline, mixer effects); 'compact' (default: every note and clip as rows, the same "
     "shape project_write accepts; notes [bar, beat, tick, len_ticks, key, vel, instrument#], clips [track, bar, beat, "
     "tick, len_ticks, src, trim?] where src is a pattern id, s<N> a sample, a<N> an automation clip); 'full' (exact, "
-    "round-trips byte for byte; large). Fails with the parser's error on a file that is not an .flp."))
+    "round-trips byte for byte; large, so narrow it with patterns or arrangements). Fails with the parser's error on a "
+    "file that is not an .flp."))
 def project_read(path: Annotated[str, Field(description="the .flp file, absolute or relative to the repo")],
                  view: Annotated[str, Field(description="'compact', 'summary' or 'full'")] = "compact",
                  patterns: Annotated[list[str] | None, Field(description="only these pattern ids (compact and full)")] = None,
@@ -698,8 +699,9 @@ def project_write(doc: Annotated[dict, Field(description="the project document, 
     "report. Call it after project_write to check a piece. FL renders from the command line, so an FL the harness "
     "started is saved first (path itself is restored if that save overwrote it) and closed; an FL the user started is "
     "left alone and the render refused until they close it. Runs detached and returns at once; "
-    "a 2-minute piece takes under a minute. Read the result with render_report(path), which returns the report and "
-    "the spectrogram picture. Windows with FL Studio only."))
+    "a 2-minute piece takes under a minute. Returns {ok, rendering, log, saved_open_project}. Then call "
+    "render_report(path) until it stops saying the render is running, and make no live call (fl_exec, fl_call, "
+    "fl_transport) before that: FL is closed while it renders. Windows with FL Studio only."))
 def fl_render(path: Annotated[str, Field(description="the .flp to render")],
               reopen: Annotated[bool, Field(description="open the project in FL again when done")] = True,
               key: Annotated[str | None, Field(description="the key the piece is written in, e.g. 'F minor' or 'G#m'; "
@@ -734,10 +736,15 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
 
 
 @mcp.tool(annotations=READ, description=(
-    "A finished render of a project: its short report (length, peak, key, and flags only where something is "
-    "there) and the spectrogram picture. Look at it before handing a piece over; the full analysis is in the .txt it "
-    "names. Says so when the render is still running."))
-def render_report(path: Annotated[str, Field(description="the .flp (or its .wav) that fl_render rendered")]) -> list:
+    "Read what fl_render produced: the short report (length, peak, key, and a flag only where something is found) "
+    "and the spectrogram picture, as [text, image]. Call it after fl_render; it does not wait, and while the render "
+    "is still going it says so: call again. With no render on record it answers to call fl_render first; a render "
+    "that failed comes back as its log. Look at the picture before handing a piece over; the full analysis is in the "
+    ".txt the report names. To hear a piece, fl_transport plays the project open in FL. FL need not run; it writes "
+    "only a resized copy of the picture into tmp/spectro/."))
+def render_report(path: Annotated[str, Field(description="the path given to fl_render, or the .wav beside it; only its "
+                                                         "file name is used to find the render, so two pieces with the same "
+                                                         "name in different folders share one report")]) -> list:
     stem = Path(path).stem
     logs = sorted((ROOT / "tmp" / "render_logs").glob(f"{stem}-*.log"), key=lambda p: p.stat().st_mtime)
     if not logs:
@@ -804,12 +811,13 @@ def plugins(query: Annotated[str | None, Field(description="keep names containin
     return _lib(go)
 
 
-@mcp.tool(annotations=READ, description=(
+@mcp.tool(annotations=LIVE, description=(
     "List the presets that load by name for one plugin; an id goes into project_write as an instrument's or effect's "
     "preset. Call it after plugins, when choosing a sound. Returns {plugin, kind, total, presets}; total counts every "
     "match, and when there are more than limit the list is an even spread across the preset folders, each folder an "
     "equal share, not the first ones. A plugin name that matches nothing or several "
-    "plugins returns {ok: false, error} naming the candidates. Reads files only; FL need not run."))
+    "plugins returns {ok: false, error} naming the candidates. Reads files only and FL need not run, except with "
+    "harvest, which opens the plugin in FL and adds its built-in presets to the catalog."))
 def presets(plugin: Annotated[str, Field(description="the plugin's name as plugins lists it; a unique part of it works")],
             query: Annotated[str | None, Field(description="words that must all appear in the id, case-insensitive, any order, e.g. 'bass reese'")] = None,
             limit: Annotated[int, Field(description="at most this many ids")] = 200,
@@ -859,15 +867,13 @@ def fl_transport(action: Annotated[str, Field(description="'play' or 'stop'")],
 
 
 @mcp.tool(annotations=LIVE, description=(
-    "List a person's projects from a folder of their .flp files; for one project's contents use project_read. Reads "
-    "every .flp under the folder, subfolders included, and changes none of them; FL need not run; about 2 s for 80 "
-    "projects. Returns a table of the projects: tempo, key, "
-    "arrangement length in bars, so you know which to open and read in full with project_read; it "
-    "decides nothing. Also written as profile.md and profile.json to tmp/profile/<folder name>/. Projects that fail to "
-    "read are listed, not fatal; a folder with no .flp returns {ok: false, error}. Without folder it reads config "
-    "projects_folder; when that is not set, ask the user where their own projects are and pass that folder, which is "
-    "then saved there, so later sessions do not ask again. When they have none, set projects_folder to 'none' with "
-    "config, and profile then answers that."))
+    "List a person's projects from a folder of their .flp files: tempo, key and arrangement length in bars, so you know "
+    "which to open and read in full with project_read. Reads every .flp under the folder, subfolders included, and "
+    "changes none of them; FL need not run; about 2 s for 80 projects. Also written as profile.md and profile.json to "
+    "tmp/profile/<folder name>/. Projects that fail to read are listed, not fatal; a folder with no .flp returns "
+    "{ok: false, error}. Without folder it reads config projects_folder; when that is not set, ask the user where their "
+    "own projects are and pass that folder, which is then saved there, so later sessions do not ask again. When they "
+    "have none, set projects_folder to 'none' with config, and profile then answers that."))
 def profile(folder: Annotated[str | None, Field(description="the folder of .flp projects, absolute or relative to the repo; omit to use config projects_folder")] = None) -> dict:
     _reload()
     import style
@@ -902,25 +908,23 @@ def _sample_place(d: Path, roots: list[Path]) -> tuple[Path, str]:
 
 @mcp.tool(annotations=READ, description=(
     "List samples for drums, one-shots, loops and breaks; a sample's path (its folder plus its name) goes into "
-    "project_write as a sampler's or audio clip's path. Call it before choosing any sample. No arguments: the user's "
-    "sample folders (config sample_folders), each with its folders at every level and how many audio files each holds, "
-    "at most max_folders: whole levels from the top, the last one shared across its parents. When sample_folders is not set it "
-    "returns {ok: false, error}: ask the user where their samples are and set it with config (a folder or a JSON list), "
-    "or 'none' when they have none, which makes FL's factory packs the source; the answer is kept. Take samples only "
-    "from folders the user gave. query: words that must all appear in the path below the sample folder, at any depth, "
-    "e.g. 'kick 808'; min_seconds and max_seconds filter by length. folder: one folder (absolute, below a sample folder, "
-    "or %FLStudioFactoryData%/...), its folders at every level the same way and its own files; with query, "
-    "the search stays inside it. Returns {total, results: {folder: [[name, seconds]]}}; when there are more than limit "
-    "the list is an even spread across folders. Folders are indexed in tmp/samples/index/ from their listings, no file "
-    "opened, and relisted only where they changed; a length is read from the file when shown. measure=true writes the "
-    "folder's own files' levels, width, onsets and centroid to tmp/samples/<folder>.tsv. Reads files only; FL need not run."))
-def samples(folder: Annotated[str | None, Field(description="one folder to look into; omit for all sample folders")] = None,
-            query: Annotated[str | None, Field(description="words that must all appear in the path, case-insensitive, any order, e.g. 'snare tight'")] = None,
+    "project_write as a sampler's or audio clip's path. Call it before choosing any sample, and take samples only "
+    "from folders the user gave.\n\n"
+    "No arguments: the user's sample folders, each with its subfolders and how many audio files each holds. With "
+    "query, the samples whose path matches; with folder, that folder's subfolders and files, and a query stays inside "
+    "it. Returns {total, results: {folder: [[name, seconds]]}}; past limit the list is an even spread across folders.\n\n"
+    "When config sample_folders is not set it returns {ok: false, error}: ask the user where their samples are and set "
+    "it with config (a folder or a JSON list), or 'none' when they have none, which makes FL's factory packs the "
+    "source; the answer is kept.\n\n"
+    "Reads files only; FL need not run. Folder listings are cached and only changed folders are reread, so repeat "
+    "calls are fast."))
+def samples(folder: Annotated[str | None, Field(description="one folder to look into: absolute, below a sample folder, or %FLStudioFactoryData%/...; omit for all sample folders")] = None,
+            query: Annotated[str | None, Field(description="words that must all appear in the path below the sample folder, case-insensitive, any order, any depth, e.g. 'snare tight'")] = None,
             min_seconds: Annotated[float | None, Field(description="keep samples at least this long")] = None,
             max_seconds: Annotated[float | None, Field(description="keep samples at most this long, e.g. 1 for one-shots")] = None,
             limit: Annotated[int, Field(description="at most this many samples")] = 100,
-            max_folders: Annotated[int, Field(description="at most this many folders in a folder listing")] = 200,
-            measure: Annotated[bool, Field(description="also measure the folder's own audio files into tmp/samples/<folder>.tsv")] = False) -> dict:
+            max_folders: Annotated[int, Field(description="at most this many folders in a folder listing: whole levels from the top, the last level shared across its parents")] = 200,
+            measure: Annotated[bool, Field(description="also write the folder's own audio files' levels, width, onsets and centroid to tmp/samples/<folder>.tsv")] = False) -> dict:
     _reload()
     import sampleindex as si
     from library import spread
