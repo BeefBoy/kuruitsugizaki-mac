@@ -284,7 +284,8 @@ def fl_install() -> dict:
     "handle it holds, or an error saying what is missing. Call it first when a live tool (fl_exec, fl_call, "
     "fl_transport, project_write with open) fails, and after fl_install. When FL is closed it starts it (and loopMIDI) to "
     "test the link and closes it again: launched_fl_seconds says how long FL took, closed_fl that it was closed. Reads "
-    "nothing from the project. Windows with FL Studio only."))
+    "nothing from the project. The first live call to an FL the user started copies their project file into "
+    "tmp/backups/. Windows with FL Studio only."))
 def fl_probe() -> dict:
     was = _fl_running()
     res = fl({"op": "probe"}, launch=True)
@@ -380,7 +381,7 @@ def _close_fl(timeout: float = 30.0):
     "{ok: false, error}. For a single read or change, e.g. a parameter name or a mixer level of the open project. Use "
     "fl_exec for several calls or logic; use project_read and project_write for anything the .flp file holds, which "
     "need no FL. A setter changes the open project as an edit by hand would; nothing is saved. Needs FL open; it is "
-    "not started for this. "
+    "not started for this. The first live call to an FL the user started copies their project file into tmp/backups/. "
     "Windows with FL Studio only."))
 def fl_call(fn: Annotated[str, Field(description="module.function as FL's API names it, e.g. 'plugins.getParamName'")],
             args: Annotated[list | None, Field(description="its positional arguments, e.g. [0, 5, -1]")] = None) -> dict:
@@ -392,7 +393,8 @@ def fl_call(fn: Annotated[str, Field(description="module.function as FL's API na
     "patterns, general ...) import. For live reads or changes that need several calls or logic; one call is simpler with "
     "fl_call. Returns {ok, value} with what the code assigns to `result`, or {ok: false, error} with the traceback. FL's "
     "sandbox refuses files, sockets and pipes. Changes act on the open project and are not saved. Needs FL open; "
-    "it is not started for this. Windows with FL Studio only."))
+    "it is not started for this. The first live call to an FL the user started copies their project file into "
+    "tmp/backups/. Windows with FL Studio only."))
 def fl_exec(code: Annotated[str, Field(description="Python source; assign the answer to `result`")],
             out: Annotated[str | None, Field(description="write the result as JSON to this path (relative to the repo) and return only its size, for large reads; also when `result` is {'__out__': path, 'data': value}")] = None,
             timeout: Annotated[float, Field(description="seconds to wait for FL's answer")] = 10.0) -> dict:
@@ -735,13 +737,14 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
     return {"ok": True, "rendering": str(target), "log": str(log), "saved_open_project": saved}
 
 
-@mcp.tool(annotations=READ, description=(
+@mcp.tool(annotations=LIVE, description=(
     "Read what fl_render produced: the short report (length, peak, key, and a flag only where something is found) "
     "and the spectrogram picture, as [text, image]. Call it after fl_render; it does not wait, and while the render "
     "is still going it says so: call again. With no render on record it answers to call fl_render first; a render "
     "that failed comes back as its log. Look at the picture before handing a piece over; the full analysis is in the "
-    ".txt the report names. To hear a piece, fl_transport plays the project open in FL. FL need not run; it writes "
-    "only a resized copy of the picture into tmp/spectro/."))
+    ".txt the report names. To hear a piece, fl_transport plays the project open in FL. FL need not run. It writes "
+    "into tmp/spectro/ only: a resized copy of the picture, and, when the render's log holds no analysis but the .wav "
+    "is there, the spectrogram and its .txt made again from that .wav."))
 def render_report(path: Annotated[str, Field(description="the path given to fl_render, or the .wav beside it; only its "
                                                          "file name is used to find the render, so two pieces with the same "
                                                          "name in different folders share one report")]) -> list:
@@ -857,7 +860,7 @@ def params(plugin: Annotated[str, Field(description="the plugin's name as plugin
     return _lib(go)
 
 
-@mcp.tool(annotations=LIVE, description="Play or stop whatever project is open in the running FL, to hear it; it changes nothing in any file. action 'play' jumps to the start and plays (from the start, not from where it stopped; called while playing, it restarts from the start). action 'stop' stops playback. mode 'song' plays the arrangement, 'pattern' loops one pattern (pattern: its number, selected first); without mode FL keeps the one it has. Needs FL open with a project; it is not started for this: open one with project_write(open=true), which can also start playback itself (play='song'). Returns {playing, mode}. To get audio out, use fl_render, which saves and closes FL instead. Windows with FL Studio only.")
+@mcp.tool(annotations=LIVE, description="Play or stop whatever project is open in the running FL, to hear it; it changes nothing in any file. action 'play' jumps to the start and plays (from the start, not from where it stopped; called while playing, it restarts from the start). action 'stop' stops playback. mode 'song' plays the arrangement, 'pattern' loops one pattern (pattern: its number, selected first); without mode FL keeps the one it has. Needs FL open with a project; it is not started for this: open one with project_write(open=true), which can also start playback itself (play='song'). Returns {playing, mode}. To get audio out, use fl_render, which saves and closes FL instead. The first live call to an FL the user started copies their project file into tmp/backups/. Windows with FL Studio only.")
 def fl_transport(action: Annotated[str, Field(description="'play' or 'stop'")],
                  mode: Annotated[str | None, Field(description="'song' or 'pattern'; omit to keep FL's")] = None,
                  pattern: Annotated[int | None, Field(description="in pattern mode, the pattern number to select first")] = None) -> dict:
@@ -906,7 +909,7 @@ def _sample_place(d: Path, roots: list[Path]) -> tuple[Path, str]:
     return d, ""
 
 
-@mcp.tool(annotations=READ, description=(
+@mcp.tool(annotations=LIVE, description=(
     "List samples for drums, one-shots, loops and breaks; a sample's path (its folder plus its name) goes into "
     "project_write as a sampler's or audio clip's path. Call it before choosing any sample, and take samples only "
     "from folders the user gave.\n\n"
@@ -916,8 +919,8 @@ def _sample_place(d: Path, roots: list[Path]) -> tuple[Path, str]:
     "When config sample_folders is not set it returns {ok: false, error}: ask the user where their samples are and set "
     "it with config (a folder or a JSON list), or 'none' when they have none, which makes FL's factory packs the "
     "source; the answer is kept.\n\n"
-    "Reads files only; FL need not run. Folder listings are cached and only changed folders are reread, so repeat "
-    "calls are fast."))
+    "Changes no sample file; FL need not run. Folder listings are cached in tmp/samples/index/ and only changed "
+    "folders are reread, so repeat calls are fast; measure also writes tmp/samples/<folder>.tsv."))
 def samples(folder: Annotated[str | None, Field(description="one folder to look into: absolute, below a sample folder, or %FLStudioFactoryData%/...; omit for all sample folders")] = None,
             query: Annotated[str | None, Field(description="words that must all appear in the path below the sample folder, case-insensitive, any order, any depth, e.g. 'snare tight'")] = None,
             min_seconds: Annotated[float | None, Field(description="keep samples at least this long")] = None,
