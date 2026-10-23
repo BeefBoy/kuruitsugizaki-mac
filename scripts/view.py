@@ -1,4 +1,5 @@
 import json
+import math
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -112,8 +113,78 @@ def summarize(doc: dict) -> dict:
     return out
 
 
+SCORE_MAX_BARS = 16
+SUBS = {24: "e", 48: "&", 72: "a"}
+
+
+def clip_offset(c: dict) -> int:
+    off = int.from_bytes(bytes.fromhex(c.get("raw24") or "ff" * 8)[:4], "little")
+    return 0 if off == 0xFFFFFFFF else off
+
+
+def score(doc: dict, first: int = 1, last: int | None = None) -> dict:
+    ppq = doc["project"]["ppq"]
+    bar = 4 * ppq
+    first = max(1, int(first))
+    last = max(first, int(last or first + 3))
+    note = None
+    if last - first + 1 > SCORE_MAX_BARS:
+        last, note = first + SCORE_MAX_BARS - 1, f"cut to {SCORE_MAX_BARS} bars; ask for the rest with bars=[{first + SCORE_MAX_BARS}, ...]"
+    lo, hi = (first - 1) * bar, last * bar
+    arr = doc["arrangements"][0] if doc["arrangements"] else {"name": None, "clips": []}
+    pats = {p["id"]: p["notes"] for p in doc["patterns"]}
+    events = defaultdict(list)
+    for c in arr["clips"]:
+        s = tick(c["at"], ppq)
+        if s >= PARKED:
+            continue
+        if c.get("pattern") in pats:
+            off = clip_offset(c)
+            for n in pats[c["pattern"]]:
+                t = tick(n["at"], ppq) - off
+                if 0 <= t < c["len"]:
+                    events[n["inst"]].append((s + t, min(s + t + n["len"], s + c["len"]), n["key"]))
+        elif c.get("audio"):
+            events[c["audio"]].append((s, s + c["len"], "x"))
+    order = [c["id"] for c in doc["instruments"]] + [c["id"] for c in doc["samples"]]
+    cols = [k for k in order if any(a < hi and b > lo for a, b, _ in events.get(k, []))]
+    silent = [k for k in order if events.get(k) and k not in cols]
+    onsets = [a for k in cols for a, _, _ in events[k] if lo <= a < hi]
+    step = 24
+    for a in onsets:
+        step = math.gcd(step, a % bar)
+    if step < 6:
+        step = 24
+    cells = {k: [] for k in cols}
+    labels = []
+    for rt in range(lo, hi, step):
+        b, r = divmod(rt, bar)
+        beat, sub = divmod(r, ppq)
+        labels.append(f"{b + 1}.{beat + 1}" if sub == 0 else "  " + (SUBS[sub] if step == 24 and sub in SUBS else f"+{sub}"))
+        for k in cols:
+            by_off = defaultdict(list)
+            for a, _, key in sorted(events[k]):
+                if rt <= a < rt + step:
+                    by_off[a - rt].append(key)
+            hits = ["/".join(keys) + (f"+{d}" if d else "") for d, keys in sorted(by_off.items())]
+            held = any(a < rt < e for a, e, _ in events[k])
+            cells[k].append(" ".join(hits) if hits else "|" if held else "·")
+    lw = max([len("step")] + [len(x) for x in labels])
+    widths = {k: max([len(k)] + [len(x) for x in cells[k]]) for k in cols}
+    rows = ["  ".join(["step".ljust(lw)] + [k.ljust(widths[k]) for k in cols]).rstrip()]
+    for i, lab in enumerate(labels):
+        rows.append("  ".join([lab.ljust(lw)] + [cells[k][i].ljust(widths[k]) for k in cols]).rstrip())
+    out = {"arrangement": arr["name"], "bars": [first, last], "step_ticks": step, "rows": rows,
+           "key": "a cell is the note or chord (a/b) starting in that step, +N when it starts N ticks after the step; | still sounding; · nothing; x an audio clip"}
+    if silent:
+        out["silent_here"] = silent
+    if note:
+        out["note"] = note
+    return out
+
+
 def read(path: str, view: str = "summary", patterns: list[str] | None = None, arrangements: list[str] | None = None,
-         unused: bool = False) -> dict:
+         unused: bool = False, bars: list[int] | None = None) -> dict:
     doc = export(path)
     if view == "summary":
         return summarize(doc)
@@ -121,6 +192,8 @@ def read(path: str, view: str = "summary", patterns: list[str] | None = None, ar
         doc["patterns"] = [p for p in doc["patterns"] if p["id"] in patterns]
     if arrangements:
         doc["arrangements"] = [a for a in doc["arrangements"] if a["name"] in arrangements]
+    if view == "score":
+        return score(doc, *(bars or [1])[:2])
     if view == "compact":
         return to_compact(doc, unused=unused or bool(patterns))
     return doc

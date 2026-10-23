@@ -8,6 +8,8 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 - **Write every note and every placement out by hand.** Every note of every part (drums, bass, melody, chords, chops, one-shot hits) and every clip in the arrangement is its own typed row. No `for`, `while` or comprehension writes a note or a clip. No list is repeated by multiplication. No function returns notes or clips. No formula, modulo, transposition or random choice picks a position, length, pitch or bar. Placing a written pattern again is allowed, one typed clip row per placement. Helpers that turn one typed row into the document's form (`P`, `at`, `note`, `clip`) are fine; a helper never decides where a row goes. The script and its JSON change only by hand edits: no regex or helper script adds, copies or moves rows. Code that writes notes or clips makes them free to add, so eighty placements cost what eight do and none of them gets weighed.
 - **Measure to know, never to correct.** A render says where a note sounds and how wide and loud each section is. Detune, an octave accident, a peak past 0 dBFS are choices once known; breaking a rule never makes something wrong.
 - **More does not name the dimension.** A request for more (harder, more complex, deeper) does not name the dimension. Candidates: harmony and voicing, layering and counter-lines, sound design and processing, arrangement and contrast, rhythm. Cutting up or re-placing material already written is the cheapest of these and adds the least. A request for more is answered first with more written music.
+- **The work is the point.** A piece takes as many notes, parts and passes as it needs. Nothing is left out because writing it is long; choosing the smaller version because it is less to type is the failure this file exists to stop.
+- **Stay away from the probable.** The first idea is the most typical one: the textbook progression, the hook over a beat, the common voicing, the genre's usual move. For each part, write in `<piece>.md` what the textbook version would be, then write something else. A bias away from the expected is wanted even when it overshoots: an odd choice can be pulled back after a verdict, and a typical one leaves nothing to pull back.
 
 ## 1. Order of work
 
@@ -16,12 +18,14 @@ Write starting from melodies, bass and drums
 0. **Whose piece**: run `profile` first. Without a folder it reads the one saved in `projects_folder`; when none is saved, ask the user where their projects are and pass that folder, or set `projects_folder` to `none` when they have none. Ask for favourites (a `favourites/` folder) when they can name any.
 1. **The piece**: tempo, tonal centre, and its core material: a cell, a sound, a drum floor or a line, whichever the piece grows from.
 2. **Form**, from that material (§7).
-3. **Sounds**: pick by role from `plugins`, `presets` and `samples`, measure sounding octave and tuning (§8).
-4. **Harmony and lines** (§3).
-5. **Drums**, if the piece needs them (§4).
-6. **SFX and texture**
-7. **Levels and effects** (§9).
-8. **Render and read** (§10). Write what the piece does and why in `compositions/<piece>/<piece>.md` before anyone hears it.
+3. **Part map**: a table of bars against parts. For each part: its register band, its rhythmic layer (held, half, quarter, 8th, 16th, free), and per section whether it moves, holds, rests or answers. Parts claim different registers and layers; where one moves, another holds.
+4. **Sounds**: pick by role from `plugins`, `presets` and `samples`, measure sounding octave and tuning (§8).
+5. **Variants**: write one 8-bar section in 2-3 versions that differ along one stated dimension (harmony, layering, timbre, rhythm). Render each as a short clip; the user picks, and the piece grows from the pick.
+6. **Harmony and lines** (§3).
+7. **Drums**, if the piece needs them (§4).
+8. **SFX and texture**
+9. **Levels and effects** (§9).
+10. **Render and read** (§10). Write what the piece does and why in `compositions/<piece>/<piece>.md` before anyone hears it.
 
 ## 2. Tempo and meter
 
@@ -82,6 +86,7 @@ A predictable grid and progression is one option, worth knowing how to use and h
 3. Chords with little motion between them; let a held note change meaning over a moving bass.
 4. A 1-2 bar lead cell from leaps and neighbour swaps, restated with one substitution inside a phrase; each section adds material of its own (How much material).
 5. Any run, trill or four-equal-chord loop is a decision to defend or remove.
+6. Write a block (one to four bars) in every part before the next block, each part against the notes already in that block, and read the block back with `project_read(view="score")`. A part written alone from start to end cannot interlock with the others.
 
 ### Polyphony from two colliding lines
 

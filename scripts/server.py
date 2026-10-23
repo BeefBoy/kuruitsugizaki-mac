@@ -528,16 +528,19 @@ def _transport(action: str, mode: str | None = None, pattern: int | None = None)
     "stats, a per-track arrangement timeline, mixer effects); 'compact' (default: every note and clip as rows, the same "
     "shape project_write accepts; notes [bar, beat, tick, len_ticks, key, vel, instrument#], clips [track, bar, beat, "
     "tick, len_ticks, src, trim?] where src is a pattern id, s<N> a sample, a<N> an automation clip); 'full' (exact, "
-    "round-trips byte for byte; large, so narrow it with patterns or arrangements). Fails with the parser's error on a "
+    "round-trips byte for byte; large, so narrow it with patterns or arrangements); 'score' (a bar range of the first "
+    "arrangement as text, one row per step and one column per part, so how the parts line up can be read; bars [first, "
+    "last]). Fails with the parser's error on a "
     "file that is not an .flp."))
 def project_read(path: Annotated[str, Field(description="the .flp file, absolute or relative to the repo")],
-                 view: Annotated[str, Field(description="'compact', 'summary' or 'full'")] = "compact",
+                 view: Annotated[str, Field(description="'compact', 'summary', 'score' or 'full'")] = "compact",
                  patterns: Annotated[list[str] | None, Field(description="only these pattern ids (compact and full)")] = None,
                  arrangements: Annotated[list[str] | None, Field(description="only these arrangements, by name")] = None,
-                 unused: Annotated[bool, Field(description="also list patterns not placed in the playlist and parked clips")] = False) -> dict:
+                 unused: Annotated[bool, Field(description="also list patterns not placed in the playlist and parked clips")] = False,
+                 bars: Annotated[list[int] | None, Field(description="score only: [first, last] bar, at most 16; default the first 4")] = None) -> dict:
     _reload()
     import view as v
-    return v.read(path, view, patterns, arrangements, unused)
+    return v.read(path, view, patterns, arrangements, unused, bars)
 
 
 def _reload():
@@ -803,10 +806,10 @@ def _lib(fn):
     "fresh from FL's browser, a library instance as saved. A plugin installed in several formats is one name (native, "
     "then vst3, clap, vst unless format is given). By default it lists only VST3 and CLAP plugins; native=true adds "
     "FL's own. Reads files only; FL need not run."))
-def plugins(query: Annotated[str | None, Field(description="keep names containing this text, case-insensitive, e.g. 'serum'; omit for all")] = None,
+def plugins(query: Annotated[str | int | None, Field(description="keep names containing this text, case-insensitive, e.g. 'serum'; omit for all")] = None,
             native: Annotated[bool, Field(description="true also lists FL's own (native) plugins")] = False) -> dict:
     def go(L):
-        rows = L.summary(query, native)
+        rows = L.summary(None if query is None else str(query), native)
         res = {"plugin_db": str(L.db_root()), "library": str(L.lib_path()), "count": len(rows), "plugins": rows}
         if not native:
             res["note"] = "FL's own plugins are not listed; native=true lists them"
@@ -822,7 +825,7 @@ def plugins(query: Annotated[str | None, Field(description="keep names containin
     "plugins returns {ok: false, error} naming the candidates. Reads files only and FL need not run, except with "
     "harvest, which opens the plugin in FL and adds its built-in presets to the catalog."))
 def presets(plugin: Annotated[str, Field(description="the plugin's name as plugins lists it; a unique part of it works")],
-            query: Annotated[str | None, Field(description="words that must all appear in the id, case-insensitive, any order, e.g. 'bass reese'")] = None,
+            query: Annotated[str | int | None, Field(description="words that must all appear in the id, case-insensitive, any order, e.g. 'bass reese'")] = None,
             limit: Annotated[int, Field(description="at most this many ids")] = 200,
             harvest: Annotated[bool, Field(description="first read the plugin's built-in presets from FL (opens it there once, about a second per preset); for a plugin whose presets live inside it, not in files")] = False,
             kind: Annotated[str | None, Field(description="'instrument' or 'effect', for a name that is both (Serum2); without it the instrument is taken")] = None) -> dict:
@@ -834,7 +837,7 @@ def presets(plugin: Annotated[str, Field(description="the plugin's name as plugi
                 L.refresh(e)
             finally:
                 HARVEST["programs"] = False
-        rows = L.presets(e, query)
+        rows = L.presets(e, None if query is None else str(query))
         picked = L.spread(rows, max(0, int(limit)))
         res = {"plugin": e["name"], "kind": e["kind"], "total": len(rows), "presets": [r["id"] for r in picked]}
         notes = []
@@ -852,11 +855,11 @@ def presets(plugin: Annotated[str, Field(description="the plugin's name as plugi
 
 @mcp.tool(annotations=READ, description="A plugin's automatable parameters, for writing automation: each one's index (the param of an automation target {channel: id, param: index} or {mixer: t, slot: s, param: index}), its name, and what its normalised value means where measured (FL's display at 0, .25, .5, .75 and 1, so a value can be picked for a wanted Hz, dB or %). Call it before automating a plugin or effect knob. It answers only for plugins with a parameter map (plugins shows which); for any other, read names live with fl_call('plugins.getParamName', ...). Not for choosing a sound: plugins lists what is installed, presets a plugin's presets. Reads files only; FL need not run.")
 def params(plugin: Annotated[str, Field(description="the plugin's name as plugins lists it; a unique part of it works")],
-           query: Annotated[str | None, Field(description="words that must all appear in the parameter name, case-insensitive, e.g. 'filter cutoff'")] = None,
+           query: Annotated[str | int | None, Field(description="words that must all appear in the parameter name, case-insensitive, e.g. 'filter cutoff'")] = None,
            kind: Annotated[str | None, Field(description="'instrument' or 'effect', for a name that is both; without it the instrument is taken")] = None) -> dict:
     def go(L):
         e = L.find(plugin, kind, prefer="instrument")
-        return {"plugin": e["name"], "kind": e["kind"], "params": L.params(e, query)}
+        return {"plugin": e["name"], "kind": e["kind"], "params": L.params(e, None if query is None else str(query))}
     return _lib(go)
 
 
@@ -922,13 +925,14 @@ def _sample_place(d: Path, roots: list[Path]) -> tuple[Path, str]:
     "Changes no sample file; FL need not run. Folder listings are cached in tmp/samples/index/ and only changed "
     "folders are reread, so repeat calls are fast; measure also writes tmp/samples/<folder>.tsv."))
 def samples(folder: Annotated[str | None, Field(description="one folder to look into: absolute, below a sample folder, or %FLStudioFactoryData%/...; omit for all sample folders")] = None,
-            query: Annotated[str | None, Field(description="words that must all appear in the path below the sample folder, case-insensitive, any order, any depth, e.g. 'snare tight'")] = None,
+            query: Annotated[str | int | None, Field(description="words that must all appear in the path below the sample folder, case-insensitive, any order, any depth, e.g. 'snare tight'")] = None,
             min_seconds: Annotated[float | None, Field(description="keep samples at least this long")] = None,
             max_seconds: Annotated[float | None, Field(description="keep samples at most this long, e.g. 1 for one-shots")] = None,
             limit: Annotated[int, Field(description="at most this many samples")] = 100,
             max_folders: Annotated[int, Field(description="at most this many folders in a folder listing: whole levels from the top, the last level shared across its parents")] = 200,
             measure: Annotated[bool, Field(description="also write the folder's own audio files' levels, width, onsets and centroid to tmp/samples/<folder>.tsv")] = False) -> dict:
     _reload()
+    query = None if query is None else str(query)
     import sampleindex as si
     from library import spread
     saved = cfg.load().get("sample_folders")
