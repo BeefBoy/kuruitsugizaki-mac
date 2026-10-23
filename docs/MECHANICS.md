@@ -47,7 +47,7 @@ MS_TICK = 60000 / BPM / PPQ
 FX = str(Path("projects/init/fx.flp").resolve()).replace("\\", "/")
 
 SAMPLERS = [("K", "<path to a kick>.wav", 1)]
-SYNTHS = [("bass", "serum2", "<path to a .SerumPreset>", 4)]
+SYNTHS = [("bass", "<plugin from plugins>", "<id from presets>", 4)]
 AUDIO = []
 INST = [k for k, *_ in SAMPLERS] + [k for k, *_ in SYNTHS]
 IDX = {k: i for i, k in enumerate(INST)}

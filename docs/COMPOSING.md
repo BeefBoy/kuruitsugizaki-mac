@@ -200,6 +200,19 @@ No outro by default. A piece can stop mid-phrase, on a cut, on its quietest mome
 ### Choosing synths
 
 - **Start from a preset.** A perfectly periodic init saw reads as machine-made.
+- **Audition across instruments, not inside one.** For each role, find candidates in at least three different instruments (`presets(plugin, query)` on each), render the short list, and keep what serves the part. A piece built from one instrument's presets sounds like that instrument.
+- **Instruments differ in how they make sound**, and that shows more than any preset name:
+
+  | synthesis | instruments |
+  |---|---|
+  | analog-modelled, filter-led | Diva, Sylenth1, PoiZone, Sawer, SimSynth |
+  | wavetable | Serum 2, Vital, Massive X |
+  | FM | Sytrus, Fruity DX10 |
+  | additive, resynthesis | Harmor, Harmless, Ogun (metallic) |
+  | physical modelling | Sakura (strings), FL Slayer (guitar) |
+  | sampled instruments | FLEX, FL Keys |
+
+- **Instruments that list 0 presets** (Pigments, Omnisphere, Nexus, DUNE 3 and others) keep their presets inside the plugin. `presets(plugin, harvest=true)` reads them only when the plugin has a parameter named `Program`; otherwise a sound becomes usable by name once it is saved from FL's plugin menu as an `.fst`.
 - **Ask what the user has and likes.** Which synths and libraries are on the machine is theirs to say, and so is which they trust; `plugins` and `presets` list what is installed and what loads.
 - **Choose by sound, not numbers**: a preset or sample that measures clean is not thereby good. Render candidates and keep what serves the part.
 - **Not binary**: a weak preset can work under effects or in a small role; an unlucky pick is replaced, not mixed around.
@@ -319,6 +332,7 @@ Round after round of fixes on a piece whose hard part stays as it was rarely sav
 - Every drum hit and bass note written out row by row in the script; no code computes any of them.
 - Runs, trills and four-equal-chord loops by choice.
 - Every synth on a preset.
+- Each synth role was auditioned in at least three instruments; `<piece>.md` names the candidates and why one won. One instrument playing most parts is a choice the `.md` defends.
 - Every sound on its own insert.
 - Faders and effects written; width read per element with `scope.py`.
 - Each section's weight against the others comes from its parts and sounds; faders only balance them.
