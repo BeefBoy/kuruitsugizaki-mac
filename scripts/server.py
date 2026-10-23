@@ -525,7 +525,7 @@ def _transport(action: str, mode: str | None = None, pattern: int | None = None)
     "Read one FL Studio .flp file into JSON; FL need not run and the file is not changed. Use it to see what a project "
     "holds, to take parts from it, or to check what project_write wrote. For the style across many projects use "
     "profile; for the project open in FL right now, fl_exec. Views: 'summary' (start here: instruments, per-pattern "
-    "stats, a per-track arrangement timeline, mixer effects); 'compact' (default: every note and clip as rows, the same "
+    "stats, a per-track arrangement timeline, the parts sounding in each bar, mixer effects); 'compact' (default: every note and clip as rows, the same "
     "shape project_write accepts; notes [bar, beat, tick, len_ticks, key, vel, instrument#], clips [track, bar, beat, "
     "tick, len_ticks, src, trim?] where src is a pattern id, s<N> a sample, a<N> an automation clip); 'full' (exact, "
     "round-trips byte for byte; large, so narrow it with patterns or arrangements); 'score' (a bar range of the first "
@@ -534,7 +534,7 @@ def _transport(action: str, mode: str | None = None, pattern: int | None = None)
     "file that is not an .flp."))
 def project_read(path: Annotated[str, Field(description="the .flp file, absolute or relative to the repo")],
                  view: Annotated[str, Field(description="'compact', 'summary', 'score' or 'full'")] = "compact",
-                 patterns: Annotated[list[str] | None, Field(description="only these pattern ids (compact and full)")] = None,
+                 patterns: Annotated[list[str] | None, Field(description="only these pattern ids (compact, full and score)")] = None,
                  arrangements: Annotated[list[str] | None, Field(description="only these arrangements, by name")] = None,
                  unused: Annotated[bool, Field(description="also list patterns not placed in the playlist and parked clips")] = False,
                  bars: Annotated[list[int] | None, Field(description="score only: [first, last] bar, at most 16; default the first 4")] = None) -> dict:
@@ -741,7 +741,7 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
 
 
 @mcp.tool(annotations=LIVE, description=(
-    "Read what fl_render produced: the short report (length, peak, key, and a flag only where something is found) "
+    "Read what fl_render produced: the short report (length, peak, key, the number of parts sounding in each bar, and a flag only where something is found) "
     "and the spectrogram picture, as [text, image]. Call it after fl_render; it does not wait, and while the render "
     "is still going it says so: call again. With no render on record it answers to call fl_render first; a render "
     "that failed comes back as its log. Look at the picture before handing a piece over; the full analysis is in the "
