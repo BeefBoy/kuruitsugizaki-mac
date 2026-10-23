@@ -21,6 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 URL = "https://openrouter.ai/api/v1/chat/completions"
+MODELS = "google/gemini-4-argon,qwen/qwen3.8-omni-flash,xiaomi/mimo-v2.5,xiaomi/mimo-v2.6-pro,google/gemini-3.8-flash"
 PROMPT = """Listen to the whole recording. Report only what you can hear, with timestamps as m:ss.
 
 1. Length, tempo in BPM, and key or tonal centre.
@@ -66,7 +67,14 @@ def ask(model: str, audio: list[Path], prompt: str, api_key: str, max_tokens: in
     req = urllib.request.Request(URL, json.dumps(body).encode(), {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"})
     t0 = time.monotonic()
     try:
-        r = json.load(urllib.request.urlopen(req, timeout=600))
+        for attempt in range(3):
+            try:
+                r = json.load(urllib.request.urlopen(req, timeout=600))
+                break
+            except urllib.error.URLError as e:
+                if isinstance(e, urllib.error.HTTPError) or attempt == 2:
+                    raise
+                time.sleep(3)
     except urllib.error.HTTPError as e:
         return {"model": model, "seconds": round(time.monotonic() - t0, 1), "error": f"HTTP {e.code}: {e.read().decode(errors='replace')[:400]}"}
     except Exception as e:
@@ -83,11 +91,11 @@ def ask(model: str, audio: list[Path], prompt: str, api_key: str, max_tokens: in
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("audio", nargs="+")
-    ap.add_argument("--models", default="google/gemini-3.8-flash")
+    ap.add_argument("--models", default=MODELS)
     ap.add_argument("--env")
     ap.add_argument("--prompt")
     ap.add_argument("--out")
-    ap.add_argument("--max-tokens", type=int, default=3000)
+    ap.add_argument("--max-tokens", type=int, default=12000)
     ap.add_argument("--workers", type=int, default=8)
     a = ap.parse_args()
     models = (Path(a.models[1:]).read_text(encoding="utf-8").split() if a.models.startswith("@") else a.models.split(","))
