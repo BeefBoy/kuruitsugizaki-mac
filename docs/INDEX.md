@@ -43,3 +43,5 @@ E:\dev\kuruitsugizaki\examples\seance.py
 ## Work on the server itself, not on music
 
 `FLP.md` (the format) and `ARCHITECTURE.md` (why it is built this way).
+
+`LISTEN.md`: a planned audio-model listener on every render, on by default.
