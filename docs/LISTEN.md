@@ -52,5 +52,5 @@ parts play at once, and whether it sounds generic or distinctive. It is on by de
 - Calibration: whether a listener tells the person's tracks from model-written ones, unlabelled. Needs tracks with a
   known author.
 - Argon as the default instead of qwen: the more accurate timeline at about 16 times the price.
-- Two renders in one request (A/B), for the variants step.
+- Two renders in one request (A/B).
 - Whether asking for the parts section by section fixes the undercount.

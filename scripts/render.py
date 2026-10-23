@@ -55,6 +55,22 @@ def analyse(wav: Path, bpm: float | None, key: str | None = None, detail: bool =
     print(r.stdout.rstrip() if r.stdout.strip() else r.stderr[-400:])
 
 
+def parts_line(flp: Path) -> str | None:
+    here = Path(__file__).resolve().parent
+    sys.path.insert(0, str(here))
+    import view
+    doc = view.export(str(flp))
+    if not doc["arrangements"]:
+        return None
+    runs = []
+    for s, e, ks in view.parts_per_bar(doc, doc["arrangements"][0]):
+        if runs and runs[-1][2] == len(ks):
+            runs[-1] = (runs[-1][0], e, len(ks))
+        else:
+            runs.append((s, e, len(ks)))
+    return "parts sounding per bar: " + ", ".join(f"{view.bar_range(s, e)}: {n}" for s, e, n in runs)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("flp")
@@ -121,6 +137,12 @@ def main():
     wav = next((o for o in done if o.suffix == ".wav"), None) or next(iter(done), None)
     if wav:
         analyse(wav, a.bpm or project_bpm(flp), a.key, a.detail)
+        try:
+            line = parts_line(flp)
+        except Exception as e:
+            line = f"parts sounding per bar: not read ({type(e).__name__}: {e})"
+        if line:
+            print(line)
         print(f"next: render_report('{flp}') returns this with the spectrogram picture; look at it before handing the piece over")
     if a.reopen:
         flproc.launch([fl_exe, str(flp)])

@@ -20,12 +20,11 @@ Write starting from melodies, bass and drums
 2. **Form**, from that material (§7).
 3. **Part map**: a table of bars against parts. For each part: its register band, its rhythmic layer (held, half, quarter, 8th, 16th, free), and per section whether it moves, holds, rests or answers. Parts claim different registers and layers; where one moves, another holds.
 4. **Sounds**: pick by role from `plugins`, `presets` and `samples`, measure sounding octave and tuning (§8).
-5. **Variants**: write one 8-bar section in 2-3 versions that differ along one stated dimension (harmony, layering, timbre, rhythm). Render each as a short clip; the user picks, and the piece grows from the pick.
-6. **Harmony and lines** (§3).
-7. **Drums**, if the piece needs them (§4).
-8. **SFX and texture**
-9. **Levels and effects** (§9).
-10. **Render and read** (§10). Write what the piece does and why in `compositions/<piece>/<piece>.md` before anyone hears it.
+5. **Harmony and lines** (§3).
+6. **Drums**, if the piece needs them (§4).
+7. **SFX and texture**
+8. **Levels and effects** (§9).
+9. **Render and read** (§10). Write what the piece does and why in `compositions/<piece>/<piece>.md` before anyone hears it.
 
 ## 2. Tempo and meter
 
@@ -164,9 +163,13 @@ A vocal stem cannot change, so everything else follows it.
 
 Intro, a section, a transition, a second section, an outro is the shape a piece falls into when its form is filled in rather than chosen. It is one form among many and needs a reason like any other.
 
+Parts entering one at a time, with each section adding one and getting louder, is the template too. A piece reaches full density early unless the form sentence says why not; later sections change what plays, not only how much.
+
 ### Form comes from the material
 
 Write the core material first, then decide the form from what it can do: what can grow, what can be taken away, what can come back changed, what can collide with something else.
+
+A process (a cycle, a mutation, a rule) decides material, never pacing or how many parts play. A change it makes counts only if it can be heard over what plays with it.
 
 Write the form as one sentence about what happens over time, before any list of sections: "one break loses a piece every 16 bars until only its ghost notes are left", "two loops of different cycle lengths drift apart and line up again at the end". "Intro, build, drop, break, drop, outro" names slots, not a form.
 

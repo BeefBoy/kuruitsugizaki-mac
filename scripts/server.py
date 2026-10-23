@@ -773,6 +773,13 @@ def render_report(path: Annotated[str, Field(description="the path given to fl_r
             r = subprocess.run([_sys.executable, str(ROOT / "scripts" / "spectro.py"), str(wav)] + (["--bpm", str(bpm)] if bpm else []),
                                capture_output=True, text=True, cwd=str(ROOT), stdin=subprocess.DEVNULL)
             keep = keep[:1] + r.stdout.strip().splitlines()
+            if wav.with_suffix(".flp").exists():
+                try:
+                    line = render.parts_line(wav.with_suffix(".flp"))
+                except Exception as e:
+                    line = f"parts sounding per bar: not read ({type(e).__name__}: {e})"
+                if line:
+                    keep.append(line)
     if not png.exists():
         return ["\n".join(keep), "no spectrogram was written"]
     view = png.with_name(f"{stem}_view.png")

@@ -106,7 +106,8 @@ def summarize(doc: dict) -> dict:
             end = max(end, e)
             tracks[c["track"]].append(f"{src}@{bars(s, ppq) + 1:g}-{bars(e, ppq) + 1:g}")
         out["arrangements"].append({"name": a["name"], "length_bars": bars(end, ppq), "clips": len(a["clips"]),
-                                    "tracks": {t: (v if len(v) <= 12 else pick.even(v, 12) + [f"12 of {len(v)}, spread from first to last"]) for t, v in sorted(tracks.items())}})
+                                    "parts_per_bar": [f"{bar_range(s, e)}: {len(ks)} {' '.join(ks)}".rstrip() for s, e, ks in parts_per_bar(doc, a)],
+                                    "tracks":{t: (v if len(v) <= 12 else pick.even(v, 12) + [f"12 of {len(v)}, spread from first to last"]) for t, v in sorted(tracks.items())}})
     for fx in doc["mixer"]["effects"]:
         out["mixer_effects"][fx["track"]].append(fx["plugin"])
     out["mixer_effects"] = dict(out["mixer_effects"])
@@ -122,16 +123,8 @@ def clip_offset(c: dict) -> int:
     return 0 if off == 0xFFFFFFFF else off
 
 
-def score(doc: dict, first: int = 1, last: int | None = None) -> dict:
+def sounding(doc: dict, arr: dict) -> dict:
     ppq = doc["project"]["ppq"]
-    bar = 4 * ppq
-    first = max(1, int(first))
-    last = max(first, int(last or first + 3))
-    note = None
-    if last - first + 1 > SCORE_MAX_BARS:
-        last, note = first + SCORE_MAX_BARS - 1, f"cut to {SCORE_MAX_BARS} bars; ask for the rest with bars=[{first + SCORE_MAX_BARS}, ...]"
-    lo, hi = (first - 1) * bar, last * bar
-    arr = doc["arrangements"][0] if doc["arrangements"] else {"name": None, "clips": []}
     pats = {p["id"]: p["notes"] for p in doc["patterns"]}
     events = defaultdict(list)
     for c in arr["clips"]:
@@ -146,6 +139,40 @@ def score(doc: dict, first: int = 1, last: int | None = None) -> dict:
                     events[n["inst"]].append((s + t, min(s + t + n["len"], s + c["len"]), n["key"]))
         elif c.get("audio"):
             events[c["audio"]].append((s, s + c["len"], "x"))
+    return events
+
+
+def parts_per_bar(doc: dict, arr: dict) -> list[tuple[int, int, list[str]]]:
+    bar = 4 * doc["project"]["ppq"]
+    events = sounding(doc, arr)
+    order = [c["id"] for c in doc["instruments"]] + [c["id"] for c in doc["samples"]]
+    end = max((e for evs in events.values() for _, e, _ in evs), default=0)
+    runs = []
+    for b in range(-(-end // bar)):
+        lo, hi = b * bar, (b + 1) * bar
+        here = [k for k in order if any(a < hi and e > lo for a, e, _ in events.get(k, []))]
+        if runs and runs[-1][2] == here:
+            runs[-1] = (runs[-1][0], b + 1, here)
+        else:
+            runs.append((b + 1, b + 1, here))
+    return runs
+
+
+def bar_range(a: int, b: int) -> str:
+    return f"{a}" if a == b else f"{a}-{b}"
+
+
+def score(doc: dict, first: int = 1, last: int | None = None) -> dict:
+    ppq = doc["project"]["ppq"]
+    bar = 4 * ppq
+    first = max(1, int(first))
+    last = max(first, int(last or first + 3))
+    note = None
+    if last - first + 1 > SCORE_MAX_BARS:
+        last, note = first + SCORE_MAX_BARS - 1, f"cut to {SCORE_MAX_BARS} bars; ask for the rest with bars=[{first + SCORE_MAX_BARS}, ...]"
+    lo, hi = (first - 1) * bar, last * bar
+    arr = doc["arrangements"][0] if doc["arrangements"] else {"name": None, "clips": []}
+    events = sounding(doc, arr)
     order = [c["id"] for c in doc["instruments"]] + [c["id"] for c in doc["samples"]]
     cols = [k for k in order if any(a < hi and b > lo for a, b, _ in events.get(k, []))]
     silent = [k for k in order if events.get(k) and k not in cols]
