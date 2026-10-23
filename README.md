@@ -16,6 +16,10 @@ https://github.com/user-attachments/assets/d5ddff3b-1f48-4249-9a7c-0230aac6e610
 
 https://github.com/user-attachments/assets/2984c857-38cc-4384-b51d-e807018261eb
 
+**Seven Lamps**, made with 0.4.3.
+
+[`examples/seven_lamps_strip.mp4`](examples/seven_lamps_strip.mp4)
+
 Windows only. To install it, follow `INSTALL.md`. Everything past setup and the tools (how to write a piece, the file format, traps, decisions) is under `docs/`, starting at `docs/INDEX.md`.
 
 ## Requirements
