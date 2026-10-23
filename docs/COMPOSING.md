@@ -14,13 +14,14 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 Write starting from melodies, bass and drums
 
 0. **Whose piece**: run `profile` first. Without a folder it reads the one saved in `projects_folder`; when none is saved, ask the user where their projects are and pass that folder, or set `projects_folder` to `none` when they have none. Ask for favourites (a `favourites/` folder) when they can name any.
-1. **The piece**: tempo, tonal centre, a form sketch: sections, lengths, where each switch happens and what kind (§7).
-2. **Sounds**: pick by role from `plugins`, `presets` and `samples`, measure sounding octave and tuning (§8).
-3. **Harmony and lines** (§3).
-4. **Drums**, if the piece needs them (§4).
-5. **SFX and texture**
-6. **Levels and effects** (§9).
-7. **Render and read** (§10). Write what the piece does and why in `compositions/<piece>/<piece>.md` before anyone hears it.
+1. **The piece**: tempo, tonal centre, and its core material: a cell, a sound, a drum floor or a line, whichever the piece grows from.
+2. **Form**, from that material (§7).
+3. **Sounds**: pick by role from `plugins`, `presets` and `samples`, measure sounding octave and tuning (§8).
+4. **Harmony and lines** (§3).
+5. **Drums**, if the piece needs them (§4).
+6. **SFX and texture**
+7. **Levels and effects** (§9).
+8. **Render and read** (§10). Write what the piece does and why in `compositions/<piece>/<piece>.md` before anyone hears it.
 
 ## 2. Tempo and meter
 
@@ -123,7 +124,9 @@ Drums are a judgment per piece.
 - **Audio clips crossfade** when they overlap on one playlist track (a kick becomes a wobble): trim each to the gap, or put the next on the next free track down. Trimming is not required for its own sake.
 - **Group what will not be split** into one pattern.
 
-## 5. Transitions and drops
+## 5. Seams
+
+A seam goes where the form needs one. A piece built as one process may have none; a block form is nothing but seams with no transitions between them.
 
 A transition is written for its spot. What fails is reaching for one device by default, the same accelerating snare roll piece after piece. Repeating a device by choice is fine.
 
@@ -147,9 +150,29 @@ A vocal stem cannot change, so everything else follows it.
 
 ## 7. Form
 
-### Phrases reset the count
+Intro, a section, a transition, a second section, an outro is the shape a piece falls into when its form is filled in rather than chosen. It is one form among many and needs a reason like any other.
 
-Each phrase (16 bars, or 8, 24, 32, or a chain like 16 8 8 24 2 2 2 16 16) restarts the count; its strongest point is the cadence landing on the next phrase's first beat. Plan phrase lengths first; the seams are where drops, stops and glitches go.
+### Form comes from the material
+
+Write the core material first, then decide the form from what it can do: what can grow, what can be taken away, what can come back changed, what can collide with something else.
+
+Write the form as one sentence about what happens over time, before any list of sections: "one break loses a piece every 16 bars until only its ghost notes are left", "two loops of different cycle lengths drift apart and line up again at the end". "Intro, build, drop, break, drop, outro" names slots, not a form.
+
+### Shapes
+
+- **Process**: one change runs through the whole piece (adding, subtracting, a filter, a density or tempo curve, two loops drifting in phase). There are no sections; the ear follows the change.
+- **Blocks**: unrelated blocks cut against each other with no transitions, coming back in other orders and lengths.
+- **Through-composed**: every part is new and nothing returns. Sound and tempo hold it together.
+- **Return with change**: one idea comes back different each time (A B A' C A'').
+- **Variation**: one phrase heard many times, each pass changed in one dimension.
+- **Arch**: builds to the middle and unwinds in reverse order.
+- **Collision**: two ideas set up apart, then played together.
+- **Loop and interruptions**: one bar or phrase, broken into by events.
+- **One gesture**: a single rise, collapse or decay, with no payoff section.
+
+### Phrases and lengths
+
+Each phrase restarts the count; its strongest point is the cadence landing on the next phrase's first beat. Lengths are uneven unless evenness is the point: 16 8 8 24 2 2 2 16 16.
 
 ### Contrast
 
@@ -160,17 +183,15 @@ Tools for contrast, as fast, dense styles use them:
 - **Width as a switch**: mono walls against wide, bassless breakdowns.
 - **Loudness as a sound**: walls at -6 to -12 dBFS RMS, peaks past 0 dBFS.
 
-Sketch the form as sections with what each changes: texture, density, width, register, tempo feel, drum floor, or only notes.
-
 ### Starts
 
-- An intro has its own idea (a texture, a fragment of what comes later, a rise from silence), not one pattern to start from.
-- Save the loudest sound; a quiet intro well under the first full section (20 dB under is fine) works.
+No intro by default. A piece can open on its densest material, in the middle of a phrase, or on a sound that never comes back. A quiet start well under the first full section (20 dB under is fine) is one choice among these.
 
 ### Endings
 
-- A render stops at the last note. For a tail, a flat automation clip on any parameter a bar or two past the last pattern.
-- A hard cutoff can be the design; choose it.
+No outro by default. A piece can stop mid-phrase, on a cut, on its quietest moment, or on a fragment of something earlier.
+
+- A render stops at the last note. For a tail, use a flat automation clip on any parameter, a bar or two past the last pattern.
 - Cap long audio clips at the intended end.
 - The last sound is heard alone: level it on its own.
 
@@ -211,7 +232,7 @@ A starting point in dB under 0, from two mixes made by hand: bass -3, pad -4, le
 
 ### Faders balance; the writing gives a section its weight
 
-A fader balances parts that are already right. When a section sits wrong against the others (a drop no bigger than what came before it, a verse heavier than the drop), the cause is in what plays: which parts, their register and voicing, the sounds and their lengths, the processing. Find it and change that. Raising whatever already dominates, usually the drums, until the section's number comes out right covers the rest of the mix and drives the master limiter, which then pulls every other part down on each hit.
+A fader balances parts that are already right. When a section sits wrong against the others (a peak no bigger than what came before it, a quiet part heavier than the peak), the cause is in what plays: which parts, their register and voicing, the sounds and their lengths, the processing. Find it and change that. Raising whatever already dominates, usually the drums, until the section's number comes out right covers the rest of the mix and drives the master limiter, which then pulls every other part down on each hit.
 
 A section gains weight without a fader through:
 
@@ -302,3 +323,4 @@ Round after round of fixes on a piece whose hard part stays as it was rarely sav
 - Faders and effects written; width read per element with `scope.py`.
 - Each section's weight against the others comes from its parts and sounds; faders only balance them.
 - `compositions/<piece>/<piece>.md` says what each part is for.
+- The form is one sentence in `<piece>.md`. If it reads intro, section, transition, section, outro, the `.md` says why.

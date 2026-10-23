@@ -31,11 +31,12 @@ a section lifts or sits flat, how wide and loud it is. Numbers cannot tell a dul
 a good one; say what you could not judge rather than calling it done.
 
 **7. Where it goes.** `compositions/<piece>/<piece>.py` writes `compositions/<piece>/<piece>.json`, built to
-`projects/music/<piece>.flp`; both folders are the person's and git ignores them. `compositions/<piece>/<piece>.md`, written
+`projects/music/<piece>.flp`; both folders are the person's and git ignores them. `compositions/<piece>/<piece>.md`: its first line is the form in one sentence (`COMPOSING.md` §7), then, written
 as you go: each part, what it is, where it came from, what else was tried, what a render changed, and what you did
 not check; their verdict goes at its end. Scratch goes in `tmp/`.
 
 Content of compositions/ is not for your read unless its yours file created fresh or PREFERENCE.md doc.
+The first line of each earlier `compositions/<piece>/<piece>.md`, the form sentence, may be read before choosing a form, and nothing past it.
 Forbidden unless told otherwise E:\dev\kuruitsugizaki\examples\seance.md
 E:\dev\kuruitsugizaki\examples\seance.py
 
