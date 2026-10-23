@@ -5,7 +5,7 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 ## 0. Stance
 
 - **Write from nothing.** Unless asked otherwise. No existing project as a base, no channel copied for its sound, no old composition script read to learn from. A copied base drags in another piece's mixer and choices; a copied script anchors the new piece on the last one.
-- **Write every drum hit and bass note out by hand.** The piece script places no drum hit or bass note through code: no `for` or `while` over bars or steps, no function that returns a pattern, no formula, modulo or random choice that picks a position, length or pitch. Each hit and each note is its own row. A written bar or phrase may be placed again whole as a pattern clip; a bar that differs is written as its own bar. Code that places notes makes them free to add, so they pile up without being weighed.
+- **Write every note and every placement out by hand.** Every note of every part (drums, bass, melody, chords, chops, one-shot hits) and every clip in the arrangement is its own typed row. No `for`, `while` or comprehension writes a note or a clip. No list is repeated by multiplication. No function returns notes or clips. No formula, modulo, transposition or random choice picks a position, length, pitch or bar. Placing a written pattern again is allowed, one typed clip row per placement. Helpers that turn one typed row into the document's form (`P`, `at`, `note`, `clip`) are fine; a helper never decides where a row goes. The script and its JSON change only by hand edits: no regex or helper script adds, copies or moves rows. Code that writes notes or clips makes them free to add, so eighty placements cost what eight do and none of them gets weighed.
 - **Measure to know, never to correct.** A render says where a note sounds and how wide and loud each section is. Detune, an octave accident, a peak past 0 dBFS are choices once known; breaking a rule never makes something wrong.
 - **More does not name the dimension.** A request for more (harder, more complex, deeper) does not name the dimension. Candidates: harmony and voicing, layering and counter-lines, sound design and processing, arrangement and contrast, rhythm.
 
@@ -329,7 +329,7 @@ Round after round of fixes on a piece whose hard part stays as it was rarely sav
 ## Checklist before calling a piece done
 
 - Every drum hit has a reason; no accidental equal spacing or staircase; tier 4-5 hits justified.
-- Every drum hit and bass note written out row by row in the script; no code computes any of them.
+- Every note and every clip placement written out row by row in the script; no loop, comprehension, formula or edit script produced any of them.
 - Runs, trills and four-equal-chord loops by choice.
 - Every synth on a preset.
 - Each synth role was auditioned in at least three instruments; `<piece>.md` names the candidates and why one won. One instrument playing most parts is a choice the `.md` defends.

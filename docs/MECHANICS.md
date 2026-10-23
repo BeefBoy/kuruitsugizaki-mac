@@ -89,7 +89,7 @@ def dur(p):
                                 capture_output=True, text=True).stdout)
 ```
 
-Drums and bass are written out row by row. A helper such as `note()` writes the row it is given; it never decides where a row goes (COMPOSING §0).
+Every note and every clip, melody included, is written out row by row. `note()` and `clip()` write the row they are given; they never decide where a row goes, and nothing loops over bars (COMPOSING §0). The comprehensions in the document block below only turn the instrument tables and `PATS` into the document; they place nothing.
 
 The document at the end:
 
