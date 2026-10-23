@@ -6,25 +6,7 @@ Learn the plumbing here, not from an old composition script: a script carries it
 
 ## Tools
 
-Signatures as `scripts/server.py` defines them:
-
-| tool | does |
-|---|---|
-| `config(key=None, value=None)` | the machine paths: no arguments lists them with whether each exists; `key` and `value` set one. Ask the user for any unset path a task needs |
-| `fl_install()` | writes the controller script into FL's Hardware folder with the bridge path and, with FL closed and unless an input in FL already has the script, makes a loopMIDI port named `kuruitsugizaki` and assigns the script to it in FL's MIDI settings. Read its `midi` entry: when that is not `ok` it says what the user has to do |
-| `project_write(doc, path, open=False, play=None)` | compact or full JSON -> `.flp`. Returns `wrote`, `bytes`, **`warnings`**, `channels`, `patterns` (notes per pattern), `clips` (per arrangement). Read `warnings`: a skipped insert or an unmapped field is reported there and nowhere else. `open` saves what FL has open first, then loads the new file, starting loopMIDI and FL if they are closed; it returns `open_error` instead when FL holds unsaved changes it cannot save. `play`: `song` or `pattern` |
-| `project_read(path, view="compact", patterns=None, arrangements=None, unused=False, bars=None)` | `.flp` -> JSON. `compact` is the shape `project_write` takes; `summary` gives per-pattern stats and a per-track timeline; `score` prints bars `[first, last]` (at most 16) as text, one row per step and one column per part, so how the parts line up can be read; `full` is the exact round-trip form. Unplaced patterns and parked clips are left out unless `unused` |
-| `fl_render(path, reopen=True, key=None)` | saves FL's open project (restoring `path` if that save overwrote it), then starts `render.py <path> --close [--reopen] [--key K]` detached and returns at once with the log file, `tmp/render_logs/<stem>-<hhmmss>.log`. With an FL the user started open it refuses: FL hands a command-line render to the FL already running, which renders nothing, and the harness closes only FLs it started. The log ends with a short report: length, peak, RMS, the key (energy outside `key` when given), and flags only where something is there: clipping, energy below 20 Hz, an ending more than 30 dB under the piece for over 4 s, near-silence of 1.5 s or more, phase, bass off the semitone grid, wash at haze-to-wash or worse. The full analysis is in `tmp/spectro/<stem>.txt` |
-| `fl_exec(code, out=None, timeout=10)` | Python inside the running FL; the value assigned to `result` comes back, or is written as JSON to `out` |
-| `fl_call(fn, args=None)` | one FL API function, e.g. `fn='plugins.getParamName', args=[0, 5, -1]`; returns `{ok, value}` or `{ok: false, error}` |
-| `fl_transport(action, mode=None, pattern=None)` | `play` / `stop`; `song` / `pattern`; a pattern number in pattern mode |
-| `fl_probe()` | FL's API version, its Python, its pid and the pipe handle it holds |
-| `samples(folder=None, query=None, min_seconds=None, max_seconds=None, limit=100, max_folders=200, measure=False)` | the user's sample folders from config `sample_folders`, asked once (`none` when they have none, and then FL's factory packs are the source), each with its folders at every level and their file counts. `query` searches every level by words in the path; `min_seconds`/`max_seconds` by length; results `{folder: [[name, seconds]]}`, an even spread across folders above `limit`. Indexed in `tmp/samples/index/` from folder listings, relisted where a folder changed. `measure` writes `tmp/samples/<folder>.tsv` |
-| `profile(folder=None)` | the user's projects with tempo, key and length, from config `projects_folder`, asked once (`none` when they have none) |
-| `plugins(query=None, native=False)` | installed VST3 and CLAP plugins, FL's own with `native=True`, minus config `hide_plugins`; each with how many presets load by name |
-| `presets(plugin, query=None, limit=200, harvest=False, kind=None)` | a plugin's preset ids for `project_write`; `harvest` first reads presets built into the plugin from FL; `kind` picks instrument or effect for a name that is both |
-| `params(plugin, query=None, kind=None)` | a mapped plugin's automatable parameters: index, name, display at 0, .25, .5, .75, 1 |
-| `render_report(path)` | a finished render's short report and spectrogram picture; says so while it is still rendering |
+Each tool's description says what it takes and returns; `../README.md`, Tools, has them in one table.
 
 **What reloads without a restart:** `project_read`, `project_write`, `profile`, `plugins`, `presets` and `params` re-import `config`, `flp`, `automation`, `levels`, `sylenth1`, `serum2`, `presets`, `mixerfx`, `project`, `vst3state`, `library`, `writer`, `view`, `style` on every call. Anything else needs an MCP restart: `server.py`, `flex.py`, `diva.py`. A tool added in `server.py` may not appear until a new session, because a client keeps the tool list it started with.
 
@@ -112,7 +94,7 @@ Path("compositions/<piece>/<piece>.json").write_text(json.dumps(doc, separators=
 
 Run it from the repo root with the repo's environment: `.venv/Scripts/python compositions/<piece>/<piece>.py`.
 
-**Notes always go through a pattern; patterns go on the playlist as clips.** A pattern can hold any number of instruments. Placing a whole-song pattern once at bar 1 (`[track, 1, 1, 0, length, pattern_id]`) and writing notes at their bars is the simplest arrangement; separate patterns placed several times is the other. `base` left out means the `template` key. Instrument and pattern ids must not look like `s<N>` or `a<N>`: a clip `src` of that shape is read as a sample or automation pointer.
+**Notes always go through a pattern; patterns go on the playlist as clips.** A pattern can hold any number of instruments. Placing a whole-song pattern once at bar 1 (`[track, 1, 1, 0, length, pattern_id]`) and writing notes at their bars is the simplest arrangement; separate patterns placed several times is the other. Instrument and pattern ids must not look like `s<N>` or `a<N>`: a clip `src` of that shape is read as a sample or automation pointer.
 
 ### Positions: beat plus subdivision
 
@@ -205,7 +187,7 @@ Any project the user saved in FL is a library too: `project_read` with `view="su
      No tool opens an existing `.flp` without writing it. Render it straight away (`fl_render` reopens it in FL afterwards).
 3. If anything sounds missing, check routing live: `fl_exec` with `channels.getTargetFxTrack(i, True)` per channel.
 4. Render with `fl_render(path="projects/music/<piece>.flp")`. With an FL the user started open it refuses (FL hands the render to that FL and nothing comes out); ask them to save and close it. It saves FL's open project first, so closing FL never stops at a dialog, then runs `render.py <flp> --close --reopen` detached and returns the log path under `tmp/render_logs/`. Read the result with `render_report(path)`. Until the log shows the render finished, make no live call: a live call finds FL closed and says so. `render.py` also takes `--formats` (default `wav,mp3`) and `--bpm` (bar lines in the spectrogram). FL's split-mixer-tracks export must be off.
-5. The render writes `.wav` and `.mp3` beside the project. `render_report` returns the short report and the spectrogram; look at the picture before handing a piece over, and treat a flag as something to listen for, not a defect to fix. `waveshape.py` compares renders when texture is the question; `scope.py <wav>... [--at s] [--lo Hz --hi Hz] [--timeline]` gives width per moment and per band.
+5. The render writes `.wav` and `.mp3` beside the project. `render_report` returns the short report and the spectrogram. The report gives length, peak, RMS, the key (energy outside `key` when given), the parts sounding per bar, and flags only where something is there: clipping, energy below 20 Hz, an ending more than 30 dB under the piece for over 4 s, near-silence of 1.5 s or more, phase, bass off the semitone grid, wash at haze-to-wash or worse; the full analysis is in `tmp/spectro/<stem>.txt`. Look at the picture before handing a piece over, and treat a flag as something to listen for, not a defect to fix. `waveshape.py` compares renders when texture is the question; `scope.py <wav>... [--at s] [--lo Hz --hi Hz] [--timeline]` gives width per moment and per band.
 
 The render is numbers and pictures, not sound. The user listens; their verdict decides what changes.
 

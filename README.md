@@ -28,7 +28,6 @@ Windows only. To install it, follow `INSTALL.md`. Everything past setup and the 
 - loopMIDI with at least one port. FL loads the controller script only when its MIDI input port exists.
 - Python 3.12 or newer and `uv`.
 - `ffmpeg` and `ffprobe` on PATH, for the analysis scripts.
-- Serum 2 to use the Serum 2 channel of the template. FLEX ships with FL.
 
 ## Setup
 
@@ -70,7 +69,7 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 | `fl/device_kuruitsugizaki.py` | FL controller script; `fl_install` puts it in place |
 | `scripts/flp.py` | `.flp` event codec: parse, serialize (byte-exact), notes, diff |
 | `scripts/project.py` | `.flp` -> full project JSON (round-trips byte-identical) |
-| `scripts/view.py` | compact and summary views, compact -> full |
+| `scripts/view.py` | compact, summary and score views, compact -> full |
 | `scripts/style.py` | `style.py <folder> [out]`: the project list behind `profile` |
 | `scripts/selftest.py` | what CI runs, no FL needed: templates round-trip, a project from shipped parts builds and reads back, profile, the server's tool list; on Windows with FL also every example |
 | `scripts/writer.py` | project JSON -> `.flp`, template based |
@@ -181,7 +180,7 @@ Parameter maps: open a copy of the library in FL (the sweep leaves every knob at
 - **Keys**: note names, MIDI 60 = C4 (FL's own UI calls MIDI 60 C5). Flats accepted.
 - **Pointers**: a note's `inst` is an index into `instruments`. A clip's `src` is a pattern id, `s<N>` (sample N) or `a<N>` (automation N), so no instrument or pattern id may look like `s1` or `a1`.
 - **Patterns** hold notes for any number of instruments. A clip's `len` sets how much of a pattern plays.
-- **Instruments**: `state: {from: file, channel: n}` copies that channel whole, preset and routing included, from any FL-saved project, switched on even when it was muted there (`muted: true` keeps it off; `project_read` reports a muted channel with `muted: true`); or a template `plugin` (see The template). `preset` loads a sound into it: an id from `presets`, or a `.SerumPreset`, `.vital`, `.h2p` or `.fxp` path, or `<pack>/<preset>` for FLEX. `mixer: n` routes it. Serum 1 `.fxp` are not supported.
+- **Instruments**: `state: {from: file, channel: n}` copies that channel whole, preset and routing included, from any FL-saved project, switched on even when it was muted there (`muted: true` keeps it off; `project_read` reports a muted channel with `muted: true`); or any plugin by name (Plugins by name). `preset` loads a sound into it: an id from `presets`, or a `.SerumPreset`, `.vital`, `.h2p` or `.fxp` path, or `<pack>/<preset>` for FLEX. `mixer: n` routes it. Serum 1 `.fxp` are not supported.
 - **Sampler channels**: `"kind": "sampler"` with a `path` loads that file into a sampler, so notes pitch it (C4 = original pitch). A sampler plays its sample to the end whatever the note length; cut chops to their own files first (`chop.py`).
 - **Song mode**: compact documents are saved in song mode so FL and its command-line render play the arrangement; `project.song_mode: false` saves pattern mode.
 - **Samples**: `path`, or `state` to copy one. An audio clip without `trim` plays the whole sample; `trim` is `[start_ms, end_ms]` into the sample. A path may start with `%FLStudioFactoryData%`, FL's own token for its install folder, so `%FLStudioFactoryData%/Data/Patches/Packs/Drums/Kicks/808 Kick.wav` finds FL's factory kick on any machine.

@@ -46,7 +46,6 @@ Anywhere you can write to, for example `C:\Users\<you>\kuruitsugizaki`. Not unde
   uv fetches a matching Python by itself if you have none.
 - **loopMIDI** (by Tobias Erichsen), a virtual MIDI port: `winget install TobiasErichsen.loopMIDI`, or its installer from the author's site. FL loads the harness's controller script only on a MIDI input port, and this provides one. You do not need to keep it open: the server starts it when it needs it.
 - **ffmpeg**, used to analyse renders. In PowerShell: `winget install Gyan.FFmpeg`, then open a new terminal so it is on PATH. Without it, renders still work but come back without their analysis.
-- **Serum 2**, only if you want the Serum 2 channel of the template. FLEX ships with FL.
 
 ### 3. Build the environment
 
@@ -117,6 +116,5 @@ From here the model writes projects, opens them in FL, plays and renders them, w
 - **FL closed when the app closed.** FL was started by the server, and closing the app stops the server and what it started. Save your work in FL before quitting the app.
 - **A project will not open.** FL holds changes it cannot save without asking you: an untitled project you edited, or a dialog that is already open. Save or discard in FL and ask again.
 - **The model cannot find a preset or sample.** It only knows the folders you gave it. Ask it to show `config`, and give it the missing path.
-- **Serum 2 channel shows as missing in FL.** Serum 2 is not installed; use FLEX or any other installed plugin by name, or ask the model to use a channel from one of your own projects.
 - **A render is refused while your FL is open.** FL passes a command-line render to the FL already running and renders nothing, and the harness does not close an FL you started. Save and close FL; the next render starts and closes its own.
 - **To undo the setup.** Close FL and double-click `uninstall.bat`. It removes the Claude entries, the controller script, the `kuruitsugizaki` port and FL's MIDI setting (a port you made yourself is kept, with the script unassigned), deletes the saved plugin states and moves `kuruitsugizaki.json` into `tmp/uninstall`. uv, loopMIDI, ffmpeg and `.venv` stay; delete this folder afterwards to remove the rest. `setup.bat` installs it again.

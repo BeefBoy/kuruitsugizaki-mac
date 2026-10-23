@@ -25,7 +25,7 @@ are chosen and set for this piece.
 automation, and the write / open / render loop. `../examples/README.md` has one small working document per feature
 and every automation scale; `../README.md`, "Project JSON, compact form", has every field.
 
-**6. The work.** A part at a time, the way a producer works by ear: write it, render it, look at what it actually
+**6. The work.** A block at a time across all parts: write it, render it, look at what it actually
 does, change it, go on. The render is your only ear: where each note really sounds, what is crowded or empty, whether
 a section lifts or sits flat, how wide and loud it is. Numbers cannot tell a dull melody or a lifeless drum part from
 a good one; say what you could not judge rather than calling it done.
@@ -35,10 +35,9 @@ a good one; say what you could not judge rather than calling it done.
 as you go: each part, what it is, where it came from, what else was tried, what a render changed, and what you did
 not check; their verdict goes at its end. Scratch goes in `tmp/`.
 
-Content of compositions/ is not for your read unless its yours file created fresh or PREFERENCE.md doc.
-The first line of each earlier `compositions/<piece>/<piece>.md`, the form sentence, may be read before choosing a form, and nothing past it.
-Forbidden unless told otherwise E:\dev\kuruitsugizaki\examples\seance.md
-E:\dev\kuruitsugizaki\examples\seance.py
+Do not read `compositions/`, except `PREFERENCE.md` and files you created. The first line of an earlier piece's `.md`
+(its form sentence) may be read before choosing a form, nothing past it. `examples/seance.md` and `examples/seance.py`
+are off limits unless the user says otherwise.
 
 ## Work on the server itself, not on music
 

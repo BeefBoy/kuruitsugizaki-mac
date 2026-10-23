@@ -7,14 +7,12 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 - **Write from nothing.** Unless asked otherwise. No existing project as a base, no channel copied for its sound, no old composition script read to learn from. A copied base drags in another piece's mixer and choices; a copied script anchors the new piece on the last one.
 - **Write every note and every placement out by hand.** Every note of every part (drums, bass, melody, chords, chops, one-shot hits) and every clip in the arrangement is its own typed row. No `for`, `while` or comprehension writes a note or a clip. No list is repeated by multiplication. No function returns notes or clips. No formula, modulo, transposition or random choice picks a position, length, pitch or bar. Placing a written pattern again is allowed, one typed clip row per placement. Helpers that turn one typed row into the document's form (`P`, `at`, `note`, `clip`) are fine; a helper never decides where a row goes. The script and its JSON change only by hand edits: no regex or helper script adds, copies or moves rows. Code that writes notes or clips makes them free to add, so eighty placements cost what eight do and none of them gets weighed.
 - **Measure to know, never to correct.** A render says where a note sounds and how wide and loud each section is. Detune, an octave accident, a peak past 0 dBFS are choices once known; breaking a rule never makes something wrong.
-- **More does not name the dimension.** A request for more (harder, more complex, deeper) does not name the dimension. Candidates: harmony and voicing, layering and counter-lines, sound design and processing, arrangement and contrast, rhythm. Cutting up or re-placing material already written is the cheapest of these and adds the least. A request for more is answered first with more written music.
+- **More does not name the dimension.** A request for more (harder, more complex, deeper) can mean any of: harmony and voicing, layering and counter-lines, sound design and processing, arrangement and contrast, rhythm. Cutting up or re-placing material already written is the cheapest of these and adds the least. A request for more is answered first with more written music.
 - **The work is the point.** A piece takes as many notes, parts and passes as it needs. Nothing is left out because writing it is long; choosing the smaller version because it is less to type is the failure this file exists to stop.
 - **Not hearing is the condition, not a reason.** Every piece here is written without ears, from the first note to the last. A part, a doubling or a layer is never left out because how it will sound can't be checked first; leaving it out for that reason is choosing the basic version.
 - **Stay away from the probable.** The first idea is the most typical one: the textbook progression, the hook over a beat, the common voicing, the genre's usual move. For each part, write in `<piece>.md` what the textbook version would be, then write something else. A bias away from the expected is wanted even when it overshoots: an odd choice can be pulled back after a verdict, and a typical one leaves nothing to pull back.
 
 ## 1. Order of work
-
-Write starting from melodies, bass and drums
 
 0. **Whose piece**: run `profile` first. Without a folder it reads the one saved in `projects_folder`; when none is saved, ask the user where their projects are and pass that folder, or set `projects_folder` to `none` when they have none. Ask for favourites (a `favourites/` folder) when they can name any.
 1. **The piece**: tempo, tonal centre, and its core material: a cell, a sound, a drum floor or a line, whichever the piece grows from.
@@ -65,7 +63,7 @@ A predictable grid and progression is one option, worth knowing how to use and h
 - **The bass holds by default**: few notes, each held for a bar or more, while the drums do the punctuating. Short bass hits locked to the kick are a valid choice, but a nuanced one that has to be executed well: the bass tuned to the kick, the kick's own pitch and tail, what fills the gaps. Make it on purpose, never by habit.
 - **Cells restated with one substitution**: the one change is what gets heard.
 - **Pedal against movement**: one voice holds while another moves, so the same note changes meaning (A#4 over E).
-- **Played, not quantised**: onsets 2-22 ticks late, notes landing just before the bar line. A consistent lateness per part reads as feel; random per-note jitter does not.
+- **Played or on the grid, by choice**: a consistent lateness per part reads as feel; random per-note jitter does not.
 - **A flat second** in minor (E in D# minor).
 
 ### What fails
@@ -316,16 +314,7 @@ Read a render through `render_report`: the spectrogram first, the flags second. 
 
 Every note leaves a fading copy that still sounds under the next ones, at a middle level: neither held nor gone. It is not density. Sound held at the top is a wall; sound with a clear on and off is structure. A blur with fresh notes standing clearly above it is haze, not wash.
 
-The report's wash flag, the `ghost %` strip under the spectrogram, and the wash table in the `.txt` (`scripts/wash.py`):
-
-- **ghost**: a semitone cell still sounding 0.5 s after its band's last onset, 3 dB or more under that onset's peak, and not faint. Master fades and drop-outs are removed first.
-- **stretches**: 4 s windows over 30% ghost, joined across gaps up to 6 s.
-- **weight**: grows with length (under 10 s near 0, 20 s half, 30 s nearly full). It shrinks when ghost climbs into or falls out of the stretch faster than 2 points/s, multiplied by 2/rate: a wash drifts, while a section change jumps. Once stretches cover half the track, all count fully. **score** is the weighted share of the track: under 6 clear, 6-16 haze, over 18 wash.
-- **head**: how far fresh notes stand over the ghosts, in dB. Under 12 is tagged wash, over 12 haze.
-
-The report flags wash only from a score of 16 up; clear and haze are not reported.
-
-The cut-offs (30%, 12 dB, 2 points/s, score 18) rest on few labelled tracks.
+The report flags a wash; the `ghost %` strip under the spectrogram shows where, and the `.txt` has the table (`scripts/wash.py`).
 
 Causes: effects built into an instrument (FLEX, `MECHANICS.md` Traps), a reverb on every channel, a pedal held over a fast arpeggio. To find which, render one note per channel. With Δ the time between notes on that channel, the dip between notes is 60·Δ/T60 dB; under about 6 dB, the notes never separate.
 
