@@ -7,7 +7,7 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 - **Write from nothing.** Unless asked otherwise. No existing project as a base, no channel copied for its sound, no old composition script read to learn from. A copied base drags in another piece's mixer and choices; a copied script anchors the new piece on the last one.
 - **Write every note and every placement out by hand.** Every note of every part (drums, bass, melody, chords, chops, one-shot hits) and every clip in the arrangement is its own typed row. No `for`, `while` or comprehension writes a note or a clip. No list is repeated by multiplication. No function returns notes or clips. No formula, modulo, transposition or random choice picks a position, length, pitch or bar. Placing a written pattern again is allowed, one typed clip row per placement. Helpers that turn one typed row into the document's form (`P`, `at`, `note`, `clip`) are fine; a helper never decides where a row goes. The script and its JSON change only by hand edits: no regex or helper script adds, copies or moves rows. Code that writes notes or clips makes them free to add, so eighty placements cost what eight do and none of them gets weighed.
 - **Measure to know, never to correct.** A render says where a note sounds and how wide and loud each section is. Detune, an octave accident, a peak past 0 dBFS are choices once known; breaking a rule never makes something wrong.
-- **More does not name the dimension.** A request for more (harder, more complex, deeper) does not name the dimension. Candidates: harmony and voicing, layering and counter-lines, sound design and processing, arrangement and contrast, rhythm.
+- **More does not name the dimension.** A request for more (harder, more complex, deeper) does not name the dimension. Candidates: harmony and voicing, layering and counter-lines, sound design and processing, arrangement and contrast, rhythm. Cutting up or re-placing material already written is the cheapest of these and adds the least. A request for more is answered first with more written music.
 
 ## 1. Order of work
 
@@ -55,7 +55,7 @@ A predictable grid and progression is one option, worth knowing how to use and h
 
 ### What good lines tend to do
 
-- **Few pitches**: a lead can live on four notes for 32 bars.
+- **Few pitches per cell**: a cell can live on four notes; the piece around it does not.
 - **Leaps and neighbours**: 4ths, 5ths, 3rds, whole-step swaps around a note; three notes stepping one way is rare.
 - **Syncopation, when it is the goal**: a dotted grid (0, 6, 12) is one way: bass and chord changes 6 sixteenths apart instead of on the beat. It sets where a note starts, not how long it lasts.
 - **The bass holds by default**: few notes, each held for a bar or more, while the drums do the punctuating. Short bass hits locked to the kick are a valid choice, but a nuanced one that has to be executed well: the bass tuned to the kick, the kick's own pitch and tail, what fills the gaps. Make it on purpose, never by habit.
@@ -69,12 +69,18 @@ A predictable grid and progression is one option, worth knowing how to use and h
 - **Scale runs**: a chord tone, a leap, then the scale walked back. It sounds like an exercise.
 - **A plain progression** (four equal chords in order) unless it is a deliberate transition.
 
+### How much material
+
+- **The ear follows the top line.** Whatever sits highest and loudest is what the listener tracks. A change under an unchanged top line (tempo, drums, chords, a new block order) is heard as the same music.
+- **A piece needs new written material as it goes.** Restating a cell works inside a phrase, not across a whole piece. Each section brings something written for it: a new line, a counter-line, a changed cell, chords that move differently. Earlier material cut up or placed again does not count as new.
+- **The top line changes across the piece**, in pitch, rhythm or which part carries it, unless the form says why it holds.
+
 ### Method
 
 1. A tonal centre and the 3-5 pitches the lead mostly uses; which one is the anchor.
 2. Bass roots first: few notes, each held until the next change. With a vocal, from the vocal (§6).
 3. Chords with little motion between them; let a held note change meaning over a moving bass.
-4. A 1-2 bar lead cell from leaps and neighbour swaps, restated with one substitution; the larger change at a section switch.
+4. A 1-2 bar lead cell from leaps and neighbour swaps, restated with one substitution inside a phrase; each section adds material of its own (How much material).
 5. Any run, trill or four-equal-chord loop is a decision to defend or remove.
 
 ### Polyphony from two colliding lines
@@ -86,7 +92,7 @@ Two independent lines in one sound make harmony neither has alone:
 - The same timbre for both, so they fuse into one instrument.
 - Where they cross, mostly octaves, 3rds and 6ths, with 2nds and 7ths about a fifth of the time as colour. Do not correct a clash.
 - Both played, not quantised: meetings a few ticks apart smear into one composite.
-- Repeat the lines and move the bass and pad under them (one root per bar, alternating a step apart): the same notes read as a minor colour over one root and a lydian major 9 over the next.
+- Repeat the lines and move the bass and pad under them (one root per bar, alternating a step apart): the same notes read as a minor colour over one root and a lydian major 9 over the next. This holds for a phrase; across sections the lines themselves change.
 
 ## 4. Drums
 
@@ -102,6 +108,7 @@ Drums are a judgment per piece.
 - **Additions make the floor denser and less predictable**: extra hits in its gaps, retriggers, stutters, a slice pitched down as a kick or up as a flam, a reversed beat. Rearranging inside is fine when it adds; a new pattern assembled from its pieces is not the point, and chopping a loop just to get a kit is wasted work. More than one break exists: reusing the same Amen piece after piece is the lazy choice, and a break of your own baked into a sample is valid.
 - **Additions by tier** (§2): mostly the "and"s and 16ths; tier 4-5 only with a reason.
 - **Every hit has a reason**: what it fills, answers or sets up.
+- **The floor changes inside a section too**: an addition, a dropped hit or a swapped slice every few bars, so no loop carries a section unchanged.
 
 ### What reads as dead
 
@@ -170,6 +177,8 @@ Write the form as one sentence about what happens over time, before any list of 
 - **Loop and interruptions**: one bar or phrase, broken into by events.
 - **One gesture**: a single rise, collapse or decay, with no payoff section.
 
+Every shape still needs new material (§3, How much material). In Variation, Loop and interruptions, and Process, the changes reach the top line, not only what is under it.
+
 ### Phrases and lengths
 
 Each phrase restarts the count; its strongest point is the cadence landing on the next phrase's first beat. Lengths are uneven unless evenness is the point: 16 8 8 24 2 2 2 16 16.
@@ -178,7 +187,7 @@ Each phrase restarts the count; its strongest point is the cadence landing on th
 
 Tools for contrast, as fast, dense styles use them:
 
-- **Hard switches**: a new texture every 15-20 s, switched at once.
+- **Hard switches**: a new texture with its own material, switched at once.
 - **Silence as a transition**: a near-silent drop, a full dropout of a few seconds, short hard gaps every 16 bars that keep a long wall alive.
 - **Width as a switch**: mono walls against wide, bassless breakdowns.
 - **Loudness as a sound**: walls at -6 to -12 dBFS RMS, peaks past 0 dBFS.
@@ -214,7 +223,7 @@ No outro by default. A piece can stop mid-phrase, on a cut, on its quietest mome
 
 - **Instruments that list 0 presets** (Pigments, Omnisphere, Nexus, DUNE 3 and others) keep their presets inside the plugin. `presets(plugin, harvest=true)` reads them only when the plugin has a parameter named `Program`; otherwise a sound becomes usable by name once it is saved from FL's plugin menu as an `.fst`.
 - **Ask what the user has and likes.** Which synths and libraries are on the machine is theirs to say, and so is which they trust; `plugins` and `presets` list what is installed and what loads.
-- **Choose by sound, not numbers**: a preset or sample that measures clean is not thereby good. Render candidates and keep what serves the part.
+- **Choose by role, not by meter.** A render cannot say which candidate sounds best, and a meter reading (loudest, brightest, cleanest) is no reason to keep one. Choose by what the part needs (register, attack, sustain, how far it should stand out), and name the candidates and the reason in `<piece>.md` so the user's ear can overrule it.
 - **Not binary**: a weak preset can work under effects or in a small role; an unlucky pick is replaced, not mixed around.
 
 ### Know where it sounds
@@ -241,7 +250,7 @@ An unmixed piece is not finished: write faders and effects into the document.
 
 ### Starting levels
 
-A starting point in dB under 0, from two mixes made by hand: bass -3, pad -4, lead -4, ostinato -6, kick -7, open hat -7, clap -8, crash -8, counter-line -10, closed hat -11, snare -11.5; master volume 12800 -> 10600. Adjust from the render to balance parts; a section's weight comes from what plays in it (below).
+A starting point in dB under 0, from two mixes made by hand: bass -3, pad -4, lead -4, ostinato -6, kick -7, open hat -7, clap -8, crash -8, counter-line -10, closed hat -11, snare -11.5; master volume 12800 -> 10600. Adjust from the render to balance parts; a section's weight comes from what plays in it (below). The lead at -4 comes from mixes where it sat over a dense arrangement; a bright or saturated lead starts lower.
 
 ### Faders balance; the writing gives a section its weight
 
@@ -249,7 +258,7 @@ A fader balances parts that are already right. When a section sits wrong against
 
 A section gains weight without a fader through:
 
-- a part carrying the music in the 1-4 kHz range, not only drums: a saturated or layered lead, an octave doubling, stabs in the gaps of the break;
+- a part that carries the music, not only drums: an octave doubling, stabs in the gaps of the break;
 - another written part: a counter-line, chops used as a line rather than an ornament;
 - contrast before it: the section before thinner, darker or narrower;
 - a mastered break loop brought down at the source and split into attacks and bodies (§4), so it sits with the music instead of over it.
@@ -281,7 +290,7 @@ Every sound that might be processed alone gets its own insert from the first dra
 The first failure to look for is mud: the mix sounding submerged because the low and low-mid range is crowded and the hits have no edge. It does not show on a meter. The fix is placement: the same parts, each where it does not cover another.
 
 - **The loudest thing is the one you don't hear.** Sub energy fills meters and the limiter's budget while the ear barely registers it. Let the bass be heard through its harmonics (saturation adds them and a transient) and keep its fundamental at the level it is felt.
-- **Lift the high mids** (about 1-4 kHz), where the ear hears loudness and detail.
+- **The high mids (about 1-4 kHz) are where the ear hears loudness and detail**, so a little goes a long way: a lead pushed there turns harsh before any meter shows it.
 - **Width per element, both directions**: narrow what is too open (an impact so wide it reads as reverb), widen what needs space; drums placed in the panorama, not one cloud.
 - **Bring quiet passages up** so detail does not drop out.
 - **Leave the limiter little to do**: bring the sum in below the master and make level up there.
@@ -317,10 +326,11 @@ Reason from what changed in the wave and spectrum (level, band balance, transien
 
 ## 10. Render and read
 
-1. Render to wav and mp3 and run the analysis (`MECHANICS.md`).
-2. Check the length: the render runs to the last note or automation point (§7 for a tail).
-3. Read section by section against `compositions/<piece>/<piece>.md`: does each switch show in level, width, spectrum? Any bass below about 30 Hz by accident, unintended clipping, a start that is not actually quiet, a wash stretch (§9)?
-4. The render is numbers and pictures; listening is the verdict, and it is the user's. Record what changes because of it.
+1. **Read the arrangement before rendering.** `project_read(view="summary")` gives each pattern's clip count and span and each track's timeline. For each part, compare the bars written with the bars that play, and note how many bars the top line repeats unchanged. Write both into `<piece>.md`; a part that plays far more bars than were written for it is a choice the `.md` defends.
+2. Render to wav and mp3 and run the analysis (`MECHANICS.md`).
+3. Check the length: the render runs to the last note or automation point (§7 for a tail).
+4. Read section by section against `compositions/<piece>/<piece>.md`: does each switch show in level, width, spectrum? Any bass below about 30 Hz by accident, unintended clipping, a start that is not actually quiet, a wash stretch (§9)?
+5. The render is numbers and pictures; listening is the verdict, and it is the user's. Record what changes because of it.
 
 ## 11. Dropping a piece
 
@@ -338,3 +348,4 @@ Round after round of fixes on a piece whose hard part stays as it was rarely sav
 - Each section's weight against the others comes from its parts and sounds; faders only balance them.
 - `compositions/<piece>/<piece>.md` says what each part is for.
 - The form is one sentence in `<piece>.md`. If it reads intro, section, transition, section, outro, the `.md` says why.
+- `<piece>.md` says what new material each section brings; the top line changes across the piece, or the `.md` says why it holds.
