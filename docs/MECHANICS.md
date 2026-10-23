@@ -157,7 +157,7 @@ Samples come through `samples`. Its first call shows the user's sample folders, 
 
 ## Sounds that load
 
-`plugin` takes any plugin FL has installed, by the name `plugins` lists (`"Serum2"`, `"Vital"`, `"Diva(x64)"`); `serum2` and `flex` also name the template's own channels. `preset` takes an id from `presets(plugin, query)`; FLEX ids are `"<pack>/<preset>"`, e.g. `"Hard 808s/808 Clean Fuzz"`. A plugin with no `preset` loads its init state. Serum 1 `.fxp` do not load. Choose from `presets`, not from an old script.
+`plugin` takes any plugin FL has installed, by the name `plugins` lists (`"Serum2"`, `"Vital"`, `"Diva(x64)"`). `preset` takes an id from `presets(plugin, query)`; FLEX ids are `"<pack>/<preset>"`, e.g. `"Hard 808s/808 Clean Fuzz"`. A plugin with no `preset` loads its init state. Serum 1 `.fxp` do not load. Choose from `presets`, not from an old script.
 
 **Before writing a range, know the preset's transpose and tuning** (`COMPOSING.md` §8): several presets sound one or two octaves below the written note, and Sytrus `Bass/Sub bass` three (written D#4 sounds D#1). Check the lowest partial in a one-note render. The render log says how much of the energy sits below 20 Hz and warns over 5%: that is a sound written octaves too low.
 

@@ -121,7 +121,7 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 
 ## The template
 
-`projects/init/init.flp`, saved by FL: a Sampler, Serum 2, FLEX, one audio channel and one automation clip; a mixer of inserts 1-125, no effects; a project routing past 125 is refused. A `plugin` instrument is copied from the template channel of that plugin, so with this template `plugin` takes `serum2` or `flex`. Vital, Diva and Sylenth1 load by name with a preset (`{"kind": "plugin", "plugin": "Vital", "preset": "<id>"}`), into a state FL saved for them (Plugins by name); a template of your own holding them still works, matched by name: `Serum2`, `FLEX`, `Vital`, `Sylenth1`, `Diva(x64)`.
+`projects/init/init.flp`, saved by FL: a Sampler, FLEX, one audio channel and one automation clip; a mixer of inserts 1-125, no effects; a project routing past 125 is refused. Every plugin but FLEX loads by name; Serum 2, Vital, Diva and Sylenth1 take a preset (`{"kind": "plugin", "plugin": "Vital", "preset": "<id>"}`) into a state FL saved for them (Plugins by name). A template of your own holding them still works, matched by name: `Serum2`, `FLEX`, `Vital`, `Sylenth1`, `Diva(x64)`.
 
 ## Effects
 

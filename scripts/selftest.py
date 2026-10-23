@@ -1,7 +1,7 @@
 """What CI runs, and anyone can: python scripts/selftest.py. No FL needed.
 
 1. The shipped templates parse and serialize byte-identical.
-2. A project built only from what ships (the template's Serum 2, samplers, an effect copied from fx.flp, routing,
+2. A project built only from what ships (the template's FLEX, samplers, an effect copied from fx.flp, routing,
    automation) has no writer warning, round-trips and reads back as written. On Windows, where FL's plugin database
    names Sytrus and 3xOsc, every example is built too.
 3. profile runs over what was built.
@@ -36,7 +36,7 @@ PORTABLE = {
     "instruments": [
         {"id": "kick", "name": "kick", "kind": "sampler", "path": FACTORY + "Kicks/Jung Kick.wav", "mixer": 1},
         {"id": "hat", "name": "hat", "kind": "sampler", "path": FACTORY + "Hats/909 CH 1.wav", "mixer": 2},
-        {"id": "lead", "name": "lead", "kind": "plugin", "plugin": "serum2", "mixer": 3},
+        {"id": "lead", "name": "lead", "kind": "plugin", "plugin": "flex", "mixer": 3},
     ],
     "automation": [{"id": "fade", "name": "fade", "kind": "automation", "target": {"mixer": 0, "param": "vol"}, "points": [[0, 0.8], [28, 0.8], [32, 0.0]]}],
     "mixer": {"volume": {"1": 0.8, "2": 0.6, "3": 0.7}, "routes": [{"from": 1, "to": 3, "level": 0.0}],
