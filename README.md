@@ -80,8 +80,8 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 | `scripts/serum2.py`, `sylenth1.py`, `diva.py`, `flex.py` | each synth's preset format, and `<script> catalog [out.tsv]`: one TSV row per preset in that library |
 | `scripts/catalog.py` | `catalog.py <preset folder> <out.tsv>`: Vital presets by style, oscillators, unison, effects on, macro names |
 | `scripts/render.py` | `render.py <flp> [--close] [--reopen]`: FL's command-line render to wav and mp3 beside the project, then a short report and the spectrogram (spectro.py). FL must be closed first; `--close` asks it to (never forced); `--detail` puts the full analysis in the log |
-| `scripts/spectro.py` | render -> PNG: semitone piano-roll spectrogram, chroma, 20 Hz-20 kHz spectrogram, RMS/peak, L/R correlation, ghost % over time with wash stretches (`wash.py`); `--bpm` adds bar lines. PNGs in `tmp/spectro/`. It prints a short report (length, peak, RMS, key, and flags only where something is there) and writes the full analysis beside the picture as `.txt`; `--detail` prints that instead |
-| `scripts/wash.py` | the wash check `spectro.py` runs on every render: ghost % per 4 s window, stretches weighted by length and edge rate, head over trail, a score where over 18 is a wash (`docs/COMPOSING.md` §9) |
+| `scripts/spectro.py` | render -> PNG: semitone piano-roll spectrogram, chroma, 20 Hz-20 kHz spectrogram, RMS/peak, L/R correlation, ghost % over time with wash stretches (`wash.py`); `--bpm` adds bar lines. PNGs in `tmp/spectro/`. It prints a short report (length, key, flags only where something is there, peak and RMS) and writes the full analysis beside the picture as `.txt`; `--detail` prints that instead |
+| `scripts/wash.py` | the wash check `spectro.py` runs on every render: ghost % per 4 s window, stretches weighted by length and edge rate, seconds where a hit rings out with nothing new under it before the next one counted half, head over trail, a score where over 18 is a wash (`docs/COMPOSING.md` §9) |
 | `scripts/loudness.py` | integrated and momentary LUFS, LRA, true peak, RMS |
 | `scripts/scope.py` | stereo density heatmaps per moment and band, `--timeline` for width over time |
 | `scripts/waveshape.py` | A/B of several renders at several zooms around each file's loudest second |
@@ -98,7 +98,7 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 | `scripts/nudgemap.py`, `profiles/serum2/` | Serum 2 host-parameter mapping (parked) |
 | `profiles/sylenth1/params.json` | Sylenth1's 244 parameter names in blob order |
 | `projects/init/init.flp` | the template new projects are built from |
-| `projects/init/fx.flp` | a library of FL's own effects to copy from |
+| `projects/init/fx.flp` | the block effects by name are built on (config `effect_template`) |
 | `examples/` | seven small documents, one per part of the format (instruments, effects, routing and sidechain, global, mixer and instrument automation), and a full two-minute piece with its script, notes and render; `examples/build.py` builds them all. Start at `examples/README.md` |
 | `docs/params/` | parameter maps, one TSV per plugin: 27 of FL's own and 22 VST3s, listed in `docs/params/INDEX.md`; the `params` tool reads them |
 
@@ -128,17 +128,7 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 
 ## Effects
 
-An effect goes in by name: any effect FL has installed (Plugins by name). One can also be copied, with its settings, from a project FL saved. `projects/init/fx.flp` holds FL's own, set up as follows, and its first effect is also the block by-name effects are built on (config `effect_template`):
-
-| from insert/slot | effect |
-|---|---|
-| 1/0 | Fruity Parametric EQ 2, saved with a band set (a high shelf at -18 dB); move or zero its bands before relying on it |
-| 2/0 | Fruity Limiter |
-| 3/0 | Fruity Limiter in compressor mode, set up for sidechain ducking |
-| 4/0 | Fruity Reeverb 2 |
-| 5/0 | Fruity Multiband Compressor |
-| 6/0 | Soundgoodizer |
-| 7/0 | Gross Beat |
+An effect goes in by name: any effect FL has installed (Plugins by name). The first effect in `projects/init/fx.flp` is the block by-name effects are built on (config `effect_template`).
 
 ## Plugins by name
 
@@ -186,7 +176,7 @@ Parameter maps: open a copy of the library in FL (the sweep leaves every knob at
 - **Samples**: `path`, or `state` to copy one. An audio clip without `trim` plays the whole sample; `trim` is `[start_ms, end_ms]` into the sample. A path may start with `%FLStudioFactoryData%`, FL's own token for its install folder, so `%FLStudioFactoryData%/Data/Patches/Packs/Drums/Kicks/808 Kick.wav` finds FL's factory kick on any machine.
 - **Project info**: `project` takes `title`, `author`, `genre` and `comment`, written into FL's project info (FL shows the title in its window), and `project_read` returns them.
 - **Automation**: `points` are `[beat, value, tension?]` in beats from the clip start. Targets: `{"global": "tempo" | "main_pitch"}`, `{"mixer": t, "param": "vol" | "pan" | "sep"}` (insert 0 is the master: its fader is the overall level), `{"mixer": t, "slot": s, "param": n}` (effect parameter n), `{"mixer": t, "slot": s, "rec": "0x1f00"}` (the slot's mute) or `"0x1f01"` (its mix), `{"channel": id, "param": n}` (instrument parameter n) or `{"channel": id, "param": "vol" | "pan" | "pitch" | "fcut" | "fres" | "mute"}`. Values: tempo = (bpm - 60) / 120; main pitch 0.5 in tune, +-12 semitones; mixer volume 0.8 = 0 dB; pan 0 left, 0.5 centre, 1 right; sep 1 mono, 0 widest; channel pitch 0.5 in tune, +-48 semitones; channel volume 0.78 is FL's default. `{"global": "main_vol"}` is written but FL 2025 ignores it. `examples/README.md` lists the scales measured so far (fcut, fres and mute are written but their scales were not measured).
-- **Mixer effects**: `mixer.effects: [{"track": 0, "slot": 9, "from": {"file": "projects/init/fx.flp", "track": 2, "slot": 0}}]` copies that effect with its settings into the given slot, replacing what was there.
+- **Mixer effects**: `mixer.effects: [{"track": 3, "slot": 0, "plugin": "<name>", "preset": "<id>"}]` puts that effect in the given slot, replacing what was there; `from: {file, track, slot}` in place of `plugin` copies one with its settings from a saved project.
 - **Mixer routes**: `mixer.routes: [{"from": 11, "to": 10, "level": 0.0}]` routes insert 11 to insert 10; `level` 0 is a sidechain-only send, which is what a sidechained limiter or compressor listens to. `"on": false` removes a route.
 - **Mixer volume**: `mixer.volume` maps insert -> fader, 0.8 = 0 dB; `main_volume` is FL's global main volume.
 - **base**: the file whose globals, unmapped sections, arrangement track templates and mixer are kept. Building on one of your own projects keeps its mixer chains. Default: the `template` key.

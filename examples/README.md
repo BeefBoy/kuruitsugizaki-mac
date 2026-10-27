@@ -22,7 +22,7 @@ That writes `projects/examples/<name>.flp`; open them in FL like any project. `b
 |---|---|
 | `01_notes.json` | the smallest project: one instrument, one pattern, one clip; note rows, ticks, an off-grid triplet and a late note |
 | `02_instruments.json` | every way to bring in a sound: plugin by name with a preset, plugin by name with a format, the template's FLEX, a sampler, an audio clip with trims; one pattern for several instruments |
-| `03_effects.json` | effects by name with presets, an effect copied with its settings from `projects/init/fx.flp`, faders, the master fader |
+| `03_effects.json` | effects by name with presets, an effect copied with its settings from a saved project, faders, the master fader |
 | `04_routing.json` | three drum inserts routed to a bus and off the master; a sidechain send at level 0 into a pad's compressor |
 | `05_automation_global.json` | FL's global controls: tempo (a ramp and a tape stop), master pitch, and a fade on the master fader |
 | `06_automation_mixer.json` | mixer and effect automation: fader, pan, stereo separation, an effect's parameter (an EQ band swept as a filter, a reverb's wet level), a slot's mute switch and mix |

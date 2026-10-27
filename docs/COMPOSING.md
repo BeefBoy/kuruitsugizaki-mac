@@ -9,13 +9,11 @@ A method from an empty project to a rendered piece. Mechanics (tools, the piece 
 - **Measure to know, never to correct.** A render says where a note sounds and how wide and loud each section is. Detune, an octave accident, a peak past 0 dBFS are choices once known; breaking a rule never makes something wrong.
 - **More does not name the dimension.** A request for more (harder, more complex, deeper) can mean any of: harmony and voicing, layering and counter-lines, sound design and processing, arrangement and contrast, rhythm. Cutting up or re-placing material already written is the cheapest of these and adds the least. A request for more is answered first with more written music.
 - **The work is the point.** A piece takes as many notes, parts and passes as it needs. Nothing is left out because writing it is long; choosing the smaller version because it is less to type is the failure this file exists to stop.
-- **Not hearing is the condition, not a reason.** Every piece here is written without ears, from the first note to the last. A part, a doubling or a layer is never left out because how it will sound can't be checked first; leaving it out for that reason is choosing the basic version.
-- **Stay away from the probable.** The first idea is the most typical one: the textbook progression, the hook over a beat, the common voicing, the genre's usual move. For each part, write in `<piece>.md` what the textbook version would be, then write something else. A bias away from the expected is wanted even when it overshoots: an odd choice can be pulled back after a verdict, and a typical one leaves nothing to pull back.
 
 ## 1. Order of work
 
 0. **Whose piece**: run `profile` first. Without a folder it reads the one saved in `projects_folder`; when none is saved, ask the user where their projects are and pass that folder, or set `projects_folder` to `none` when they have none. Ask for favourites (a `favourites/` folder) when they can name any.
-1. **The piece**: tempo, tonal centre, and its core material: a cell, a sound, a drum floor or a line, whichever the piece grows from.
+1. **The idea, before any sound or tool**: tempo, tonal centre, and the core material written out in full: the hook as notes and rhythm, the chord under each bar, and how the phrase goes (what repeats, where it rises, where it lands, which phrase answers which). Describe it in plain words in `<piece>.md`: what the hook is, where it comes back, where the peak is. Material that can't be described that way isn't an idea yet; work it out before going on. Render it bare (one piano, melody and chords, no drums) and give it to the user before production starts. Breaks, presets, effects and mixing come only after the tune holds up on its own.
 2. **Form**, from that material (§7).
 3. **Part map**: a table of bars against parts. For each part: its register band, its rhythmic layer (held, half, quarter, 8th, 16th, free), and per section whether it moves, holds, rests or answers. Parts claim different registers and layers; where one moves, another holds.
 4. **Sounds**: pick by role from `plugins`, `presets` and `samples`, measure sounding octave and tuning (§8).
@@ -60,7 +58,7 @@ A predictable grid and progression is one option, worth knowing how to use and h
 - **Few pitches per cell**: a cell can live on four notes; the piece around it does not.
 - **Leaps and neighbours**: 4ths, 5ths, 3rds, whole-step swaps around a note; three notes stepping one way is rare.
 - **Syncopation, when it is the goal**: a dotted grid (0, 6, 12) is one way: bass and chord changes 6 sixteenths apart instead of on the beat. It sets where a note starts, not how long it lasts.
-- **The bass holds by default**: few notes, each held for a bar or more, while the drums do the punctuating. Short bass hits locked to the kick are a valid choice, but a nuanced one that has to be executed well: the bass tuned to the kick, the kick's own pitch and tail, what fills the gaps. Make it on purpose, never by habit.
+- **The bass can hold by default**: few notes, each held for a bar or more, while the drums do the punctuating. Short bass hits locked to the kick are a valid choice, but a nuanced one that has to be executed well: the bass tuned to the kick, the kick's own pitch and tail, what fills the gaps. Make it on purpose, never by habit.
 - **Cells restated with one substitution**: the one change is what gets heard.
 - **Pedal against movement**: one voice holds while another moves, so the same note changes meaning (A#4 over E).
 - **Played or on the grid, by choice**: a consistent lateness per part reads as feel; random per-note jitter does not.
@@ -90,7 +88,6 @@ A predictable grid and progression is one option, worth knowing how to use and h
 
 Two independent lines in one sound make harmony neither has alone:
 
-- One fast and leaping: straight 8ths jumping between registers over chord and colour tones, every move a leap.
 - One slow and low: a few notes in neighbour motion around one pitch, allowed to overlap.
 - The same timbre for both, so they fuse into one instrument.
 - Where they cross, mostly octaves, 3rds and 6ths, with 2nds and 7ths about a fifth of the time as colour. Do not correct a clash.
@@ -112,12 +109,6 @@ Drums are a judgment per piece.
 - **Additions by tier** (§2): mostly the "and"s and 16ths; tier 4-5 only with a reason.
 - **Every hit has a reason**: what it fills, answers or sets up.
 - **The floor changes inside a section too**: an addition, a dropped hit or a swapped slice every few bars, so no loop carries a section unchanged.
-
-### What reads as dead
-
-- Equal spacing: one hit per 16th, whatever the sounds, is a metronome.
-- Beat pieces in plain order: a staircase.
-- Everything on strong positions while trying to sound off-beat.
 
 ### What gives movement
 
@@ -217,17 +208,6 @@ No outro by default. A piece can stop mid-phrase, on a cut, on its quietest mome
 
 - **Start from a preset.** A perfectly periodic init saw reads as machine-made.
 - **Audition across instruments, not inside one.** For each role, find candidates in at least three different instruments (`presets(plugin, query)` on each), render the short list, and keep what serves the part. A piece built from one instrument's presets sounds like that instrument.
-- **Instruments differ in how they make sound**, and that shows more than any preset name:
-
-  | synthesis | instruments |
-  |---|---|
-  | analog-modelled, filter-led | Diva, Sylenth1, PoiZone, Sawer, SimSynth |
-  | wavetable | Serum 2, Vital, Massive X |
-  | FM | Sytrus, Fruity DX10 |
-  | additive, resynthesis | Harmor, Harmless, Ogun (metallic) |
-  | physical modelling | Sakura (strings), FL Slayer (guitar) |
-  | sampled instruments | FLEX, FL Keys |
-
 - **Instruments that list 0 presets** (Pigments, Omnisphere, Nexus, DUNE 3 and others) keep their presets inside the plugin. `presets(plugin, harvest=true)` reads them only when the plugin has a parameter named `Program`; otherwise a sound becomes usable by name once it is saved from FL's plugin menu as an `.fst`.
 - **Ask what the user has and likes.** Which synths and libraries are on the machine is theirs to say, and so is which they trust; `plugins` and `presets` list what is installed and what loads.
 - **Choose by role, not by meter.** A render cannot say which candidate sounds best, and a meter reading (loudest, brightest, cleanest) is no reason to keep one. Choose by what the part needs (register, attack, sustain, how far it should stand out), and name the candidates and the reason in `<piece>.md` so the user's ear can overrule it.

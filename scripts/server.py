@@ -739,7 +739,7 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
 
 
 @mcp.tool(annotations=LIVE, description=(
-    "Read what fl_render produced: the short report (length, peak, key, the number of parts sounding in each bar, and a flag only where something is found) "
+    "Read what fl_render produced: the short report (length, key, a flag only where something is found, the number of parts sounding in each bar, peak and RMS) "
     "and the spectrogram picture, as [text, image]. Call it after fl_render; it does not wait, and while the render "
     "is still going it says so: call again. With no render on record it answers to call fl_render first; a render "
     "that failed comes back as its log. Look at the picture before handing a piece over; the full analysis is in the "

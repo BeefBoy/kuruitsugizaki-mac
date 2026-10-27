@@ -186,9 +186,7 @@ def summary(path, out, st, t, rms, corr, sd, top, infra, chroma, bm, bv, key, wa
     when = lambda x: _clock(x, bar_s, first_bar)
     dur = len(st) / SR
     pk = float(np.max(np.abs(st)))
-    mono = st.mean(axis=1)
-    lines = [f"{Path(path).name}  {_clock(dur, None, 1)}  peak {20 * np.log10(pk + 1e-12):.1f} dBFS  rms {20 * np.log10(np.sqrt(np.mean(mono ** 2)) + 1e-12):.1f} dBFS",
-             f"look: {out}"]
+    lines = [f"{Path(path).name}  {_clock(dur, None, 1)}", f"look: {out}"]
     tot = chroma.sum(axis=0)
     share = tot / max(tot.sum(), 1e-12)
     k = parse_key(key)
@@ -324,7 +322,7 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
     fig.savefig(out, dpi=100)
     plt.close(fig)
     integ = 20 * np.log10(np.sqrt(np.mean(mono ** 2)) + 1e-12)
-    full = [f"{out}  {dur:.1f} s  rms {integ:.1f} dBFS  peak {20 * np.log10(np.max(np.abs(st)) + 1e-12):.1f} dBFS  corr mean {corr.mean():+.2f}"]
+    full = [f"{out}  {dur:.1f} s"]
     f = np.fft.rfftfreq(N_FFT, 1 / SR)
     infra = float(P[:, f < 20].sum() / max(P.sum(), 1e-12))
     full.append(f"below 20 Hz {infra * 100:.1f}% of the energy" + (
@@ -334,18 +332,20 @@ def analyse(path: str, start: float, end: float | None, bpm: float | None, out: 
     fr = 20 * np.log10(rms)
     full.append(balance_line(ld, hz, lt, fr > np.percentile(fr, 90) - 10))
     full += wash.lines(wa, start, 240 / bpm if bpm else None, first_bar)
-    m, s = st[:, 0] + st[:, 1], st[:, 0] - st[:, 1]
-    full.append(f"side/mid {10 * np.log10((s ** 2).sum() / max((m ** 2).sum(), 1e-12)):.1f} dB")
     if rows:
         full.append(f"per {'bar' if bars else '8 bars'} (a grid at {bpm:g} BPM; tempo automation is not followed): top pitch classes, classes sounding, "
                     "bass frames within 25 cents, bands 20-60/60-250/250-1k/1k-4k/4k-20k against the loudest and % hot in each, rms, corr")
     full += rows
+    m, s = st[:, 0] + st[:, 1], st[:, 0] - st[:, 1]
+    full.append(f"level and width: rms {integ:.1f} dBFS, peak {20 * np.log10(np.max(np.abs(st)) + 1e-12):.1f} dBFS, "
+                f"corr mean {corr.mean():+.2f}, side/mid {10 * np.log10((s ** 2).sum() / max((m ** 2).sum(), 1e-12)):.1f} dB")
     out.with_suffix(".txt").write_text("\n".join(full) + "\n", encoding="utf-8")
     if detail:
         print("\n".join(full))
     else:
         print("\n".join(summary(path, out, st, t, rms, corr, sd, top, infra, chroma, bm, bv, key, wa, bpm, first_bar)))
         print(f"detail: {out.with_suffix('.txt')}")
+        print(f"level: peak {20 * np.log10(np.max(np.abs(st)) + 1e-12):.1f} dBFS, rms {integ:.1f} dBFS")
 
 
 if __name__ == "__main__":

@@ -147,24 +147,9 @@ Samples come through `samples`. Its first call shows the user's sample folders, 
 
 ## Effects, sidechain, levels
 
-An effect goes in by name, `mixer.effects: [{"track": t, "slot": s, "plugin": "<name>", "preset": "<id>"}]`, or is copied with its settings from a project FL saved, `{"track": t, "slot": s, "from": {"file": FX, "track": ft, "slot": fs}}`. The shipped library to copy from is `projects/init/fx.flp`; placement there means nothing:
+An effect goes in by name, `mixer.effects: [{"track": t, "slot": s, "plugin": "<name>", "preset": "<id>"}]`: any effect `plugins` lists, a preset from `presets`, its automatable parameters from `params`.
 
-| from track/slot | effect |
-|---|---|
-| 1/0 | Fruity Parametric EQ 2 (saved with a high shelf at -18 dB) |
-| 2/0 | Fruity Limiter |
-| 3/0 | Fruity Limiter in compressor mode, set for sidechain ducking |
-| 4/0 | Fruity Reeverb 2 |
-| 5/0 | Fruity Multiband Compressor |
-| 6/0 | Soundgoodizer |
-| 7/0 | Gross Beat (its pattern state is not mapped; `FLP.md`, Gross Beat state) |
-
-Any project the user saved in FL is a library too: `project_read` with `view="summary"` lists its effects per insert.
-
-**Sidechain:** route the trigger insert to the ducked one at level 0, `mixer.routes: [{"from": 1, "to": 4, "level": 0.0}]`, and copy the 3/0 limiter into the ducked insert's first slot. `"on": false` removes a route.
-
-**Master limiter:** the 2/0 limiter into master slot 9. Past 0 dBFS is allowed as a sound (`COMPOSING.md` §9).
-
+**Sidechain:** route the trigger insert to the ducked one at level 0, `mixer.routes: [{"from": 1, "to": 4, "level": 0.0}]`, and copy the Fruity Limiter in compressor mode, set for ducking, into the ducked insert's first slot: `{"track": t, "slot": 0, "from": {"file": FX, "track": 3, "slot": 0}}`. `"on": false` removes a route.
 **Faders:** `mixer.volume: {insert: value}`; `main_volume` 0.8 is the template's.
 
 **Not writable yet:** static pan and sends, pattern names, time signature.
@@ -187,7 +172,7 @@ Any project the user saved in FL is a library too: `project_read` with `view="su
      No tool opens an existing `.flp` without writing it. Render it straight away (`fl_render` reopens it in FL afterwards).
 3. If anything sounds missing, check routing live: `fl_exec` with `channels.getTargetFxTrack(i, True)` per channel.
 4. Render with `fl_render(path="projects/music/<piece>.flp")`. With an FL the user started open it refuses (FL hands the render to that FL and nothing comes out); ask them to save and close it. It saves FL's open project first, so closing FL never stops at a dialog, then runs `render.py <flp> --close --reopen` detached and returns the log path under `tmp/render_logs/`. Read the result with `render_report(path)`. Until the log shows the render finished, make no live call: a live call finds FL closed and says so. `render.py` also takes `--formats` (default `wav,mp3`) and `--bpm` (bar lines in the spectrogram). FL's split-mixer-tracks export must be off.
-5. The render writes `.wav` and `.mp3` beside the project. `render_report` returns the short report and the spectrogram. The report gives length, peak, RMS, the key (energy outside `key` when given), the parts sounding per bar, and flags only where something is there: clipping, energy below 20 Hz, an ending more than 30 dB under the piece for over 4 s, near-silence of 1.5 s or more, phase, bass off the semitone grid, wash at haze-to-wash or worse; the full analysis is in `tmp/spectro/<stem>.txt`. Look at the picture before handing a piece over, and treat a flag as something to listen for, not a defect to fix. `waveshape.py` compares renders when texture is the question; `scope.py <wav>... [--at s] [--lo Hz --hi Hz] [--timeline]` gives width per moment and per band.
+5. The render writes `.wav` and `.mp3` beside the project. `render_report` returns the short report and the spectrogram. The report gives length, the key (energy outside `key` when given), the parts sounding per bar, and flags only where something is there: clipping, energy below 20 Hz, an ending more than 30 dB under the piece for over 4 s, near-silence of 1.5 s or more, phase, bass off the semitone grid, wash at haze-to-wash or worse; then peak and RMS; the full analysis is in `tmp/spectro/<stem>.txt`. Look at the picture before handing a piece over, and treat a flag as something to listen for, not a defect to fix. `waveshape.py` compares renders when texture is the question; `scope.py <wav>... [--at s] [--lo Hz --hi Hz] [--timeline]` gives width per moment and per band.
 
 The render is numbers and pictures, not sound. The user listens; their verdict decides what changes.
 
@@ -199,7 +184,6 @@ The render is numbers and pictures, not sound. The user listens; their verdict d
 - **FL resaves a project it has open.** Treat anything in `projects/music/` as FL's copy; rebuild from `compositions/` to get the written file.
 - **Don't name an instrument or pattern `s1`, `a2` and the like.** In a compact document a clip `src` of `s<N>` or `a<N>` is read as a sample or automation pointer.
 - **The compact view drops a clip's start offset inside its pattern.** A clip that starts playing a pattern from its middle reads back as starting from the pattern's start; use `view="full"` for such projects.
-- **A copied Parametric EQ 2 is not neutral.** The one in `projects/init/fx.flp` is a high shelf at -18 dB and still took 4.3 dB off 16-20 kHz at its extreme setting; automate the band's level to 0.5 (0 dB) outside the move.
 - **A vocal to a key: stretch, not resample.** The writer cannot set FL's per-clip stretch mode, so shift it offline (`librosa.effects.pitch_shift`) into a new WAV; resampling changes its speed too.
 - **FLEX arrives with its own delay and reverb on.** Loaded by preset name, every FLEX channel came up with Delay on (ping pong, mix 50%, feedback 63%) and Reverb on (mix 50%): a ~10 s tail on every note, only 8-12 dB down 2 s after note-off. Switch them off per channel with flat automation clips, `{"channel": id, "param": n}`: 37 Delay switch, 38 Reverb switch, 25 Delay mix, 30 Reverb mix (all 0). Dry, the Essential Strings, Winds and Pianos fall silent within 0.5 s of note-off.
 - **Scratch goes in the repo's `tmp/`.**
