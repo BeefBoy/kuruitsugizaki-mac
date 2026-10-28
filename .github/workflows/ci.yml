@@ -3,6 +3,7 @@ on:
   push:
     branches: [main, macos]
   pull_request:
+  workflow_dispatch:
 jobs:
   selftest:
     strategy:
