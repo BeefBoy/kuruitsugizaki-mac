@@ -29,8 +29,9 @@ def _pids_posix(image: str) -> list[int]:
     if image.lower() != "fl64.exe":
         return []
     out = subprocess.run(["ps", "-axo", "pid=,command="], capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
-    # the command must BE the bundle's executable (it may contain a space, as "FL Studio" does), optionally followed by -flags
-    main = re.compile(r"^/(?:[^/]+/)*FL Studio[^/]*\.app/Contents/MacOS/[^/ -][^/]*?(?: -.*)?$")
+    # the command must BE the bundle's executable (it may contain a space, as "FL Studio" does), optionally followed by
+    # arguments (a project file, flags)
+    main = re.compile(r"^/(?:[^/]+/)*FL Studio[^/]*\.app/Contents/MacOS/[^/ -][^/]*?(?: .*)?$")
     found = []
     for line in out.splitlines():
         m = re.match(r"\s*(\d+)\s+(.*)", line)
@@ -41,7 +42,13 @@ def _pids_posix(image: str) -> list[int]:
 
 def created(pid: int) -> int | None:
     """The creation time of a running process; None once it has exited, though Windows keeps an exited process's
-    object, times and all, while any handle to it is open (loopMIDI's driver holds some)."""
+    object, times and all, while any handle to it is open (loopMIDI's driver holds some). On macOS, from ps (seconds)."""
+    if sys.platform != "win32":
+        out = subprocess.run(["ps", "-o", "lstart=", "-p", str(int(pid))], capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout.strip()
+        try:
+            return int(time.mktime(time.strptime(out, "%a %b %d %H:%M:%S %Y"))) if out else None
+        except ValueError:
+            return None
     k = ctypes.windll.kernel32
     h = k.OpenProcess(0x1000, False, pid)
     if not h:
@@ -80,7 +87,11 @@ def owned(path: Path = OWNED) -> list[int]:
 
 def launch(args: list[str], wait: float = 10.0, image: str = "FL64.exe", path: Path = OWNED) -> list[int]:
     before = set(pids(image))
-    subprocess.Popen(args)
+    if args and args[0].endswith(".app"):  # macOS: fl_exe is the app bundle
+        subprocess.Popen(["open", "-a", *args], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        wait = max(wait, 30.0)  # right after an FL exits (a render), open takes over 10 s to start the next
+    else:
+        subprocess.Popen(args)
     t0 = time.monotonic()
     new = []
     while not new and time.monotonic() - t0 < wait:
@@ -111,6 +122,8 @@ def windows(pid: int) -> list[tuple[int, str, str]]:
 
 
 def dialogs(pid: int, shots: Path | None = None) -> list[dict]:
+    if sys.platform != "win32":
+        return []  # not ported: needs the Accessibility API on macOS
     found = []
     for h, cls, title in windows(pid):
         if cls in ("TFruityLoopsMainForm", "TApplication"):
@@ -190,6 +203,8 @@ def capture(hwnd: int, path: Path) -> Path:
 
 
 def crashes() -> dict[int, dict]:
+    if sys.platform != "win32":
+        return {}  # not ported: macOS keeps crash reports in ~/Library/Logs/DiagnosticReports
     out = subprocess.run(["powershell", "-NoProfile", "-Command", "Get-CimInstance Win32_Process -Filter \"Name='WerFault.exe'\" | ForEach-Object { '{0} {1}' -f $_.ProcessId, $_.CommandLine }"],
                          capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
     running = set(pids())
@@ -209,6 +224,21 @@ def fault(pid: int) -> dict:
     msg = subprocess.run(["powershell", "-NoProfile", "-Command", ps], capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
     get = lambda label: (re.search(label + r":\s*(.+)", msg) or [None, None])[1]
     return {k: v.strip() for k, v in (("module", get("Faulting module path")), ("code", get("Exception code")), ("report", get("Report Id"))) if v}
+
+
+def quit_mac(pid: int) -> bool:
+    """Ask an app to quit as the Dock's Quit does (NSRunningApplication terminate): FL shuts down normally and writes its
+    settings, which a signal skips. No Automation permission is needed, unlike an AppleScript quit."""
+    from ctypes import c_bool, c_char_p, c_int, c_void_p
+    ctypes.cdll.LoadLibrary("/System/Library/Frameworks/AppKit.framework/AppKit")
+    objc = ctypes.cdll.LoadLibrary("/usr/lib/libobjc.A.dylib")
+    objc.objc_getClass.restype = objc.sel_registerName.restype = c_void_p
+    objc.objc_getClass.argtypes = objc.sel_registerName.argtypes = [c_char_p]
+    send = ctypes.CFUNCTYPE(c_void_p, c_void_p, c_void_p, c_int)(("objc_msgSend", objc))
+    app = send(objc.objc_getClass(b"NSRunningApplication"), objc.sel_registerName(b"runningApplicationWithProcessIdentifier:"), int(pid))
+    if not app:
+        return False
+    return bool(ctypes.CFUNCTYPE(c_bool, c_void_p, c_void_p)(("objc_msgSend", objc))(app, objc.sel_registerName(b"terminate")))
 
 
 def reap(pid: int):

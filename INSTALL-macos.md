@@ -1,10 +1,15 @@
 # Installing kuruitsugizaki on macOS (fork: `macos` branch)
 
 This branch ports kuruitsugizaki to macOS: reading and writing `.flp` projects, the profile, sample, plugin, preset and
-parameter tools, the analysis scripts, and the **live link to FL** (`fl_probe`, `fl_call`, `fl_exec`, `fl_transport`).
-Rendering from the harness (`fl_render`) is still Windows only. See "What does not work yet".
+parameter tools, the analysis scripts, the **live link to FL** (`fl_probe`, `fl_call`, `fl_exec`, `fl_transport`), and
+rendering (`fl_render`). See "What does not work yet" for the rest.
 
 You need FL Studio for macOS (tested with FL Studio 2026), started and quit at least once, so that its settings exist.
+Two things in FL need you once, because the harness starts FL by itself and nothing can click for it:
+
+- **Turn off FL's startup window** (the welcome screen it shows on launch). While it is open FL does not finish
+  starting, the controller script does not answer, and FL does not quit when asked.
+- **Answer macOS's microphone prompt** the first time FL asks; it also holds FL's startup until answered.
 
 ## Setup
 
@@ -39,24 +44,31 @@ If `fl_install` cannot make the setting (FL open, or its settings not found), do
 number. A port number left at `-` on the input is the usual reason `fl_probe` times out.
 
 FL connects to the port by itself when the server starts after it, so restarting Claude does not need an FL restart.
+The harness starts FL with `open -a` (an FL started any other way does not connect to the port) and quits it as the
+Dock's Quit does, so FL saves its settings.
 
 ## What works
 
 - `project_read`, `project_write`, `profile`, `samples`, `plugins`, `presets`, `params`, `config`, `render_report`.
-- `fl_install`, `fl_probe`, `fl_call`, `fl_exec`, `fl_transport` on an FL you have open.
-- `project_write(open=true)` asks macOS to open the file in FL (`open -a`). Nothing confirms it loaded, and `play` is
-  reported as unavailable: press play in FL, or call `fl_transport` once it has loaded.
-- The standalone scripts (`chop.py`, `onsets.py`, `vox.py`, `spectro.py`, `loudness.py`...) on audio files you render
-  from FL yourself.
+- `fl_install`, `fl_probe`, `fl_call`, `fl_exec`, `fl_transport`. `fl_probe` starts FL when it is closed and quits it
+  again.
+- `project_write(open=true, play=...)` starts FL (or opens the file in the FL the harness started), checks the channels
+  loaded, and plays.
+- `fl_render` and `render_report`: FL's command-line render (`OsxFL -R -Ewav,mp3 file.flp`; FL for Mac ignores the
+  Windows `/R /E` form and just opens the file). An FL you started is left alone and the render refused until you
+  close it, as on Windows. The analysis needs ffmpeg (`brew install ffmpeg`).
+- The standalone scripts (`chop.py`, `onsets.py`, `vox.py`, `spectro.py`, `loudness.py`...).
 
 ## What does not work yet
 
-- `fl_render`: needs FL's command-line render, unverified on macOS. Render from FL (File > Export).
-- The live tools do not start FL; open it yourself. FL crash and dialog detection, and the backup of a project you
-  opened yourself before the first live call, are Windows only.
+- FL crash and dialog detection are Windows only: on macOS a crash or an open dialog shows up as FL not answering.
+- The backup of a project you opened yourself, made before the first live call to your FL, is Windows only: FL gives
+  no project path, keeps no file open, and its window title needs Screen Recording permission.
+- On an FL you started, the harness saves nothing: with unsaved changes it asks you to save in FL first, since it
+  cannot tell whether saving would stop at a Save As dialog.
 - A preset that needs a saved plugin state (`Serum2`, `Vital`, `Diva`, `Sylenth1` presets by id) is made by opening the
-  plugin in FL, saving and closing it through the live link; that flow starts and closes FL, so it is not ported yet.
-  Plugins by name without a preset, FLEX packs, `.fst` presets and NKS presets do not need it.
+  plugin in FL, saving and closing it; the pieces now exist on macOS but the flow is untested (none of those plugins
+  was installed). Plugins by name without a preset, FLEX packs, `.fst` presets and NKS presets do not need it.
 - Vendor preset folders (`Krush`, `Portal`, `spiff`, `ShaperBox 3`) default to Windows locations; set `vst_presets` in
   `kuruitsugizaki.json` for macOS ones.
 - AU plugins are listed (format `au`) but untested.

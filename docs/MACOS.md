@@ -1,7 +1,7 @@
 # macOS port
 
 Upstream is Windows-only. The macOS port covers reading and writing `.flp` projects, the profile, sample, plugin, preset
-and parameter tools, and the live link to FL. `../INSTALL-macos.md` is the user-facing version of this.
+and parameter tools, the live link to FL, starting and quitting FL, and rendering. `../INSTALL-macos.md` is the user-facing version of this.
 
 ## Conventions
 - `config.WIN` and `config.MAC` choose platform code. Never hard-code a path: they are keys in `kuruitsugizaki.json`
@@ -37,8 +37,24 @@ and parameter tools, and the live link to FL. `../INSTALL-macos.md` is the user-
   set, and the same; `midisetup.ensure_mac` writes them.
 - One controller script serves both platforms: without `_winapi` it skips the pipe in `OnIdle` and answers SysEx.
 
+## Starting, quitting, rendering
+- `flproc.launch` starts FL with `open -a <app> [file]` and waits up to 30 s for the new process (right after an FL
+  exits, LaunchServices takes over 10 s). FL's executable started directly does not connect to CoreMIDI's virtual
+  ports, so the live link needs `open`. `MacLink` opens its ports before FL is launched.
+- `flproc.created` reads a process's start time from `ps` (seconds), which with the pid names an FL the harness owns.
+- `flproc.quit_mac` asks FL to quit through `NSRunningApplication terminate` (ctypes and the Objective-C runtime), as
+  the Dock's Quit does: FL saves its settings, and no Automation permission is needed. SIGTERM ends FL without that.
+- FL's startup window blocks the script and quitting; it must be turned off in FL. The first start also asks for the
+  microphone. Neither can be answered by the harness (no dialog detection on macOS).
+- Render: `render.render_cmd` runs the app's executable (from `Info.plist`) as `-R -E<fmts> file`; FL renders and exits.
+  The Windows `/R /E` form only opens the file on macOS. A render needs no live link, so the direct start is fine.
+- `channels.channelCount()` counts the current filter group only; use `channelCount(True)` and
+  `getChannelName(i, True)` to see every channel, as `_open` does.
+- `_save_open` cannot read FL's window title on macOS (Screen Recording permission), so it saves only an FL the harness
+  started; an FL the user started with unsaved changes is refused with a message.
+
 ## Not done
-- `fl_render`: FL's command-line render on macOS is unverified.
-- Starting and closing FL from the harness (`_ensure_fl`, `_close_fl`), crash and dialog detection, and the backup of a
-  project the user opened (it finds the file by FL's window title) are Windows code. The saved-plugin-state flow for
-  Serum 2, Vital, Diva and Sylenth1 presets depends on starting and closing FL.
+- Crash and dialog detection (`flproc.crashes`, `flproc.dialogs`) and the backup of a project the user opened, found by
+  FL's window title (`_backup_user`): FL's API gives no path, FL keeps no file open, and its recent-files list
+  (`Settings/Browser/Recent files.scr`, the `MRU` key in `reg.xml`) is written only when FL quits.
+- The saved-plugin-state flow for Serum 2, Vital, Diva and Sylenth1 presets is untested on macOS.

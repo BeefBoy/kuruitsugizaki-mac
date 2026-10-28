@@ -207,7 +207,7 @@ NOT_OPEN = "FL is not running, and it is not started just for this: open a proje
 
 
 def _ensure_loopmidi() -> bool:
-    if _running("loopMIDI.exe"):
+    if cfg.MAC or _running("loopMIDI.exe"):  # macOS: the server's own virtual port, no loopMIDI
         return False
     flproc.launch([cfg.need("loopmidi_exe")], image="loopMIDI.exe", path=flproc.LOOP_OWNED)
     time.sleep(1.5)
@@ -216,7 +216,7 @@ def _ensure_loopmidi() -> bool:
 
 def _close_loopmidi():
     """Close a loopMIDI the harness started, once no FL is left that could be using its ports."""
-    if flproc.pids():
+    if cfg.MAC or flproc.pids():
         return
     for p in flproc.owned(flproc.LOOP_OWNED):
         subprocess.run(["taskkill", "/F", "/PID", str(p)], capture_output=True)
@@ -225,6 +225,8 @@ def _close_loopmidi():
 def _ensure_fl() -> float | None:
     _ensure_loopmidi()
     if not _fl_running():
+        if cfg.MAC:
+            LINK.open()  # the port must exist before FL looks for MIDI devices
         flproc.launch([cfg.need("fl_exe")])
         LINK.close()
         LINK.pid = None
@@ -251,19 +253,21 @@ def _ensure_fl() -> float | None:
         since = time.monotonic() - BOOT["t"]
         if since > BOOT_GIVEUP:
             BOOT["t"] = None
-            raise RuntimeError(f"FL was launched {since:.0f}s ago and the kuruitsugizaki controller script never answered; check it is selected in FL's MIDI settings")
+            raise RuntimeError(f"FL was launched {since:.0f}s ago and the kuruitsugizaki controller script never answered; check it is selected in FL's MIDI settings"
+                               + ("; on macOS, also that FL is not waiting at its startup window or a permission prompt (the user can turn the startup window off)" if cfg.MAC else ""))
         if time.monotonic() - t0 > BOOT_WAIT:
-            raise RuntimeError(f"FL was launched {since:.0f}s ago and is still starting; call again")
+            raise RuntimeError(f"FL was launched {since:.0f}s ago and is still starting; call again"
+                               + (" (on macOS FL answers within seconds unless its startup window or a permission prompt is open: ask the user to look)" if cfg.MAC else ""))
         time.sleep(0.5)
 
 
 def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
     if not LIVE_LINK:
         return {"ok": False, "error": NO_LIVE}
-    if (cfg.MAC or not launch) and not _fl_running():  # macOS: FL is not started for the link (yet)
+    if not launch and not _fl_running():
         return {"ok": False, "error": NOT_OPEN}
     try:
-        launched = None if cfg.MAC else _ensure_fl()
+        launched = _ensure_fl()
     except RuntimeError as e:
         return {"ok": False, "error": str(e)}
     backup = None
@@ -279,7 +283,7 @@ def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
     except flproc.Ambiguous as e:
         return {"ok": False, "error": str(e)}
     except Exception as e:
-        crash = None if cfg.MAC else _crashed(LINK.pid) or _dialog(LINK.pid)
+        crash = _crashed(LINK.pid) or _dialog(LINK.pid)
         if crash:
             return {"ok": False, "error": crash}
         return {"ok": False, "error": f"{e!r}: is FL running with the kuruitsugizaki controller script loaded?"}
@@ -393,6 +397,8 @@ def _crashed(pid: int | None = None) -> str | None:
 
 def _backup_user(pid: int) -> dict | None:
     import shutil
+    if cfg.MAC:
+        return None  # not ported: FL gives no path, and its window title needs Screen Recording permission
     title = _fl_title()
     if (pid, title) in BACKED:
         return None
@@ -431,11 +437,14 @@ def _close_fl(timeout: float = 30.0):
         except RuntimeError:
             pass
     for p in mine:
-        subprocess.run(["taskkill", "/PID", str(p)], capture_output=True)
+        if cfg.MAC:
+            flproc.quit_mac(p)
+        else:
+            subprocess.run(["taskkill", "/PID", str(p)], capture_output=True)
     t0 = time.monotonic()
     while any(p in flproc.pids() for p in mine) and time.monotonic() - t0 < timeout:
         time.sleep(0.5)
-        for p in mine:
+        for p in mine if cfg.WIN else []:
             # saved just above; a plugin marking the project changed again since asks once more: No
             flproc.press(p, "No")
     LINK.close()
@@ -524,7 +533,18 @@ def _save_open(protect: Path | None = None, timeout: float = 5.0) -> dict:
         return {"saved": False, "reason": "FL not running"}
     before = protect.read_bytes() if protect and protect.exists() else None
     _live("import transport\ntransport.stop()\nresult = 0")
-    title = _fl_title()
+    if cfg.MAC:
+        # no window title on macOS (it needs Screen Recording permission), so whether the project has a file is not
+        # known: only an FL the harness started, which it opened from a file, is saved
+        if not _live("import general\nresult = general.getChangedFlag()"):
+            return {"saved": False, "reason": "no unsaved changes"}
+        LINK.fl_pid()
+        if LINK.who != "harness":
+            raise RuntimeError("FL, which the user started, holds unsaved changes, and on macOS the harness cannot tell whether saving "
+                               "would stop at a Save as dialog; ask the user to save or discard them in FL, then call again")
+        title = "harness - FL Studio"
+    else:
+        title = _fl_title()
     if title and " - " not in title:
         if _live("import general\nresult = general.getChangedFlag()"):
             raise RuntimeError("FL holds an untitled project with unsaved changes, and saving it would stop at a Save as dialog; ask the user to save it under a name in FL or discard it, then call again")
@@ -565,7 +585,7 @@ def _open(path: Path, names: list[str], timeout: float = 120.0) -> dict:
         raise RuntimeError(f"{len(running)} FL instances are open (pids {running}); FL opens a file in the newest one, not a chosen one, so close the others and call again")
     if running:
         _save_open(path)
-        subprocess.Popen([cfg.need("fl_exe"), str(path)])
+        subprocess.Popen((["open", "-a"] if cfg.MAC else []) + [cfg.need("fl_exe"), str(path)])
     else:
         _ensure_loopmidi()
         flproc.launch([cfg.need("fl_exe"), str(path)])
@@ -759,7 +779,7 @@ def project_write(doc: Annotated[dict, Field(description="the project document, 
     out = Path(path)
     out.parent.mkdir(parents=True, exist_ok=True)
     saved = None
-    if (open or play) and _winapi is None:
+    if (open or play) and not LIVE_LINK:
         # no live link on this platform: write the file, then let the OS open it in FL
         out.write_bytes(raw)
         back = project.export(str(out))
@@ -808,9 +828,8 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
               reopen: Annotated[bool, Field(description="open the project in FL again when done")] = True,
               key: Annotated[str | None, Field(description="the key the piece is written in, e.g. 'F minor' or 'G#m'; "
                                                            "the log then says how much pitch energy falls outside its scale")] = None) -> dict:
-    if _winapi is None:
-        return {"ok": False, "error": ("rendering from the harness is Windows only in this version" if cfg.MAC else NO_LIVE)
-                + "; render from FL itself (File > Export) for now"}
+    if not LIVE_LINK:
+        return {"ok": False, "error": NO_LIVE + "; render from FL itself (File > Export) for now"}
     target = Path(path).resolve()
     if not target.exists():
         return {"ok": False, "error": f"{target} does not exist"}
@@ -833,8 +852,8 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
     cmd = ([_sys.executable, "-B", str(ROOT / "scripts" / "render.py"), str(target), "--close"] + (["--reopen"] if reopen else [])
            + (["--key", key] if key else []))
     with open(log, "w", encoding="utf-8") as fh:
-        subprocess.Popen(cmd, cwd=str(ROOT), stdin=subprocess.DEVNULL, stdout=fh, stderr=subprocess.STDOUT,
-                         creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP)
+        detach = {"start_new_session": True} if cfg.MAC else {"creationflags": subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP}
+        subprocess.Popen(cmd, cwd=str(ROOT), stdin=subprocess.DEVNULL, stdout=fh, stderr=subprocess.STDOUT, **detach)
     LINK.close()
     LINK.pid = None
     return {"ok": True, "rendering": str(target), "log": str(log), "saved_open_project": saved}

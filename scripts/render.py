@@ -8,6 +8,9 @@ import config
 
 
 def fl_pids() -> list[int]:
+    if sys.platform != "win32":
+        import flproc
+        return flproc.pids()
     out = subprocess.run(["tasklist", "/FI", "IMAGENAME eq FL64.exe", "/FO", "CSV", "/NH"], capture_output=True, text=True).stdout
     return [int(l.split('","')[1]) for l in out.splitlines() if l.lower().startswith('"fl64.exe"')]
 
@@ -18,14 +21,27 @@ def close_fl(timeout: float = 20.0) -> bool:
         return True
     import flproc
     for p in pids:
-        subprocess.run(["taskkill", "/PID", str(p)], capture_output=True)
+        if sys.platform == "darwin":
+            flproc.quit_mac(p)
+        else:
+            subprocess.run(["taskkill", "/PID", str(p)], capture_output=True)
     t0 = time.monotonic()
     while fl_pids() and time.monotonic() - t0 < timeout:
         time.sleep(0.5)
-        for p in fl_pids():
+        for p in fl_pids() if sys.platform == "win32" else []:
             # fl_render saved the project just before; a plugin marking it changed again since asks once more: No
             flproc.press(p, "No")
     return not fl_pids()
+
+
+def render_cmd(fl_exe: str, fmts: list[str], flp: Path) -> list[str]:
+    """FL's command-line render: FL64.exe /R /Ewav,mp3 file on Windows; on macOS the app's executable (open would hand
+    the file to a running FL) with dash flags, since FL for Mac opens the file and ignores /R."""
+    if fl_exe.endswith(".app"):
+        import plistlib
+        exe = plistlib.loads((Path(fl_exe) / "Contents" / "Info.plist").read_bytes())["CFBundleExecutable"]
+        return [str(Path(fl_exe) / "Contents" / "MacOS" / exe), "-R", "-E" + ",".join(fmts), str(flp)]
+    return [fl_exe, "/R", "/E" + ",".join(fmts), str(flp)]
 
 
 def mode_warning(flp: Path):
@@ -103,7 +119,7 @@ def main():
     except config.Missing as e:
         sys.exit(str(e))
     import flproc
-    p = subprocess.Popen([fl_exe, "/R", "/E" + ",".join(fmts), str(flp)])
+    p = subprocess.Popen(render_cmd(fl_exe, fmts, flp))
     # This FL only renders. When it is done it closes, and a project that loading its plugins marked changed makes it
     # ask "Save changes?" first and wait there. The file was saved before the render, so that question is answered No;
     # an FL that still does not close once its files are written is closed.
@@ -119,12 +135,15 @@ def main():
         stable = stable or time.monotonic()
         if time.monotonic() - stable < 1.0:
             continue
-        title = flproc.press(p.pid, "No")
+        title = flproc.press(p.pid, "No") if sys.platform == "win32" else None
         if title and not answered:
             answered = True
             print(f"answered No to FL's {title!r} (save changes) after the render; the project was saved before it")
         if time.monotonic() - stable > 60:
-            subprocess.run(["taskkill", "/F", "/PID", str(p.pid)], capture_output=True)
+            if sys.platform == "win32":
+                subprocess.run(["taskkill", "/F", "/PID", str(p.pid)], capture_output=True)
+            else:
+                p.kill()
             print("the render's FL had not closed 60 s after writing its files; closed")
             p.wait()
             break
