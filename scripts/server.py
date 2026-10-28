@@ -20,8 +20,10 @@ try:
 except ImportError:  # not Windows: the file tools work, the live link to FL does not
     _winapi = None
 
-NO_LIVE = ("the live link to FL (play/stop, parameter reads, rendering from here) is Windows only in this version; "
+LIVE_LINK = _winapi is not None or cfg.MAC  # Windows: a pipe; macOS: SysEx over virtual MIDI ports (MacLink)
+NO_LIVE = ("the live link to FL (play/stop, parameter reads, rendering from here) needs FL on Windows or macOS; "
            "project_write still writes .flp files, and with open=true opens them in FL")
+MAC_SETUP = 'In FL: Options > MIDI settings. Under Input, select kuruitsugizaki, enable it, set its controller type to kuruitsugizaki and give it a port number. Under Output, select kuruitsugizaki and give it the same port number.'
 ROOT = Path(__file__).resolve().parents[1]
 BOX = ROOT / "tmp" / "bridge"
 MORE_DATA = 234
@@ -135,7 +137,67 @@ class Link:
                     time.sleep(0.005)
 
 
-LINK = Link()
+class MacLink:
+    """macOS: requests go to the controller script as SysEx on a virtual MIDI source named kuruitsugizaki, which FL reads
+    as an input with the script assigned; the script answers with device.midiOutSysex, which FL sends to the output with
+    the same port number, our virtual destination. The ports exist while the server runs; FL starts using them once
+    its MIDI settings name them (MAC_SETUP)."""
+    NAME = "kuruitsugizaki"
+
+    def __init__(self):
+        self.port = None
+        self.pid = None
+        self.who = None
+        self.seq = 0
+        self.lock = threading.Lock()
+        self.got = threading.Condition()
+        self.replies = {}
+
+    @staticmethod
+    def alive(pid: int) -> bool:
+        return pid in flproc.pids()
+
+    def fl_pid(self) -> int:
+        if self.pid and self.alive(self.pid):
+            return self.pid
+        env = os.environ.get("KURUITSUGIZAKI_FL_PID")
+        self.pid, self.who = flproc.choose(int(env) if env else None)
+        return self.pid
+
+    def open(self):
+        if self.port is None:
+            import coremidi
+            self.frames = coremidi.Frames(coremidi.FROM_FL)
+            self.port = coremidi.VirtualPort(self.NAME, self.on_sysex)
+            time.sleep(1.0)  # a running FL connects to new ports by itself, not at once
+
+    def close(self):
+        pass  # the ports stay: FL holds them open, and would have to find them again
+
+    def on_sysex(self, msg: bytes):
+        whole = self.frames.add(msg)
+        if whole:
+            with self.got:
+                self.replies[whole[0]] = whole[1]
+                self.got.notify_all()
+
+    def call(self, req: dict, timeout: float) -> dict:
+        import coremidi
+        with self.lock:
+            self.open()
+            self.seq = self.seq % 16383 + 1
+            req = {**req, "id": self.seq}
+            with self.got:
+                self.replies.clear()
+            for f in coremidi.frames(self.seq, json.dumps(req).encode(), coremidi.TO_FL):
+                self.port.send(f)
+            with self.got:
+                if not self.got.wait_for(lambda: self.seq in self.replies, timeout):
+                    raise TimeoutError(f"no reply from FL in {timeout}s. If the script is not set up yet: {MAC_SETUP}")
+                return json.loads(self.replies.pop(self.seq))
+
+
+LINK = MacLink() if cfg.MAC else Link()
 
 
 BOOT = {"t": None}
@@ -196,12 +258,12 @@ def _ensure_fl() -> float | None:
 
 
 def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
-    if _winapi is None:
+    if not LIVE_LINK:
         return {"ok": False, "error": NO_LIVE}
-    if not launch and not _fl_running():
+    if (cfg.MAC or not launch) and not _fl_running():  # macOS: FL is not started for the link (yet)
         return {"ok": False, "error": NOT_OPEN}
     try:
-        launched = _ensure_fl()
+        launched = None if cfg.MAC else _ensure_fl()
     except RuntimeError as e:
         return {"ok": False, "error": str(e)}
     backup = None
@@ -217,7 +279,7 @@ def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
     except flproc.Ambiguous as e:
         return {"ok": False, "error": str(e)}
     except Exception as e:
-        crash = _crashed(LINK.pid) or _dialog(LINK.pid)
+        crash = None if cfg.MAC else _crashed(LINK.pid) or _dialog(LINK.pid)
         if crash:
             return {"ok": False, "error": crash}
         return {"ok": False, "error": f"{e!r}: is FL running with the kuruitsugizaki controller script loaded?"}
@@ -258,10 +320,11 @@ def config(key: Annotated[str | None, Field(description="a key name, as the no-a
     "bridge path in it, replacing an older copy; "
     "2) unless a MIDI input in FL already has the script, makes a loopMIDI port named kuruitsugizaki and assigns the "
     "script to it in FL's MIDI settings. Both live in the registry, which FL rewrites when it closes; if FL was open, "
-    "the answer's midi entry says so and what to do by hand. "
+    "the answer's midi entry says so and what to do by hand. On macOS there is no loopMIDI: the port is the server's "
+    "own virtual MIDI port, and its input (with the script) and output get the same port number in FL's reg.xml. "
     "Returns {ok, installed, bridge, changed, midi, next}. Then start FL and call fl_probe to see the script answer."))
 def fl_install() -> dict:
-    if _winapi is None:
+    if not LIVE_LINK:
         return {"ok": False, "error": NO_LIVE}
     try:
         hw = cfg.path("fl_hardware")
@@ -276,6 +339,11 @@ def fl_install() -> dict:
     same = dest.exists() and dest.read_bytes() == body
     dest.write_bytes(body)
     import midisetup
+    if cfg.MAC:
+        midi = midisetup.ensure(cfg.get("fl_exe"), None)
+        return {"ok": True, "installed": str(dest), "changed": not same, "midi": midi,
+                "next": "Start FL (restart it if it was running); fl_probe answers once the script is loaded." if midi["ok"] else
+                        f"{MAC_SETUP} Restart FL if it was running, then call fl_probe."}
     midi = midisetup.ensure(cfg.get("fl_exe"), cfg.get("loopmidi_exe"))
     return {"ok": True, "installed": str(dest), "bridge": BOX.as_posix(), "changed": not same, "midi": midi,
             "next": "Restart FL if it was running; fl_probe answers once the script is loaded." if midi["ok"] else
@@ -741,7 +809,8 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
               key: Annotated[str | None, Field(description="the key the piece is written in, e.g. 'F minor' or 'G#m'; "
                                                            "the log then says how much pitch energy falls outside its scale")] = None) -> dict:
     if _winapi is None:
-        return {"ok": False, "error": NO_LIVE + "; render from FL itself (File > Export) for now"}
+        return {"ok": False, "error": ("rendering from the harness is Windows only in this version" if cfg.MAC else NO_LIVE)
+                + "; render from FL itself (File > Export) for now"}
     target = Path(path).resolve()
     if not target.exists():
         return {"ok": False, "error": f"{target} does not exist"}
@@ -904,7 +973,7 @@ def params(plugin: Annotated[str, Field(description="the plugin's name as plugin
 def fl_transport(action: Annotated[str, Field(description="'play' or 'stop'")],
                  mode: Annotated[str | None, Field(description="'song' or 'pattern'; omit to keep FL's")] = None,
                  pattern: Annotated[int | None, Field(description="in pattern mode, the pattern number to select first")] = None) -> dict:
-    if _winapi is None:
+    if not LIVE_LINK:
         return {"ok": False, "error": NO_LIVE}
     if not _fl_running():
         return {"ok": False, "error": NOT_OPEN}
@@ -975,7 +1044,7 @@ def samples(folder: Annotated[str | None, Field(description="one folder to look 
     import sampleindex as si
     from library import spread
     saved = cfg.load().get("sample_folders")
-    fl_dir = cfg._fl_dir(cfg.load())
+    fl_dir = cfg.factory_data(cfg.load())
     factory = fl_dir / "Data" / "Patches" / "Packs" if fl_dir else None
     roots = [Path(p) for p in saved] if saved else [factory] if saved == [] and factory else []
     unset = None if saved is not None else ("sample_folders is not set: ask the user where their samples are, then "
@@ -1052,6 +1121,8 @@ def samples(folder: Annotated[str | None, Field(description="one folder to look 
 
 def main():
     os.chdir(ROOT)
+    if cfg.MAC:
+        LINK.open()  # before FL looks for MIDI ports
     mcp.run()
 
 

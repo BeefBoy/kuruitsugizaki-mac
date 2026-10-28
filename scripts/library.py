@@ -18,8 +18,8 @@ harvester = None
 NAME = 201
 STATE = 213
 LABEL = 203
-DB_FORMATS = {"Fruity": "native", "VST3": "vst3", "CLAP": "clap", "VST": "vst"}
-RANK = {"native": 0, "vst3": 1, "clap": 2, "vst": 3}
+DB_FORMATS = {"Fruity": "native", "VST3": "vst3", "CLAP": "clap", "VST": "vst", "AU": "au"}
+RANK = {"native": 0, "vst3": 1, "clap": 2, "vst": 3, "au": 4}
 LOADERS = {("serum2", "vst3"): "serum2", ("vital", "vst3"): "vital", ("sylenth1", "vst3"): "sylenth1", ("diva(x64)", "vst3"): "diva", ("flex", "native"): "flex"}
 LOADER_FILES = {"serum2": ("serum2_presets", ".SerumPreset"), "vital": ("vital_presets", ".vital"), "diva": ("diva_presets", ".h2p"), "sylenth1": ("sylenth1_presets", ".fxp")}
 _cache: dict = {}
@@ -54,12 +54,12 @@ def db_root() -> Path | None:
     if not v:
         return None
     p = _abs(v)
-    return p if (p / "Installed").is_dir() else None
+    return p if (p / "Installed").is_dir() or (p / "Generators").is_dir() else None
 
 
 def _format(path: bytes) -> str:
     p = path.lower()
-    return "vst3" if p.endswith(b".vst3") else "clap" if p.endswith(b".clap") else "vst"
+    return "vst3" if p.endswith(b".vst3") else "clap" if p.endswith(b".clap") else "au" if p.endswith(b".component") else "vst"
 
 
 def identity(blk: list) -> dict:
@@ -87,14 +87,19 @@ def _scan_library(path: Path) -> list[dict]:
     return out
 
 
-def _db_dirs(root: Path) -> list[tuple[Path, str, str]]:
+def _db_dirs(root: Path) -> list[tuple[Path, str, str | None]]:
+    # FL's Plugin Manager writes Installed/<kind>/<format>. Before its first scan (a fresh FL for Mac has none) only the
+    # category tree <kind>/<category> exists; its format is read from each file (None).
+    if not (root / "Installed").is_dir():
+        return [(d, kind, None) for k, kind in (("Generators", "instrument"), ("Effects", "effect"))
+                for d in sorted((root / k).iterdir()) if d.is_dir()] if (root / "Generators").is_dir() else []
     return [(root / "Installed" / k / f, kind, fmt) for k, kind in (("Generators", "instrument"), ("Effects", "effect"))
             for f, fmt in DB_FORMATS.items() if (root / "Installed" / k / f).is_dir()]
 
 
 def _scan_db(root: Path) -> list[dict]:
-    out = []
-    for d, kind, fmt in _db_dirs(root):
+    out, seen = [], set()
+    for d, kind, fmt0 in _db_dirs(root):
         for f in sorted(d.glob("*.fst")):
             try:
                 evs = flp.parse(f.read_bytes()).events
@@ -109,9 +114,11 @@ def _scan_db(root: Path) -> list[dict]:
                     continue
                 w = wrapper(st)
                 name, vendor = w.get(54, b"").decode("latin-1"), w.get(56, b"").decode("latin-1")
+                fmt = fmt0 or _format(w.get(55, b""))
             else:
-                name, vendor = nm, "Image-Line"
-            if name:
+                name, vendor, fmt = nm, "Image-Line", fmt0 or "native"
+            if name and (fmt0 or (kind, name.lower(), fmt) not in seen):
+                seen.add((kind, name.lower(), fmt))
                 out.append({"name": name, "kind": kind, "vendor": vendor, "format": fmt, "source": "fl", "fst": str(f), "alias": f.stem})
     return out
 
@@ -213,7 +220,8 @@ def _fresh(e: dict) -> list:
         what = "a plugin channel in the template (config template)" if e["kind"] == "instrument" else f"an effect in {_templates()['effect_file']} (config effect_template)"
         raise KeyError(f"cannot build {e['name']}: no {what} to build it on")
     evs = flp.parse(Path(e["fst"]).read_bytes()).events
-    nm = next(x.data for x in evs if x.id == NAME)
+    # Older .fst files (some in FL for Mac's category tree) store the name in ASCII; a project wants UTF-16.
+    nm = name_text(next(x for x in evs if x.id == NAME)).encode("utf-16-le") + b"\0\0"
     st = next((x.data for x in evs if x.id == STATE), None)
     out = []
     for x in tpl:

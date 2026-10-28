@@ -88,6 +88,15 @@ def _fl_dir(data: dict) -> Path | None:
     return found[-1].parent if found else None
 
 
+
+def factory_data(data: dict) -> Path | None:
+    """What FL calls %FLStudioFactoryData%: FL's folder on Windows, Contents/Resources/FL inside the app on macOS."""
+    fl = _fl_dir(data)
+    if MAC and fl:
+        return next((d for d in (fl / "Contents" / "Resources" / "FL", fl) if (d / "Data").is_dir()), None)
+    return fl
+
+
 def _fl_exe_places(fl: Path | None) -> list[Path]:
     """On Windows FL64.exe in FL's folder; on macOS the app bundle itself (fl_exe names the .app)."""
     if not fl:

@@ -72,7 +72,8 @@ def main():
           and back["automation"][0]["target"] == {"mixer": 0, "param": "vol"},
           "it reads back as written: instruments, notes, clips, effects, automation")
     built = [out / "portable.flp"]
-    if sys.platform == "win32":
+    import library
+    if sys.platform == "win32" or (library.has("Sytrus") and library.has("3x Osc")):
         try:
             runpy.run_path(str(ROOT / "examples" / "build.py"), run_name="__main__")
             code = 0
@@ -85,7 +86,7 @@ def main():
             (out / f.name).write_bytes(f.read_bytes())
         built += [out / f.name for f in ex]
     else:
-        print("skip  examples: they load Sytrus and 3xOsc by name, which needs FL's plugin database (Windows with FL)")
+        print("skip  examples: they load Sytrus and 3xOsc by name, and FL's plugin database (config plugin_db) does not name both")
     for f in built:
         b = f.read_bytes()
         p = flp.serialize(flp.parse(b)) == b

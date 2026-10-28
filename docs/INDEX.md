@@ -41,6 +41,7 @@ are off limits unless the user says otherwise.
 
 ## Work on the server itself, not on music
 
-`FLP.md` (the format) and `ARCHITECTURE.md` (why it is built this way).
+`FLP.md` (the format) and `ARCHITECTURE.md` (why it is built this way). `MACOS.md`: the macOS port, its
+conventions, its live link and what is not ported yet.
 
 `LISTEN.md`: a planned audio-model listener on every render, on by default.

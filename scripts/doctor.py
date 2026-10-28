@@ -8,8 +8,7 @@ from pathlib import Path
 import cli
 import config as cfg
 
-if cfg.WIN:
-    import midisetup
+import midisetup  # noqa: E402  (no winreg at import on macOS)
 
 ROOT = cfg.ROOT
 EXE = ROOT / ".venv" / ("Scripts" if cfg.WIN else "bin") / ("kuruitsugizaki.exe" if cfg.WIN else "kuruitsugizaki")
@@ -53,8 +52,17 @@ def checks(claude: Path) -> list[tuple]:
         s = midisetup.state(fl)
         row(True, "loopMIDI port", s["loopmidi_ports"], ", ".join(s["loopmidi_ports"]) or "none; fl_install makes one")
         row(True, "FL MIDI setting", s["assigned"], f"script on input {s['assigned'][0]!r}" if s["assigned"] else "no input has the script; run fl_install with FL closed, or " + midisetup.BY_HAND)
+    elif cfg.MAC:
+        hw = cfg.get("fl_hardware")
+        script = Path(hw) / "kuruitsugizaki" / "device_kuruitsugizaki.py" if hw else None
+        mine = re.sub(r"(?m)^BOX = .*$", "", (ROOT / "fl" / "device_kuruitsugizaki.py").read_text(encoding="utf-8"))
+        same = script and script.exists() and re.sub(r"(?m)^BOX = .*$", "", script.read_text(encoding="utf-8")) == mine
+        row(True, "controller script", same, script if same else "not installed, or older than this folder's; run fl_install" if hw else "FL's Settings/Hardware folder not found; set fl_hardware")
+        s = midisetup.state_mac(fl)
+        row(True, "FL MIDI setting", s["paired"], f"input and output kuruitsugizaki on port {s['paired']}, the input with the script" if s["paired"] else
+            "kuruitsugizaki is not set up as FL saved it; quit FL and run fl_install (doctor.py --install)")
     else:
-        row(False, "live link", False, "Windows only in this version; the file tools and project_write(open=true) work without it")
+        row(False, "live link", False, "needs FL on Windows or macOS; the file tools work without it")
     try:
         import library
         rows = library.summary(None, native=True)

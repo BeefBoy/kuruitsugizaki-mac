@@ -39,6 +39,11 @@ if ! command -v ffmpeg >/dev/null 2>&1; then
   fi
 fi
 
+say "live link (FL's controller script and MIDI setting; FL must be closed)"
+if ask "Install the controller script and set up FL's kuruitsugizaki MIDI port (FL's settings get a .bak copy)?"; then
+  "$HERE/.venv/bin/python" "$HERE/scripts/doctor.py" --install || true
+fi
+
 say "Claude desktop app"
 if ask "Add the server to the Claude desktop app's config (a .bak copy is kept)?"; then
   "$HERE/.venv/bin/python" "$HERE/scripts/doctor.py" --claude || true
@@ -50,5 +55,6 @@ say "check"
 cat <<EOF
 
 Ready. Quit the Claude app fully (Cmd-Q) and start it again, then in a new chat ask it to read docs/INDEX.md in
-$HERE and write something. Projects it writes are .flp files; project_write(open=true) opens them in FL.
+$HERE and write something. Projects it writes are .flp files; project_write(open=true) opens them in FL. With FL open and the
+server running, the live tools (fl_probe, fl_exec, fl_transport) talk to it over a virtual MIDI port.
 EOF

@@ -20,7 +20,7 @@ https://github.com/user-attachments/assets/2984c857-38cc-4384-b51d-e807018261eb
 
 https://github.com/user-attachments/assets/355de51f-cf49-410f-94c3-5f754773bfa7
 
-Windows only for now (the `macos` branch ports the file half: see `INSTALL-macos.md`). To install it, follow `INSTALL.md`. Everything past setup and the tools (how to write a piece, the file format, traps, decisions) is under `docs/`, starting at `docs/INDEX.md`.
+Windows, and macOS on the `macos` branch (everything but rendering from the harness: see `INSTALL-macos.md`). To install it, follow `INSTALL.md`. Everything past setup and the tools (how to write a piece, the file format, traps, decisions) is under `docs/`, starting at `docs/INDEX.md`.
 
 ## Requirements
 

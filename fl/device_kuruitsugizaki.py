@@ -3,13 +3,21 @@ import json
 import os
 import sys
 
-import _winapi
+try:
+    import _winapi
+except ImportError:  # macOS: no pipe; requests arrive as SysEx on this script's MIDI input (OnSysEx)
+    _winapi = None
 
+import device
 import general
 
 BOX = ""
 MORE_DATA = 234
-st = {"h": None, "name": None, "buf": b"", "tick": 0, "err": None}
+st = {"h": None, "name": None, "buf": b"", "tick": 0, "err": None, "mid": None, "parts": {}}
+# SysEx framing, as scripts/coremidi.py: F0 7D 6B 7A, way (1 to FL, 2 from FL), message id, chunk index, chunk count
+# (two 7-bit bytes each), then ASCII JSON, F7.
+HEAD = bytes((0xF0, 0x7D, 0x6B, 0x7A))
+CHUNK = 240
 
 
 def probe():
@@ -72,6 +80,29 @@ def pump():
     return True
 
 
+def frames(mid, data):
+    n = max(1, -(-len(data) // CHUNK))
+    return [HEAD + bytes((2, mid >> 7 & 127, mid & 127, i >> 7, i & 127, n >> 7, n & 127)) + data[i * CHUNK:(i + 1) * CHUNK] + b"\xf7"
+            for i in range(n)]
+
+
+def OnSysEx(event):
+    s = bytes(event.sysex)
+    if len(s) < 12 or s[:4] != HEAD or s[4] != 1:
+        return
+    event.handled = True
+    mid, i, n = s[5] << 7 | s[6], s[7] << 7 | s[8], s[9] << 7 | s[10]
+    if mid != st["mid"] or i == 0:
+        st.update(mid=mid, parts={})
+    st["parts"][i] = s[11:-1]
+    if len(st["parts"]) < n:
+        return
+    raw = b"".join(st["parts"].get(k, b"") for k in range(n))
+    st.update(mid=None, parts={})
+    for f in frames(mid, json.dumps(handle(raw), default=repr).encode()):
+        device.midiOutSysex(f)
+
+
 def OnInit():
     print("kuruitsugizaki", probe())
 
@@ -81,6 +112,8 @@ def OnDeInit():
 
 
 def OnIdle():
+    if _winapi is None:
+        return
     st["tick"] += 1
     try:
         if st["h"] is None or st["tick"] % 25 == 0:
