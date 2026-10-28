@@ -4,8 +4,12 @@ import shutil
 import subprocess
 import sys
 import time
-import winreg
 from pathlib import Path
+
+try:
+    import winreg
+except ImportError:  # macOS: FL's settings are reg.xml (midi_mac)
+    winreg = None
 
 import cli
 import config as cfg
@@ -17,7 +21,32 @@ NAME = ms.NAME
 CLAUDE = cfg.claude_desktop()
 
 
+def midi_mac() -> list[str]:
+    """FL's reg.xml: the kuruitsugizaki input and output (the server's virtual port) removed, the script unassigned from
+    any other input. No loopMIDI on macOS."""
+    reg = ms.RegXml()
+    key = ms.fl_key(cfg.get("fl_exe"), reg.subkeys)
+    if not key:
+        return [f"FL's settings not found in {reg.FILE}; nothing to unassign"]
+    out, base = [], rf"{key}\Devices\MIDI input"
+    for n in reg.subkeys(base):
+        if n == NAME:
+            reg.delete(rf"{base}\{n}")
+            out.append(f"FL MIDI input {n!r}: removed")
+        elif reg.values(rf"{base}\{n}").get("ScriptFolder") == NAME:
+            reg.set(rf"{base}\{n}", (("ScriptFolder", ""), ("Type", "0")))
+            out.append(f"FL MIDI input {n!r}: script unassigned, port kept")
+    if reg.delete(rf"{key}\Devices\MIDI output\{NAME}"):
+        out.append(f"FL MIDI output {NAME!r}: removed")
+    if out:
+        reg.save()
+        out.append(f"FL settings: old file kept as {reg.FILE.name}.bak")
+    return out or ["no FL MIDI input had the script"]
+
+
 def midi() -> list[str]:
+    if winreg is None:
+        return midi_mac()
     out = []
     key = ms.fl_key(cfg.get("fl_exe"))
     if key:
@@ -107,6 +136,7 @@ def local(keep_config: bool) -> list[str]:
 
 def main():
     ap = argparse.ArgumentParser(description="Undo what setup did; uv, loopMIDI, ffmpeg and .venv stay.")
+    setup = "setup.bat" if cfg.WIN else "./setup.sh"
     ap.add_argument("--yes", action="store_true", help="do not ask")
     ap.add_argument("--keep-config", action="store_true", help="leave kuruitsugizaki.json in place")
     ap.add_argument("--claude-config", default=str(CLAUDE), help="the Claude desktop app's config (default %(default)s)")
@@ -115,7 +145,8 @@ def main():
     print(f"kuruitsugizaki uninstall. Folder: {ROOT}")
     print("It removes the controller script from FL's Hardware folder, unassigns it in FL's MIDI settings (a port setup made is")
     print("removed, a port you made is kept), removes the server from the Claude desktop app and Claude Code, deletes the saved")
-    print("plugin states and moves kuruitsugizaki.json into tmp/uninstall. uv, loopMIDI, ffmpeg and .venv stay.")
+    print("plugin states and moves kuruitsugizaki.json into tmp/uninstall. uv, loopMIDI, ffmpeg and .venv stay."
+          + ("" if cfg.WIN else " On macOS, FL's MIDI settings are in reg.xml, kept as reg.xml.bak."))
     if ms.running("FL64.exe"):
         print("FL Studio is open, and it writes its MIDI settings back when it closes. Save your work, close FL, run this again.")
         sys.exit(1)
@@ -126,7 +157,8 @@ def main():
         lines.append(claude_code())
     lines += local(a.keep_config)
     cli.rows([("done", *line.partition(": ")[::2]) for line in lines])
-    print("Done. The server still runs in an open Claude app until it is quit fully (tray icon, Quit). setup.bat installs it again.")
+    quit_app = "tray icon, Quit" if cfg.WIN else "Cmd-Q"
+    print(f"Done. The server still runs in an open Claude app until it is quit fully ({quit_app}). {setup} installs it again.")
 
 
 if __name__ == "__main__":

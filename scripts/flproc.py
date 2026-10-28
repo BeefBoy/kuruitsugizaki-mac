@@ -204,7 +204,7 @@ def capture(hwnd: int, path: Path) -> Path:
 
 def crashes() -> dict[int, dict]:
     if sys.platform != "win32":
-        return {}  # not ported: macOS keeps crash reports in ~/Library/Logs/DiagnosticReports
+        return _crashes_mac()
     out = subprocess.run(["powershell", "-NoProfile", "-Command", "Get-CimInstance Win32_Process -Filter \"Name='WerFault.exe'\" | ForEach-Object { '{0} {1}' -f $_.ProcessId, $_.CommandLine }"],
                          capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
     running = set(pids())
@@ -216,6 +216,32 @@ def crashes() -> dict[int, dict]:
     for pid, info in found.items():
         info.update(fault(pid))
     return found
+
+
+def _crashes_mac() -> dict[int, dict]:
+    """FL for Mac catches its own crashes: it keeps running behind its "has encountered an error and needs to restart"
+    message and writes Support/Logs/Crash/Crash <UTC time>.log, with no pid in it. A running FL that started before the
+    newest such log is the one that crashed. macOS's own DiagnosticReports get nothing."""
+    found = {}
+    for pid in pids():
+        born = created(pid)
+        info = crash_since(born) if born is not None else None
+        if info:
+            found[pid] = info
+    return found
+
+
+def crash_since(t: float) -> dict | None:
+    """macOS: FL's newest crash log, if it was written at or after time t (an FL's start); a crash makes FL either keep
+    running behind its error message or exit."""
+    import config
+    logs = sorted((config.documents() / "Image-Line" / "FL Studio" / "Support" / "Logs" / "Crash").glob("Crash *.log"),
+                  key=lambda f: f.stat().st_mtime)
+    if not logs or logs[-1].stat().st_mtime < t:
+        return None
+    text = logs[-1].read_text(encoding="utf-8-sig", errors="replace")
+    m = re.search(r"Exception:\s*\n(.+)", text)
+    return {"exception": m.group(1).strip() if m else "unknown", "log": str(logs[-1])}
 
 
 def fault(pid: int) -> dict:
@@ -242,6 +268,10 @@ def quit_mac(pid: int) -> bool:
 
 
 def reap(pid: int):
+    if sys.platform != "win32":
+        # FL said it needs to restart; its quit is not to be trusted after a crash
+        subprocess.run(["kill", "-KILL", str(int(pid))], capture_output=True, stdin=subprocess.DEVNULL)
+        return
     subprocess.run(["taskkill", "/F", "/T", "/PID", str(pid)], capture_output=True, stdin=subprocess.DEVNULL)
 
 

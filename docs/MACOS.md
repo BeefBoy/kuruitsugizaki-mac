@@ -57,8 +57,16 @@ and parameter tools, the live link to FL, starting and quitting FL, and renderin
 - `_save_open` cannot read FL's window title on macOS (Screen Recording permission), so it saves only an FL the harness
   started; an FL the user started with unsaved changes is refused with a message.
 
+- Crashes: FL for Mac catches its own (a SIGSEGV too) and writes `Support/Logs/Crash/Crash <UTC time>.log`, with no
+  pid; macOS's DiagnosticReports get nothing. It then either keeps running behind its "needs to restart" message, the
+  script still answering, or exits. `flproc.crashes` takes a running FL that started before the newest log as crashed,
+  and `fl()` checks for that before every call; `MacLink.born` lets `fl()` say an FL that vanished had crashed
+  (`flproc.crash_since`). `flproc.reap` kills a crashed FL the harness started.
+- Uninstall: `uninstall.sh` runs `scripts/uninstall.py`, which on macOS edits `reg.xml` (`uninstall.midi_mac`).
+- CI runs selftest on ubuntu-latest and macos-latest (no FL there: the examples step is skipped).
+
 ## Not done
-- Crash and dialog detection (`flproc.crashes`, `flproc.dialogs`) and the backup of a project the user opened, found by
+- Dialog detection (`flproc.dialogs`, `flproc.press`) and the backup of a project the user opened, found by
   FL's window title (`_backup_user`): FL's API gives no path, FL keeps no file open, and its recent-files list
   (`Settings/Browser/Recent files.scr`, the `MRU` key in `reg.xml`) is written only when FL quits.
 - The saved-plugin-state flow for Serum 2, Diva and Sylenth1 presets is untested on macOS (Vital works).

@@ -60,6 +60,8 @@ def main():
         check(flp.serialize(flp.parse(b)) == b, f"{f.name} round-trips byte-identical")
     import writer
     out = ROOT / "tmp" / "selftest"
+    import shutil
+    shutil.rmtree(out, ignore_errors=True)  # the profile check reads every project in it: none left from an earlier run
     out.mkdir(parents=True, exist_ok=True)
     raw, warn = writer.build(PORTABLE)
     check(not warn, "a project from shipped parts builds with no warning" + (f": {warn}" if warn else ""))

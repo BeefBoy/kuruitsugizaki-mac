@@ -148,6 +148,7 @@ class MacLink:
         self.port = None
         self.pid = None
         self.who = None
+        self.born = None
         self.seq = 0
         self.lock = threading.Lock()
         self.got = threading.Condition()
@@ -162,6 +163,7 @@ class MacLink:
             return self.pid
         env = os.environ.get("KURUITSUGIZAKI_FL_PID")
         self.pid, self.who = flproc.choose(int(env) if env else None)
+        self.born = flproc.created(self.pid)
         return self.pid
 
     def open(self):
@@ -265,11 +267,20 @@ def fl(req: dict, timeout: float = 10.0, launch: bool = False) -> dict:
     if not LIVE_LINK:
         return {"ok": False, "error": NO_LIVE}
     if not launch and not _fl_running():
+        gone = cfg.MAC and LINK.born and flproc.crash_since(LINK.born)
+        if gone:
+            LINK.pid = LINK.born = None
+            return {"ok": False, "error": f"FL crashed and exited: {gone['exception']}, log {gone['log']}. " + NOT_OPEN}
         return {"ok": False, "error": NOT_OPEN}
     try:
         launched = _ensure_fl()
     except RuntimeError as e:
         return {"ok": False, "error": str(e)}
+    if cfg.MAC:
+        # FL for Mac keeps running, and the script answering, after it crashes, so a crash is looked for every time
+        crash = _crashed()
+        if crash:
+            return {"ok": False, "error": crash}
     backup = None
     try:
         if LINK.fl_pid() and LINK.who == "user":
@@ -390,6 +401,9 @@ def _crashed(pid: int | None = None) -> str | None:
             LINK.close()
             LINK.pid = None
         cause = ", ".join(f"{k} {v}" for k, v in info.items() if k != "werfault") or "cause not in the Application log yet"
+        if cfg.MAC:
+            return (f"FL (pid {fpid}) crashed: {cause}. " + ("It was started by the harness, so it was closed." if mine
+                    else "The user started it, so it is left open showing FL's error message; it should be restarted."))
         return (f"FL (pid {fpid}) crashed: {cause}. " + ("It was started by the harness, so it, its crash handler and the Windows crash dialog were closed." if mine
                 else "The user started it, so its crash dialog is left open."))
     return None

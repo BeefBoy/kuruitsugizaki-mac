@@ -47,6 +47,13 @@ FL connects to the port by itself when the server starts after it, so restarting
 The harness starts FL with `open -a` (an FL started any other way does not connect to the port) and quits it as the
 Dock's Quit does, so FL saves its settings.
 
+## To undo the setup
+
+Quit FL, then `./uninstall.sh` (`--yes` asks nothing). It removes the controller script, the `kuruitsugizaki` input and
+output from FL's `reg.xml` (old file kept as `reg.xml.bak`), the server's entries in the Claude desktop app and Claude
+Code, and the saved plugin states, and moves `kuruitsugizaki.json` into `tmp/uninstall`. uv, ffmpeg and `.venv` stay;
+delete the folder to remove the rest.
+
 ## What works
 
 - `project_read`, `project_write`, `profile`, `samples`, `plugins`, `presets`, `params`, `config`, `render_report`.
@@ -61,7 +68,8 @@ Dock's Quit does, so FL saves its settings.
 
 ## What does not work yet
 
-- FL crash and dialog detection are Windows only: on macOS a crash or an open dialog shows up as FL not answering.
+- Dialog detection is Windows only: on macOS an open dialog shows up as FL not answering. Crashes are detected (from
+  FL's own crash log): an FL the harness started is closed, one you started is left showing FL's error message.
 - The backup of a project you opened yourself, made before the first live call to your FL, is Windows only: FL gives
   no project path, keeps no file open, and its window title needs Screen Recording permission.
 - On an FL you started, the harness saves nothing: with unsaved changes it asks you to save in FL first, since it

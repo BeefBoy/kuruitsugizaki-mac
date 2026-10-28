@@ -54,6 +54,14 @@ class RegXml:
                 v = self.ET.SubElement(k, "Value", Name=name, Type="2")
             v.text = value or None
 
+    def delete(self, path: str) -> bool:
+        parent, _, name = path.rpartition("\\")
+        k = self.key(parent)
+        sub = None if k is None else next((c for c in k.findall("Key") if c.get("Name") == name), None)
+        if sub is not None:
+            k.remove(sub)
+        return sub is not None
+
     def save(self):
         import shutil
         shutil.copy2(self.FILE, self.FILE.with_suffix(".xml.bak"))
