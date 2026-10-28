@@ -7,6 +7,7 @@ The projects named below are the ones each fact was measured on; they are not pa
 
 - `FLhd` u32 len=6, then `<hHH`: format=0, channel count, PPQ=96. Channel count is 1 in init and 6 in key, matching the channels named in `203`.
 - `FLdt` u32 len, then events. Size by ID: 0-63 one byte, 64-127 two, 128-191 four, 192-255 varint length. Both files parse to exactly the chunk end and re-serialize byte-identical (init 1417 events, key 1687).
+- FL 26 breaks the size rule for one id, 172: a type byte, then a u16 when the type is 1 and a u32 when it is 0 (`flp.TYPED`), read only in files whose 199 says 26 or later. Every FL 26.1.7 save has two: `ac 01 0100` after 28 and `ac 00 01000000` after 195, both values 1. With that rule 26 saved files (pattern and song mode, 120 and 137 BPM, 3/4 and 7/8, Vital projects) parse to the chunk end, re-serialize byte-identical, and every other event keeps the FL 25 layout's order. Read as four bytes, the first 172 takes the 192 event's id byte, the 54-byte 192 text then reads as one-byte events, and the parser lines up again only at 156; that was the reason for FL 26's "missing" tempo. The other type values and what 172 means are not known.
 
 ## Mapped
 
@@ -91,10 +92,8 @@ A state event belongs after its block's 212: FL gives a 213 to the plugin the la
 - 237 (16 bytes) reads as two f64: first ~46295, an OLE date in late September 2026; second grew. Creation date and time spent is inferred, not confirmed.
 - 233 (80-byte records, 46 in key, 0 bytes in init): one u32 per record was renumbered to 1, 2, 3... on save. Playlist clips is inferred.
   FL 26 (26.1.7) writes 88-byte records: the FL 25 record's first 72 bytes, then 8 new bytes (`00000000 ffffffff` for a
-  plain pattern clip), then the last 8; read by `project.item_size`, unmapped. FL 26 also drops the song-level events
-  of FL 25 (156 tempo, 9, 11, 10, 17, 23, 30, 35, 37, 44, 67, 80, 146, 167, 194, 195, 200, 202, 206, 207, 237, 231) and
-  writes 172, 54, 2, 16, 192 and about 50 one-byte event 0s instead; where the tempo went is not found yet (no
-  120000 u32 nor 120.0 float in the file). A project FL 26 saved reads with bpm None.
+  plain pattern clip), then the last 8; read by `project.item_size`, unmapped. FL 26 keeps the FL 25 song-level
+  events (see Song-level events); they only looked dropped while 172 was read as four bytes (Container).
 - FLEX state (213) floats moved slightly on resave, e.g. 0.09 -> 0.089996, one 0.5 -> 0.6667. Plugins re-quantize their state on reload, so a state diff is not by itself a user change.
 - The Ozone slot's 212 record changed one byte at offset 16, 0x40 -> 0x41. Whether that is FL mirroring the bypass is open.
 
@@ -112,6 +111,20 @@ A state event belongs after its block's 212: FL gives a 213 to the plugin the la
 `init_serum_2_copies.flp` open in FL, driven over the bridge: Serum 2 (channel 1) host index 0 `Main Vol` set from 0.5 (display `50% [-9.0 dB]`) to 0.25 (display `25% [-21.1 dB]`), saved with FPT_Save, restored, saved again. Decoded processor state before -> after: exactly one change, `Global0/plainParams` from `"default"` to `{kParamMasterVolume: 0.0625}`. Controller state and the other Serum 2 channel unchanged. So host index 0 maps to file key `Global0/kParamMasterVolume`; 0.25 -> 0.0625 is one point and does not establish the curve.
 
 Other events that changed across that save: 237 (as before), the 212 record of both Serum 2 channels (one span each), and the second channel's 213 in two spans while its decoded processor and controller were identical, so those bytes sit outside sections 2 and 3.
+
+## Song-level events
+
+The events between 199 and the first pattern (65), in the order FL writes them: 199, 159, 169, 28, (172, 192 in FL 26), 37, 200, 156, 67, 9, 11, 80, 17, 18, 35, 23, 44, 30, 10, 194, 206, 207, 167, 202, 195, (172 in FL 26), 237, 231 x2, 146, 216. Measured on `examples/01_notes.json` written by the harness (FL 25 layout), opened in FL 26.1.7 and saved with FPT_Save, one setting changed per save.
+
+| id | what | evidence |
+|---|---|---|
+| 156 | tempo, BPM x1000, u32; `project.bpm` | FL 25: the live readings under Open. FL 26: 120000 and 137000 in files written at 120 and 137 BPM and saved by FL |
+| 9 | song mode: 1 song, 0 pattern; `project.song_mode` | after `transport.setLoopMode()` turned `getLoopMode()` from 1 to 0 and FL saved, 9 went from 1 to 0, and this was the only song-level change besides 237 |
+| 17 | time signature numerator | written as 3 into a copy of the FL 25 file, FL 26 opened it and `general.getRecPPB()` returned 288 = 3 x 96 (384 at 4); FL saved it back as 3 |
+| 18 | time signature denominator, as FL keeps it | 4 by default; written as 8 with 17 = 7, FL saved 7 and 8 back, but `getRecPPB()` returned 1344 = 7 x 192, so how FL counts a beat under /8 is open. `project.time_sig` reads 17/18 and says when bar math (4/4) does not match |
+| 192 | FL 26 only: utf16 `FL Studio 26.1.7.5421.5421` | every FL 26 save |
+| 37 | 1 in FL 25, 2 in FL 26; unknown | the same project before and after FL 26 saved it |
+| 200 | utf16; four spaces in FL 25 files, `\fpPONI` in FL 26; unknown | as for 37 |
 
 ## Channels, routing, playlist and automation
 

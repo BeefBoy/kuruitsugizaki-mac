@@ -58,7 +58,7 @@ def summarize(doc: dict) -> dict:
     for a in doc["arrangements"]:
         for c in a["clips"]:
             clips_by_src[c.get("pattern") or c.get("audio") or c.get("automation") or c.get("channel")] += 1
-    out = {"project": {k: doc["project"][k] for k in ("bpm", "ppq")},
+    out = {"project": {k: doc["project"][k] for k in ("bpm", "ppq", "song_mode") if k in doc["project"]},
            "instruments": [], "samples": [], "automation": [], "patterns": [], "arrangements": [],
            "mixer_effects": defaultdict(list)}
     for c in doc["instruments"]:
@@ -238,7 +238,7 @@ def to_compact(doc: dict, unused: bool = False) -> dict:
     ai = {c["id"]: i for i, c in enumerate(doc["automation"])}
     placed = {c.get("pattern") for a in doc["arrangements"] for c in a["clips"]}
     keep = lambda c: {k: v for k, v in c.items() if k in ("id", "name", "plugin", "mixer", "path", "target", "state", "kind", "ch", "muted")}
-    out = {"format": "compact", "project": {k: doc["project"][k] for k in ("bpm", "ppq", "source", "title", "author", "genre", "comment") if k in doc["project"]},
+    out = {"format": "compact", "project": {k: doc["project"][k] for k in ("bpm", "ppq", "song_mode", "source", "title", "author", "genre", "comment") if k in doc["project"]},
            "note_cols": NOTE_COLS, "clip_cols": CLIP_COLS,
            "instruments": [keep(c) for c in doc["instruments"]],
            "samples": [keep(c) for c in doc["samples"]],

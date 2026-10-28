@@ -226,9 +226,12 @@ def export(path: str) -> dict:
                 st = next((x.data for x in ev[n:n + 8] if x.id == 213), b"")
                 fx["plugin"] = wrapper(st).get(54, b"").decode("latin-1") or nm
             mixer.append(fx)
+    song = {e.id: u(e) for e in reversed(ev[:starts[0] if starts else first_arr]) if e.id in (9, 17, 18, 156)}  # the first of each
+    sig = f"{song[17]}/{song[18]}" if 17 in song and 18 in song else "unmapped"
     return {
-        "project": {"source": path, "bpm": next((u(e) / 1000 for e in ev if e.id == 156), None), "ppq": ppq,
-                    "time_sig": "unmapped (4/4 assumed for bar math)", "fl_version": version,
+        "project": {"source": path, "bpm": song[156] / 1000 if 156 in song else None, "ppq": ppq,
+                    **({"song_mode": bool(song[9])} if 9 in song else {}),
+                    "time_sig": sig if sig == "4/4" else f"{sig} (4/4 assumed for bar math)", "fl_version": version,
                     **{k: text(e) for e in ev[:starts[0] if starts else first_arr] for i, k in flp.META.items() if e.id == i and text(e)}},
         "instruments": [c for c in channels if c["kind"] in ("sampler", "plugin")],
         "samples": [c for c in channels if c["kind"] == "audio"],

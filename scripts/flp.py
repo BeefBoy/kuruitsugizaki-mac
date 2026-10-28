@@ -25,6 +25,20 @@ def fixed_size(eid: int) -> int | None:
     return 1 if eid < 64 else 2 if eid < 128 else 4 if eid < 192 else None
 
 
+TYPED = 172  # FL 26: a type byte, then a u16 (type 1) or a u32 (type 0); seen twice per project, both values 1
+
+
+def typed_size(t: int) -> int:
+    return 1 + (2 if t == 1 else 4)
+
+
+def major(version: bytes) -> int:
+    try:
+        return int(version.split(b".")[0])
+    except ValueError:
+        return 0
+
+
 def varint_read(b: bytes, i: int) -> tuple[int, int]:
     n = shift = 0
     while True:
@@ -69,14 +83,16 @@ def parse(buf: bytes) -> Project:
     dlen, = struct.unpack_from("<I", buf, i + 4)
     i += 8
     end = i + dlen
-    events = []
+    events, fl26 = [], False
     while i < end:
         start, eid = i, buf[i]
         i += 1
-        n = fixed_size(eid)
+        n = typed_size(buf[i]) if fl26 and eid == TYPED else fixed_size(eid)
         if n is None:
             n, i = varint_read(buf, i)
         events.append(Event(eid, buf[i:i + n], start))
+        if eid == 199:
+            fl26 = major(buf[i:i + n]) >= 26
         i += n
     if i != end:
         raise ValueError(f"event stream overran data chunk: {i} vs {end}")
@@ -89,6 +105,8 @@ def serialize(p: Project) -> bytes:
     for e in p.events:
         body.append(e.id)
         n = fixed_size(e.id)
+        if e.id == TYPED and len(e.data) != n and e.data and len(e.data) == typed_size(e.data[0]):
+            n = len(e.data)
         if n is None:
             body += varint_write(len(e.data))
         elif len(e.data) != n:
