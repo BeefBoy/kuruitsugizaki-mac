@@ -1,5 +1,22 @@
 # kuruitsugizaki
 
+> **This fork adds macOS.** [whatanaiceguy/kuruitsugizaki](https://github.com/whatanaiceguy/kuruitsugizaki) is
+> Windows-only; the `macos` branch here runs on macOS too, tested on a Mac with FL Studio 2026 (26.1.7), and keeps
+> Windows working as upstream has it. Install on a Mac with [`INSTALL-macos.md`](INSTALL-macos.md); what the port
+> changed and why is in [`docs/MACOS.md`](docs/MACOS.md).
+>
+> | on macOS | |
+> |---|---|
+> | read and write `.flp` projects, profile, samples, plugins, presets, params | works |
+> | live link (`fl_probe`, `fl_call`, `fl_exec`, `fl_transport`) | works: SysEx over a virtual MIDI port the server creates, no loopMIDI or IAC bus |
+> | start, open and quit FL; `fl_render`, `render_report` | works; FL's startup window must be turned off |
+> | plugin presets that need a saved state | Vital verified; Serum 2, Diva, Sylenth1 untested |
+> | crash detection | from FL's own crash log |
+> | dialog detection; backup of a project you opened yourself | Windows only (would need Accessibility permission) |
+>
+> Also new in this fork, for both platforms: projects saved by FL 2026 read correctly (its changed event layout,
+> `docs/FLP.md`), and pattern names are written.
+
 An MCP server that lets a model read and write FL Studio projects and drive a running FL Studio, so it can write music.
 
 The model does not listen. A render comes back as numbers and pictures (spectrograms, loudness, stereo width), and the person listens and decides.
@@ -20,16 +37,20 @@ https://github.com/user-attachments/assets/2984c857-38cc-4384-b51d-e807018261eb
 
 https://github.com/user-attachments/assets/355de51f-cf49-410f-94c3-5f754773bfa7
 
-Windows, and macOS on the `macos` branch (everything but rendering from the harness: see `INSTALL-macos.md`). To install it, follow `INSTALL.md`. Everything past setup and the tools (how to write a piece, the file format, traps, decisions) is under `docs/`, starting at `docs/INDEX.md`.
+Windows, and macOS on this fork's `macos` branch. To install it, follow `INSTALL.md` on Windows and `INSTALL-macos.md` on a Mac. Everything past setup and the tools (how to write a piece, the file format, traps, decisions) is under `docs/`, starting at `docs/INDEX.md`.
 
 ## Requirements
 
 - Windows, FL Studio 2025. Built and measured on FL 25.1.6, scripting API 38.
 - loopMIDI with at least one port. FL loads the controller script only when its MIDI input port exists.
+- Or macOS with FL Studio for Mac (tested: FL 2026, 26.1.7, scripting API 45, Apple Silicon). No loopMIDI: the server
+  makes its own MIDI port.
 - Python 3.12 or newer and `uv`.
 - `ffmpeg` and `ffprobe` on PATH, for the analysis scripts.
 
 ## Setup
+
+On a Mac: quit FL and run `./setup.sh` (`INSTALL-macos.md`); the rest of this section is the Windows setup.
 
 The short way: close FL and double-click `setup.bat`. It installs what is missing (uv, loopMIDI, optionally ffmpeg), builds the environment, installs FL's controller script, makes the MIDI port and FL's MIDI setting, adds the server to the Claude desktop app, and ends with a check that FL answers. `INSTALL.md` lists every step and where it lands.
 
@@ -62,10 +83,12 @@ The server opens FL only for a project: `project_write(open=true)` and `fl_rende
 | `scripts/server.py` | the MCP server: tools, and the live link to FL |
 | `scripts/config.py` | the machine paths, read from `kuruitsugizaki.json` |
 | `setup.bat`, `setup.ps1` | the one-step install (`INSTALL.md`, The short way) |
+| `setup.sh`, `uninstall.sh` | the same on macOS (`INSTALL-macos.md`) |
+| `scripts/coremidi.py` | macOS: CoreMIDI through ctypes, the virtual `kuruitsugizaki` MIDI port and the SysEx framing the live link uses |
 | `uninstall.bat`, `scripts/uninstall.py` | undoes the setup: controller script, the MIDI port and FL's MIDI setting, the Claude entries, saved plugin states; settings move to `tmp/uninstall`; uv, loopMIDI, ffmpeg and `.venv` stay |
 | `Dockerfile` | for MCP directories' automated checks: runs the server on Linux, where the file tools work and the live link to FL answers that it needs Windows |
 | `scripts/doctor.py` | `doctor.py [--install] [--claude [config]] [--live]`: one line per requirement of this machine's setup, `ok` or `MISSING` with what to do; `--install` runs `fl_install`, `--claude` adds the server to the Claude desktop app's config, `--live` starts FL, asks it for its API version and closes it again |
-| `scripts/midisetup.py` | the loopMIDI port and FL's MIDI input setting, both in the registry: reads them, and makes them when no input has the script |
+| `scripts/midisetup.py` | the loopMIDI port and FL's MIDI input setting, both in the registry: reads them, and makes them when no input has the script; on macOS FL's `reg.xml`, input and output paired |
 | `fl/device_kuruitsugizaki.py` | FL controller script; `fl_install` puts it in place |
 | `scripts/flp.py` | `.flp` event codec: parse, serialize (byte-exact), notes, diff |
 | `scripts/project.py` | `.flp` -> full project JSON (round-trips byte-identical) |
@@ -169,7 +192,8 @@ Parameter maps: open a copy of the library in FL (the sweep leaves every knob at
 - **Time**: `[bar, beat, tick]`, 1-based bar and beat, 96 ticks per beat, 4/4. Lengths in ticks. Exact integers; no grid is imposed.
 - **Keys**: note names, MIDI 60 = C4 (FL's own UI calls MIDI 60 C5). Flats accepted.
 - **Pointers**: a note's `inst` is an index into `instruments`. A clip's `src` is a pattern id, `s<N>` (sample N) or `a<N>` (automation N), so no instrument or pattern id may look like `s1` or `a1`.
-- **Patterns** hold notes for any number of instruments. A clip's `len` sets how much of a pattern plays.
+- **Patterns** hold notes for any number of instruments. A clip's `len` sets how much of a pattern plays. `name` gives
+  a pattern the name FL shows (`{"id": "p1", "name": "Verse", "notes": [...]}`); without it FL shows "Pattern N".
 - **Instruments**: `state: {from: file, channel: n}` copies that channel whole, preset and routing included, from any FL-saved project, switched on even when it was muted there (`muted: true` keeps it off; `project_read` reports a muted channel with `muted: true`); or any plugin by name (Plugins by name). `preset` loads a sound into it: an id from `presets`, or a `.SerumPreset`, `.vital`, `.h2p` or `.fxp` path, or `<pack>/<preset>` for FLEX. `mixer: n` routes it. Serum 1 `.fxp` are not supported.
 - **Sampler channels**: `"kind": "sampler"` with a `path` loads that file into a sampler, so notes pitch it (C4 = original pitch). A sampler plays its sample to the end whatever the note length; cut chops to their own files first (`chop.py`).
 - **Song mode**: compact documents are saved in song mode so FL and its command-line render play the arrangement; `project.song_mode: false` saves pattern mode, and `project_read` reports the mode a project was saved in.
@@ -185,7 +209,7 @@ The compact form leaves out bytes that are not mapped. For editing an existing p
 
 ## Not written yet
 
-Mixer pans and sends as static settings; a plugin FL's plugin manager has not scanned; pattern names; time signature; vendor preset files for VSTs whose state is neither JUCE XML nor `#zip#` (an `.fst` saved from FL is their route). See `docs/FLP.md`, Open.
+Mixer pans and sends as static settings; a plugin FL's plugin manager has not scanned; time signature; vendor preset files for VSTs whose state is neither JUCE XML nor `#zip#` (an `.fst` saved from FL is their route). See `docs/FLP.md`, Open.
 
 ## License
 

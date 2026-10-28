@@ -226,8 +226,6 @@ def build(doc: dict) -> tuple[bytes, list[str]]:
         if notes or pt.get("note_event", True):
             events.append(flp.Event(224, flp.notes_encode(notes)))
         events += [flp.Event(x["id"], bytes.fromhex(x["hex"])) for x in raw if x["where"] == "after"]
-        if pt.get("name"):
-            warn.append(f"pattern {pt['id']}: names are not written yet (event 193 is unconfirmed)")
     events += [flp.Event(e.id, e.data) for e in lay["middle"] if e.id != 227]
     for i, c in enumerate(chans):
         if c["kind"] != "automation":
@@ -243,6 +241,12 @@ def build(doc: dict) -> tuple[bytes, list[str]]:
         events.append(flp.Event(227, auto.link(i, tid, c.get("raw_link"))))
     for i, c in enumerate(chans):
         events += channel_block(c, i)
+    # pattern names: FL's per-pattern settings block after the channels holds 65 (index) and 193 (UTF-16 name); FL
+    # adds its other settings there itself when it saves
+    for pt in doc.get("patterns", []):
+        if pt.get("name"):
+            events += [flp.Event(65, pat_index[pt["id"]].to_bytes(2, "little")),
+                       flp.Event(193, str(pt["name"]).encode("utf-16-le") + b"\0\0")]
     tpl = item_templates()
     base_arrs = lay["arrangements"]
     for ai, arr in enumerate(doc.get("arrangements") or [{"name": "Arrangement", "clips": []}]):

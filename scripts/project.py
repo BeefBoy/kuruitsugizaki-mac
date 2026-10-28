@@ -208,6 +208,14 @@ def export(path: str) -> dict:
                 if ref >= PATTERN_BASE and r[24:32] != tpl[24:32]:
                     clip["raw24"] = r[24:32].hex()
                 arr["clips"].append(clip)
+    # FL keeps each pattern's settings in a block after the channels: 65 (index), 193 (name), then 150, 157, 158, 164,
+    # 52, 171, 252, 253 (unmapped). An older layout has 193 next to the notes, read above.
+    cur = None
+    for e in ev[starts[-1] if starts else region_end:first_arr]:
+        if e.id == 65:
+            cur = u(e)
+        elif e.id == 193 and cur in patterns:
+            patterns[cur]["name"] = text(e)
     flags = [c.pop("_flag_b19", False) for a in arrangements for c in a["clips"]]
     i = 0
     for a in arrangements:
