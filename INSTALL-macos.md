@@ -66,9 +66,12 @@ Dock's Quit does, so FL saves its settings.
   no project path, keeps no file open, and its window title needs Screen Recording permission.
 - On an FL you started, the harness saves nothing: with unsaved changes it asks you to save in FL first, since it
   cannot tell whether saving would stop at a Save As dialog.
-- A preset that needs a saved plugin state (`Serum2`, `Vital`, `Diva`, `Sylenth1` presets by id) is made by opening the
-  plugin in FL, saving and closing it; the pieces now exist on macOS but the flow is untested (none of those plugins
-  was installed). Plugins by name without a preset, FLEX packs, `.fst` presets and NKS presets do not need it.
+- A preset that needs a saved plugin state (`Serum2`, `Vital`, `Diva`, `Sylenth1` presets by id) is made once by
+  opening the plugin in FL, saving and closing it (`tmp/states/`). Verified with Vital; Serum 2, Diva and Sylenth1 are
+  untested on macOS. Vital's presets are read from its data folder's `User` folder (`~/Music/Vital/User`, or where
+  Vital's own config puts it); add others, such as `~/Music/Vital/Factory`, with `vital_presets`.
 - Vendor preset folders (`Krush`, `Portal`, `spiff`, `ShaperBox 3`) default to Windows locations; set `vst_presets` in
   `kuruitsugizaki.json` for macOS ones.
-- AU plugins are listed (format `au`) but untested.
+- AU plugins are listed (format `au`, FL's `Installed/.../AudioUnit` folder) but untested in a project.
+- Projects saved by FL 2026 read with no tempo: FL 26 changed how it stores song settings (`docs/FLP.md`). Their notes,
+  channels and playlist read. Not a macOS matter: FL 2026 on Windows writes the same.

@@ -90,6 +90,11 @@ A state event belongs after its block's 212: FL gives a 213 to the plugin the la
 - 202 project path follows the save location.
 - 237 (16 bytes) reads as two f64: first ~46295, an OLE date in late September 2026; second grew. Creation date and time spent is inferred, not confirmed.
 - 233 (80-byte records, 46 in key, 0 bytes in init): one u32 per record was renumbered to 1, 2, 3... on save. Playlist clips is inferred.
+  FL 26 (26.1.7) writes 88-byte records: the FL 25 record's first 72 bytes, then 8 new bytes (`00000000 ffffffff` for a
+  plain pattern clip), then the last 8; read by `project.item_size`, unmapped. FL 26 also drops the song-level events
+  of FL 25 (156 tempo, 9, 11, 10, 17, 23, 30, 35, 37, 44, 67, 80, 146, 167, 194, 195, 200, 202, 206, 207, 237, 231) and
+  writes 172, 54, 2, 16, 192 and about 50 one-byte event 0s instead; where the tempo went is not found yet (no
+  120000 u32 nor 120.0 float in the file). A project FL 26 saved reads with bpm None.
 - FLEX state (213) floats moved slightly on resave, e.g. 0.09 -> 0.089996, one 0.5 -> 0.6667. Plugins re-quantize their state on reload, so a state diff is not by itself a user change.
 - The Ozone slot's 212 record changed one byte at offset 16, 0x40 -> 0x41. Whether that is FL mirroring the bypass is open.
 

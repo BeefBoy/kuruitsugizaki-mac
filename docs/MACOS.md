@@ -16,6 +16,10 @@ and parameter tools, the live link to FL, starting and quitting FL, and renderin
   Plugin Manager scans, so `library._db_dirs` falls back to the category tree (`Generators/<category>`), where some
   files are old presets with ASCII names; `library._fresh` re-encodes them as UTF-16.
 - `%FLStudioFactoryData%` is `Contents/Resources/FL` inside the app (`config.factory_data`).
+- After a Plugin Manager scan FL for Mac writes `Installed/<kind>/{Fruity,VST,VST3,AudioUnit}`; `AudioUnit` is format
+  `au` (`library.DB_FORMATS`). Vital's data folder is `~/Music/Vital`, read from `~/Library/Application
+  Support/vital/Vital.config` (`config._vital_data`). Vital presets by id are verified: the state FL saved carries
+  `preset_name`.
 - FL's settings ("registry") are `~/Library/Preferences/Image-Line/reg.xml`: the same keys as the Windows registry
   (`Software\Image-Line\FL Studio 26\...`) as XML, every value a string. FL reads it at start and rewrites it when it
   quits, so write it only with FL closed (`midisetup.RegXml`).
@@ -57,4 +61,4 @@ and parameter tools, the live link to FL, starting and quitting FL, and renderin
 - Crash and dialog detection (`flproc.crashes`, `flproc.dialogs`) and the backup of a project the user opened, found by
   FL's window title (`_backup_user`): FL's API gives no path, FL keeps no file open, and its recent-files list
   (`Settings/Browser/Recent files.scr`, the `MRU` key in `reg.xml`) is written only when FL quits.
-- The saved-plugin-state flow for Serum 2, Vital, Diva and Sylenth1 presets is untested on macOS.
+- The saved-plugin-state flow for Serum 2, Diva and Sylenth1 presets is untested on macOS (Vital works).

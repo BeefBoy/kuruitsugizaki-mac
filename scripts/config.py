@@ -114,6 +114,17 @@ def _fl_presets_places(data: dict, fl: Path | None) -> list[Path]:
     return [fl / "Data" / "Patches" / "Plugin presets"]
 
 
+def _vital_data(docs: Path) -> Path:
+    """Vital's data folder: Documents/Vital on Windows; on macOS where Vital's own config says (~/Music/Vital)."""
+    if not MAC:
+        return docs / "Vital"
+    try:
+        conf = json.loads((Path.home() / "Library" / "Application Support" / "vital" / "Vital.config").read_text(encoding="utf-8"))
+        return Path(conf["data_directory"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return Path.home() / "Music" / "Vital"
+
+
 def _places(data: dict) -> dict:
     d, fl = documents(), _fl_dir(data)
     il = d / "Image-Line"
@@ -129,7 +140,7 @@ def _places(data: dict) -> dict:
         "diva_presets": [d / "u-he" / "Diva.data" / "Presets" / "Diva"],
         "sylenth1_presets": [d / "LennarDigital" / "Sylenth1" / "Presets"],
         "serum2_presets": [d / "Xfer" / "Serum 2 Presets"],
-        "vital_presets": [d / "Vital" / "User"],
+        "vital_presets": [_vital_data(d) / "User"],
         "nks_presets": [d / "Native Instruments" / "User Content"] + (sorted(pub.glob("* Library")) if pub.is_dir() else []),
         "claude_desktop_config": _claude_desktop_places(),
         "claude_code_dir": [Path(os.environ["CLAUDE_CONFIG_DIR"])] if os.environ.get("CLAUDE_CONFIG_DIR") else [Path.home() / ".claude"],

@@ -59,9 +59,10 @@ def at(t: int, ppq: int, beats: int = 4) -> list[int]:
 
 
 def item_size(version: str | None) -> int:
-    """Bytes per playlist item (event 233): FL 20 writes the first 32 bytes of the FL 25 layout."""
+    """Bytes per playlist item (event 233): FL 20 writes the first 32 bytes of the FL 25 layout; FL 26 adds 8 bytes
+    after the FL 25 layout's first 72 (00000000 ffffffff for a plain pattern clip), unmapped."""
     major = int(version.split(".")[0]) if version else 25
-    return 32 if major < 21 else ITEM
+    return 32 if major < 21 else ITEM + 8 if major >= 26 else ITEM
 
 
 def wrapper(data: bytes) -> dict:
@@ -184,7 +185,7 @@ def export(path: str) -> dict:
                 r = e.data[i:i + size]
                 pos, base, ref, length, track = struct.unpack_from("<IHHII", r)
                 clip = {"track": 500 - track, "at": at(pos, ppq), "len": length}
-                if size == ITEM:
+                if size >= ITEM:
                     clip["item"] = struct.unpack_from("<I", r, 32)[0]
                 if ref >= PATTERN_BASE:
                     clip["pattern"] = f"p{ref - PATTERN_BASE}"
