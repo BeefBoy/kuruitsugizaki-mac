@@ -1,21 +1,8 @@
 # kuruitsugizaki
 
-> **This fork adds macOS.** [whatanaiceguy/kuruitsugizaki](https://github.com/whatanaiceguy/kuruitsugizaki) is
-> Windows-only; the `macos` branch here runs on macOS too, tested on a Mac with FL Studio 2026 (26.1.7), and keeps
-> Windows working as upstream has it. Install on a Mac with [`INSTALL-macos.md`](INSTALL-macos.md); what the port
-> changed and why is in [`docs/MACOS.md`](docs/MACOS.md).
->
-> | on macOS | |
-> |---|---|
-> | read and write `.flp` projects, profile, samples, plugins, presets, params | works |
-> | live link (`fl_probe`, `fl_call`, `fl_exec`, `fl_transport`) | works: SysEx over a virtual MIDI port the server creates, no loopMIDI or IAC bus |
-> | start, open and quit FL; `fl_render`, `render_report` | works; FL's startup window must be turned off |
-> | plugin presets that need a saved state | Vital verified; Serum 2, Diva, Sylenth1 untested |
-> | crash detection | from FL's own crash log |
-> | dialog detection; backup of a project you opened yourself | Windows only (would need Accessibility permission) |
->
-> Also new in this fork, for both platforms: projects saved by FL 2026 read correctly (its changed event layout,
-> `docs/FLP.md`), and pattern names are written.
+> **macOS fork.** This fork of [whatanaiceguy/kuruitsugizaki](https://github.com/whatanaiceguy/kuruitsugizaki),
+> which is Windows-only, also runs on **macOS**: see [About this fork](#about-this-fork-macos) and
+> [`INSTALL-macos.md`](INSTALL-macos.md).
 
 An MCP server that lets a model read and write FL Studio projects and drive a running FL Studio, so it can write music.
 
@@ -37,20 +24,76 @@ https://github.com/user-attachments/assets/2984c857-38cc-4384-b51d-e807018261eb
 
 https://github.com/user-attachments/assets/355de51f-cf49-410f-94c3-5f754773bfa7
 
-Windows, and macOS on this fork's `macos` branch. To install it, follow `INSTALL.md` on Windows and `INSTALL-macos.md` on a Mac. Everything past setup and the tools (how to write a piece, the file format, traps, decisions) is under `docs/`, starting at `docs/INDEX.md`.
+It runs on macOS (this fork) and Windows. To install it, follow `INSTALL-macos.md` on a Mac and `INSTALL.md` on Windows. Everything past setup and the tools (how to write a piece, the file format, traps, decisions) is under `docs/`, starting at `docs/INDEX.md`.
+
+## About this fork: macOS
+
+[whatanaiceguy/kuruitsugizaki](https://github.com/whatanaiceguy/kuruitsugizaki) runs on Windows only. This fork ports it
+to **macOS**, on the `macos` branch, and keeps Windows working as upstream has it: the same code runs on both, choosing
+its platform at run time.
+
+**Why it was Windows-only.** Reading and writing `.flp` files is plain Python. The hard part is the live link: FL's script
+sandbox refuses files, sockets and pipes, so upstream hands FL a Windows pipe handle (`DuplicateHandle`). macOS has no
+such thing. Here the server creates its own virtual MIDI port, `kuruitsugizaki`, through CoreMIDI, and talks to FL's
+controller script in MIDI SysEx messages: no loopMIDI, no IAC bus, nothing to install. `fl_install` writes FL's MIDI
+setting for that port itself.
+
+**What works on macOS**, tested on an Apple Silicon Mac with FL Studio 2026 (26.1.7):
+
+| | |
+|---|---|
+| read and write `.flp` projects; `profile`, `samples`, `plugins`, `presets`, `params` | works |
+| live link: `fl_probe`, `fl_call`, `fl_exec`, `fl_transport` | works |
+| starting, opening and quitting FL; `project_write(open=true)` | works; turn FL's startup window off first |
+| `fl_render`, `render_report` | works (FL for Mac renders with `-R -E…`, not `/R /E…`) |
+| plugin presets that need a saved state | Vital verified; Serum 2, Diva, Sylenth1 untested |
+| crash detection | works, from FL's own crash log |
+| dialog detection; backing up a project you opened yourself | Windows only: macOS would need Accessibility permission |
+
+**New for both platforms:** projects saved by FL 2026 read correctly (FL 26 changed its event layout, `docs/FLP.md`), and
+pattern names are written.
+
+Install on a Mac with [`INSTALL-macos.md`](INSTALL-macos.md). What the port changed, and why, is in
+[`docs/MACOS.md`](docs/MACOS.md). CI runs the self-test on Ubuntu and macOS. Upstream's own changes are not merged in
+automatically; this fork follows it by hand.
 
 ## Requirements
 
-- Windows, FL Studio 2025. Built and measured on FL 25.1.6, scripting API 38.
+### macOS
+
+- FL Studio for Mac, started and quit once. Tested with FL Studio 2026 (26.1.7, scripting API 45) on Apple Silicon.
+- FL's startup window turned off, and FL's first microphone prompt answered: both hold FL's start, and the harness
+  starts FL by itself.
+- Python 3.12 or newer and `uv` (`setup.sh` installs uv with Homebrew if it is missing).
+- `ffmpeg` and `ffprobe` (`brew install ffmpeg`), for the analysis of renders.
+
+### Windows
+
+- FL Studio 2025. Built and measured on FL 25.1.6, scripting API 38.
 - loopMIDI with at least one port. FL loads the controller script only when its MIDI input port exists.
-- Or macOS with FL Studio for Mac (tested: FL 2026, 26.1.7, scripting API 45, Apple Silicon). No loopMIDI: the server
-  makes its own MIDI port.
 - Python 3.12 or newer and `uv`.
 - `ffmpeg` and `ffprobe` on PATH, for the analysis scripts.
 
 ## Setup
 
-On a Mac: quit FL and run `./setup.sh` (`INSTALL-macos.md`); the rest of this section is the Windows setup.
+### macOS
+
+Quit FL, then in this folder:
+
+```bash
+./setup.sh
+```
+
+It installs what is missing (uv, optionally ffmpeg), builds the environment (`uv sync`), installs FL's controller script
+and its MIDI setting (`fl_install`, which edits FL's `~/Library/Preferences/Image-Line/reg.xml` and keeps a `.bak`),
+adds the server to the Claude desktop app, and checks every requirement. For Claude Code instead:
+`claude mcp add --scope user kuruitsugizaki -- <this folder>/.venv/bin/kuruitsugizaki`.
+
+Then start FL and run `.venv/bin/python scripts/doctor.py --live`: its last line says whether FL's controller script
+answers. `INSTALL-macos.md` has every step, what to do by hand if `fl_install` cannot, and how to undo it
+(`./uninstall.sh`).
+
+### Windows
 
 The short way: close FL and double-click `setup.bat`. It installs what is missing (uv, loopMIDI, optionally ffmpeg), builds the environment, installs FL's controller script, makes the MIDI port and FL's MIDI setting, adds the server to the Claude desktop app, and ends with a check that FL answers. `INSTALL.md` lists every step and where it lands.
 
