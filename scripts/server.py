@@ -2,6 +2,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 import threading
 import time
 from pathlib import Path
@@ -19,7 +20,8 @@ try:
 except ImportError:  # not Windows: the file tools work, the live link to FL does not
     _winapi = None
 
-NO_LIVE = "the live link to FL needs Windows with FL Studio installed"
+NO_LIVE = ("the live link to FL (play/stop, parameter reads, rendering from here) is Windows only in this version; "
+           "project_write still writes .flp files, and with open=true opens them in FL")
 ROOT = Path(__file__).resolve().parents[1]
 BOX = ROOT / "tmp" / "bridge"
 MORE_DATA = 234
@@ -421,8 +423,8 @@ def _live(code: str, timeout: float = 5.0):
 
 def _running(image: str) -> bool:
     if os.name != "nt":
-        return False
-    out = subprocess.run(["tasklist", "/FI", f"IMAGENAME eq {image}", "/FO", "CSV", "/NH"], capture_output=True, text=True).stdout
+        return bool(flproc.pids(image))
+    out =subprocess.run(["tasklist", "/FI", f"IMAGENAME eq {image}", "/FO", "CSV", "/NH"], capture_output=True, text=True).stdout
     return f'"{image.lower()}"' in out.lower()
 
 
@@ -470,6 +472,23 @@ def _save_open(protect: Path | None = None, timeout: float = 5.0) -> dict:
         protect.write_bytes(before)
         res["restored"] = str(protect)
     return res
+
+
+def _open_in_os(path: Path) -> dict:
+    """Open a project in FL through the OS, with no live link: macOS `open` (FL's app when fl_exe is set, else whatever
+    opens .flp). FL asks about unsaved changes itself if a project is already open."""
+    fl_app = cfg.get("fl_exe")
+    if sys.platform == "darwin":
+        cmd = ["open", "-a", fl_app, str(path)] if fl_app and Path(fl_app).exists() else ["open", str(path)]
+    elif sys.platform.startswith("linux"):
+        cmd = ["xdg-open", str(path)]
+    else:
+        return {"open_error": "opening a project in FL from here is not supported on this platform"}
+    try:
+        subprocess.Popen(cmd, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except OSError as e:
+        return {"open_error": f"{cmd[0]} failed: {e}"}
+    return {"opened_with": " ".join(cmd[:3]) if len(cmd) > 2 else cmd[0], "note": "no live link on this platform: FL was asked to open the file and nothing confirms it loaded"}
 
 
 def _open(path: Path, names: list[str], timeout: float = 120.0) -> dict:
@@ -672,6 +691,18 @@ def project_write(doc: Annotated[dict, Field(description="the project document, 
     out = Path(path)
     out.parent.mkdir(parents=True, exist_ok=True)
     saved = None
+    if (open or play) and _winapi is None:
+        # no live link on this platform: write the file, then let the OS open it in FL
+        out.write_bytes(raw)
+        back = project.export(str(out))
+        res = {"wrote": str(out), "bytes": len(raw), "warnings": warn,
+               "channels": [c["name"] for c in back["instruments"] + back["samples"] + back["automation"]],
+               "patterns": {p["id"]: len(p["notes"]) for p in back["patterns"]},
+               "clips": {a["name"]: len(a["clips"]) for a in back["arrangements"]}}
+        res.update(_open_in_os(out.resolve()))
+        if play:
+            res["transport"] = {"ok": False, "error": "no live link on this platform: press play in FL"}
+        return res
     if (open or play) and _fl_running():
         try:
             saved = _save_open()
@@ -709,6 +740,8 @@ def fl_render(path: Annotated[str, Field(description="the .flp to render")],
               reopen: Annotated[bool, Field(description="open the project in FL again when done")] = True,
               key: Annotated[str | None, Field(description="the key the piece is written in, e.g. 'F minor' or 'G#m'; "
                                                            "the log then says how much pitch energy falls outside its scale")] = None) -> dict:
+    if _winapi is None:
+        return {"ok": False, "error": NO_LIVE + "; render from FL itself (File > Export) for now"}
     target = Path(path).resolve()
     if not target.exists():
         return {"ok": False, "error": f"{target} does not exist"}
@@ -871,6 +904,8 @@ def params(plugin: Annotated[str, Field(description="the plugin's name as plugin
 def fl_transport(action: Annotated[str, Field(description="'play' or 'stop'")],
                  mode: Annotated[str | None, Field(description="'song' or 'pattern'; omit to keep FL's")] = None,
                  pattern: Annotated[int | None, Field(description="in pattern mode, the pattern number to select first")] = None) -> dict:
+    if _winapi is None:
+        return {"ok": False, "error": NO_LIVE}
     if not _fl_running():
         return {"ok": False, "error": NOT_OPEN}
     return _transport(action, mode, pattern)

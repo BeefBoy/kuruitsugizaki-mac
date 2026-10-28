@@ -3,6 +3,7 @@ import json
 import re
 import struct
 import subprocess
+import sys
 import time
 from ctypes import wintypes
 from pathlib import Path
@@ -16,8 +17,26 @@ class Ambiguous(RuntimeError):
 
 
 def pids(image: str = "FL64.exe") -> list[int]:
+    if sys.platform != "win32":
+        return _pids_posix(image)
     out = subprocess.run(["tasklist", "/FI", f"IMAGENAME eq {image}", "/FO", "CSV", "/NH"], capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
     return [int(line.split('","')[1]) for line in out.splitlines() if line.lower().startswith(f'"{image.lower()}"')]
+
+
+def _pids_posix(image: str) -> list[int]:
+    """macOS: FL Studio's main process, found as the executable inside an 'FL Studio*.app' bundle. Only FL's own image
+    name is looked for; helper processes of the bundle (plugin scanners, crash handlers) are not FL."""
+    if image.lower() != "fl64.exe":
+        return []
+    out = subprocess.run(["ps", "-axo", "pid=,command="], capture_output=True, text=True, stdin=subprocess.DEVNULL).stdout
+    # the command must BE the bundle's executable (it may contain a space, as "FL Studio" does), optionally followed by -flags
+    main = re.compile(r"^/(?:[^/]+/)*FL Studio[^/]*\.app/Contents/MacOS/[^/ -][^/]*?(?: -.*)?$")
+    found = []
+    for line in out.splitlines():
+        m = re.match(r"\s*(\d+)\s+(.*)", line)
+        if m and main.match(m.group(2).strip()):
+            found.append(int(m.group(1)))
+    return found
 
 
 def created(pid: int) -> int | None:

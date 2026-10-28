@@ -7,10 +7,12 @@ from pathlib import Path
 
 import cli
 import config as cfg
-import midisetup
+
+if cfg.WIN:
+    import midisetup
 
 ROOT = cfg.ROOT
-EXE = ROOT / ".venv" / "Scripts" / "kuruitsugizaki.exe"
+EXE = ROOT / ".venv" / ("Scripts" if cfg.WIN else "bin") / ("kuruitsugizaki.exe" if cfg.WIN else "kuruitsugizaki")
 CLAUDE = cfg.claude_desktop()
 
 
@@ -39,17 +41,20 @@ def checks(claude: Path) -> list[tuple]:
 
     fl, loop = cfg.get("fl_exe"), cfg.get("loopmidi_exe")
     row(True, "FL Studio", fl and Path(fl).exists(), fl or "not found; set fl_exe with the config tool")
-    row(True, "loopMIDI", loop and Path(loop).exists(), loop or "not installed: winget install TobiasErichsen.loopMIDI")
     row(True, "server", EXE.exists(), EXE if EXE.exists() else "run `uv sync` in this folder")
-    hw = cfg.get("fl_hardware")
-    script = Path(hw) / "kuruitsugizaki" / "device_kuruitsugizaki.py" if hw else None
-    box = re.search(r"(?m)^BOX = '(.*)'", script.read_text(encoding="utf-8")) if script and script.exists() else None
-    here = (ROOT / "tmp" / "bridge").as_posix()
-    row(True, "controller script", box and box.group(1) == here,
-        script if box and box.group(1) == here else "not installed for this folder; run fl_install" if hw else "FL's Settings\\Hardware folder not found; set fl_hardware")
-    s = midisetup.state(fl)
-    row(True, "loopMIDI port", s["loopmidi_ports"], ", ".join(s["loopmidi_ports"]) or "none; fl_install makes one")
-    row(True, "FL MIDI setting", s["assigned"], f"script on input {s['assigned'][0]!r}" if s["assigned"] else "no input has the script; run fl_install with FL closed, or " + midisetup.BY_HAND)
+    if cfg.WIN:
+        row(True, "loopMIDI", loop and Path(loop).exists(), loop or "not installed: winget install TobiasErichsen.loopMIDI")
+        hw = cfg.get("fl_hardware")
+        script = Path(hw) / "kuruitsugizaki" / "device_kuruitsugizaki.py" if hw else None
+        box = re.search(r"(?m)^BOX = '(.*)'", script.read_text(encoding="utf-8")) if script and script.exists() else None
+        here = (ROOT / "tmp" / "bridge").as_posix()
+        row(True, "controller script", box and box.group(1) == here,
+            script if box and box.group(1) == here else "not installed for this folder; run fl_install" if hw else "FL's Settings\\Hardware folder not found; set fl_hardware")
+        s = midisetup.state(fl)
+        row(True, "loopMIDI port", s["loopmidi_ports"], ", ".join(s["loopmidi_ports"]) or "none; fl_install makes one")
+        row(True, "FL MIDI setting", s["assigned"], f"script on input {s['assigned'][0]!r}" if s["assigned"] else "no input has the script; run fl_install with FL closed, or " + midisetup.BY_HAND)
+    else:
+        row(False, "live link", False, "Windows only in this version; the file tools and project_write(open=true) work without it")
     try:
         import library
         rows = library.summary(None, native=True)
@@ -64,7 +69,7 @@ def checks(claude: Path) -> list[tuple]:
     except Exception as e:
         row(True, "template", False, repr(e))
     ff = shutil.which("ffmpeg") and shutil.which("ffprobe")
-    row(False, "ffmpeg", ff, ff or "not on PATH; renders come back without their analysis: winget install Gyan.FFmpeg")
+    row(False, "ffmpeg", ff, ff or ("not on PATH; renders come back without their analysis: " + ("winget install Gyan.FFmpeg" if cfg.WIN else "brew install ffmpeg")))
     try:
         has = json.loads(claude.read_text(encoding="utf-8-sig")).get("mcpServers", {}).get("kuruitsugizaki", {}).get("command") == str(EXE)
     except Exception:

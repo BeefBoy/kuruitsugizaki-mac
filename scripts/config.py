@@ -1,12 +1,16 @@
 import json
 import os
+import sys
 from pathlib import Path
+
+WIN = sys.platform == "win32"
+MAC = sys.platform == "darwin"
 
 ROOT = Path(__file__).resolve().parents[1]
 FILE = ROOT / "kuruitsugizaki.json"
 KEYS = {
-    "fl_exe": ("FL Studio's FL64.exe", r"C:\Program Files\Image-Line\FL Studio 2025\FL64.exe"),
-    "loopmidi_exe": ("loopMIDI.exe, the virtual MIDI port FL needs before it loads the controller script", r"C:\Program Files (x86)\Tobias Erichsen\loopMIDI\loopMIDI.exe"),
+    "fl_exe": ("FL Studio's FL64.exe (on macOS: the FL Studio .app)", "/Applications/FL Studio 2025.app" if MAC else r"C:\Program Files\Image-Line\FL Studio 2025\FL64.exe"),
+    "loopmidi_exe": ("loopMIDI.exe, the virtual MIDI port FL needs before it loads the controller script (Windows only)", "not used on macOS" if MAC else r"C:\Program Files (x86)\Tobias Erichsen\loopMIDI\loopMIDI.exe"),
     "fl_hardware": ("FL's Settings\\Hardware folder, where controller scripts are installed", r"Documents\Image-Line\FL Studio\Settings\Hardware"),
     "template": ("the .flp new projects are built from, relative to this folder or absolute", "projects/init/init.flp"),
     "library": ("optional: an .flp FL saved holding tuned plugin instances to reuse by name, each instrument on its own channel and each effect in a mixer slot", "projects/library.flp"),
@@ -48,19 +52,57 @@ def load() -> dict:
 
 
 def documents() -> Path:
-    try:
-        import winreg
-        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders") as k:
-            return Path(winreg.QueryValueEx(k, "Personal")[0])
-    except Exception:
-        return Path.home() / "Documents"
+    if WIN:
+        try:
+            import winreg
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders") as k:
+                return Path(winreg.QueryValueEx(k, "Personal")[0])
+        except Exception:
+            pass
+    return Path.home() / "Documents"
+
+
+def _mac_apps() -> list[Path]:
+    """FL Studio app bundles on macOS, newest name last: /Applications and ~/Applications."""
+    roots = [Path("/Applications"), Path.home() / "Applications"]
+    return sorted(p for r in roots if r.is_dir() for p in r.glob("FL Studio*.app"))
+
+
+def _mac_factory_presets(app: Path) -> Path | None:
+    """FL's factory 'Plugin presets' folder inside the app bundle. Where inside the bundle varies by release, so it is
+    looked for, not assumed."""
+    for pattern in ("Contents/Resources/**/Patches/Plugin presets", "Contents/**/Patches/Plugin presets"):
+        found = next(app.glob(pattern), None)
+        if found:
+            return found
+    return None
 
 
 def _fl_dir(data: dict) -> Path | None:
     if data.get("fl_exe"):
-        return Path(data["fl_exe"]).parent
+        return Path(data["fl_exe"]) if MAC else Path(data["fl_exe"]).parent
+    if MAC:
+        apps = _mac_apps()
+        return apps[-1] if apps else None
     found = sorted(Path(r"C:\Program Files\Image-Line").glob("FL Studio*/FL64.exe"))
     return found[-1].parent if found else None
+
+
+def _fl_exe_places(fl: Path | None) -> list[Path]:
+    """On Windows FL64.exe in FL's folder; on macOS the app bundle itself (fl_exe names the .app)."""
+    if not fl:
+        return []
+    return [fl] if MAC else [fl / "FL64.exe"]
+
+
+def _fl_presets_places(data: dict, fl: Path | None) -> list[Path]:
+    if not fl:
+        return []
+    if MAC:
+        app = Path(data["fl_exe"]) if data.get("fl_exe") else fl
+        found = _mac_factory_presets(app) if app.is_dir() else None
+        return [found] if found else []
+    return [fl / "Data" / "Patches" / "Plugin presets"]
 
 
 def _places(data: dict) -> dict:
@@ -68,10 +110,10 @@ def _places(data: dict) -> dict:
     il = d / "Image-Line"
     pub = Path(os.environ.get("PUBLIC", r"C:\Users\Public")) / "Documents"
     return {
-        "fl_exe": [fl / "FL64.exe"] if fl else [],
-        "loopmidi_exe": [Path(r"C:\Program Files (x86)\Tobias Erichsen\loopMIDI\loopMIDI.exe"), Path(r"C:\Program Files\Tobias Erichsen\loopMIDI\loopMIDI.exe")],
+        "fl_exe": _fl_exe_places(fl),
+        "loopmidi_exe": [] if not WIN else [Path(r"C:\Program Files (x86)\Tobias Erichsen\loopMIDI\loopMIDI.exe"), Path(r"C:\Program Files\Tobias Erichsen\loopMIDI\loopMIDI.exe")],
         "fl_hardware": [il / "FL Studio" / "Settings" / "Hardware"],
-        "fl_presets": [fl / "Data" / "Patches" / "Plugin presets"] if fl else [],
+        "fl_presets": _fl_presets_places(data, fl),
         "fl_user_presets": [il / "FL Studio" / "Presets" / "Plugin presets"],
         "plugin_db": [il / "FL Studio" / "Presets" / "Plugin database"],
         "flex_packs": [il / "FLEX" / "Packs"],
@@ -129,6 +171,10 @@ def _claude_desktop_places() -> list[Path]:
     """Where the Claude desktop app reads its config: the Microsoft Store build from its package's own Roaming folder,
     the installer build from %APPDATA%\\Claude."""
     name = Path("Claude") / "claude_desktop_config.json"
+    if MAC:
+        return [Path.home() / "Library" / "Application Support" / name]
+    if not WIN:
+        return [Path(os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config") / name]
     local = Path(os.environ.get("LOCALAPPDATA", "")) / "Packages"
     store = [p / "LocalCache" / "Roaming" / name for p in sorted(local.glob("Claude_*"))] if local.is_dir() else []
     return store + [Path(os.environ.get("APPDATA", "")) / name]
